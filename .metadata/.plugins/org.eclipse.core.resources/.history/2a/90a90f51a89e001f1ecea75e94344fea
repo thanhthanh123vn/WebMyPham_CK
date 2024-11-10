@@ -1,0 +1,40 @@
+package com.service;
+
+import java.io.IOException;
+
+import com.dao.Utils;
+
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+
+public class UserUtils extends HttpServlet {
+    private Utils utils;
+    
+    public UserUtils() {
+        utils = new Utils();
+    }
+    
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        // Lấy thông tin tài khoản từ form
+        String username = req.getParameter("username");
+        String password = req.getParameter("password");
+        
+        // Kiểm tra trong cơ sở dữ liệu xem thông tin có hợp lệ không
+        boolean isValidUser = utils.checkUser(username, password);
+        
+        if (isValidUser) {
+            // Đăng nhập thành công, tạo session cho người dùng
+            HttpSession session = req.getSession();
+            session.setAttribute("username", username);
+            resp.sendRedirect("home.jsp"); // Chuyển hướng đến trang chính nếu đăng nhập thành công
+        } else {
+            // Thông báo lỗi nếu đăng nhập không thành công
+            req.setAttribute("errorMessage", "Tên người dùng hoặc mật khẩu không đúng!");
+            req.getRequestDispatcher("login.jsp").forward(req, resp);
+        }
+    }
+}

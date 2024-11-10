@@ -1,0 +1,11 @@
+package com.service;
+
+import com.dao.Utils;
+
+public class UserUtils {
+	private Utils utils;
+	
+	
+	
+
+}

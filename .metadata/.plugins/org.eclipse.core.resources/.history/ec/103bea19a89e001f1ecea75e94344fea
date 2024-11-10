@@ -1,0 +1,15 @@
+package com.dao;
+
+import java.sql.Connection;
+
+public class InfoUser {
+	private Connection conn;
+	private Utils utils;
+	
+	public InfoUser() {
+		// TODO Auto-generated constructor stub
+		utils = new Utils();
+		conn = utils.getConnection();
+	}
+
+}

@@ -90,7 +90,7 @@
 						<img src="https://hasaki.vn/images/graphics/icon_header_2.svg">
 						<div class="login-hover">
 							<a href="src/index/login.jsp" target="_blank" class="login">Đăng
-								nhập/ <a href="signup.html" target="_blank">Đăng ký </br>Tài
+								nhập/ <a href="index/signUp.jsp" target="_blank">Đăng ký </br>Tài
 									khoản &darr;
 							</a>
 								<div class="login-box">
@@ -111,7 +111,7 @@
 									<button class="hasaki-login"
 										onclick="window.location.href='login.jsp'">Đăng nhập</button>
 									<p>
-										Bạn chưa có tài khoản? <a href="#">ĐĂNG KÝ NGAY</a>
+										Bạn chưa có tài khoản? <a href="index/signUp.jsp">ĐĂNG KÝ NGAY</a>
 									</p>
 								</div>
 

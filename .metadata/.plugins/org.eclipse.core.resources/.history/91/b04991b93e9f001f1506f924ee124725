@@ -1,0 +1,54 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đăng Ký Tài Khoản</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="../css/signUp.css">
+</head>
+<body>
+    <div class="main">
+        <form action="/SignUpUser" method="POST" class="form" id="register-form">
+            <h3 class="heading">Đăng ký tài khoản❤️</h3>
+
+            <div class="spacer"></div>
+
+            <div class="form-group">
+                <label for="fullname" class="form-label">Tên đầy đủ</label>
+                <input id="fullname" name="username_sign" type="text" rules="required" placeholder="VD: Nguyễn Thạnh" class="form-control">
+                <span class="form-message"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="email" class="form-label">Email</label>
+                <input id="email" name="email_sign" type="text" rules="required|email" placeholder="VD: email@domain.com" class="form-control">
+                <span class="form-message"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="password" class="form-label">Mật khẩu</label>
+                <input id="password" name="password_sign" rules="required|min:6" type="password" placeholder="Nhập mật khẩu" class="form-control">
+                <span class="form-message"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="confirm-password" class="form-label">Nhập lại Mật khẩu</label>
+                <input id="confirm-password" name="confirm-password" rules="required|min:6|match:password" type="password" placeholder="Nhập lại mật khẩu" class="form-control">
+                <span class="form-message"></span>
+            </div>
+
+            <button type="submit" class="form-submit">Đăng ký</button>
+        </form>
+    </div>
+    <script src="../js/validator.js"></script>
+    <script>
+        var registerForm = Validator('#register-form', {
+            onSubmit: function () {
+               
+        });
+    </script>
+</body>
+</html>

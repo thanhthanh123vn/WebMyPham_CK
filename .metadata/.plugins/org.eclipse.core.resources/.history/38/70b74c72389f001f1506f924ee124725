@@ -1,0 +1,7 @@
+package com.service;
+
+import jakarta.servlet.http.HttpServlet;
+
+public class SignUpUser extends HttpServlet{
+
+}

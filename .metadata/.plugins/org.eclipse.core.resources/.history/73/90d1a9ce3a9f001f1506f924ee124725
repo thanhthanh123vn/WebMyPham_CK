@@ -1,0 +1,40 @@
+package com.service;
+
+import java.io.IOException;
+
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+@WebServlet(urlPatterns = {"/SignUp"})
+
+public class SignUpUser extends HttpServlet{
+	private InforUser user;
+	
+	public void ProcessRequest(HttpServletRequest req , HttpServletResponse resp)throws ServletException, IOException {
+		user = new InforUser();
+		String username = req.getParameter("username");
+		String email = req.getParameter("email");
+		String password = req.getParameter("password");
+		
+		boolean checkInforUser = user.checkInfoUser(username, email);
+		
+		if(!checkInforUser) {
+			HttpSession session = req.getSession();
+			session.setAttribute("usernameLogin", username);
+			req.getRequestDispatcher("index.jsp").forward(req, resp);
+		}
+		
+		
+		
+		
+	}
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+	
+	}
+	
+
+}

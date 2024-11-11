@@ -32,8 +32,6 @@
             width: 1200px;
             padding: 20px;
         }
-
-
         p,
         a {
             margin-top: 20px;

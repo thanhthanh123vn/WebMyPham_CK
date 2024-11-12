@@ -5,6 +5,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import utils.Email;
 
 import java.io.IOException;
@@ -45,12 +46,13 @@ public class SendEmail extends HttpServlet {
 				+ "<p><strong>Đội ngũ hỗ trợ</strong></p>" + "</body>" + "</html>";
 		// Gửi email bằng lớp Email
 		boolean emailSent = Email.sendEmail(toEmail, tieuDe, noiDung);
-		 String verificationCode = generateVerificationCode(); 
+		
 
 		// Phản hồi dựa trên kết quả gửi email
 		 if (emailSent) {
-	            request.getSession().setAttribute("verificationCode", verificationCode);
-	            response.getWriter().write("success");
+			 HttpSession session = request.getSession();
+			 session.setAttribute("verificationCode", maXacNhan);
+			 response.getWriter().write("success");
 	        } else {
 	            response.getWriter().write("failure");
 	        }

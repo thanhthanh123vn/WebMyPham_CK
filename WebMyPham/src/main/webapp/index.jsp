@@ -6,7 +6,11 @@
 <head>
 <meta charset="UTF-8">
 <title>Web Mỹ Phẩm</title>
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+	rel="stylesheet">
 <link rel="stylesheet" href="style.css">
+
 
 </head>
 <body>
@@ -89,13 +93,9 @@
 					<div class="header-icons">
 						<img src="https://hasaki.vn/images/graphics/icon_header_2.svg">
 						<div class="login-hover">
-							<a href="src/index/login.jsp" target="_blank" class="login">Đăng
-<<<<<<< HEAD
-								nhập/ <a href="index/signUp.jsp" target="_blank">Đăng ký </br>Tài
-=======
-								nhập/ <a href="signup.html" target="_blank">Đăng ký </br>Tài
->>>>>>> e2f51d8fee4d114a43047b019f9feaa846a2d9cd
-									khoản &darr;
+							<a href="login.jsp" target="_blank" class="login">Đăng nhập/
+								<a href="index/signUp.jsp" target="_blank">Đăng ký </br>Tài nhập/
+									&darr;
 							</a>
 								<div class="login-box">
 									<h3>Đăng nhập với</h3>
@@ -115,11 +115,10 @@
 									<button class="hasaki-login"
 										onclick="window.location.href='login.jsp'">Đăng nhập</button>
 									<p>
-<<<<<<< HEAD
-										Bạn chưa có tài khoản? <a href="index/signUp.jsp">ĐĂNG KÝ NGAY</a>
-=======
-										Bạn chưa có tài khoản? <a href="#">ĐĂNG KÝ NGAY</a>
->>>>>>> e2f51d8fee4d114a43047b019f9feaa846a2d9cd
+										Bạn chưa có tài khoản? <a href="index/signUp.jsp">ĐĂNG KÝ
+											NGAY</a>
+
+
 									</p>
 								</div>
 
@@ -203,19 +202,22 @@
 				</nav>
 			</div>
 		</header>
+		<div class="alert alert-success" id="successAlert"
+			style="display: none;">
+			<strong>Success!</strong> Indicates a successful or positive action.
+		</div>
 	</div>
 	<script src="js/main.js"></script>
 	<script src="js/updateUserMain.js">
 	</script>
 	<%
 	String username = (String) session.getAttribute("username");
-	
-	
+
 	if (username == null) {
 		username = ""; // Hoặc một giá trị mặc định nếu chưa đăng nhập
 	}
 	%>
-	
+
 	<script>
 	const username = "${username}";
 
@@ -244,5 +246,19 @@
 
 
 </script>
+	<script>
+    // Hàm để hiển thị thông báo
+    function showSuccessAlert() {
+        document.getElementById("successAlert").style.display = "block";
+    }
+
+    // Kiểm tra nếu có biến `showAlert` được truyền vào
+    <%String showAlert = (String) request.getAttribute("showAlert");
+if ("true".equals(showAlert)) {%>
+        showSuccessAlert();
+    <%}%>
+</script>
+
+
 </body>
 </html>

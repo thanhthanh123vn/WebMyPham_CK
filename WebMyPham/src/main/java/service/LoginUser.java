@@ -32,6 +32,7 @@ public class LoginUser extends HttpServlet {
 
 			HttpSession session = req.getSession();
 			session.setAttribute("username", username);
+			session.setAttribute("showAlert", "Hộp thoại success");
 			req.getRequestDispatcher("index.jsp").forward(req, resp);
 		} else {
 			// Thông báo lỗi nếu đăng nhập không thành công

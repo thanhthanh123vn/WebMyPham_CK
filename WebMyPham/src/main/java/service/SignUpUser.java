@@ -14,7 +14,7 @@ public class SignUpUser extends HttpServlet {
 
 	public void processRequest(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		user = new InforUser();
-		String username = req.getParameter("fullname");
+		String username = req.getParameter("username");
 		String email = req.getParameter("email");
 		String password = req.getParameter("password");
 

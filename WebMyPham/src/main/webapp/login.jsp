@@ -9,7 +9,7 @@
     <title>Sign In</title>
     <link rel="stylesheet" href="css/signUp.css">
     <style>
-        * {
+     * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
@@ -32,11 +32,8 @@
             width: 1200px;
             padding: 20px;
         }
-<<<<<<< HEAD
-=======
 
 
->>>>>>> e2f51d8fee4d114a43047b019f9feaa846a2d9cd
         p,
         a {
             margin-top: 20px;

@@ -14,19 +14,12 @@
 	</welcome-file-list>
 	<servlet>
 		<servlet-name>Login</servlet-name>
-
-		<servlet-class>com.service.LoginUser</servlet-class>
-		<servlet-class>com.service.UserUtils</servlet-class>
+		<servlet-class>service.LoginUser</servlet-class>
 
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>Login</servlet-name>
 		<url-pattern>/LoginHandle</url-pattern>
 	</servlet-mapping>
-<<<<<<< HEAD
 
-
-
-=======
->>>>>>> e2f51d8fee4d114a43047b019f9feaa846a2d9cd
 </web-app>

@@ -9,7 +9,7 @@
     <title>Sign In</title>
     <link rel="stylesheet" href="css/signUp.css">
     <style>
-     * {
+        * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
@@ -100,8 +100,8 @@
                 <div class="spacer"></div>
 
                 <div class="form-group">
-                    <label for="username" class="form-label">Tên đầy đủ</label>
-                    <input id="username" name="username" type="text" rules="required" placeholder="VD: Nguyễn Thạnh"
+                    <label for="fullname" class="form-label">Tên đầy đủ</label>
+                    <input id="fullname" name="fullname" type="text" rules="required" placeholder="VD: Nguyễn Thạnh"
                         class="form-control">
                     <span class="form-message"></span>
                 </div>
@@ -127,7 +127,7 @@
             </form>
         </div>
     </div>
-    <script src="../js/validator.js"></script>
+    <script src="js/validator.js"></script>
     <script>
 
 
@@ -140,9 +140,10 @@
         }
         var loginForm = Validator('#register-form', {
             onSubmit: function () {
-                // Lấy dữ liệu từ form
-               
-        });
+            
+            }
+            });
+                
     
 
     </script>

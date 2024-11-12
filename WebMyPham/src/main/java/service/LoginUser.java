@@ -3,6 +3,7 @@ package service;
 import java.io.IOException;
 
 import jakarta.servlet.ServletException;
+import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -32,6 +33,13 @@ public class LoginUser extends HttpServlet {
 
 			HttpSession session = req.getSession();
 			session.setAttribute("username", username);
+			//lưu account lên trang login
+			Cookie u = new Cookie("userC", username);
+			Cookie p = new Cookie("passC", password);
+			u.setMaxAge(60);
+			p.setMaxAge(60);
+			resp.addCookie(u);
+			resp.addCookie(p);
 			session.setAttribute("showAlert", "Hộp thoại success");
 			req.getRequestDispatcher("index.jsp").forward(req, resp);
 		} else {
@@ -45,6 +53,18 @@ public class LoginUser extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		Cookie cookie[]= req.getCookies();
+		
+		for (Cookie cookie2 : cookie) {
+			if(cookie2.getName().equals("userC")) {
+				req.setAttribute("username", cookie2.getValue());
+			}
+			if(cookie2.getName().equals("passC")) {
+				req.setAttribute("password", cookie2.getValue());
+			}
+			
+		}
+		req.getRequestDispatcher("login.jsp").forward(req, resp);
 
 	}
 }

@@ -10,8 +10,11 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Document</title>
- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+	rel="stylesheet">
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
 <style>
 body {
@@ -29,7 +32,8 @@ body {
 }
 
 .form-group {
-	flex-direction: row;
+display:block;
+	
 	margin-bottom: 15px;
 	position: relative;
 }
@@ -150,12 +154,28 @@ a.txt_color_1:hover {
 .space_bottom_10 {
 	margin-bottom: 10px;
 }
+.form-message {
+    color: red;
+    font-size: 0.9em;
+    margin-top: 5px;
+}
+.is-invalid {
+    border-color: red;
+}
+
+
 </style>
 </head>
 <body>
 	<div class="main_content_sub_login">
-		<form id="form-head-register" action="../SignUser" method="post"
-			novalidate="novalidate">
+		<form id="form-head-register" action="../SignUser" method="post" onsubmit="return validateForm()">
+
+			<div class="alert alert-warning alert-dismissible" id="warningAlert"
+				style="display: none;">
+				<button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+				<strong>Cảnh báo!</strong> Hộp cảnh báo này có thể chỉ ra cảnh báo
+				Điều đó có thể cần chú ý.
+			</div>
 			<input name="form_key" type="hidden" value="9lB2QzSyHmzVefcW">
 			<div class="block_more_login">
 				<div class="space_bottom_10">Đăng ký tài khoản</div>
@@ -163,8 +183,9 @@ a.txt_color_1:hover {
 				<div class="form-group">
 					<div class="relative">
 						<input type="text" class="form-control email" name="email"
-							id="reg-email" placeholder="Nhập email hoặc số điện thoại">
+							id="email" placeholder="Nhập email hoặc số điện thoại">
 						<i aria-hidden="true" class="fa fa-envelope-o"></i>
+						 <span class="form-message"></span>
 					</div>
 				</div>
 
@@ -177,22 +198,26 @@ a.txt_color_1:hover {
 
 						<button type="button" id="verifyUserName"
 							data-error=".showRegisterMessage">lấy mã</button>
+							 <span class="form-message"></span>
 					</div>
 				</div>
 				<div class="form-group">
 					<div class="relative">
-						<input id="reg-password" autocomplete="off" name="password"
+						<input id="password" autocomplete="off" name="password"
 							type="password" placeholder="Nhập mật khẩu từ 6 - 32 ký tự"
 							class="form-control"> <i aria-hidden="true"
 							class="fa fa-lock"></i>
+							 <span class="form-message"></span>
 					</div>
 				</div>
 				<div class="form-group">
 					<div class="relative">
-						<input id="reg-fullname" name="username" type="text"
+						<input id="fullname" name="username" type="text"
 							placeholder="Họ tên" class="form-control"
 							data-validate="{required:true, 'validate-custom-fullname': true}">
 						<i aria-hidden="true" class="fa fa-user"></i>
+						
+						 <span class="form-message"></span>
 					</div>
 				</div>
 
@@ -386,14 +411,14 @@ a.txt_color_1:hover {
 				class="loading" data-was-processed="true">
 			</a>
 		</div>
-		<div class="alert alert-success" id="successAlert"
+		<div class="alert alert-warning alert-dismissible" id="warningAlert"
 			style="display: none;">
-			<strong>Success!</strong> Indicates a successful or positive action.
+			<button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+			<strong>Warning!</strong> This alert box could indicate a warning
+			that might need attention.
 		</div>
-
-
 	</div>
-
+<script src="../js/validatorSignUp.js"></script>
 	<script>
 		document
 				.getElementById("verifyUserName")
@@ -424,9 +449,24 @@ a.txt_color_1:hover {
 						});
 	</script>
 
+	<script>
+		// Hàm để hiển thị thông báo
+		function showWarningAlert() {
+			document.getElementById("warningAlert").style.display = "block";
+		}
 
+		// Kiểm tra nếu có biến `showAlert` được truyền vào
+	<%String showAlert = (String) session.getAttribute("errorMessage");
+if (showAlert != null && "true".equals(showAlert)) {%>
+		showWarningAlert();
+		console.log("Warning");
+	<%}%>
+		
+	</script>
 
-
+	<%
+	session.removeAttribute("errorMessage");
+	%>
 
 </body>
 </html>

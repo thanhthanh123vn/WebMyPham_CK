@@ -41,13 +41,14 @@ display:block;
 .form-group .parent_code_register {
 	display: flex;
 	width: 100%;
+
 	flex-direction: row;
 	justify-content: space-around;
 }
 
 .form-group input[type="text"], .form-group input[type="password"],
 	.form-group select {
-	width: 95%;
+	width: 100%;
 	padding: 10px;
 	font-size: 14px;
 	border: 1px solid #ddd;
@@ -189,9 +190,9 @@ a.txt_color_1:hover {
 					</div>
 				</div>
 
-
-				<div class="form-group ">
+		<div class="form-group ">
 					<div class="relative parent_code_register">
+					
 						<input autocomplete="off" placeholder="Nhập mã xác thực 6 số"
 							type="text" name="code" title="Code"
 							class="codeRegister input-text">
@@ -397,7 +398,7 @@ a.txt_color_1:hover {
 				</div>
 		</form>
 		<div class="block_login_fb">
-			Bạn đã có tài khoản? <a href="#popup-login"
+			Bạn đã có tài khoản? <a href="../login.jsp"
 				class="txt_color_1 text-uppercase popup-login popup-register-dismiss">Đăng
 				nhập</a>
 			<div class="space_bottom_10">Hoặc đăng nhập với:</div>
@@ -425,7 +426,7 @@ a.txt_color_1:hover {
 				.addEventListener(
 						"click",
 						function() {
-							var email = document.getElementById("reg-email").value;
+							var email = document.getElementById("email").value;
 							if (email === "") {
 								alert("Vui lòng nhập email.");
 								return;

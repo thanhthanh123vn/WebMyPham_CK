@@ -3,12 +3,13 @@ package service;
 import java.io.IOException;
 
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-
+@WebServlet("/LoginHandle")
 public class LoginUser extends HttpServlet {
 	private InforUser user;
 
@@ -19,11 +20,12 @@ public class LoginUser extends HttpServlet {
 		String username = req.getParameter("username");
 
 		String password = req.getParameter("password");
-
+		HttpSession session = req.getSession();
+		System.out.println("login");
 		boolean isValidUser = user.checkUser(username, password);
 		boolean isValidAdmin = user.checkAdmin(username, password);
 		if (isValidAdmin) {
-			HttpSession session = req.getSession();
+			
 			session.setAttribute("username", username);
 			req.getRequestDispatcher("index.jsp").forward(req, resp);
 
@@ -31,7 +33,7 @@ public class LoginUser extends HttpServlet {
 
 		if (isValidUser) {
 
-			HttpSession session = req.getSession();
+
 			session.setAttribute("username", username);
 			//lưu account lên trang login
 			Cookie u = new Cookie("userC", username);
@@ -44,27 +46,46 @@ public class LoginUser extends HttpServlet {
 			req.getRequestDispatcher("index.jsp").forward(req, resp);
 		} else {
 			// Thông báo lỗi nếu đăng nhập không thành công
-			req.setAttribute("errorMessage", "Tên người dùng hoặc mật khẩu không đúng!");
+			System.out.println("loi");
+			session.setAttribute("errorMessage", "Tên người dùng hoặc mật khẩu không đúng!");
+		
 			req.getRequestDispatcher("login.jsp").forward(req, resp);
 		}
 		}
 	}
-
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		Cookie cookie[]= req.getCookies();
-		
-		for (Cookie cookie2 : cookie) {
-			if(cookie2.getName().equals("userC")) {
-				req.setAttribute("username", cookie2.getValue());
-			}
-			if(cookie2.getName().equals("passC")) {
-				req.setAttribute("password", cookie2.getValue());
-			}
-			
-		}
-		req.getRequestDispatcher("login.jsp").forward(req, resp);
+	    Cookie[] cookies = req.getCookies();
+	    String username = null;
+	    String password = null;
+	    String errorMessage = null;
+	    for (Cookie cookie : cookies) {
+	        if (cookie.getName().equals("userC")) {
+	            username = cookie.getValue();
+	        }
+	        if (cookie.getName().equals("passC")) {
+	        	password = cookie.getValue();
+	        }
+	        if (cookie.getName().equals("errorMessage")) {
+	        	errorMessage = cookie.getValue();
+	        }
+	    }
+	
 
+	    if (username != null) {
+	        req.getSession().setAttribute("username", username);
+	 
+	    } 
+	    if (password != null) {
+	        req.getSession().setAttribute("password", password);
+	 
+	    } 
+	    if (errorMessage != null) {
+	        req.getSession().setAttribute("errorMessage", errorMessage);
+	 
+	    } 
 	}
+
+
+
 }

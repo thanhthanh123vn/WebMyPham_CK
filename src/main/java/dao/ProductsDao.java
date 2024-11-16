@@ -8,12 +8,12 @@ import java.util.ArrayList;
 import java.util.List;
 import object.Product;
 
-public class ProductDetails {
+public class ProductsDao {
 
     private Utils utils;
     private Connection conn;
 
-    public ProductDetails() {
+    public ProductsDao() {
         utils = new Utils();
         System.out.println("haha");
         conn = utils.getConnection();

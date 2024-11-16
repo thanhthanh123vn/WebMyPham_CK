@@ -13,12 +13,6 @@
 
 
     <link rel="stylesheet" href="style.css">
-
-
-
-
-
-
 </head>
 <body>
 <div id="web-service">

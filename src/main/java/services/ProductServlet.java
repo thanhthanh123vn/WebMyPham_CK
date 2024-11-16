@@ -9,14 +9,14 @@ import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.List;
 import object.Product;
-import dao.ProductDetails;
+import dao.ProductsDao;
 
 @WebServlet("/products")
 public class ProductServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        ProductDetails productDetails = new ProductDetails();
+        ProductsDao productDetails = new ProductsDao();
         List<Product> products = productDetails.listProducts();
       
         HttpSession session = request.getSession();

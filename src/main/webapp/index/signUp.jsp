@@ -396,6 +396,7 @@ a.txt_color_1:hover {
 					<div class="clearfix"></div>
 					<button class="btn btn_site_1" id="btnRegister">Đăng ký</button>
 				</div>
+			</div>
 		</form>
 		<div class="block_login_fb">
 			Bạn đã có tài khoản? <a href="../login.jsp"
@@ -412,12 +413,7 @@ a.txt_color_1:hover {
 				class="loading" data-was-processed="true">
 			</a>
 		</div>
-		<div class="alert alert-warning alert-dismissible" id="warningAlert"
-			style="display: none;">
-			<button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-			<strong>Warning!</strong> This alert box could indicate a warning
-			that might need attention.
-		</div>
+
 	</div>
 <script src="../js/validatorSignUp.js"></script>
 	<script>

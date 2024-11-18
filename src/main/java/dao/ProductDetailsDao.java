@@ -33,8 +33,7 @@ public class ProductDetailsDao {
                 product.setColor(resultSet.getString("Color"));
                 product.setIngredients(resultSet.getString("Ingredients"));
                 product.setUsageInstructions(resultSet.getString("Usage_Instructions"));
-
-
+                product.setStockQuantity(resultSet.getInt("Stock_Quantity"));
 
                 products.add(product);
             }

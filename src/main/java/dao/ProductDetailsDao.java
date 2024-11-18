@@ -40,7 +40,7 @@ public class ProductDetailsDao {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
+        //utils.closeConnection(conn);
         return products;
     }
 }

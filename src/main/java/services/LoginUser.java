@@ -27,7 +27,7 @@ public class LoginUser extends HttpServlet {
 		if (isValidAdmin) {
 			System.out.println(username);
 			session.setAttribute("username", username);
-			req.getRequestDispatcher("index.jsp").forward(req, resp);
+			req.getRequestDispatcher("products").forward(req, resp);
 
 		} else {
 

@@ -34,9 +34,19 @@
                 </div>
 
                 <div class="search-bar">
-                    <input type="text" placeholder="Tìm kiếm sản phẩm..."
-                           id="search-input">
-                    <div class="search-notification">
+                    <input type="text"
+                           name="name"
+                           id="searchInput"
+                           placeholder="Tìm kiếm sản phẩm..."
+                           oninput="searchProduct()"
+                           autocomplete="off">
+
+
+                    <div id="resultSearchProducts">
+
+
+                    </div>
+                    <div id="searchNotification">
                         <div class="notification-container">
                             <ul class="notifications">
                                 <li>24-26.10 Halloween Cực Chất - Săn Deal Độc Nhất
@@ -122,7 +132,7 @@
                                             NGAY</a>
 
 
-                                            =======
+
                                             Bạn chưa có tài khoản? <a href="#">ĐĂNG KÝ NGAY</a>
 
                                         </p>
@@ -593,6 +603,7 @@
                             </div>
                             <div class="search-tags">
                                 <h4>TOP TÌM KIẾM</h4>
+
                                 <div class="tags">
                                     <span>Kem Chống Nắng</span> <span>Nước Tẩy Trang</span> <span>Kem
 											Dưỡng Ẩm</span> <span>Sữa Rửa Mặt</span> <span>Bông Tẩy Trang</span>
@@ -687,19 +698,24 @@
 
 </div>
 <script src="js/main.js"></script>
-<script src="js/updateUserMain.js">
-</script>
+
+    <script src="js/searchProduct.js"></script>
 <%
 
     // Lấy username từ session
     String username = (String) session.getAttribute("username");
+
 
     // Nếu chưa đăng nhập, gán giá trị rỗng
     if (username == null) {
     username = "";
     }
 %>
-
+<% String searchProducts = (String)request.getAttribute("products");
+%>
+<script src="js/updateUserMain.js">
+    const searchProducts = "<%= searchProducts %>";
+</script>
 <script>
     // Gán username từ server vào biến JavaScript
     const username = "<%= username %>";
@@ -741,14 +757,8 @@
     }
 </script>
 
-=======
-String username = (String) session.getAttribute("username");
 
 
-if (username == null) {
-username = ""; // Hoặc một giá trị mặc định nếu chưa đăng nhập
-}
-%>
 
 <script>
     const username = "${username}";

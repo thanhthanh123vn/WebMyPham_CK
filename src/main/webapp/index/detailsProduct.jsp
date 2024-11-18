@@ -345,7 +345,7 @@
             </ul>
         </div>
         <div id="information">
-            <p><span class="font-bold">Nước Tẩy Trang L'Oréal</span> là dòng sản phẩm <a href="#">tẩy
+            <p><span class="font-bold" >Nước Tẩy Trang L'Oréal</span> là dòng sản phẩm <a href="#">tẩy
                 trang</a> dạng nước đến từ <a href="#">thương hiệu L'Oreal Paris</a>, được ứng dụng công nghệ
                 Micellar
                 dịu nhẹ giúp làm

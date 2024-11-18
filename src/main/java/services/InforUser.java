@@ -28,6 +28,7 @@ public class InforUser {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		//utils.closeConnection(conn);
 		return false;
 	}
 
@@ -42,6 +43,7 @@ public class InforUser {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		//utils.closeConnection(conn);
 		return false;
 	}
 
@@ -54,11 +56,14 @@ public class InforUser {
 			statement.setString(3, email);
 
 			int rowsInserted = statement.executeUpdate();
+			//utils.closeConnection(conn);
 			return rowsInserted > 0; // Trả về true nếu chèn thành công
 		} catch (SQLException e) {
 			e.printStackTrace();
 			return false; // Trả về false nếu có lỗi xảy ra
+
 		}
+
 	}
 	public boolean checkInfoUser(String username , String email) {
 		String sql = "SELECT * FROM user WHERE username = ? AND email = ?";
@@ -71,6 +76,7 @@ public class InforUser {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		//utils.closeConnection(conn);
 		return false;
 	}
 	

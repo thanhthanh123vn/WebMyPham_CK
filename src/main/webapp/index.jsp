@@ -39,7 +39,7 @@
                            id="searchInput"
                            placeholder="Tìm kiếm sản phẩm..."
                            oninput="searchProduct()"
-                           autocomplete="off">
+                                        >
 
 
                     <div id="resultSearchProducts">

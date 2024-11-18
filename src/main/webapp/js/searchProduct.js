@@ -3,7 +3,8 @@ async function searchProduct() {
     const resultDiv = document.getElementById("resultSearchProducts");
     const hoverSearch = document.getElementById("searchNotification");
 
-    const keyword = searchInput.value().trim();
+    const keyword = searchInput.value.trim();
+
     console.log(keyword);
 
     // Kiểm tra từ khóa rỗng
@@ -14,38 +15,23 @@ async function searchProduct() {
     }
 
     try {
-        // Gửi yêu cầu AJAX đến server
-        const response = await fetch(`/searchProduct?name=${encodeURIComponent(keyword)}`, {
-            method: "GET",
-            headers: {
-                "Content-Type": "application/json",
-            },
-        });
-
-        // Kiểm tra trạng thái phản hồi
-        if (response.status === 204 || (await response.text()) === "[]") {
-            resultDiv.innerHTML = "<p  >Không tìm thấy sản phẩm phù hợp.</p>";
-            hoverSearch.style.display = "none";
-            return;
-        }
+        const response = await fetch(`searchProduct?name=${encodeURIComponent(keyword)}`);
+        console.log("Trạng thái phản hồi:", response.status);
 
         if (!response.ok) {
-            throw new Error("Có lỗi xảy ra khi tìm kiếm sản phẩm.");
+            console.error("Lỗi phản hồi từ server:", await response.text());
+            throw new Error("Phản hồi không hợp lệ.");
         }
 
-        // Parse JSON từ server
         const searchProducts = await response.json();
+        console.log("Dữ liệu trả về từ server:", searchProducts);
 
-        // Ẩn thông báo hover
-        hoverSearch.style.display = "none";
-
-        // Hiển thị kết quả
         displaySearchResults(searchProducts.products, resultDiv);
-
     } catch (error) {
-        console.error("Error:", error);
-        resultDiv.innerHTML = "<p>Đã xảy ra lỗi trong khi tìm kiếm sản phẩm.</p>";
+        console.error("Lỗi xảy ra:", error);
+        resultDiv.innerHTML = "<p>Đã xảy ra lỗi khi tìm kiếm sản phẩm.</p>";
     }
+
 }
 
 function displaySearchResults(products, resultDiv) {
@@ -72,7 +58,7 @@ function displaySearchResults(products, resultDiv) {
             <img src="${product.image}" alt="${product.name}" 
                 style="width: 50px; height: 50px; margin-right: 10px; border-radius: 5px;">
             <div style="flex-grow: 1;">
-                <p style="margin: 0; font-weight: bold;">${product.name}</p>
+                <p style="margin: 0; font-weight: bold;">${product.detail}</p>
                 <p style="margin: 0; color: #888;">${product.price.toLocaleString()} VND</p>
             </div>
         `;

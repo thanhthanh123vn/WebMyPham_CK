@@ -29,7 +29,7 @@ public class SearchProductPage extends HttpServlet {
             List<Product> products = productsDao.searchProduct(searchProduct);
             req.setAttribute("products", products);
 
-            req.getRequestDispatcher("SearchProducts.jsp").forward(req, resp);
+            req.getRequestDispatcher("SearchProduct.jsp").forward(req, resp);
 
 
 
@@ -39,7 +39,7 @@ public class SearchProductPage extends HttpServlet {
         } else {
             // Nếu tham số tìm kiếm rỗng, trả về lỗi
             req.setAttribute("error","Không tìm thấy sản phẩm");
-            req.getRequestDispatcher("SearchProducts.jsp").forward(req, resp);
+            req.getRequestDispatcher("SearchProduct.jsp").forward(req, resp);
         }
     }
 }

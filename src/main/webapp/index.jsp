@@ -97,7 +97,7 @@
                             </div>
                         </div>
                     </div>
-                    <a  href="/danh-muc" id="find-product" >Tìm kiếm</a>
+                    <a  href="danh-muc" id="find-product" >Tìm kiếm</a>
                 </div>
 
             </div>

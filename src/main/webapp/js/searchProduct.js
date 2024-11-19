@@ -67,3 +67,6 @@ function displaySearchResults(products, resultDiv) {
 
     resultDiv.appendChild(list);
 }
+
+
+

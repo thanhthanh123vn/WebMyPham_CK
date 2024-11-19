@@ -87,8 +87,14 @@ body {
     position: relative;
 }
 
-.search-bar {
-    position: relative;
+.search-bar #find-product{
+    padding: 10px;
+    text-decoration: none;
+    color: var(--button-bg-color);
+
+
+
+
 }
 
 #resultSearchProducts {
@@ -580,7 +586,7 @@ body {
 
 
 #session-body {
-    height: 4000px;
+   height: 4000px;
     padding: 20px;
 
 }
@@ -1079,6 +1085,7 @@ strong {
 
 .container {
     width: 1200px;
+
     margin-left: auto;
     margin-right: auto;
 

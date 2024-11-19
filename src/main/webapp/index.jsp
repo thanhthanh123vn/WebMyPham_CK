@@ -97,8 +97,9 @@
                             </div>
                         </div>
                     </div>
-                    <button type="button" id="find-product">Tìm kiếm</button>
+                    <a  href="/danh-muc" id="find-product" >Tìm kiếm</a>
                 </div>
+
             </div>
             <div class="float-right">
                 <div class="header-icons">
@@ -603,6 +604,7 @@
                             </div>
                             <div class="search-tags">
                                 <h4>TOP TÌM KIẾM</h4>
+
 
                                 <div class="tags">
                                     <span>Kem Chống Nắng</span> <span>Nước Tẩy Trang</span> <span>Kem

@@ -23,4 +23,6 @@ public class ProductServlet extends HttpServlet {
         session.setAttribute("products", products); // Gửi danh sách sản phẩm sang JSP
       request.getRequestDispatcher("index.jsp").forward(request, response);
     }
+
+
 }

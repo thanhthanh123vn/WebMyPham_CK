@@ -20,7 +20,7 @@ public class SearchProductServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String name = request.getParameter("name");
-        System.out.println(name);
+        //System.out.println(name);
         response.setHeader("Access-Control-Allow-Origin", "*");
         response.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
         response.setHeader("Access-Control-Allow-Headers", "Content-Type");
@@ -34,7 +34,7 @@ public class SearchProductServlet extends HttpServlet {
 
             // Tạo đối tượng để gói dữ liệu trả về
             SearchResponse searchResponse = new SearchResponse(products, countProduct);
-            System.out.println(searchResponse.products);
+            //System.out.println(searchResponse.products);
             // Chuyển đổi đối tượng sang JSON
             Gson gson = new Gson();
             String jsonResponse = gson.toJson(searchResponse);

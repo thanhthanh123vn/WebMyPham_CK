@@ -7,6 +7,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import object.Product;
 
 import java.io.IOException;
@@ -27,6 +28,8 @@ public class SearchProductServlet extends HttpServlet {
 
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
+        HttpSession session = request.getSession();
+        session.setAttribute("name",name);
 
         if (name != null && !name.trim().isEmpty()) {
             List<Product> products = productDAO.searchProduct(name);

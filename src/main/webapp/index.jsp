@@ -38,7 +38,7 @@
                            name="name"
                            id="searchInput"
                            placeholder="Tìm kiếm sản phẩm..."
-                           oninput="searchProduct()"
+                           onkeydown="searchProduct()"
                                         >
 
 
@@ -97,7 +97,8 @@
                             </div>
                         </div>
                     </div>
-                    <a  href="danh-muc" id="find-product" >Tìm kiếm</a>
+                    <a  href="danh-muc" id="find-product" ><image src="https://hasaki.vn/v3/images/icons/search_icon.svg"/>
+                    </a>
                 </div>
 
             </div>

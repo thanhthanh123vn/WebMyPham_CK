@@ -2,6 +2,7 @@ async function searchProduct() {
     const searchInput = document.getElementById("searchInput");
     const resultDiv = document.getElementById("resultSearchProducts");
     const hoverSearch = document.getElementById("searchNotification");
+    const hoverGThieu = document.getElementById("resultSearchProducts");
 
     const keyword = searchInput.value.trim();
 
@@ -25,6 +26,7 @@ async function searchProduct() {
 
         const searchProducts = await response.json();
         console.log("Dữ liệu trả về từ server:", searchProducts);
+        hoverGThieu.style.display = 'none';
 
         displaySearchResults(searchProducts.products, resultDiv);
     } catch (error) {

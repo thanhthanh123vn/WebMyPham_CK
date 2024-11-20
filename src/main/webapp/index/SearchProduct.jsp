@@ -97,7 +97,7 @@
                             </div>
                         </div>
                     </div>
-                    <a href="/danh-muc"  id="find-product">Tìm kiếm</a>
+                    <a href="/danh-muc"  id="find-product"><image src="https://hasaki.vn/v3/images/icons/search_icon.svg"/></a>
                 </div>
             </div>
             <div class="float-right">

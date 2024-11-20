@@ -10,11 +10,12 @@
     <packaging>war</packaging>
 
     <properties>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <maven.compiler.target>1.8</maven.compiler.target>
-    <maven.compiler.source>1.8</maven.compiler.source>
-    <junit.version>5.8.2</junit.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.target>17</maven.compiler.target>
+        <maven.compiler.source>17</maven.compiler.source>
+        <junit.version>5.8.2</junit.version>
     </properties>
+
 
 
     <dependencies>
@@ -80,12 +81,7 @@
 
 <!--         JSTL for javax (if needed) -->
 <!--         Uncomment if you need javax version -->
-         <dependency>
-             <groupId>javax.servlet.jsp.jstl</groupId>
-             <artifactId>javax.servlet.jsp.jstl-api</artifactId>
-             <version>1.2.2</version>
-             <scope>provided</scope>
-         </dependency>
+
         <!-- https://mvnrepository.com/artifact/com.google.code.gson/gson -->
         <dependency>
             <groupId>com.google.code.gson</groupId>
@@ -103,11 +99,21 @@
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.10.1</version>
+                <configuration>
+                    <source>17</source> <!-- Hoặc phiên bản Java bạn muốn -->
+                    <target>17</target>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-war-plugin</artifactId>
                 <version>3.3.2</version>
             </plugin>
         </plugins>
     </build>
+
 
 
 </project>

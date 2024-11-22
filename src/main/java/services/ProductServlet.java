@@ -18,6 +18,7 @@ public class ProductServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         ProductsDao productDetails = new ProductsDao();
         List<Product> products = productDetails.listProducts();
+//        System.out.println(products.toString());
       
         HttpSession session = request.getSession();
         session.setAttribute("products", products); // Gửi danh sách sản phẩm sang JSP

@@ -11,8 +11,8 @@ import object.Product;
 
 public class ProductsDao {
 
-    private Utils utils;
-    private Connection conn;
+    private static Utils utils;
+    private static Connection conn;
 
     public ProductsDao() {
         utils = new Utils();
@@ -20,7 +20,7 @@ public class ProductsDao {
         conn = utils.getConnection();
     }
 
-    public List<Product> listProducts() {
+    public static List<Product> listProducts() {
         String sql = "SELECT * FROM products";
         List<Product> products = new ArrayList<>();
 
@@ -49,7 +49,7 @@ public class ProductsDao {
         return products;
     }
 
-    public List<Product> searchProduct(String name) {
+    public static List<Product> searchProduct(String name) {
         String sql = "SELECT * FROM products WHERE Detail LIKE ?";
         List<Product> products = new ArrayList<>();
 
@@ -73,7 +73,7 @@ public class ProductsDao {
         //utils.closeConnection(conn);
         return products; // Trả về danh sách (có thể rỗng nếu không có dữ liệu hoặc có lỗi)
     }
-    public int  countsearchProduct(String name) {
+    public  static int  countsearchProduct(String name) {
         String sql = "SELECT count(*) FROM products WHERE Detail LIKE ?";
         List<Product> products = new ArrayList<>();
 
@@ -97,5 +97,24 @@ public class ProductsDao {
         //utils.closeConnection(conn);
         return -1; // Trả về danh sách (có thể rỗng nếu không có dữ liệu hoặc có lỗi)
     }
-
+    public static Product getProductById(int id) {
+        Product product = null;
+        try {
+             PreparedStatement stmt = conn.prepareStatement("SELECT * FROM products WHERE id = ?");
+            stmt.setInt(1, id);
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                product = new Product(
+                        rs.getInt("id"),
+                        rs.getString("name"),
+                        rs.getString("detail"),
+                        rs.getBigDecimal("price"),
+                        rs.getString("image")
+                );
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return product;
+    }
 }

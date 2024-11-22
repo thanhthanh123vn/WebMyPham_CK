@@ -20,7 +20,7 @@
 
         <div class="top-banner">
             <p>22.10 Ưu Đãi Đỉnh Nóc & Giờ Vàng Deal Sốc - Duy Nhất Từ 11h
-                Ngày 22.10 (Áp Dụng Online)</p>
+                Ngày 22.10 (Áp Dụng Online) TTT.vn</p>
         </div>
         <div class="header-main">
             <div class="logo-left">
@@ -135,7 +135,7 @@
 
 
 
-                                            Bạn chưa có tài khoản? <a href="#">ĐĂNG KÝ NGAY</a>
+
 
                                         </p>
                                     </div>
@@ -397,7 +397,8 @@
             </div>
             <div class="product-listing">
                 <c:forEach var="product" items="${products}">
-                    <div class="product">
+
+                    <div class="product"   onclick="redirectToDetails(${product.id})">
                         <img src="${product.image}" alt="${product.name}">
                         <h4>${product.name}</h4>
                         <div class="vn_names">${product.detail}</div>
@@ -700,6 +701,18 @@
 
 
 </div>
+<%
+
+
+%>
+<script>
+    function redirectToDetails(productId) {
+        // Chuyển hướng đến Servlet với ID sản phẩm
+
+        window.location.href = `productDetail?id=`+productId;
+    }
+</script>
+
 <script src="js/main.js"></script>
 
     <script src="js/searchProduct.js"></script>

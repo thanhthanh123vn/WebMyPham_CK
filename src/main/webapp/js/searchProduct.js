@@ -2,52 +2,51 @@ async function searchProduct() {
     const searchInput = document.getElementById("searchInput");
     const resultDiv = document.getElementById("resultSearchProducts");
     const hoverSearch = document.getElementById("searchNotification");
-    const hoverGThieu = document.getElementById("resultSearchProducts");
 
     const keyword = searchInput.value.trim();
 
     console.log(keyword);
 
-    // Kiểm tra từ khóa rỗng
+
+
     if (keyword === "") {
-        resultDiv.innerHTML = ""; // Xóa nội dung nếu từ khóa rỗng
-        hoverSearch.style.display = "none"; // Ẩn thông báo
+        resultDiv.innerHTML = "";
+        hoverSearch.style.display = "none";
         return;
     }
 
     try {
         const response = await fetch(`searchProduct?name=${encodeURIComponent(keyword)}`);
-        console.log("Trạng thái phản hồi:", response.status);
+
 
         if (!response.ok) {
-            console.error("Lỗi phản hồi từ server:", await response.text());
+
             throw new Error("Phản hồi không hợp lệ.");
         }
 
         const searchProducts = await response.json();
-        console.log("Dữ liệu trả về từ server:", searchProducts);
-        hoverGThieu.style.display = 'none';
 
-        displaySearchResults(searchProducts.products, resultDiv);
+
+    displaySearchResults(searchProducts.products, resultDiv);
+
+        hoverSearch.style.display = "block"; // Hiển thị thông báo
     } catch (error) {
         console.error("Lỗi xảy ra:", error);
         resultDiv.innerHTML = "<p>Đã xảy ra lỗi khi tìm kiếm sản phẩm.</p>";
     }
-
 }
 
 function displaySearchResults(products, resultDiv) {
-    resultDiv.innerHTML = ""; // Xóa kết quả cũ
+    resultDiv.innerHTML = "";
 
     if (products.length === 0) {
         resultDiv.innerHTML = "<p>Không tìm thấy sản phẩm phù hợp.</p>";
         return;
     }
 
-    // Tạo danh sách kết quả
     const list = document.createElement("ul");
-    list.style.listStyle = "none"; // Xóa bullet của danh sách
-    list.style.padding = "0"; // Loại bỏ padding mặc định
+    list.style.listStyle = "none";
+    list.style.padding = "0";
 
     products.forEach(product => {
         const listItem = document.createElement("li");
@@ -64,11 +63,39 @@ function displaySearchResults(products, resultDiv) {
                 <p style="margin: 0; color: #888;">${product.price.toLocaleString()} VND</p>
             </div>
         `;
+        listItem.onclick =function (){
+            detailsProducts(product.id);
+        };
         list.appendChild(listItem);
     });
 
     resultDiv.appendChild(list);
+
+
 }
 
 
 
+    document.addEventListener("click", function () {
+        const searchInput = document.getElementById("searchInput");
+        const resultDiv = document.getElementById("resultSearchProducts");
+        const hoverSearch = document.getElementById("searchNotification");
+        searchInput.addEventListener("blur", function () {
+
+                resultDiv.innerHTML = "";
+                resultDiv.style.display = "none";
+
+
+        });
+
+        searchInput.addEventListener("focus", function () {
+            if (resultDiv.innerHTML.trim() !== "") {
+                resultDiv.style.display = "block";
+            }
+        });
+    });
+function  detailsProducts(productId){
+    console.log("productDetail" ,productId);
+    window.location.href = `productDetail?id=${productId}`;
+
+}

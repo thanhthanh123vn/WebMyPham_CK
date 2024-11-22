@@ -20,7 +20,7 @@
 
         <div class="top-banner">
             <p>22.10 Ưu Đãi Đỉnh Nóc & Giờ Vàng Deal Sốc - Duy Nhất Từ 11h
-                Ngày 22.10 (Áp Dụng Online)</p>
+                Ngày 22.10 (Áp Dụng Online) </p>
         </div>
         <div class="header-main">
             <div class="logo-left">
@@ -38,7 +38,7 @@
                            name="name"
                            id="searchInput"
                            placeholder="Tìm kiếm sản phẩm..."
-
+                           onkeydown="searchProduct()"
                     >
 
 
@@ -97,8 +97,10 @@
                             </div>
                         </div>
                     </div>
-                    <a href="/danh-muc"  id="find-product"><image src="https://hasaki.vn/v3/images/icons/search_icon.svg"/></a>
+                    <a  href="danh-muc" id="find-product" ><image src="https://hasaki.vn/v3/images/icons/search_icon.svg"/>
+                    </a>
                 </div>
+
             </div>
             <div class="float-right">
                 <div class="header-icons">
@@ -133,7 +135,7 @@
 
 
 
-                                        Bạn chưa có tài khoản? <a href="#">ĐĂNG KÝ NGAY</a>
+
 
                                     </p>
                                 </div>
@@ -395,7 +397,7 @@
             </div>
             <div class="product-listing">
                 <c:forEach var="product" items="${products}">
-                    <div class="product">
+                    <div class="product" onclick="redirectToDetails()">
                         <img src="${product.image}" alt="${product.name}">
                         <h4>${product.name}</h4>
                         <div class="vn_names">${product.detail}</div>
@@ -698,6 +700,12 @@
 
 
 </div>
+<script>
+    function redirectToDetails() {
+        window.location.href = 'index/detailsProduct.jsp';
+    }
+</script>
+
 <script src="js/main.js"></script>
 
 <script src="js/searchProduct.js"></script>

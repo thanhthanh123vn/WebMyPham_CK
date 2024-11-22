@@ -21,7 +21,6 @@ public class SearchProductServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String name = request.getParameter("name");
-        //System.out.println(name);
         response.setHeader("Access-Control-Allow-Origin", "*");
         response.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
         response.setHeader("Access-Control-Allow-Headers", "Content-Type");
@@ -30,8 +29,10 @@ public class SearchProductServlet extends HttpServlet {
         response.setCharacterEncoding("UTF-8");
         HttpSession session = request.getSession();
         session.setAttribute("name",name);
+        System.out.println(name+" searchProduct");
 
         if (name != null && !name.trim().isEmpty()) {
+            System.out.println("searchProduct+"+name);
             List<Product> products = productDAO.searchProduct(name);
             int countProduct = productDAO.countsearchProduct(name);
 

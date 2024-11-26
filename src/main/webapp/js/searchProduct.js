@@ -25,11 +25,10 @@ async function searchProduct() {
         }
 
         const searchProducts = await response.json();
+         // Hiển thị thông báo
+        hoverSearch.style.display = "none";
+        displaySearchResults(searchProducts.products, resultDiv);
 
-
-    displaySearchResults(searchProducts.products, resultDiv);
-
-        hoverSearch.style.display = "block"; // Hiển thị thông báo
     } catch (error) {
         console.error("Lỗi xảy ra:", error);
         resultDiv.innerHTML = "<p>Đã xảy ra lỗi khi tìm kiếm sản phẩm.</p>";

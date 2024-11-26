@@ -16,9 +16,8 @@ public class LogoutServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) 
             throws ServletException, IOException {
     	HttpSession session = request.getSession();
-    	session.removeAttribute("username"); // Xóa username khỏi session
-    	session.removeAttribute("password"); // Xóa password khỏi session
-    	session.removeAttribute("errorMessage"); // Xóa thông báo lỗi
+    	session.removeAttribute("user"); // Xóa username khỏi session
+    	 // Xóa thông báo lỗi
 
     }
 }

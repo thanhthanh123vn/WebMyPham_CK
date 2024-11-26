@@ -17,13 +17,25 @@ public class ProductServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         ProductsDao productDetails = new ProductsDao();
-        List<Product> products = productDetails.listProducts();
-//        System.out.println(products.toString());
-      
         HttpSession session = request.getSession();
-        session.setAttribute("products", products); // Gửi danh sách sản phẩm sang JSP
-      request.getRequestDispatcher("index.jsp").forward(request, response);
+        try {
+            List<Product> products = productDetails.listProducts();
+
+            if (products != null && !products.isEmpty()) {
+                session.setAttribute("products", products);
+            } else {
+                session.setAttribute("errorMessage", "Không có sản phẩm nào được tìm thấy!");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            session.setAttribute("errorMessage", "Đã xảy ra lỗi khi tải danh sách sản phẩm!");
+        }
+
+        request.getRequestDispatcher("index.jsp").forward(request, response);
     }
 
-
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        doGet(req, resp);
+    }
 }

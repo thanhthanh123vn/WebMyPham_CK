@@ -8,6 +8,7 @@ public class User {
     private String email;
     private String password;
     private Date date;
+    private String role;
 
     // Constructors
     public User(int id, String fullName, String email, String password, Date date) {
@@ -16,6 +17,13 @@ public class User {
         this.email = email;
         this.password = password;
         this.date = date;
+    }
+    public User(int id, String fullName, String email, String password, String  role) {
+        this.id = id;
+        this.fullName = fullName;
+        this.email = email;
+        this.password = password;
+        this.role = role;
     }
 
     public User() {
@@ -60,6 +68,12 @@ public class User {
 
     public void setDate(Date date) {
         this.date = date;
+    }
+    public void setRole(String role){
+        this.role = role;
+    }
+    public String getRole(){
+        return role;
     }
 
     // toString method

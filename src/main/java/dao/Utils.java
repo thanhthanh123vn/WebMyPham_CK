@@ -31,12 +31,7 @@ public class Utils {
             e.printStackTrace();
         }
     }
-    public static void main(String[] args) {
-		Utils utils = new Utils();
-		
-		Connection c = utils.getConnection();
-		utils.closeConnection(c);
-	}
+
 
 
 }

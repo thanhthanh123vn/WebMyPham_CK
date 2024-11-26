@@ -1,4 +1,5 @@
 <%@page import="java.io.Console"%>
+<%@ page import="object.User" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
@@ -719,7 +720,9 @@
 <%
 
     // Lấy username từ session
-    String username = (String) session.getAttribute("username");
+    User user = (User) session.getAttribute("user");
+    String username = user.getFullName();
+
 
 
     // Nếu chưa đăng nhập, gán giá trị rỗng

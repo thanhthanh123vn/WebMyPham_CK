@@ -22,20 +22,31 @@ public class ProductDetailsDao {
         List<ProductDetail> products = new ArrayList<>();
 
         try (PreparedStatement statement = conn.prepareStatement(sql)) {
-            ResultSet resultSet = statement.executeQuery();
+            ResultSet rs = statement.executeQuery();
 
-            while (resultSet.next()) {
+            while (rs.next()) {
                 System.out.println("ProductDetails success");
-                ProductDetail product = new ProductDetail();
-                product.setId(resultSet.getInt("Id"));
-                product.setProductId(resultSet.getInt("Product_Id"));
-                product.setSize(resultSet.getString("Size"));
-                product.setColor(resultSet.getString("Color"));
-                product.setIngredients(resultSet.getString("Ingredients"));
-                product.setUsageInstructions(resultSet.getString("Usage_Instructions"));
-                product.setStockQuantity(resultSet.getInt("Stock_Quantity"));
+                ProductDetail productDetail = new ProductDetail();
 
-                products.add(product);
+                productDetail.setProductName(rs.getString("detail_product_name"));
+                productDetail.setCategory(rs.getString("Category"));
+                productDetail.setDescription(rs.getString("Description"));
+                productDetail.setSuitableSkin(rs.getString("SuitableSkin"));
+                productDetail.setSkinSolution(rs.getString("SkinSolution"));
+                productDetail.setHighlight(rs.getString("Highlight"));
+                productDetail.setIngredients(rs.getString("Ingredients"));
+                productDetail.setFullIngredients(rs.getString("FullIngredients"));
+                productDetail.setHowToUse(rs.getString("HowToUse"));
+                productDetail.setStorage(rs.getString("Storage"));
+                productDetail.setBrand(rs.getString("Brand"));
+                productDetail.setBrandOrigin(rs.getString("BrandOrigin"));
+                productDetail.setManufactureLocation(rs.getString("ManufactureLocation"));
+                productDetail.setBarcode(rs.getString("Barcode"));
+                productDetail.setVolume(rs.getString("Volume"));
+                productDetail.setSensitiveSkinSafe(rs.getBoolean("IsSensitiveSkinSafe"));
+                productDetail.setCreatedAt(rs.getTimestamp("CreatedAt").toLocalDateTime());
+
+                products.add(productDetail);
             }
         } catch (SQLException e) {
             e.printStackTrace();

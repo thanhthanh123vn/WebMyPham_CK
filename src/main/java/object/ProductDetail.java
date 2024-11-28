@@ -1,31 +1,69 @@
 package object;
 
-public class ProductDetail{
-    private int id;
-    private int productId;
-    private String size;
-    private String color;
-    private String ingredients;
-    private String usageInstructions;
-    private int stockQuantity;
 
-    // Constructor không tham số
+import java.time.LocalDateTime;
+
+
+public class ProductDetail {
+
+
+    private int id;
+
+
+    private String productName;
+
+
+    private String category;
+
+
+    private String description;
+
+
+    private String suitableSkin;
+
+
+    private String skinSolution;
+
+
+    private String highlight;
+
+
+    private String ingredients;
+
+    private String fullIngredients;
+
+
+    private String howToUse;
+
+
+    private String storage;
+
+
+    private String brand;
+
+
+    private String brandOrigin;
+
+
+    private String manufactureLocation;
+
+
+    private String barcode;
+
+
+    private String volume;
+
+
+    private boolean isSensitiveSkinSafe;
+
+
+    private LocalDateTime createdAt;
+
+    // Default constructor
     public ProductDetail() {
     }
 
-    // Constructor có tham số
-    public ProductDetail(int id, int productId, String size, String color,
-                         String ingredients, String usageInstructions, int stockQuantity) {
-        this.id = id;
-        this.productId = productId;
-        this.size = size;
-        this.color = color;
-        this.ingredients = ingredients;
-        this.usageInstructions = usageInstructions;
-        this.stockQuantity = stockQuantity;
-    }
-
-    // Getter và Setter
+    // Getters and setters
     public int getId() {
         return id;
     }
@@ -34,28 +72,52 @@ public class ProductDetail{
         this.id = id;
     }
 
-    public int getProductId() {
-        return productId;
+    public String getProductName() {
+        return productName;
     }
 
-    public void setProductId(int productId) {
-        this.productId = productId;
+    public void setProductName(String productName) {
+        this.productName = productName;
     }
 
-    public String getSize() {
-        return size;
+    public String getCategory() {
+        return category;
     }
 
-    public void setSize(String size) {
-        this.size = size;
+    public void setCategory(String category) {
+        this.category = category;
     }
 
-    public String getColor() {
-        return color;
+    public String getDescription() {
+        return description;
     }
 
-    public void setColor(String color) {
-        this.color = color;
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getSuitableSkin() {
+        return suitableSkin;
+    }
+
+    public void setSuitableSkin(String suitableSkin) {
+        this.suitableSkin = suitableSkin;
+    }
+
+    public String getSkinSolution() {
+        return skinSolution;
+    }
+
+    public void setSkinSolution(String skinSolution) {
+        this.skinSolution = skinSolution;
+    }
+
+    public String getHighlight() {
+        return highlight;
+    }
+
+    public void setHighlight(String highlight) {
+        this.highlight = highlight;
     }
 
     public String getIngredients() {
@@ -66,27 +128,91 @@ public class ProductDetail{
         this.ingredients = ingredients;
     }
 
-    public String getUsageInstructions() {
-        return usageInstructions;
+    public String getFullIngredients() {
+        return fullIngredients;
     }
 
-    public void setUsageInstructions(String usageInstructions) {
-        this.usageInstructions = usageInstructions;
+    public void setFullIngredients(String fullIngredients) {
+        this.fullIngredients = fullIngredients;
     }
 
-    public int getStockQuantity() {
-        return stockQuantity;
+    public String getHowToUse() {
+        return howToUse;
     }
 
-    public void setStockQuantity(int stockQuantity) {
-        this.stockQuantity = stockQuantity;
+    public void setHowToUse(String howToUse) {
+        this.howToUse = howToUse;
     }
 
-    // ToString method để dễ dàng hiển thị thông tin chi tiết sản phẩm
+    public String getStorage() {
+        return storage;
+    }
+
+    public void setStorage(String storage) {
+        this.storage = storage;
+    }
+
+    public String getBrand() {
+        return brand;
+    }
+
+    public void setBrand(String brand) {
+        this.brand = brand;
+    }
+
+    public String getBrandOrigin() {
+        return brandOrigin;
+    }
+
+    public void setBrandOrigin(String brandOrigin) {
+        this.brandOrigin = brandOrigin;
+    }
+
+    public String getManufactureLocation() {
+        return manufactureLocation;
+    }
+
+    public void setManufactureLocation(String manufactureLocation) {
+        this.manufactureLocation = manufactureLocation;
+    }
+
+    public String getBarcode() {
+        return barcode;
+    }
+
+    public void setBarcode(String barcode) {
+        this.barcode = barcode;
+    }
+
+    public String getVolume() {
+        return volume;
+    }
+
+    public void setVolume(String volume) {
+        this.volume = volume;
+    }
+
+    public boolean isSensitiveSkinSafe() {
+        return isSensitiveSkinSafe;
+    }
+
+    public void setSensitiveSkinSafe(boolean isSensitiveSkinSafe) {
+        this.isSensitiveSkinSafe = isSensitiveSkinSafe;
+    }
+
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
+    }
+
     @Override
     public String toString() {
-        return "ProductDetail [id=" + id + ", productId=" + productId + ", size=" + size + ", color=" + color
-                + ", ingredients=" + ingredients + ", usageInstructions=" + usageInstructions + ", stockQuantity="
-                + stockQuantity + "]";
+       return " [id=" + id + ", productName=" + productName + ", category=" + category+ ", description=" + description + ", suitableSkin=" + suitableSkin;
+
     }
 }
+
+

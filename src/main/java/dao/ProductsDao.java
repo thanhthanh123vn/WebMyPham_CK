@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import object.Product;
+import object.ProductDetail;
 
 public class ProductsDao {
 
@@ -99,10 +100,29 @@ public class ProductsDao {
     }
     public static Product getProductById(int id) {
         Product product = null;
+        ProductDetail productDetail = null;
         try {
-             PreparedStatement stmt = conn.prepareStatement("SELECT * FROM products WHERE id = ?");
+
+            // Chuẩn bị câu truy vấn
+            PreparedStatement stmt = conn.prepareStatement(
+                    "SELECT products.id , products.name , products.detail , " +
+                            "products.price , products.image , " +
+                            "ProductDetail.ProductName , ProductDetail.Category, " +
+                            "ProductDetail.Description, ProductDetail.SuitableSkin, ProductDetail.SkinSolution, " +
+                            "ProductDetail.Highlight, ProductDetail.Ingredients, ProductDetail.FullIngredients, " +
+                            "ProductDetail.HowToUse, ProductDetail.Storage, ProductDetail.Brand, " +
+                            "ProductDetail.BrandOrigin, ProductDetail.ManufactureLocation, ProductDetail.Barcode, " +
+                            "ProductDetail.Volume, ProductDetail.IsSensitiveSkinSafe, ProductDetail.CreatedAt " +
+                            "FROM products " +
+                            "JOIN ProductDetail ON products.id = ProductDetail.ID " +
+                            "WHERE products.id = ?"
+            );
             stmt.setInt(1, id);
+
+            // Thực thi câu truy vấn
             ResultSet rs = stmt.executeQuery();
+
+            // Ánh xạ kết quả vào đối tượng Product
             if (rs.next()) {
                 product = new Product(
                         rs.getInt("id"),
@@ -111,6 +131,29 @@ public class ProductsDao {
                         rs.getBigDecimal("price"),
                         rs.getString("image")
                 );
+
+                // Thiết lập các thuộc tính từ ProductDetail
+                productDetail   = new ProductDetail();
+                productDetail.setProductName(rs.getString("ProductName"));
+                productDetail.setCategory(rs.getString("Category"));
+                productDetail.setDescription(rs.getString("Description"));
+                productDetail.setSuitableSkin(rs.getString("SuitableSkin"));
+                productDetail.setSkinSolution(rs.getString("SkinSolution"));
+                productDetail.setHighlight(rs.getString("Highlight"));
+                productDetail.setIngredients(rs.getString("Ingredients"));
+                productDetail.setFullIngredients(rs.getString("FullIngredients"));
+                productDetail.setHowToUse(rs.getString("HowToUse"));
+                productDetail.setStorage(rs.getString("Storage"));
+                productDetail.setBrand(rs.getString("Brand"));
+                productDetail.setBrandOrigin(rs.getString("BrandOrigin"));
+                productDetail.setManufactureLocation(rs.getString("ManufactureLocation"));
+                productDetail.setBarcode(rs.getString("Barcode"));
+                productDetail.setVolume(rs.getString("Volume"));
+                productDetail.setSensitiveSkinSafe(rs.getBoolean("IsSensitiveSkinSafe"));
+                productDetail.setCreatedAt(rs.getTimestamp("CreatedAt").toLocalDateTime());
+
+                // Gắn ProductDetail vào Product (giả định bạn có setter cho thuộc tính này)
+                product.setProductDetail(productDetail);
             }
         } catch (Exception e) {
             e.printStackTrace();

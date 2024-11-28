@@ -13,6 +13,7 @@ public class Product {
     private Date date;
     private int orderProduct;
     private int groupProductId;
+    private ProductDetail productDetail =new ProductDetail();
 
     // Constructor không tham số
     public Product() {}
@@ -38,6 +39,7 @@ public class Product {
 		this.detail = detail;
 		this.price = price;
 		this.image = image;
+        this.productDetail  = new ProductDetail();
 	}
 
 	// Getter và Setter cho các thuộc tính
@@ -112,7 +114,12 @@ public class Product {
     public void setGroupProductId(int groupProductId) {
         this.groupProductId = groupProductId;
     }
-
+public ProductDetail getProductDetail() {
+        return this.productDetail;
+}
+public void setProductDetail(ProductDetail productDetail) {
+        this.productDetail = productDetail;
+}
     // Phương thức toString để hiển thị thông tin đối tượng Product
     @Override
     public String toString() {

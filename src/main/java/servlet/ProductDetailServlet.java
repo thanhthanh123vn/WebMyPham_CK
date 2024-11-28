@@ -7,6 +7,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import object.Product;
+import object.ProductDetail;
 
 import java.io.IOException;
 
@@ -20,9 +21,12 @@ public class ProductDetailServlet extends HttpServlet {
 
         // Lấy thông tin sản phẩm từ cơ sở dữ liệu (ví dụ sử dụng DAO)
         Product product = ProductsDao.getProductById(Integer.parseInt(productId));
-
+        ProductDetail productDetail = product.getProductDetail();
+        System.out.println(productDetail.toString());
         // Đặt thông tin sản phẩm vào request scope
-        request.setAttribute("product", product);
+        request.setAttribute("product", productDetail);
+        request.setAttribute("products", product);
+
 
         // Chuyển tiếp đến trang chi tiết sản phẩm (JSP)
         request.getRequestDispatcher("index/detailsProduct.jsp").forward(request, response);

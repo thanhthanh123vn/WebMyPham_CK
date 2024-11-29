@@ -16,7 +16,7 @@ async function searchProduct() {
     }
 
     try {
-        const response = await fetch(`searchProduct?name=${encodeURIComponent(keyword)}`);
+        const response = await fetch(`${pageContext.request.contextPath}/searchProduct?name=${encodeURIComponent(keyword)}`);
 
 
         if (!response.ok) {

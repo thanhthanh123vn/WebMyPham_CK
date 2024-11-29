@@ -207,12 +207,12 @@ public class ProductDetail {
     public void setCreatedAt(LocalDateTime createdAt) {
         this.createdAt = createdAt;
     }
-
-    @Override
-    public String toString() {
-       return " [id=" + id + ", productName=" + productName + ", category=" + category+ ", description=" + description + ", suitableSkin=" + suitableSkin;
+@Override
+    public String toString(){
+        return "Brand"+this.brand;
 
     }
+
 }
 
 

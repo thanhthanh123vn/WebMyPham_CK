@@ -27,7 +27,6 @@ public class SearchProductPage extends HttpServlet {
         HttpSession session = req.getSession();
         String searchProduct =(String) session.getAttribute("name");
         System.out.println(searchProduct);
-        System.out.println("search được");
         if (searchProduct != null && !searchProduct.trim().isEmpty()) {
             // Truy vấn sản phẩm từ cơ sở dữ liệu
             List<Product> products = productsDao.searchProduct(searchProduct);

@@ -27,13 +27,14 @@ public class SearchProductServlet extends HttpServlet {
 
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
-        HttpSession session = request.getSession();
-        session.setAttribute("name",name);
+
+        request.setAttribute("name",name);
         System.out.println(name+" searchProduct");
 
         if (name != null && !name.trim().isEmpty()) {
             System.out.println("searchProduct+"+name);
             List<Product> products = productDAO.searchProduct(name);
+            System.out.println("searchProduct+"+products.toString());
             int countProduct = productDAO.countsearchProduct(name);
 
             // Tạo đối tượng để gói dữ liệu trả về

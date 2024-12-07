@@ -16,7 +16,8 @@ async function searchProduct() {
     }
 
     try {
-        const response = await fetch(`${pageContext.request.contextPath}/searchProduct?name=${encodeURIComponent(keyword)}`);
+        const response = await fetch(`/WebMyPham__/searchProduct?name=` + encodeURIComponent(keyword))
+
 
 
         if (!response.ok) {
@@ -25,6 +26,7 @@ async function searchProduct() {
         }
 
         const searchProducts = await response.json();
+        console.log(searchProducts);
          // Hiển thị thông báo
         hoverSearch.style.display = "none";
         displaySearchResults(searchProducts.products, resultDiv);

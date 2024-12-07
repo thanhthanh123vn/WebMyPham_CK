@@ -14,6 +14,7 @@
 
 
     <link rel="stylesheet" href="style.css">
+
 </head>
 <body>
 <div id="web-service">
@@ -39,15 +40,14 @@
                            name="name"
                            id="searchInput"
                            placeholder="Tìm kiếm sản phẩm..."
-                           onkeydown="searchProduct()"
-                                        >
+                           onkeydown="searchProduct()">
 
 
                     <div id="resultSearchProducts">
 
 
                     </div>
-                    <div id="searchNotification">
+                    <div id="searchNotification" style="display: none">
                         <div class="notification-container">
                             <ul class="notifications">
                                 <li>24-26.10 Halloween Cực Chất - Săn Deal Độc Nhất
@@ -112,32 +112,32 @@
                             <a href="index/signUp.jsp" target="_blank">Đăng ký </br>Tài nhập/
                                 &darr;
 
-                                    <div class="login-box">
-                                        <h3>Đăng nhập với</h3>
-                                        <div class="social-login">
-                                            <button class="facebook-login">
-                                                <img
-                                                        src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg"
-                                                        alt="Facebook logo"> Facebook
-                                            </button>
-                                            <button class="google-login">
-                                                <img
-                                                        src="https://upload.wikimedia.org/wikipedia/commons/4/4a/Logo_2013_Google.png"
-                                                        alt="Google logo"> Google +
-                                            </button>
-                                        </div>
-                                        <p>Hoặc đăng nhập với Nthanh.vn</p>
-                                        <button class="hasaki-login"
-                                                onclick="window.location.href='login.jsp'">Đăng nhập</button>
-                                        <p>
-
-                                            Bạn chưa có tài khoản? <a href="index/signUp.jsp">ĐĂNG KÝ
-                                            NGAY</a>
-                                        </p>
+                                <div class="login-box">
+                                    <h3>Đăng nhập với</h3>
+                                    <div class="social-login">
+                                        <button class="facebook-login">
+                                            <img
+                                                    src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg"
+                                                    alt="Facebook logo"> Facebook
+                                        </button>
+                                        <button class="google-login">
+                                            <img
+                                                    src="https://upload.wikimedia.org/wikipedia/commons/4/4a/Logo_2013_Google.png"
+                                                    alt="Google logo"> Google +
+                                        </button>
                                     </div>
+                                    <p>Hoặc đăng nhập với Nthanh.vn</p>
+                                    <button class="hasaki-login"
+                                            onclick="window.location.href='login.jsp'">Đăng nhập</button>
+                                    <p>
+
+                                        Bạn chưa có tài khoản? <a href="index/signUp.jsp">ĐĂNG KÝ
+                                        NGAY</a>
+                                    </p>
+                                </div>
                             </a>
 
-                                </a>
+                        </a>
                     </div>
                     <div class="header-icon-sub">
                         <img
@@ -218,6 +218,12 @@
         </div>
     </header>
 
+
+
+
+
+
+
     <div id="session-body">
         <div class="container">
             <!-- Sidebar -->
@@ -296,73 +302,50 @@
                 <div class="flash-deals-header">
                     <span>Flash Deals</span>
                     <div class="timer">
-                        <span>10</span> : <span>52</span> : <span>54</span>
+                        <span class="timer-day"></span>
                     </div>
                 </div>
-                <div class="products">
-                    <div class="product-item">
-                        <img src="https://media.hcdn.vn/catalog/product/p/r/promotions-auto-nuoc-tay-trang-tuoi-mat-l-oreal-3-in-1-danh-cho-da-dau-da-hon-hop-400ml_VLF3ivLnqLaFKFed_img_220x220_0dff4c_fit_center.png"
-                             alt="Product 1">
-                        <div class="product-info">
-                            <span class="discount">35% OFF</span>
-                            <span class="price">148.000 ₫</span>
-                            <span class="original-price">229.000 ₫</span>
-                            <p class="product-name">Nước Tẩy Trang L'Oreal Tươi Mát Cho Da Dầu, Hỗn Hợp</p>
-                        </div>
 
-                    </div>
-                    <div class="product-item">
-                        <img src="https://media.hcdn.vn/catalog/product/f/a/facebook-dynamic-318900012-1730367448_img_220x220_0dff4c_fit_center.jpg"
-                             alt="Product 2">
-                        <div class="product-info">
-                            <span class="discount">52% OFF</span>
-                            <span class="price">209.000 ₫</span>
-                            <span class="original-price">435.000 ₫</span>
-                            <p class="product-name">Nước Hoa Hồng Klairs Không Mùi Cho Da Nhạy Cảm 180ml</p>
-                        </div>
-                    </div>
-                    <div class="product-item">
-                        <img src="https://media.hcdn.vn/catalog/product/f/a/facebook-dynamic-253900006-1695973833_img_220x220_0dff4c_fit_center.jpg"
-                             alt="Product 3">
-                        <div class="product-info">
-                            <span class="discount">51% OFF</span>
-                            <span class="price">219.000 ₫</span>
-                            <span class="original-price">445.000 ₫</span>
-                            <p class="product-name">Kem Chống Nắng Skin1004 Cho Da Nhạy Cảm SPF 50+ 50ml</p>
-                        </div>
-                    </div>
-                    <div class="product-item">
-                        <img src="https://media.hcdn.vn/catalog/product/p/r/promotions-auto-nuoc-tay-trang-bioderma-danh-cho-da-nhay-cam-500ml_ZhseJ4SSbNTNotA5_img_220x220_0dff4c_fit_center.png"
-                             alt="Product 4">
-                        <div class="product-info">
-                            <span class="discount">34% OFF</span>
-                            <span class="price">348.000 ₫</span>
-                            <span class="original-price">525.000 ₫</span>
-                            <p class="product-name">Nước Tẩy Trang Bioderma Dành Cho Da Nhạy Cảm 500ml</p>
-                        </div>
-                    </div>
-                    <div class="product-item">
-                        <img src="https://media.hcdn.vn/catalog/product/f/a/facebook-dynamic-422202025-1701315561_img_220x220_0dff4c_fit_center.png"
-                             alt="Product 5">
-                        <div class="product-info">
-                            <span class="discount">30% OFF</span>
-                            <span class="price">115.000 ₫</span>
-                            <span class="original-price">165.000 ₫</span>
-                            <p class="product-name">Tẩy Da Chết Mặt Cocoon Cà Phê Đắk Lắk 150ml</p>
-                        </div>
-                    </div>
-                    <div class="product-item">
-                        <img src="https://media.hcdn.vn/catalog/product/f/a/facebook-dynamic-bong-tay-trang-hotosu-cao-cap-150-mieng-1718617065_img_220x220_0dff4c_fit_center.jpg"
-                             alt="Product 6">
-                        <div class="product-info">
-                            <span class="discount">96% OFF</span>
-                            <span class="price">26.000 ₫</span>
-                            <span class="original-price">50.000 ₫</span>
-                            <p class="product-name">Bông Tẩy Trang Hoto Cao Cấp 150 Miếng</p>
-                        </div>
-                    </div>
+                <div class="products" id="productSlider">
+                    <!-- Các sản phẩm sẽ được chèn vào đây -->
+
+                </div>
+                <div class="directPage">
+                    <button class="prev" style="padding: 10px 12px; background-color:gray ; cursor: pointer; border: 2px; border-radius: 2px;" onclick="changeSlide(-1)">&#10094;</button>
+                    <button class="next"  onclick="changeSlide(1)">&#10095;</button>
                 </div>
             </div>
+            <div class="list-product">
+                <div class="list-header">
+                    <span>Danh Mục Sản Phẩm</span>
+                </div>
+                <div class="products2 category-product" id="category-product">
+                    <!-- Các danh mục sản phẩm sẽ được hiển thị ở đây -->
+                    <div class="category">
+
+                    </div>
+                </div>
+                <div class="directPage">
+                    <button class="prevCategory prev" style="padding: 10px 12px; cursor: pointer; background-color:gray ; border: 2px; border-radius: 2px;" onclick="changeCategorySlide(-1)">&#10094;</button>
+                    <button class="nextCategory next"  onclick="changeCategorySlide(1)">&#10095;</button>
+                </div>
+                <!-- Form thêm sản phẩm mới -->
+
+            </div>
+            <div class="brand-section">
+                <div class="brand-header">
+                    <span>Thương hiệu</span>
+                </div>
+                <div class="brand-list">
+
+
+                </div>
+                <div class="directPage">
+                    <button class="prevBrand prev"  onclick="prevSlide()">&#10094;</button>
+                    <button class="nextBrand next"   onclick="nextSlide()">&#10095;</button>
+                </div>
+            </div>
+
 
 
             <div class="product-listing">
@@ -377,7 +360,7 @@
                         <div style="display: flex; justify-content: space-between;">
 
                             <p>${product.price}</p>
-                            <p>${product.oldPrice}</p>
+
                             <p style="text-decoration: line-through;">300.000đ</p>
                         </div>
                         <button class="btn-buy">Buy Now</button>
@@ -438,95 +421,95 @@
                                             src="https://hasaki.vn/v3/images/icons/icons_hotline_tv.svg"
                                             alt="Khiếu nại, Góp ý">
                                 </div>>
-                                        Tư Vấn</a>
-                                </div>
-                                <button>1800 6324</button>
+                                Tư Vấn</a>
                             </div>
-                            <div class="contact-item">
-                                <div class="icon">
-                                    <img
-                                            src="https://hasaki.vn/v3/images/icons/icon_timchinhanh.svg"
-                                            alt="Khiếu nại, Góp ý">
-                                    <p>Tìm chi nhánh</p>
-                                </div>
-                                <button>Hệ thống TTT</button>
+                            <button>1800 6324</button>
+                        </div>
+                        <div class="contact-item">
+                            <div class="icon">
+                                <img
+                                        src="https://hasaki.vn/v3/images/icons/icon_timchinhanh.svg"
+                                        alt="Khiếu nại, Góp ý">
+                                <p>Tìm chi nhánh</p>
                             </div>
+                            <button>Hệ thống TTT</button>
+                        </div>
+                    </div>
+
+
+                    <div class="contact-info">
+                        <div class="hotline ">
+                            <h3>Hỗ trợ khách hàng</h3>
+                            <p>
+                                Hotline: <strong>1800 6324</strong> (miễn phí, 08-22h kể cả
+                                T7, CN)
+                            </p>
+                            <p>Gửi câu hỏi thường gặp</p>
+                            <p>Gửi yêu cầu hỗ trợ</p>
+                            <p>Hướng dẫn đặt hàng</p>
+                            <p>Phương thức vận chuyển</p>
+                            <p>Chính sách đổi trả</p>
+                        </div>
+                        <div class="company-info">
+                            <h3>Về TTT.vn</h3>
+                            <p>Giới thiệu TTT.vn</p>
+                            <p>Tuyển dụng</p>
+                            <p>Các câu hỏi thường gặp</p>
+                            <p>Hướng dẫn sử dụng</p>
+                            <p>Liên hệ</p>
                         </div>
 
-
-                        <div class="contact-info">
-                            <div class="hotline ">
-                                <h3>Hỗ trợ khách hàng</h3>
-                                <p>
-                                    Hotline: <strong>1800 6324</strong> (miễn phí, 08-22h kể cả
-                                    T7, CN)
-                                </p>
-                                <p>Gửi câu hỏi thường gặp</p>
-                                <p>Gửi yêu cầu hỗ trợ</p>
-                                <p>Hướng dẫn đặt hàng</p>
-                                <p>Phương thức vận chuyển</p>
-                                <p>Chính sách đổi trả</p>
-                            </div>
-                            <div class="company-info">
-                                <h3>Về TTT.vn</h3>
-                                <p>Giới thiệu TTT.vn</p>
-                                <p>Tuyển dụng</p>
-                                <p>Các câu hỏi thường gặp</p>
-                                <p>Hướng dẫn sử dụng</p>
-                                <p>Liên hệ</p>
-                            </div>
-
-                            <div class="social-media">
-                                <h3>Hợp tác và liên kết</h3>
-                                <p>
-                                    <a href="#">https://TTT.vn/Clinic</a>
-                                </p>
-                                <div class="social-icons">
-                                    <a href="https://www.facebook.com/" target="_blank"><img
-                                            src="https://hasaki.vn/v3/images/icons/fb.svg" alt="Facebook"></a>
-                                    <a><img
-                                            src="https://hasaki.vn/v3/images/icons/icon_tiktok.svg"
-                                            alt="Instagram"></a> <a><img
-                                        src="https://hasaki.vn/v3/images/icons/instagram.svg"
-                                        alt="TikTok"></a>
-
-                                </div>
-                                <div class="payment-methods">
-                                    <h3>Thanh Toán</h3>
-                                    <img src="https://hasaki.vn/v3/images/icons/mastercard.svg"
-                                         alt="YouTube"> <img
-                                        src="https://hasaki.vn/v3/images/icons/visa.svg" alt="Visa">
-                                    <img src="https://hasaki.vn/v3/images/icons/atm.svg" alt="ATM">
-                                </div>
+                        <div class="social-media">
+                            <h3>Hợp tác và liên kết</h3>
+                            <p>
+                                <a href="#">https://TTT.vn/Clinic</a>
+                            </p>
+                            <div class="social-icons">
+                                <a href="https://www.facebook.com/" target="_blank"><img
+                                        src="https://hasaki.vn/v3/images/icons/fb.svg" alt="Facebook"></a>
+                                <a><img
+                                        src="https://hasaki.vn/v3/images/icons/icon_tiktok.svg"
+                                        alt="Instagram"></a> <a><img
+                                    src="https://hasaki.vn/v3/images/icons/instagram.svg"
+                                    alt="TikTok"></a>
 
                             </div>
-                            <div class="promo-section">
-                                <h3>CẬP NHẬT THÔNG TIN KHUYẾN MÃI</h3>
-                                <div class="promo-input">
-                                    <input type="email" placeholder="email của bạn">
-                                    <button>Đăng ký</button>
-                                </div>
-                                <div class="promo-download">
-                                    <img src="images/qrcode.png" alt="QR code">
-                                    <div class="app-links">
-                                        <img src="https://hasaki.vn/v3/images/icons/dl_apple.svg"
-                                             alt="App Store"> <img
-                                            src="https://hasaki.vn/v3/images/icons/dl_google.svg"
-                                            alt="Google Play">
-                                    </div>
+                            <div class="payment-methods">
+                                <h3>Thanh Toán</h3>
+                                <img src="https://hasaki.vn/v3/images/icons/mastercard.svg"
+                                     alt="YouTube"> <img
+                                    src="https://hasaki.vn/v3/images/icons/visa.svg" alt="Visa">
+                                <img src="https://hasaki.vn/v3/images/icons/atm.svg" alt="ATM">
+                            </div>
+
+                        </div>
+                        <div class="promo-section">
+                            <h3>CẬP NHẬT THÔNG TIN KHUYẾN MÃI</h3>
+                            <div class="promo-input">
+                                <input type="email" placeholder="email của bạn">
+                                <button>Đăng ký</button>
+                            </div>
+                            <div class="promo-download">
+                                <img src="images/qrcode.png" alt="QR code">
+                                <div class="app-links">
+                                    <img src="https://hasaki.vn/v3/images/icons/dl_apple.svg"
+                                         alt="App Store"> <img
+                                        src="https://hasaki.vn/v3/images/icons/dl_google.svg"
+                                        alt="Google Play">
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div id="session-info">
-                        <div class="about-section">
-                            <h2>TTT.VN - CHẤT LƯỢNG THẬT - GIÁ TRỊ THẬT</h2>
-                            <p>
-                                TTT.vn là hệ thống cửa hàng mỹ phẩm chính hãng và dịch vụ chăm
-                                sóc sắc đẹp chuyên sâu với hệ thống cửa hàng trải dài trên toàn
-                                quốc; và hiện đang là đối tác phân phối chiến lược tại thị
-                                trường Việt Nam của hàng loạt thương hiệu lớn như: <span
-                                    class="highlight">La Roche-Posay, Eucerin, L'oreal,
+                </div>
+                <div id="session-info">
+                    <div class="about-section">
+                        <h2>TTT.VN - CHẤT LƯỢNG THẬT - GIÁ TRỊ THẬT</h2>
+                        <p>
+                            TTT.vn là hệ thống cửa hàng mỹ phẩm chính hãng và dịch vụ chăm
+                            sóc sắc đẹp chuyên sâu với hệ thống cửa hàng trải dài trên toàn
+                            quốc; và hiện đang là đối tác phân phối chiến lược tại thị
+                            trường Việt Nam của hàng loạt thương hiệu lớn như: <span
+                                class="highlight">La Roche-Posay, Eucerin, L'oreal,
 										Bioderma, Klairs, Naris Cosmetics, Maybelline, Vichy,
 										Skin1004, Cocoon, Australis, Cetaphil, Anessa, SVR, Paula's
 										Choice, Some By Mi, B.O.M, Vaseline, Sunplay, Hada Labo,
@@ -535,143 +518,143 @@
 										Bio-essence, Tsubaki, 3CE, BNBG, Laneige, Vacosi, Lemonade,
 										Hatomugi, Avène, Silcot, Neutrogena, Garnier, Mediheal,
 										Timeless, Curél,...</span>
-                            </p>
+                        </p>
 
-                            <p>
-                                Với phương châm "<span class="highlight">Chất lượng thật
+                        <p>
+                            Với phương châm "<span class="highlight">Chất lượng thật
 										- Giá trị thật</span>", TTT.vn luôn nỗ lực không ngừng nhằm nâng cao
-                                chất lượng sản phẩm & dịch vụ để khách hàng có được những trải
-                                nghiệm mua sắm tốt nhất...
-                            </p>
+                            chất lượng sản phẩm & dịch vụ để khách hàng có được những trải
+                            nghiệm mua sắm tốt nhất...
+                        </p>
 
-                            <p>TTT.vn sở hữu đa dạng các mặt hàng từ cao cấp đến bình
-                                dân, đáp ứng mọi nhu cầu của khách hàng. Đặc biệt, tại
-                                Hasaki.vn luôn có đầy đủ mẫu thử của mỗi sản phẩm và nhân viên
-                                tư vấn, giúp khách hàng dễ dàng chọn lựa và tăng trải nghiệm
-                                mua sắm.</p>
+                        <p>TTT.vn sở hữu đa dạng các mặt hàng từ cao cấp đến bình
+                            dân, đáp ứng mọi nhu cầu của khách hàng. Đặc biệt, tại
+                            Hasaki.vn luôn có đầy đủ mẫu thử của mỗi sản phẩm và nhân viên
+                            tư vấn, giúp khách hàng dễ dàng chọn lựa và tăng trải nghiệm
+                            mua sắm.</p>
 
+                        <p>
+                            Đối với khách hàng online, Hasaki.vn áp dụng GIAO NHANH 2H MIỄN
+                            PHÍ cho <span class="highlight">đơn hàng từ 90.000đ</span> tại
+                            các khu vực: Hồ Chí Minh - Hà Nội - Hải Phòng - Pleiku - Cà Mau
+                            - Tây Ninh - Long An - Vĩnh Long...
+                        </p>
+
+                        <p>
+                            Ngoài ra, Hasaki.vn còn có app Hasaki cung cấp cho khách hàng
+                            trải nghiệm mua sắm online nhanh chóng, tiện lợi cùng nhiều
+                            khuyến mãi hấp dẫn. Không chỉ vậy, khách hàng còn được giảm
+                            ngay 5% khi nhập mã HASAKIAPP cho đơn hàng đầu tiên trên ứng
+                            dụng. Tải ngay APP Hasaki cho hệ điều hành IOS <a href="#">tại
+                            đây</a>, phiên bản cho hệ điều hành Android <a href="#">tại
+                            đây</a>.
+                        </p>
+                    </div>
+
+                    <div class="info-section">
+                        <div class="certification">
+                            <h3>Được chứng nhận</h3>
+                            <img
+                                    src="https://hasaki.vn/images/graphics/bocongthuong_small.png"
+                                    alt="Đã thông báo Bộ Công Thương">
                             <p>
-                                Đối với khách hàng online, Hasaki.vn áp dụng GIAO NHANH 2H MIỄN
-                                PHÍ cho <span class="highlight">đơn hàng từ 90.000đ</span> tại
-                                các khu vực: Hồ Chí Minh - Hà Nội - Hải Phòng - Pleiku - Cà Mau
-                                - Tây Ninh - Long An - Vĩnh Long...
-                            </p>
-
-                            <p>
-                                Ngoài ra, Hasaki.vn còn có app Hasaki cung cấp cho khách hàng
-                                trải nghiệm mua sắm online nhanh chóng, tiện lợi cùng nhiều
-                                khuyến mãi hấp dẫn. Không chỉ vậy, khách hàng còn được giảm
-                                ngay 5% khi nhập mã HASAKIAPP cho đơn hàng đầu tiên trên ứng
-                                dụng. Tải ngay APP Hasaki cho hệ điều hành IOS <a href="#">tại
-                                đây</a>, phiên bản cho hệ điều hành Android <a href="#">tại
-                                đây</a>.
+                                Bản quyền © 2016 Hasaki.vn<br>Công Ty cổ phần HASAKI
+                                BEAUTY & CLINIC<br>Giấy chứng nhận Đăng ký Kinh doanh số
+                                0313612829 do Sở Kế hoạch và Đầu tư Thành phố Hồ Chí Minh cấp
+                                ngày 13/01/2016
                             </p>
                         </div>
-
-                        <div class="info-section">
-                            <div class="certification">
-                                <h3>Được chứng nhận</h3>
-                                <img
-                                        src="https://hasaki.vn/images/graphics/bocongthuong_small.png"
-                                        alt="Đã thông báo Bộ Công Thương">
-                                <p>
-                                    Bản quyền © 2016 Hasaki.vn<br>Công Ty cổ phần HASAKI
-                                    BEAUTY & CLINIC<br>Giấy chứng nhận Đăng ký Kinh doanh số
-                                    0313612829 do Sở Kế hoạch và Đầu tư Thành phố Hồ Chí Minh cấp
-                                    ngày 13/01/2016
-                                </p>
-                            </div>
-                            <div class="search-tags">
-                                <h4>TOP TÌM KIẾM</h4>
+                        <div class="search-tags">
+                            <h4>TOP TÌM KIẾM</h4>
 
 
-                                <div class="tags">
-                                    <span>Kem Chống Nắng</span> <span>Nước Tẩy Trang</span> <span>Kem
+                            <div class="tags">
+                                <span>Kem Chống Nắng</span> <span>Nước Tẩy Trang</span> <span>Kem
 											Dưỡng Ẩm</span> <span>Sữa Rửa Mặt</span> <span>Bông Tẩy Trang</span>
-                                    <span>Mặt Nạ</span> <span>LOREAL</span> <span>LA ROCHE
+                                <span>Mặt Nạ</span> <span>LOREAL</span> <span>LA ROCHE
 											POSAY</span> <span>Sữa Rửa Mặt SVR</span> <span>Son</span> <span>Kem
 											Đánh Răng Median</span> <span>Kem Đánh Răng Marvis</span> <span>VASELINE</span>
-                                    <span>Carslan</span> <span>sữa rửa mặt cetaphil</span>
-                                </div>
+                                <span>Carslan</span> <span>sữa rửa mặt cetaphil</span>
                             </div>
                         </div>
                     </div>
+                </div>
 
-                    <div class="product-categories">
-                        <h2>DANH MỤC SẢN PHẨM</h2>
+                <div class="product-categories">
+                    <h2>DANH MỤC SẢN PHẨM</h2>
 
-                        <div class="category-column">
-                            <h3>Mỹ Phẩm High-End</h3>
-                            <p>Trang Điểm Cao Cấp | Chăm Sóc Da Mặt Cao Cấp | Chăm Sóc
-                                Tóc Cao Cấp | Gội đầu</p>
-                        </div>
-
-                        <div class="category-column">
-                            <h3>Nước Hoa</h3>
-                            <p>Nước Hoa Nữ | Nước Hoa Nam | Xịt Thơm Toàn Thân</p>
-                        </div>
-
-                        <div class="category-column">
-                            <h3>Chăm Sóc Răng Miệng</h3>
-                            <p>Bàn Chải Đánh Răng | Kem Đánh Răng | Nước Súc Miệng | Tăm
-                                Nước | Chỉ Nha Khoa | Xịt Thơm Miệng</p>
-                        </div>
-
-                        <div class="category-column">
-                            <h3>Thực Phẩm Chức Năng</h3>
-                            <p>Hỗ Trợ Tiêu Hoá | Hỗ Trợ Tim Mạch | Hỗ Trợ Sức Khỏe | Bổ
-                                Gan | Giải Rượu | Dầu Cá | Bổ Mắt | Hoạt Huyết | Dưỡng Não</p>
-                        </div>
-
-                        <div class="category-column">
-                            <h3>Chăm Sóc Cá Nhân</h3>
-                            <p>Băng Vệ Sinh | Khăn Giấy | Khăn Ướt | Khử Mùi | Làm Thơm
-                                Phòng | Dao Cạo Râu | Bọt Cạo Râu | Miếng Dán Nóng | Máy Xông
-                                Hơi...</p>
-                        </div>
-
-                        <div class="category-column">
-                            <h3>Chăm Sóc Da Mặt</h3>
-                            <p>Tẩy Trang Mặt | Sữa Rửa Mặt | Tẩy Tế Bào Chết Da Mặt |
-                                Toner | Nước Cân Bằng Da | Serum | Tinh Chất...</p>
-                        </div>
-
-                        <div class="category-column">
-                            <h3>Trang Điểm</h3>
-                            <p>Kem Lót | Kem Nền | Phấn Nền | Phấn Nước Cushion | Che
-                                Khuyết Điểm | Má Hồng | Phấn Phủ...</p>
-                        </div>
-
-                        <div class="category-column">
-                            <h3>Chăm Sóc Cơ Thể</h3>
-                            <p>Sữa Tắm | Xà Phòng | Tẩy Tế Bào Chết Body | Dưỡng Thể |
-                                Dưỡng Da Tay | Chân | Chống Lão Hóa Cơ Thể</p>
-                        </div>
-
-                        <div class="category-column">
-                            <h3>Chăm Sóc Sức Khỏe</h3>
-                            <p>Băng Dán Cá Nhân | Chống Muỗi | Khẩu Trang | Mặt Nạ Xông
-                                Hơi | Miếng Dán Nóng</p>
-                        </div>
-
-                        <div class="category-column">
-                            <h3>Vấn Đề Về Da</h3>
-                            <p>Da Dầu | Lỗ Chân Lông To | Da Khô | Mất Nước | Da Mụn |
-                                Da Nhạy Cảm | Kích Ứng | Thâm...</p>
-                        </div>
-
-                        <div class="category-column">
-                            <h3>Chăm Sóc Tóc Và Da Đầu</h3>
-                            <p>Dầu Gội | Dầu Xả | Dầu Gội Khô | Dầu Gội Xả 2in1 | Bộ Gội
-                                Xả | Tẩy Tế Bào Chết Da Đầu...</p>
-                        </div>
-
-                        <div class="category-column">
-                            <h3>Hỗ Trợ Làm Đẹp</h3>
-                            <p>Đặc Trị Làm Đẹp Da | Làm Đẹp Tóc | Hỗ Trợ Giảm Cân |
-                                Vitamin và Khoáng Chất</p>
-                        </div>
+                    <div class="category-column">
+                        <h3>Mỹ Phẩm High-End</h3>
+                        <p>Trang Điểm Cao Cấp | Chăm Sóc Da Mặt Cao Cấp | Chăm Sóc
+                            Tóc Cao Cấp | Gội đầu</p>
                     </div>
+
+                    <div class="category-column">
+                        <h3>Nước Hoa</h3>
+                        <p>Nước Hoa Nữ | Nước Hoa Nam | Xịt Thơm Toàn Thân</p>
+                    </div>
+
+                    <div class="category-column">
+                        <h3>Chăm Sóc Răng Miệng</h3>
+                        <p>Bàn Chải Đánh Răng | Kem Đánh Răng | Nước Súc Miệng | Tăm
+                            Nước | Chỉ Nha Khoa | Xịt Thơm Miệng</p>
+                    </div>
+
+                    <div class="category-column">
+                        <h3>Thực Phẩm Chức Năng</h3>
+                        <p>Hỗ Trợ Tiêu Hoá | Hỗ Trợ Tim Mạch | Hỗ Trợ Sức Khỏe | Bổ
+                            Gan | Giải Rượu | Dầu Cá | Bổ Mắt | Hoạt Huyết | Dưỡng Não</p>
+                    </div>
+
+                    <div class="category-column">
+                        <h3>Chăm Sóc Cá Nhân</h3>
+                        <p>Băng Vệ Sinh | Khăn Giấy | Khăn Ướt | Khử Mùi | Làm Thơm
+                            Phòng | Dao Cạo Râu | Bọt Cạo Râu | Miếng Dán Nóng | Máy Xông
+                            Hơi...</p>
+                    </div>
+
+                    <div class="category-column">
+                        <h3>Chăm Sóc Da Mặt</h3>
+                        <p>Tẩy Trang Mặt | Sữa Rửa Mặt | Tẩy Tế Bào Chết Da Mặt |
+                            Toner | Nước Cân Bằng Da | Serum | Tinh Chất...</p>
+                    </div>
+
+                    <div class="category-column">
+                        <h3>Trang Điểm</h3>
+                        <p>Kem Lót | Kem Nền | Phấn Nền | Phấn Nước Cushion | Che
+                            Khuyết Điểm | Má Hồng | Phấn Phủ...</p>
+                    </div>
+
+                    <div class="category-column">
+                        <h3>Chăm Sóc Cơ Thể</h3>
+                        <p>Sữa Tắm | Xà Phòng | Tẩy Tế Bào Chết Body | Dưỡng Thể |
+                            Dưỡng Da Tay | Chân | Chống Lão Hóa Cơ Thể</p>
+                    </div>
+
+                    <div class="category-column">
+                        <h3>Chăm Sóc Sức Khỏe</h3>
+                        <p>Băng Dán Cá Nhân | Chống Muỗi | Khẩu Trang | Mặt Nạ Xông
+                            Hơi | Miếng Dán Nóng</p>
+                    </div>
+
+                    <div class="category-column">
+                        <h3>Vấn Đề Về Da</h3>
+                        <p>Da Dầu | Lỗ Chân Lông To | Da Khô | Mất Nước | Da Mụn |
+                            Da Nhạy Cảm | Kích Ứng | Thâm...</p>
+                    </div>
+
+                    <div class="category-column">
+                        <h3>Chăm Sóc Tóc Và Da Đầu</h3>
+                        <p>Dầu Gội | Dầu Xả | Dầu Gội Khô | Dầu Gội Xả 2in1 | Bộ Gội
+                            Xả | Tẩy Tế Bào Chết Da Đầu...</p>
+                    </div>
+
+                    <div class="category-column">
+                        <h3>Hỗ Trợ Làm Đẹp</h3>
+                        <p>Đặc Trị Làm Đẹp Da | Làm Đẹp Tóc | Hỗ Trợ Giảm Cân |
+                            Vitamin và Khoáng Chất</p>
+                    </div>
+                </div>
             </footer>
         </div>
     </div>
@@ -691,25 +674,35 @@
 </script>
 
 <script src="js/main.js"></script>
+<script src="js/searchProduct.js">
 
-    <script src="js/searchProduct.js"></script>
+
+</script>
+
 <%
 
     // Lấy username từ session
     User user = (User) session.getAttribute("user");
+
     String username = user.getFullName();
 
 
 
     // Nếu chưa đăng nhập, gán giá trị rỗng
     if (username == null) {
-    username = "";
+        username = "";
     }
 %>
 <% String searchProducts = (String)request.getAttribute("products");
 %>
-<script src="js/updateUserMain.js">
+
+<script>
+
     const searchProducts = "<%= searchProducts %>";
+</script>
+
+<script src="js/updateUserMain.js">
+
 </script>
 <script>
     // Gán username từ server vào biến JavaScript
@@ -755,33 +748,6 @@
 
 
 
-<script>
-    const username = "${username}";
-
-    loginUser();
-    // Lấy danh sách tất cả các phần tử có class "logout-account"
-    var logoutElements = document.getElementsByClassName("logout-account");
-
-    // Thêm sự kiện onclick cho từng phần tử
-    Array.from(logoutElements).forEach(element => {
-        element.onclick = function () {
-            logoutUser();
-
-        };
-    });
-
-    var htkh = document.getElementById('htkh');
-    htkh.onclick = function () {
-        window.location.href = 'htkh.html';
-    }
-
-
-    var htch = document.getElementById('htch');
-    htch.onclick = function () {
-        window.location.href = 'htch.html'
-    }
-
-
-</script>
 
 </body>
+</html>

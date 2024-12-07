@@ -34,7 +34,7 @@ public class LoginUser extends HttpServlet {
 				req.getRequestDispatcher("admin/index.html").forward(req, resp);
 			}
 		} else {
-			session.setAttribute("errorMessage", "Tên người dùng hoặc mật khẩu không đúng!");
+			req.setAttribute("errorMessage", "Tên người dùng hoặc mật khẩu không đúng!");
 			req.getRequestDispatcher("login.jsp").forward(req, resp);
 		}
 	}

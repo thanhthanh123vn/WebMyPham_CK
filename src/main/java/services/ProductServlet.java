@@ -24,20 +24,12 @@ public class ProductServlet extends HttpServlet {
 
 
         int startIndex = 0;
-        String startIndexParam = request.getParameter("startIndex");
-        if (startIndexParam != null) {
-            try {
-                startIndex = Integer.parseInt(startIndexParam);
-            } catch (NumberFormatException e) {
 
-                startIndex = 0;
-            }
-        }
-        System.out.println(startIndex);
         try {
             List<Product> products = productDetails.listProducts();
             List<Categories> categories = categoryDao.getAllCategories(startIndex);
-            System.out.println(categories.toString());
+
+
 
             if (products != null && !products.isEmpty()) {
                 request.setAttribute("products", products);

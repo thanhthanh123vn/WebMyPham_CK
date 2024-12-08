@@ -121,23 +121,14 @@
                 </div>
                     <!-- Lặp qua danh sách các sản phẩm -->
                 <div class="products2 category-product" id="category-product">
-                    <c:forEach var="category" items="${categories}" varStatus="status">
-                        <c:if test="${status.index >= startIndex && status.index < startIndex + 8}">
-                        <div class="category">
-
-                                <img src="${category.image}" alt="${category.categoryName}">
-                                <p>${category.categoryName}</p>
-
-                                </div>
-                        </c:if>
-                    </c:forEach>
+                    <!-- Danh mục sản phẩm sẽ được tải vào đây -->
                 </div>
 
                 <div class="directPage">
-                    <button class="prevCategory prev" style="padding: 10px 12px; cursor: pointer; background-color:gray ; border: 2px; border-radius: 2px;"
-                            onclick="changeCategorySlide(-1)">&#10094;</button>
+                    <button class="prevCategory prev" onclick="changeCategorySlide(-1)">&#10094;</button>
                     <button class="nextCategory next" onclick="changeCategorySlide(1)">&#10095;</button>
                 </div>
+            </div>
                 <!-- Form thêm sản phẩm mới -->
 
 

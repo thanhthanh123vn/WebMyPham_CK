@@ -15,24 +15,25 @@ import java.util.List;
 
 @WebServlet("/danh-muc")
 public class SearchProductPage extends HttpServlet {
-    private ProductsDao productsDao = new ProductsDao();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+     ProductsDao productsDao = new ProductsDao();
         // Lấy tham số từ request
 
-        resp.setContentType("application/json");
-        resp.setCharacterEncoding("UTF-8");
 
-        HttpSession session = req.getSession();
-        String searchProduct =(String) session.getAttribute("name");
+
+
+        String searchProduct =(String) req.getParameter("name");
         System.out.println(searchProduct);
         if (searchProduct != null && !searchProduct.trim().isEmpty()) {
             // Truy vấn sản phẩm từ cơ sở dữ liệu
+
             List<Product> products = productsDao.searchProduct(searchProduct);
             req.setAttribute("products", products);
-            System.out.println("search được đó");
-            req.getRequestDispatcher("index/SearchProduct.jsp").forward(req, resp);
+            System.out.println(products.toString()+"  danh-muc");
+            System.out.println("search ");
+            req.getRequestDispatcher("SearchProduct.jsp").forward(req, resp);
 
 
 
@@ -43,7 +44,12 @@ public class SearchProductPage extends HttpServlet {
             // Nếu tham số tìm kiếm rỗng, trả về lỗi
             System.out.println(" khong tim danh muc");
             req.setAttribute("error","Không tìm thấy sản phẩm");
-            req.getRequestDispatcher("index/SearchProduct.jsp").forward(req, resp);
+            req.getRequestDispatcher("SearchProduct.jsp").forward(req, resp);
         }
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        doGet(req, resp);
     }
 }

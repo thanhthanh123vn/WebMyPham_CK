@@ -126,24 +126,45 @@
 }
 
 .search-bar {
-    margin-left: 60px;
     position: relative;
+    margin-left: 60px;
+
 }
+/*.search-bar #resultSearchProducts{*/
+/*    position: absolute;*/
+/*    top: 50px;*/
+/*    width: 70%;*/
+/*    z-index: 100;*/
+/*    right: -7px;*/
 
 
-.search-notification {
+
+/*}*/
+
+.search-notification   {
     position: absolute;
     top: 70px;
     right: -7px;
-
     color: white;
     background-color: #f7f7f7;
     font-size: 14px;
     padding: 5px 10px;
-    border-radius: 50%;
+
     z-index: 100;
     display: none;
     width: 140%;
+}
+.resultSearchProducts{
+    position: absolute;
+    top: 70px;
+    right: -7px;
+    color: white;
+    background-color:#ffffff ;
+    font-size: 14px;
+    padding: 5px 10px;
+
+    z-index: 100;
+    width: 100%;
 }
 
 .notification-container {

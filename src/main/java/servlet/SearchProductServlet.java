@@ -1,6 +1,7 @@
 package servlet;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import dao.ProductsDao;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -8,10 +9,12 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import object.LocalDateTimeAdapter;
 import object.Product;
 
 import java.io.IOException;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @WebServlet("/searchProduct")
@@ -28,7 +31,7 @@ public class SearchProductServlet extends HttpServlet {
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
 
-        request.setAttribute("name",name);
+
         System.out.println(name+" searchProduct");
 
         if (name != null && !name.trim().isEmpty()) {
@@ -41,7 +44,10 @@ public class SearchProductServlet extends HttpServlet {
             SearchResponse searchResponse = new SearchResponse(products, countProduct);
             //System.out.println(searchResponse.products);
             // Chuyển đổi đối tượng sang JSON
-            Gson gson = new Gson();
+            Gson gson = new GsonBuilder()
+                    .registerTypeAdapter(LocalDateTime.class, new LocalDateTimeAdapter())
+                    .create();
+
             String jsonResponse = gson.toJson(searchResponse);
             System.out.println(jsonResponse); // Log dữ liệu JSON trả về
 

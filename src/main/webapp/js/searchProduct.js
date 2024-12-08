@@ -2,7 +2,7 @@ async function searchProduct() {
     const searchInput = document.getElementById("searchInput");
     const resultDiv = document.getElementById("resultSearchProducts");
     const hoverSearch = document.getElementById("searchNotification");
-
+    resultDiv.style.display = "block";
     const keyword = searchInput.value.trim();
 
     console.log(keyword);
@@ -16,7 +16,7 @@ async function searchProduct() {
     }
 
     try {
-        const response = await fetch(`/WebMyPham__/searchProduct?name=` + encodeURIComponent(keyword))
+        const response = await fetch(`searchProduct?name=` + encodeURIComponent(keyword))
 
 
 
@@ -26,7 +26,7 @@ async function searchProduct() {
         }
 
         const searchProducts = await response.json();
-        console.log(searchProducts);
+        console.log(searchProducts.products);
          // Hiển thị thông báo
         hoverSearch.style.display = "none";
         displaySearchResults(searchProducts.products, resultDiv);
@@ -49,8 +49,10 @@ function displaySearchResults(products, resultDiv) {
     list.style.listStyle = "none";
     list.style.padding = "0";
 
+
     products.forEach(product => {
         const listItem = document.createElement("li");
+        list.style.cursor="pointer";
         listItem.style.display = "flex";
         listItem.style.alignItems = "center";
         listItem.style.padding = "10px";
@@ -60,8 +62,8 @@ function displaySearchResults(products, resultDiv) {
             <img src="${product.image}" alt="${product.name}" 
                 style="width: 50px; height: 50px; margin-right: 10px; border-radius: 5px;">
             <div style="flex-grow: 1;">
-                <p style="margin: 0; font-weight: bold;">${product.detail}</p>
-                <p style="margin: 0; color: #888;">${product.price.toLocaleString()} VND</p>
+                <p style="margin: 0; color:black; font-weight: bold;">${product.detail}</p>
+                <p style="margin: 0; color: black;">${product.price.toLocaleString()} VND</p>
             </div>
         `;
         listItem.onclick =function (){

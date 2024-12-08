@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 // Lấy tất cả các phần tử có class 'facebook-login' (danh sách phần tử)
 var facebookButtons = document.getElementsByClassName('facebook-login');
@@ -82,7 +82,7 @@ function getCheckedItems() {
     });
 
     // In ra các mục đã được chọn
-   
+
     let items = checkedItems[checkedItems.length - 1];
     window.location.href = 'searchProduct.html';
     uncheckAll();
@@ -94,3 +94,4 @@ function getCheckedItems() {
 function loadMain(){
     window.location.href = 'main.html';
 }
+

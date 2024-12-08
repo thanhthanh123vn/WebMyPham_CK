@@ -104,7 +104,7 @@
                 <div class="login-hover">
 
                     <a href="login.jsp" class="login">Đăng nhập/
-                        <a href="index/signUp.jsp" target="_blank">Đăng ký </br>Tài nhập/
+                        <a href="index/signUp.jsp" target="_blank">Đăng ký </br>Tài Khoản/
                             &darr;
 
                             <div class="login-box">

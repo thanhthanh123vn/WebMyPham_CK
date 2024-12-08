@@ -18,7 +18,9 @@ public class InforUser {
 		utils = new Utils();
 		conn = utils.getConnection();
 	}
-
+public void closeConnection(){
+		utils.closeConnection(conn);
+}
 //	public User checkUser(String username, String password) {
 //		String sql = "SELECT * FROM users WHERE username = ? AND password = ?";
 //		User user = null;
@@ -78,6 +80,7 @@ public class InforUser {
 			return rowsInserted > 0; // Trả về true nếu chèn thành công
 		} catch (SQLException e) {
 			e.printStackTrace();
+
 			return false; // Trả về false nếu có lỗi xảy ra
 
 		}

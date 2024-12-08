@@ -4,8 +4,6 @@
          pageEncoding="UTF-8"%>
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix = "f" uri = "http://java.sun.com/jsp/jstl/fmt" %>
-
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -112,41 +110,50 @@
                     <!-- Các sản phẩm sẽ được chèn vào đây -->
 
                 </div>
-                <div class="directPage">
-                    <button class="prev" style="padding: 10px 12px; background-color:gray ; cursor: pointer; border: 2px; border-radius: 2px;" onclick="changeSlide(-1)">&#10094;</button>
-                    <button class="next"  onclick="changeSlide(1)">&#10095;</button>
-                </div>
+<%--                <div class="directPage">--%>
+<%--                    <button class="prev" style="padding: 10px 12px; background-color:gray ; cursor: pointer; border: 2px; border-radius: 2px;" onclick="changeSlide(-1)">&#10094;</button>--%>
+<%--                    <button class="next"  onclick="changeSlide(1)">&#10095;</button>--%>
+<%--                </div>--%>
             </div>
             <div class="list-product">
                 <div class="list-header">
                     <span>Danh Mục Sản Phẩm</span>
                 </div>
+                    <!-- Lặp qua danh sách các sản phẩm -->
                 <div class="products2 category-product" id="category-product">
-                    <!-- Các danh mục sản phẩm sẽ được hiển thị ở đây -->
-                    <div class="category">
+                    <c:forEach var="category" items="${categories}" varStatus="status">
+                        <c:if test="${status.index >= startIndex && status.index < startIndex + 8}">
+                        <div class="category">
 
-                    </div>
+                                <img src="${category.image}" alt="${category.categoryName}">
+                                <p>${category.categoryName}</p>
+
+                                </div>
+                        </c:if>
+                    </c:forEach>
                 </div>
+
                 <div class="directPage">
-                    <button class="prevCategory prev" style="padding: 10px 12px; cursor: pointer; background-color:gray ; border: 2px; border-radius: 2px;" onclick="changeCategorySlide(-1)">&#10094;</button>
-                    <button class="nextCategory next"  onclick="changeCategorySlide(1)">&#10095;</button>
+                    <button class="prevCategory prev" style="padding: 10px 12px; cursor: pointer; background-color:gray ; border: 2px; border-radius: 2px;"
+                            onclick="changeCategorySlide(-1)">&#10094;</button>
+                    <button class="nextCategory next" onclick="changeCategorySlide(1)">&#10095;</button>
                 </div>
                 <!-- Form thêm sản phẩm mới -->
 
-            </div>
-            <div class="brand-section">
-                <div class="brand-header">
-                    <span>Thương hiệu</span>
-                </div>
-                <div class="brand-list">
+
+<%--            <div class="brand-section">--%>
+<%--                <div class="brand-header">--%>
+<%--                    <span>Thương hiệu</span>--%>
+<%--                </div>--%>
+<%--                <div class="brand-list">--%>
 
 
-                </div>
-                <div class="directPage">
-                    <button class="prevBrand prev"  onclick="prevSlide()">&#10094;</button>
-                    <button class="nextBrand next"   onclick="nextSlide()">&#10095;</button>
-                </div>
-            </div>
+<%--                </div>--%>
+<%--                <div class="directPage">--%>
+<%--                    <button class="prevBrand prev"  onclick="prevSlide()">&#10094;</button>--%>
+<%--                    <button class="nextBrand next"   onclick="nextSlide()">&#10095;</button>--%>
+<%--                </div>--%>
+<%--            </div>--%>
 
 
 
@@ -183,17 +190,19 @@
 
 
 %>
-<script>
-    function  categorySearch(){
 
-        const searchInput = document.getElementById("searchInput").value;
-        console.log(searchInput)
-     window.location.href =`danh-muc?name=`+searchInput;
+<%--<script>--%>
+<%--    function  categorySearch(){--%>
+
+<%--        const searchInput = document.getElementById("searchInput").value;--%>
+<%--        console.log(searchInput)--%>
+<%--     window.location.href =`danh-muc?name=`+searchInput;--%>
 
 
-    }
+<%--    }--%>
 
-</script>
+<%--</script>--%>
+<script src="js/catogories.js"></script>
 <script>
     function redirectToDetails(productId) {
         // Chuyển hướng đến Servlet với ID sản phẩm

@@ -704,9 +704,15 @@ strong {
 
 }
 
-
+.categories {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 20px;
+}
 
 .category{
+
     background-color: #ffffff;
     margin-left: 10px;
 }

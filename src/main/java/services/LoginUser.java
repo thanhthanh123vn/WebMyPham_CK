@@ -37,6 +37,7 @@ public class LoginUser extends HttpServlet {
 			req.setAttribute("errorMessage", "Tên người dùng hoặc mật khẩu không đúng!");
 			req.getRequestDispatcher("login.jsp").forward(req, resp);
 		}
+
 	}
 
 	@Override

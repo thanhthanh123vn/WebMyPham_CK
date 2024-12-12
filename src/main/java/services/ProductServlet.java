@@ -13,6 +13,7 @@ import java.util.List;
 import object.Categories;
 import object.Product;
 import dao.ProductsDao;
+import object.User;
 
 @WebServlet("/products")
 public class ProductServlet extends HttpServlet {
@@ -28,11 +29,15 @@ public class ProductServlet extends HttpServlet {
         try {
             List<Product> products = productDetails.listProducts();
             List<Categories> categories = categoryDao.getAllCategories(startIndex);
+            User user = (User) request.getAttribute("userLogin");
+            HttpSession session = request.getSession();
 
 
 
             if (products != null && !products.isEmpty()) {
                 request.setAttribute("products", products);
+                session.setAttribute("user", user);
+
                 request.setAttribute("categories", categories);
                 request.setAttribute("startIndex", startIndex); // Truyền startIndex vào request
                 request.getRequestDispatcher("index.jsp").forward(request, response);

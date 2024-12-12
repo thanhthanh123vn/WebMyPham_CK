@@ -22,11 +22,11 @@ public class LoginUser extends HttpServlet {
 		String password = req.getParameter("password");
 
 
-		HttpSession session = req.getSession();
+
 		User userCus = user.checkUser(username, password); // Sử dụng mật khẩu đã băm
 
 		if (userCus != null) { // Nếu tài khoản tồn tại
-			session.setAttribute("user", userCus);
+			req.setAttribute("userLogin", userCus);
 			if ("user".equalsIgnoreCase(userCus.getRole())) {
 				System.out.println("login"+username);
 				req.getRequestDispatcher("products").forward(req, resp);
@@ -46,6 +46,7 @@ public class LoginUser extends HttpServlet {
 	    String username = null;
 	    String password = null;
 	    String errorMessage = null;
+
 	    for (Cookie cookie : cookies) {
 	        if (cookie.getName().equals("userC")) {
 	            username = cookie.getValue();
@@ -71,7 +72,10 @@ public class LoginUser extends HttpServlet {
 	        req.getSession().setAttribute("errorMessage", errorMessage);
 
 	    }
+		doPost(req, resp);
+
 	}
+
 
 
 

@@ -50,10 +50,12 @@ function displaySearchResults(products, resultDiv) {
     list.style.padding = "0";
 
 
+
     products.forEach(product => {
         const listItem = document.createElement("li");
         list.style.cursor="pointer";
-        listItem.style.display = "flex";
+
+      tItem.style.display = "flex";
         listItem.style.alignItems = "center";
         listItem.style.padding = "10px";
         listItem.style.borderBottom = "1px solid #ddd";
@@ -70,6 +72,9 @@ function displaySearchResults(products, resultDiv) {
             detailsProducts(product.id);
         };
         list.appendChild(listItem);
+        list.onclick =function (){
+            detailsProducts(product.id);
+        };
     });
 
     resultDiv.appendChild(list);
@@ -99,6 +104,6 @@ function displaySearchResults(products, resultDiv) {
     });
 function  detailsProducts(productId){
     console.log("productDetail" ,productId);
-    window.location.href = `productDetail?id=${productId}`;
+    window.location.href = `productDetail?id=`+productId;
 
 }

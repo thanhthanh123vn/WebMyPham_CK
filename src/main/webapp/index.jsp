@@ -132,19 +132,19 @@
                 <!-- Form thêm sản phẩm mới -->
 
 
-<%--            <div class="brand-section">--%>
-<%--                <div class="brand-header">--%>
-<%--                    <span>Thương hiệu</span>--%>
-<%--                </div>--%>
-<%--                <div class="brand-list">--%>
+            <div class="brand-section">
+                <div class="brand-header">
+                    <span>Thương hiệu</span>
+                </div>
+                <div class="brand-list">
 
 
-<%--                </div>--%>
-<%--                <div class="directPage">--%>
-<%--                    <button class="prevBrand prev"  onclick="prevSlide()">&#10094;</button>--%>
-<%--                    <button class="nextBrand next"   onclick="nextSlide()">&#10095;</button>--%>
-<%--                </div>--%>
-<%--            </div>--%>
+                </div>
+                <div class="directPage">
+                    <button class="prevBrand prev"  onclick="prevSlide()">&#10094;</button>
+                    <button class="nextBrand next"   onclick="nextSlide()">&#10095;</button>
+                </div>
+            </div>
 
 
 
@@ -205,8 +205,9 @@
 <script src="js/main.js"></script>
 <script src="js/searchProduct.js">
 
-
 </script>
+<script src="js/updateUserMain.js"></script>
+<script src="js/BrandJs.js"></script>
 
 <%
 
@@ -230,9 +231,7 @@
     const searchProducts = "<%= searchProducts %>";
 </script>
 
-<script src="js/updateUserMain.js">
 
-</script>
 <script>
     // Gán username từ server vào biến JavaScript
     const username = "<%= username %>";

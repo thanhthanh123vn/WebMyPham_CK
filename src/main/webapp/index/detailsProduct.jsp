@@ -336,7 +336,7 @@
                                 <button type="button" class="button-light-green">
                                     <i class="fa-solid fa-location-dot"></i> 224/224 Chi Nhánh Còn sản phẩm
                                 </button>
-                                <button type="button" class="button-dark-green" id="card-prodcut">
+                                <button type="button" class="button-dark-green" id="card-prodcut" onclick="addProductCart()">
                                     <i class="fa-sharp fa-solid fa-cart-shopping"></i> GIỎ HÀNG
                                 </button>
                                 <button type="button" class="button-orange">
@@ -503,7 +503,7 @@
 
 </div>
 
-
+<script src="${pageContext.request.contextPath}/js/modifierCart.js"></script>
 <script src="js/main.js"></script>
 
 <script src="js/searchProduct.js"></script>

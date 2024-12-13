@@ -55,7 +55,7 @@ function displaySearchResults(products, resultDiv) {
         const listItem = document.createElement("li");
         list.style.cursor="pointer";
 
-      tItem.style.display = "flex";
+        listItem.style.display = "flex";
         listItem.style.alignItems = "center";
         listItem.style.padding = "10px";
         listItem.style.borderBottom = "1px solid #ddd";

@@ -24,9 +24,9 @@ public class LoginUser extends HttpServlet {
 
 
 		User userCus = user.checkUser(username, password); // Sử dụng mật khẩu đã băm
-
+			HttpSession session = req.getSession();
 		if (userCus != null) { // Nếu tài khoản tồn tại
-			req.setAttribute("userLogin", userCus);
+			session.setAttribute("userLogin", userCus);
 			if ("user".equalsIgnoreCase(userCus.getRole())) {
 				System.out.println("login"+username);
 				req.getRequestDispatcher("products").forward(req, resp);

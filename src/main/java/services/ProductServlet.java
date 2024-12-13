@@ -29,8 +29,8 @@ public class ProductServlet extends HttpServlet {
         try {
             List<Product> products = productDetails.listProducts();
             List<Categories> categories = categoryDao.getAllCategories(startIndex);
-            User user = (User) request.getAttribute("userLogin");
             HttpSession session = request.getSession();
+            User user = (User) session.getAttribute("userLogin");
 
 
 

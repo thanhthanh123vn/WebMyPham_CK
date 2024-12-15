@@ -7,9 +7,9 @@ public class Product {
     private int id;
     private String name;
     private String detail;
-    private BigDecimal price;
+    private double price;
     private String image;
-    private BigDecimal priceNew;
+    private double priceNew;
     private Date date;
     private int orderProduct;
     private int groupProductId;
@@ -19,7 +19,7 @@ public class Product {
     public Product() {}
 
     // Constructor với tham số
-    public Product(int id, String name, String detail, BigDecimal price, String image, BigDecimal priceNew, Date date, int orderProduct, int groupProductId) {
+    public Product(int id, String name, String detail, double price, String image, double priceNew, Date date, int orderProduct, int groupProductId) {
         this.id = id;
         this.name = name;
         this.detail = detail;
@@ -32,7 +32,7 @@ public class Product {
     }
     
 
-    public Product(int id, String name, String detail, BigDecimal price, String image) {
+    public Product(int id, String name, String detail, double price, String image) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -67,11 +67,11 @@ public class Product {
         this.detail = detail;
     }
 
-    public BigDecimal getPrice() {
+    public double getPrice() {
         return price;
     }
 
-    public void setPrice(BigDecimal price) {
+    public void setPrice(double price) {
         this.price = price;
     }
 
@@ -83,11 +83,11 @@ public class Product {
         this.image = image;
     }
 
-    public BigDecimal getPriceNew() {
+    public double getPriceNew() {
         return priceNew;
     }
 
-    public void setPriceNew(BigDecimal priceNew) {
+    public void setPriceNew(double priceNew) {
         this.priceNew = priceNew;
     }
 

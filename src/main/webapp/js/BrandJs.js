@@ -46,7 +46,7 @@ function displayBrands(brands) {
 // Xử lý slide
 function setupSlides() {
     const brandItems = document.querySelectorAll(".brand-item");
-    const itemsPerSlide = 5; // Hiển thị 4 thương hiệu mỗi slide
+    const itemsPerSlide = 8; // Hiển thị 4 thương hiệu mỗi slide
 
     brandItems.forEach((item, index) => {
         item.style.display = index < itemsPerSlide ? "block" : "none";
@@ -57,7 +57,7 @@ function setupSlides() {
 
 function showSlide(index) {
     const brandItems = document.querySelectorAll(".brand-item");
-    const itemsPerSlide = 4;
+    const itemsPerSlide = 8;
     const totalSlides = Math.ceil(brandItems.length / itemsPerSlide);
 
     if (index < 0) currentSlideIndex = totalSlides - 1;

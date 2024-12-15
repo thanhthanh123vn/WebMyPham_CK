@@ -7,13 +7,13 @@ public class ProductCart {
     private int id;
     private String name;
     private String detail;
-    private BigDecimal price;
+    private double price;
     private String image;
     private int count;
     private String modifer;
 
     ProductCart() {}
-    public ProductCart(int id, String name, String detail, BigDecimal price, String image, int count, String modifer) {
+    public ProductCart(int id, String name, String detail, double price, String image, int count, String modifer) {
         this.id = id;
         this.name = name;
         this.detail = detail;
@@ -48,11 +48,11 @@ public class ProductCart {
         this.detail = detail;
     }
 
-    public BigDecimal getPrice() {
+    public double getPrice() {
         return price;
     }
 
-    public void setPrice(BigDecimal price) {
+    public void setPrice(double price) {
         this.price = price;
     }
 

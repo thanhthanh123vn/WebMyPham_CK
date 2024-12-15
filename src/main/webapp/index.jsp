@@ -193,6 +193,18 @@
 <%--    }--%>
 
 <%--</script>--%>
+
+<script>
+    function  categorySearch(){
+
+        const searchInput = document.getElementById("searchInput").value;
+        console.log(searchInput)
+        window.location.href =`danh-muc?name=`+searchInput;
+
+
+    }
+
+</script>
 <script src="js/catogories.js"></script>
 <script>
     function redirectToDetails(productId) {

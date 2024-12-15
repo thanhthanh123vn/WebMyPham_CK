@@ -21,14 +21,21 @@ public class LoginUser extends HttpServlet {
 		String username = req.getParameter("username");
 		String password = req.getParameter("password");
 
-
-
 		User userCus = user.checkUser(username, password); // Sử dụng mật khẩu đã băm
-			HttpSession session = req.getSession();
+
 		if (userCus != null) { // Nếu tài khoản tồn tại
-			session.setAttribute("userLogin", userCus);
+			HttpSession session = req.getSession();
+			session.setAttribute("userLogin", userCus); // Lưu thông tin người dùng vào session
+
+			// Lưu cookie nếu muốn ghi nhớ thông tin đăng nhập
+			Cookie userCookie = new Cookie("userC", username);
+			Cookie passCookie = new Cookie("passC", password);
+			userCookie.setMaxAge(60 * 60 * 24); // Cookie tồn tại trong 1 ngày
+			passCookie.setMaxAge(60 * 60 * 24);
+			resp.addCookie(userCookie);
+			resp.addCookie(passCookie);
+
 			if ("user".equalsIgnoreCase(userCus.getRole())) {
-				System.out.println("login"+username);
 				req.getRequestDispatcher("products").forward(req, resp);
 			} else if ("admin".equalsIgnoreCase(userCus.getRole())) {
 				req.getRequestDispatcher("admin/index.html").forward(req, resp);
@@ -37,46 +44,30 @@ public class LoginUser extends HttpServlet {
 			req.setAttribute("errorMessage", "Tên người dùng hoặc mật khẩu không đúng!");
 			req.getRequestDispatcher("login.jsp").forward(req, resp);
 		}
-
 	}
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-	    Cookie[] cookies = req.getCookies();
-	    String username = null;
-	    String password = null;
-	    String errorMessage = null;
+		Cookie[] cookies = req.getCookies();
+		String username = null;
+		String password = null;
 
-	    for (Cookie cookie : cookies) {
-	        if (cookie.getName().equals("userC")) {
-	            username = cookie.getValue();
-	        }
-	        if (cookie.getName().equals("passC")) {
-	        	password = cookie.getValue();
-	        }
-	        if (cookie.getName().equals("errorMessage")) {
-	        	errorMessage = cookie.getValue();
-	        }
-	    }
+		// Lấy thông tin từ cookie nếu có
+		if (cookies != null) {
+			for (Cookie cookie : cookies) {
+				if (cookie.getName().equals("userC")) {
+					username = cookie.getValue();
+				}
+				if (cookie.getName().equals("passC")) {
+					password = cookie.getValue();
+				}
+			}
+		}
 
-
-	    if (username != null) {
-	        req.getSession().setAttribute("username", username);
-
-	    }
-	    if (password != null) {
-	        req.getSession().setAttribute("password", password);
-
-	    }
-	    if (errorMessage != null) {
-	        req.getSession().setAttribute("errorMessage", errorMessage);
-
-	    }
-		doPost(req, resp);
-
+		if (username != null && password != null) {
+			req.setAttribute("username", username);
+			req.setAttribute("password", password);
+		}
+		doPost(req, resp); // Gọi doPost để xử lý logic đăng nhập
 	}
-
-
-
-
 }

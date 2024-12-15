@@ -19,7 +19,7 @@ import object.User;
 public class ProductServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         ProductsDao productDetails = new ProductsDao();
         CategoryDao categoryDao = new CategoryDao();
 
@@ -30,7 +30,7 @@ public class ProductServlet extends HttpServlet {
             List<Product> products = productDetails.listProducts();
             List<Categories> categories = categoryDao.getAllCategories(startIndex);
             HttpSession session = request.getSession();
-            User user = (User) session.getAttribute("userLogin");
+            User user = (User) request.getAttribute("userLogin");
 
 
 
@@ -53,7 +53,7 @@ public class ProductServlet extends HttpServlet {
     }
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        doGet(req, resp);
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        doPost(req, resp);
     }
 }

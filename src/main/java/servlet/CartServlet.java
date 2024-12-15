@@ -1,0 +1,64 @@
+package servlet;
+
+
+
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+import object.Product;
+import object.cart.Cart;
+import object.cart.ProductCart;
+
+import java.io.IOException;
+import java.math.BigDecimal;
+
+@WebServlet("/cart")
+public class CartServlet extends HttpServlet {
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String action = request.getParameter("action");
+        HttpSession session = request.getSession();
+        Cart cart = (Cart) session.getAttribute("cart");
+
+        if (cart == null) {
+            cart = new Cart();
+            session.setAttribute("cart", cart);
+        }
+
+        switch (action) {
+            case "add":
+                int productId = Integer.parseInt(request.getParameter("productId"));
+
+                String name = request.getParameter("name");
+                String detail = request.getParameter("detail");
+                double price = Double.parseDouble(request.getParameter("price"));
+                String image = request.getParameter("image");
+
+                int quantity = Integer.parseInt(request.getParameter("quantity"));
+                String modifier = request.getParameter("modifier");
+
+                Product item = new Product(productId, name,detail, price, image );
+                cart.put(item);
+                break;
+
+            case "update":
+                productId = Integer.parseInt(request.getParameter("productId"));
+                quantity = Integer.parseInt(request.getParameter("quantity"));
+                cart.update(productId, quantity);
+                break;
+
+            case "remove":
+                productId = Integer.parseInt(request.getParameter("productId"));
+                cart.remove(productId);
+                break;
+
+            default:
+                break;
+        }
+
+        response.sendRedirect("cart.jsp");
+    }
+}

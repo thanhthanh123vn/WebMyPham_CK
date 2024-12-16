@@ -82,9 +82,9 @@
 
 <jsp:include page="../footer.jsp"/>
 </div>
-<script src="../js/main.js"></script>
-<script src="../js/searchProduct.js"></script>
-<script src="../js/updateUserMain.js"></script>
+<script src="${pageContext.request.contextPath}/js/main.js"></script>
+<script src="${pageContext.request.contextPath}/js/searchProduct.js"></script>
+<script src="${pageContext.request.contextPath}/js/updateUserMain.js"></script>
 
 <script>
 

@@ -133,8 +133,11 @@
                                     <i class="fa-solid fa-location-dot"></i> 224/224 Chi Nhánh Còn sản phẩm
                                 </button>
 
-                                <button type="button" class="button-dark-green" id="card-prodcut"  onclick="addProductCart(${product})">
-                                    <i class="fa-sharp fa-solid fa-cart-shopping"></i> GIỎ HÀNG
+
+                                <button type="button" class="button-dark-green" id="card-prodcut" onclick="
+                                    addProductCart(${products})
+                                        ">
+                                    <i  class="fa-sharp fa-solid fa-cart-shopping" ></i> GIỎ HÀNG
                                 </button>
                                 <button type="button" class="button-orange">
                                     <span class="size-end">Mua ngay NowFree 2H</span> Trể tặng 100k
@@ -300,10 +303,13 @@
 <jsp:include page="../footer.jsp"/>
 </div>
 
-<script src="${pageContext.request.contextPath}/js/modifierCart.js"></script>
-<script src="js/main.js"></script>
-<script src="js/cartProduct.js"></script>
-<script src="${pageContext.request.contextPath}/js/searchProduct.js"></script>
+<script src="${pageContext.request.contextPath}/js/modifierCart.js">
+
+    addProductCart(${products});
+</script>
+<script src="${pageContext.request.contextPath}/js/main.js"></script>
+
+<script src="${pageContext.request.contextPath}/js/searchProduct.js"></script>.
 <%
 
     // Lấy username từ session
@@ -317,7 +323,7 @@
 %>
 <% String searchProducts = (String)request.getAttribute("products");
 %>
-<script src="js/updateUserMain.js">
+<script src="${pageContext.request.contextPath}/js/updateUserMain.js">
     const searchProducts = "<%= searchProducts %>";
 </script>
 <script src="../js/cartProduct.js"></script>

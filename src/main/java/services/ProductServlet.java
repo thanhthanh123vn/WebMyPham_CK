@@ -30,7 +30,7 @@ public class ProductServlet extends HttpServlet {
             List<Product> products = productDetails.listProducts();
             List<Categories> categories = categoryDao.getAllCategories(startIndex);
             HttpSession session = request.getSession();
-            User user = (User) request.getAttribute("userLogin");
+            User user = (User) session.getAttribute("userLogin");
 
 
 

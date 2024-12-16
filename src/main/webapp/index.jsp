@@ -214,13 +214,7 @@
     }
 </script>
 
-<script src="js/main.js"></script>
-<script src="js/searchProduct.js">
-
-</script>
 <script src="js/updateUserMain.js"></script>
-<script src="js/BrandJs.js"></script>
-
 <%
 
     // Lấy username từ session
@@ -235,15 +229,6 @@
         username = "";
     }
 %>
-<% String searchProducts = (String)request.getAttribute("products");
-%>
-
-<script>
-
-    const searchProducts = "<%= searchProducts %>";
-</script>
-
-
 <script>
     // Gán username từ server vào biến JavaScript
     const username = "<%= username %>";
@@ -284,6 +269,22 @@
             .catch(error => console.error("Lỗi kết nối:", error));
     }
 </script>
+<script src="js/main.js"></script>
+<script src="js/searchProduct.js">
+
+</script>
+<script src="js/BrandJs.js"></script>
+
+
+<% String searchProducts = (String)request.getAttribute("products");
+%>
+
+<script>
+
+    const searchProducts = "<%= searchProducts %>";
+</script>
+
+
 
 
 <script>

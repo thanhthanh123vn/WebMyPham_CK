@@ -24,6 +24,8 @@ public boolean put(Product product) {
     cart.put(product.getId(),convert(product));
     return true;
 }
+
+
 public boolean remove(int id) {
     if(cart.containsKey(id)) {
         cart.remove(id);

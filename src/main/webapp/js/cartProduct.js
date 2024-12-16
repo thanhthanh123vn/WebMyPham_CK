@@ -1,16 +1,16 @@
-function  addProductCart(id){
+function  addProductCart(product){
 
 
+            console.log(product);
         const data = {
             action: "add",
-            productId: productId,
-            name: name,
-            price: price,
-            quantity: quantity,
-            image: image
+            productId: product.id,
+            name: product.name,
+            price: product.price,
+            quantity: 1,
+            image: product.image
         };
-
-        fetch("cart", {
+        fetch(`cart?action=${data.action}`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/x-www-form-urlencoded"

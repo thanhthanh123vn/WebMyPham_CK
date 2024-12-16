@@ -10,7 +10,7 @@
 <html>
 <head>
 
-    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/footer.css">
 </head>
 <body>
 

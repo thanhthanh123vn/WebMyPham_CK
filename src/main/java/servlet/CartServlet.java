@@ -20,7 +20,8 @@ public class CartServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String action = request.getParameter("action");
-        HttpSession session = request.getSession();
+        System.out.println("action: " + action);
+        HttpSession session = request.getSession(true);
         Cart cart = (Cart) session.getAttribute("cart");
 
         if (cart == null) {
@@ -58,7 +59,12 @@ public class CartServlet extends HttpServlet {
             default:
                 break;
         }
+        session.setAttribute("cart", cart);
+        response.sendRedirect("index/cartProduct.jsp");
+    }
 
-        response.sendRedirect("cart.jsp");
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        doPost(req, resp);
     }
 }

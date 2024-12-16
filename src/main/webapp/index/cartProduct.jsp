@@ -5,9 +5,9 @@
   Time: 12:05 AM
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-         pageEncoding="UTF-8"%>
+             pageEncoding="UTF-8"%>
+<%@ page import="object.cart.Cart" %>
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix = "f" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
@@ -17,9 +17,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nthanh Header</title>
-    <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="../css/cartProduct.css">
-    <link rel="icon" href="../image/logo.png" type="image/x-icon">
+
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/cartProduct.css">
+    <link rel="icon" href="/image/logo.png" type="image/x-icon">
 
 
 </head>
@@ -32,17 +32,18 @@
             <a href="main.html">Trang chủ ></a>
             <a href="#">Giỏ hàng</a>
         </div>
-        <h2>Giỏ hàng <span>(2 sản phẩm)</span></h2>
+        <h2>Giỏ hàng <span id="total_Product">(2 sản phẩm)</span></h2>
         <div class="cart">
             <div class="cart-items">
                 <div class="cart-item">
+                <c:forEach var="cartItem" items="${sessionScope.cart.list}">
                     <div class="product-info">
                         <img src="https://media.hcdn.vn/catalog/product/p/r/promotions-auto-nuoc-tay-trang-tuoi-mat-l-oreal-3-in-1-danh-cho-da-dau-da-hon-hop-400ml_qo5GfcimUJ2bPNQd_img_80x80_d200c5_fit_center.png"
                              alt="L'OREAL">
                         <div class="product-details">
-                            <h3>L'OREAL</h3>
-                            <p>Nước Tẩy Trang L'Oreal Tươi Mát Cho Da Dầu, Hỗn Hợp 400ml</p>
-                            <span>138.000 ₫ <del>229.000 ₫</del></span>
+                            <h3>${cartItem.name}</h3>
+                            <p>${cartItem.detail}</p>
+                            <span>${cartItem.price} <del>229.000 ₫</del></span>
                             <div class="actions">
                                 <a href="#">Yêu thích</a> | <a href="#">Xóa</a>
                             </div>
@@ -52,34 +53,14 @@
                     <div class="quantity">
                         <input type="number" value="1" min="1">
                     </div>
-                    <div class="total-price">138.000 ₫</div>
-                </div>
+                    <div class="total-price">${sessionScope.cart.totalCart}</div>
+                    </div>
 
-                <div class="cart-item">
-                    <div class="product-info">
-                        <img src="https://media.hcdn.vn/catalog/product/f/a/facebook-dynamic-422211183-1696227431_img_80x80_d200c5_fit_center.png"
-                             alt="GARNIER">
-                        <div class="product-details">
-                            <h3>GARNIER</h3>
-                            <p>Nước Tẩy Trang Garnier Dành Cho Da Dầu Và Mụn 400ml (Mới)</p>
-                            <span>132.000 ₫ <del>189.000 ₫</del></span>
-                            <div class="actions">
-                                <a href="#" class="favorite">Yêu thích</a> | <a href="#" class="delete">Xóa</a>
-                            </div>
-                            <div class="promotion">Bill 299k Garnier tặng Nước Tẩy Trang Garnier Cho Da Dầu, Mụn
-                                125ml (SL có hạn)
-                            </div>
-                        </div>
-                    </div>
-                    <div class="quantity">
-                        <input type="number" value="1" min="1">
-                    </div>
-                    <div class="total-price">132.000 ₫</div>
-                </div>
+                </c:forEach>
 
                 <div class="cart-summary cart-vat">
 
-                    <p>Tạm tính: <span>270.000 ₫</span></p>
+                    <p>Tạm tính: <span>${sessionScope.cart.totalCart}</span></p>
                     <p>(Đã bao gồm VAT)</p>
 
                     <button id="hang-1" class="checkout-btn order-prodcut">Tiến hành đặt hàng</button>
@@ -90,18 +71,19 @@
 
             <div class="cart-summary">
                 <h3>Hóa đơn của bạn</h3>
-                <p>Tạm tính: <span>270.000 ₫</span></p>
+                <p>Tạm tính: <span>${sessionScope.cart.totalCart}</span></p>
                 <p>Giảm giá: <span>-0 ₫</span></p>
-                <p><strong>Tổng cộng: <span>270.000 ₫</span></strong></p>
+                <p><strong>Tổng cộng: <span>${sessionScope.cart.totalCart}</span></strong></p>
                 <button id="hang-2" class="checkout-btn order-prodcut">Tiến hành đặt hàng</button>
             </div>
         </div>
     </div>
 
 
-</div>
 <jsp:include page="../footer.jsp"/>
+</div>
 <script src="../js/main.js"></script>
+<script src="../js/searchProduct.js"></script>
 <script src="../js/updateUserMain.js"></script>
 
 <script>

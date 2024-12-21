@@ -1,5 +1,5 @@
-<%@page import="java.io.Console"%>
 <%@ page import="object.User" %>
+<%@page import="java.io.Console"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
@@ -12,18 +12,13 @@
 
 
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/header.css">
 
 </head>
 <body>
 <div id="web-service">
 
 <jsp:include page="header.jsp"/>
-
-
-
-
-
-
     <div id="session-body">
         <div class="container">
             <!-- Sidebar -->
@@ -125,8 +120,8 @@
                 </div>
 
                 <div class="directPage">
-                    <button class="prevCategory prev" onclick="changeCategorySlide(-1)">&#10094;</button>
-                    <button class="nextCategory next" onclick="changeCategorySlide(1)">&#10095;</button>
+                    <button class="prevCategory prev" onclick="prevCategorySlide()">&#10094;</button>
+                    <button class="nextCategory next" onclick="nextCategorySlide()">&#10095;</button>
                 </div>
             </div>
                 <!-- Form thêm sản phẩm mới -->
@@ -141,8 +136,8 @@
 
                 </div>
                 <div class="directPage">
-                    <button class="prevBrand prev"  onclick="prevSlide()">&#10094;</button>
-                    <button class="nextBrand next"   onclick="nextSlide()">&#10095;</button>
+                    <button class="prevBrand prev"  onclick="prevBrandSlide()">&#10094;</button>
+                    <button class="nextBrand next"   onclick="nextBrandSlide()">&#10095;</button>
                 </div>
             </div>
 
@@ -172,7 +167,7 @@
     </div>
 
     <jsp:include page="footer.jsp"/>
-        </div>
+</div>
 
 
 
@@ -205,16 +200,20 @@
     }
 
 </script>
-<script src="js/catogories.js"></script>
+<script src="js/main.js"></script>
+<script src="js/searchProduct.js"></script>
+<script src="js/updateUserMain.js"></script>
+<script src="js/displayAllProduct.js"></script>
+
 <script>
     function redirectToDetails(productId) {
         // Chuyển hướng đến Servlet với ID sản phẩm
 
-        window.location.href = `productDetail?id=`+productId;
+        window.location.href = `productDetail?id=`+productId
     }
+
 </script>
 
-<script src="js/updateUserMain.js"></script>
 <%
 
     // Lấy username từ session
@@ -224,11 +223,12 @@
 
 
 
-    // Nếu chưa đăng nhập, gán giá trị rỗng
+    // Nếu cưa đăng nhập, gán giá trị rỗng
     if (username == null) {
         username = "";
     }
 %>
+
 <script>
     // Gán username từ server vào biến JavaScript
     const username = "<%= username %>";
@@ -269,11 +269,8 @@
             .catch(error => console.error("Lỗi kết nối:", error));
     }
 </script>
-<script src="js/main.js"></script>
-<script src="js/searchProduct.js">
 
-</script>
-<script src="js/BrandJs.js"></script>
+
 
 
 <% String searchProducts = (String)request.getAttribute("products");

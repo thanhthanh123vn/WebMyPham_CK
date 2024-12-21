@@ -19,7 +19,9 @@ import java.math.BigDecimal;
 public class CartServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        response.setContentType("application/json");
         String action = request.getParameter("action");
+
         System.out.println("action: " + action);
         HttpSession session = request.getSession(true);
         Cart cart = (Cart) session.getAttribute("cart");
@@ -60,7 +62,7 @@ public class CartServlet extends HttpServlet {
                 break;
         }
         session.setAttribute("cart", cart);
-        response.sendRedirect("index/cartProduct.jsp");
+        request.getRequestDispatcher("index/cartProduct.jsp").forward(request, response);
     }
 
     @Override

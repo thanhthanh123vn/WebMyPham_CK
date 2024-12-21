@@ -769,22 +769,14 @@ strong {
 
 .brand-list {
     display: flex;
-    flex-wrap: nowrap;
-    overflow-x: auto; /* Cho phép cuộn ngang */
+
     gap: 20px;
     padding-bottom: 10px;
-    scrollbar-width: thin; /* Thanh cuộn nhỏ lại (dành cho Firefox) */
-    scrollbar-color: rgba(136, 136, 136, 0.5) #f1f1f1; /* Thanh cuộn mờ (dành cho Firefox) */
+
 }
 
-.brand-list::-webkit-scrollbar {
-    width: 1px; /* Kích thước thanh cuộn 1px */
-    background-color: #f1f1f1; /* Màu nền của thanh cuộn */
-}
 
-.brand-list::-webkit-scrollbar-track {
-    background-color: #f1f1f1; /* Màu nền của khu vực chứa thanh cuộn */
-}
+
 
 .brand-item {
     text-align: center;

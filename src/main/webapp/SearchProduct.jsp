@@ -12,7 +12,7 @@
     <meta charset="UTF-8">
     <title>Web Mỹ Phẩm</title>
 
-
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/header.css">
     <link rel="stylesheet" href="css/searchProduct.css">
 </head>
 <body>

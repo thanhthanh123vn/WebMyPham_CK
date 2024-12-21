@@ -25,14 +25,13 @@ public class CategoryDao   {
     utils.closeConnection(conn);
     }
 
-    public List<Categories> getAllCategories(int amount) {
+    public List<Categories> getAllCategories(int startIndex) {
         List<Categories> categories = new ArrayList<>();
-        int offset = amount * 8;  // Số dòng cần bỏ qua (tính từ 0)
-        String sql = "SELECT * FROM categories ORDER BY CategoryID LIMIT 8 OFFSET ?";
+        //int offset = startIndex * 8;  // Số dòng cần bỏ qua (tính từ 0)
+        String sql = "SELECT * FROM categories ";
 
-        try {
-            PreparedStatement pstmt = conn.prepareStatement(sql);
-            pstmt.setInt(1, offset);  // Thiết lập giá trị offset
+        try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            //pstmt.setInt(1, offset);  // Thiết lập giá trị offset
             ResultSet rs = pstmt.executeQuery();
 
             while (rs.next()) {
@@ -49,11 +48,12 @@ public class CategoryDao   {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        System.out.println("Offset: " + offset);
+       // System.out.println("Offset: " + offset);
         System.out.println("Categories fetched: " + categories.size());
 
         return categories;
     }
+
 
 
 }

@@ -829,7 +829,7 @@ strong {
 }
 .brand-list {
     display: flex;
-    overflow: hidden;
+   
     justify-content: center;
     align-items: center;
 }

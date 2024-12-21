@@ -1,6 +1,7 @@
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page import="object.Product" %>
+<%@ page import="object.User" %>
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix = "f" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
@@ -134,10 +135,8 @@
                                 </button>
 
 
-                                <button type="button" class="button-dark-green" id="card-prodcut" onclick="
-                                    addProductCart(${products})
-                                        ">
-                                    <i  class="fa-sharp fa-solid fa-cart-shopping" ></i> GIỎ HÀNG
+                                <button type="button" class="button-dark-green" id="card-product" onclick="addProductCart(${products})">
+                                    <i class="fa-sharp fa-solid fa-cart-shopping"></i> GIỎ HÀNG
                                 </button>
                                 <button type="button" class="button-orange">
                                     <span class="size-end">Mua ngay NowFree 2H</span> Trể tặng 100k
@@ -302,31 +301,45 @@
 
 <jsp:include page="../footer.jsp"/>
 </div>
-
-<script src="${pageContext.request.contextPath}/js/modifierCart.js">
-
-    addProductCart(${products});
-</script>
 <script src="${pageContext.request.contextPath}/js/main.js"></script>
 
 <script src="${pageContext.request.contextPath}/js/searchProduct.js"></script>.
+<script src="${pageContext.request.contextPath}/js/updateUserMain.js"></script>
+<script src="${pageContext.request.contextPath}/js/modifierCart.js"></script>
+<script >
+
+
+
+        // Đảm bảo biến products đã được định nghĩa
+
+
+
+
+function categorySearch(){
+
+const searchInput = document.getElementById("searchInput").value;
+console.log(searchInput)
+window.location.href =`danh-muc?name=`+searchInput;
+
+
+}
+
+</script>
+
+
 <%
 
     // Lấy username từ session
-    String username = (String) session.getAttribute("username");
+    User user = (User) session.getAttribute("user");
+
+    String username = user.getFullName();
 
 
-    // Nếu chưa đăng nhập, gán giá trị rỗng
+    // Nếu cưa đăng nhập, gán giá trị rỗng
     if (username == null) {
         username = "";
     }
 %>
-<% String searchProducts = (String)request.getAttribute("products");
-%>
-<script src="${pageContext.request.contextPath}/js/updateUserMain.js">
-    const searchProducts = "<%= searchProducts %>";
-</script>
-<script src="../js/cartProduct.js"></script>
 <script>
     // Gán username từ server vào biến JavaScript
     const username = "<%= username %>";
@@ -366,38 +379,6 @@
             })
             .catch(error => console.error("Lỗi kết nối:", error));
     }
-</script>
-
-
-
-
-<script>
-    const username = "${username}";
-
-    loginUser();
-    // Lấy danh sách tất cả các phần tử có class "logout-account"
-    var logoutElements = document.getElementsByClassName("logout-account");
-
-    // Thêm sự kiện onclick cho từng phần tử
-    Array.from(logoutElements).forEach(element => {
-        element.onclick = function () {
-            logoutUser();
-
-        };
-    });
-
-    var htkh = document.getElementById('htkh');
-    htkh.onclick = function () {
-        window.location.href = 'htkh.html';
-    }
-
-
-    var htch = document.getElementById('htch');
-    htch.onclick = function () {
-        window.location.href = 'htch.html'
-    }
-
-
 </script>
 
 </body>

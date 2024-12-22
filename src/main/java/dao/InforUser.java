@@ -1,9 +1,13 @@
 package dao;
 
+import object.User;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class InforUser {
 	private Connection conn;
@@ -42,4 +46,28 @@ public class InforUser {
 	            return false; // Trả về false nếu có lỗi xảy ra
 	        }
 	    }
+public List<User> getList(){
+		List<User> list = new ArrayList<User>();
+		String sql = "SELECT * FROM users";
+		try {
+			PreparedStatement statement = conn.prepareStatement(sql);
+			ResultSet resultSet = statement.executeQuery();
+			while (resultSet.next()) {
+				User user = new User();
+				user.setId(resultSet.getInt("id"));
+				user.setFullName(resultSet.getString("username"));
+				user.setEmail(resultSet.getString("email"));
+				user.setPassword(resultSet.getString("password"));
+				user.setRole(resultSet.getString("role"));
+				user.setDate(resultSet.getDate("created_at"));
+				list.add(user);
+
+			}
+
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+		return list;
+
+}
 }

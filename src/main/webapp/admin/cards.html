@@ -31,7 +31,7 @@
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.jsp">
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-laugh-wink"></i>
                 </div>
@@ -43,7 +43,7 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item">
-                <a class="nav-link" href="index.html">
+                <a class="nav-link" href="index.jsp">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
             </li>
@@ -543,6 +543,17 @@
                     <div class="copyright text-center my-auto">
                         <span>Copyright &copy; Your Website 2020</span>
                     </div>
+                </div>
+                <div class="chat-box" id="chatBox">
+                    <div class="chat-header" onclick="toggleChat()">
+                        <span>Hỗ trợ trực tuyến</span>
+                        <button class="close-btn">X</button>
+                    </div>
+                    <div class="chat-content">
+                        <p>Xin chào! Bạn cần hỗ trợ gì?</p>
+                        <!-- Add more chat messages here if needed -->
+                    </div>
+                    <input type="text" class="chat-input" placeholder="Nhập tin nhắn...">
                 </div>
             </footer>
             <!-- End of Footer -->

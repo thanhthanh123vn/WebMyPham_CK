@@ -9,6 +9,8 @@ public class Product {
     private String detail;
     private double price;
     private String image;
+    private int quantity;
+    private int category_id;
     private double priceNew;
     private Date date;
     private int orderProduct;
@@ -42,7 +44,23 @@ public class Product {
         this.productDetail  = new ProductDetail();
 	}
 
-	// Getter và Setter cho các thuộc tính
+    public int getCategory_id() {
+        return category_id;
+    }
+
+    public void setCategory_id(int category_id) {
+        this.category_id = category_id;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantityl) {
+        this.quantity = quantityl;
+    }
+
+    // Getter và Setter cho các thuộc tính
     public int getId() {
         return id;
     }

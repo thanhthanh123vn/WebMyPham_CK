@@ -1,3 +1,8 @@
+
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+         pageEncoding="UTF-8"%>
+<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix = "f" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -12,13 +17,28 @@
     <title>SB Admin 2 - Dashboard</title>
 
     <!-- Custom fonts for this template-->
-    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="admin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
 
     <!-- Custom styles for this template-->
-    <link href="css/sb-admin-2.min.css" rel="stylesheet">
+    <link href="admin/css/sb-admin-2.min.css" rel="stylesheet">
+    <style>
+       .bg-blueblue-primary{
+            
+     background-color: #2e5f45;
+        }
+        .badge-danger{
+            color: black;
+
+        }
+        .btn{
+            background-color: #28a745;
+            color: white;
+         
+        }
+    </style>
 
 </head>
 
@@ -28,14 +48,16 @@
     <div id="wrapper">
 
         <!-- Sidebar -->
-        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+        <ul class="navbar-nav bg-blueblue-primary sidebar sidebar-dark accordion" id="accordionSidebar"
+        
+     >
 
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-laugh-wink"></i>
                 </div>
-                <div class="sidebar-brand-text mx-3">SB Admin <sup>2</sup></div>
+                <div class="sidebar-brand-text mx-3">Admin <sup></sup></div>
             </a>
 
             <!-- Divider -->
@@ -118,20 +140,40 @@
                         <a class="collapse-item" href="blank.html">Blank Page</a>
                     </div>
                 </div>
+                
             </li>
-
-            <!-- Nav Item - Charts -->
             <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
+                    aria-expanded="true" aria-controls="collapsePages">
+                    <i class="fas fa-fw fa-folder"></i>
+                    <span>Bảng</span>
+                </a>
+                <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Thông tin Bảng</h6>
+                        <a class="collapse-item" href="table-admin-User">Thông tin người dùng</a>
+                        <a class="collapse-item" href="../index/signUp.html">Thông tin Sản Phẩm</a>
+                        <a class="collapse-item" href="forgot-password.html">Thông tin người quản trị</a>
+                        <div class="collapse-divider"></div>
+                      
+                    </div>
+                </div>
+                
+            </li>
+            <!-- Nav Item - Charts -->
+            <!-- <li class="nav-item">
                 <a class="nav-link" href="charts.html">
                     <i class="fas fa-fw fa-chart-area"></i>
                     <span>Biểu đồ</span></a>
-            </li>
+            </li> -->
 
             <!-- Nav Item - Tables -->
+             
             <li class="nav-item">
                 <a class="nav-link" href="tables.html">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Bảng</span></a>
+
             </li>
 
             <!-- Divider -->
@@ -168,8 +210,8 @@
                             <input type="text" class="form-control bg-light border-0 small" placeholder="Tìm kiếm..."
                                 aria-label="Search" aria-describedby="basic-addon2">
                             <div class="input-group-append">
-                                <button class="btn btn-primary" type="button">
-                                    <i class="fas fa-search fa-sm"></i>
+                                <button class="btn" type="button">
+                                    <i class="fas fa-search fa-sm " ></i>
                                 </button>
                             </div>
                         </div>
@@ -324,7 +366,7 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Nguyễn Thạnh</span>
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small username">Nguyễn Thạnh</span>
                                 <img class="img-profile rounded-circle"
                                     src="img/undraw_profile.svg">
                             </a>
@@ -362,7 +404,7 @@
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
                         <h1 class="h3 mb-0 text-gray-800">Bảng điều khiển</h1>
-                        <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+                        <a href="#" class="d-none d-sm-inline-block btn btn-sm bg-blueblue-primary shadow-sm"><i
                                 class="fas fa-download fa-sm text-white-50"></i> Tạo báo cáo</a>
                     </div>
 
@@ -577,109 +619,17 @@
                             </div>
 
                             <!-- Color System -->
-                            <div class="row">
-                                <div class="col-lg-6 mb-4">
-                                    <div class="card bg-primary text-white shadow">
-                                        <div class="card-body">
-                                            Sơ đẳng
-                                            <div class="text-white-50 small">#4e73df</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 mb-4">
-                                    <div class="card bg-success text-white shadow">
-                                        <div class="card-body">
-                                            Thành công
-                                            <div class="text-white-50 small">#1cc88a</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 mb-4">
-                                    <div class="card bg-info text-white shadow">
-                                        <div class="card-body">
-                                            Thông tin
-                                            <div class="text-white-50 small">#36b9cc</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 mb-4">
-                                    <div class="card bg-warning text-white shadow">
-                                        <div class="card-body">
-                                            Cảnh báo
-                                            <div class="text-white-50 small">#f6c23e</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 mb-4">
-                                    <div class="card bg-danger text-white shadow">
-                                        <div class="card-body">
-                                            Nguy hiểm
-                                            <div class="text-white-50 small">#e74a3b</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 mb-4">
-                                    <div class="card bg-secondary text-white shadow">
-                                        <div class="card-body">
-                                            Sơ trung
-                                            <div class="text-white-50 small">#858796</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 mb-4">
-                                    <div class="card bg-light text-black shadow">
-                                        <div class="card-body">
-                                             Sáng
-                                            <div class="text-black-50 small">#f8f9fc</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 mb-4">
-                                    <div class="card bg-dark text-white shadow">
-                                        <div class="card-body">
-                                            Tối
-                                            <div class="text-white-50 small">#5a5c69</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            
 
                         </div>
 
                         <div class="col-lg-6 mb-4">
 
                             <!-- Illustrations -->
-                            <div class="card shadow mb-4">
-                                <div class="card-header py-3">
-                                    <h6 class="m-0 font-weight-bold text-primary">Minh họa</h6>
-                                </div>
-                                <div class="card-body">
-                                    <div class="text-center">
-                                        <img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 25rem;"
-                                            src="img/undraw_posting_photo.svg" alt="...">
-                                    </div>
-                                    <p>Thêm một số hình ảnh minh họa svg chất lượng vào dự án của bạn nhờ <a
-                                            target="_blank" rel="nofollow" href="https://undraw.co/">bỏ Vẽ</a>, Một
-                                            bộ sưu tập hình ảnh svg đẹp được cập nhật liên tục mà bạn có thể sử dụng
-                                            hoàn toàn miễn phí và không cần ghi nguồn!</p>
-                                    <a target="_blank" rel="nofollow" href="https://undraw.co/">Duyệt qua các hình minh họa trên
-                                        bỏ Vẽ &rarr;</a>
-                                </div>
-                            </div>
+                           
 
                             <!-- Approach -->
-                            <div class="card shadow mb-4">
-                                <div class="card-header py-3">
-                                    <h6 class="m-0 font-weight-bold text-primary">Phương pháp phát triển</h6>
-                                </div>
-                                <div class="card-body">
-                                    <p>SB Admin 2 sử dụng rộng rãi các lớp tiện ích Bootstrap 4 để giảm
-                                        CSS phình to và hiệu suất trang kém. Các lớp CSS tùy chỉnh được sử dụng để tạo
-                                        các thành phần tùy chỉnh và các lớp tiện ích tùy chỉnh.</p>
-                                    <p class="mb-0">Trước khi làm việc với chủ đề này, bạn nên làm quen với
-                                        khuôn khổ Bootstrap, đặc biệt là các lớp tiện ích.</p>
-                                </div>
-                            </div>
+                       
 
                         </div>
                     </div>
@@ -732,6 +682,11 @@
     </div>
 
     <!-- Bootstrap core JavaScript-->
+     <script >
+        const username  = localStorage.getItem('tagData');
+        var user =document.getElementsByClassName('username');
+        user[0].innerHTML = username;
+     </script>
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 

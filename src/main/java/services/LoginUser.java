@@ -38,7 +38,7 @@ public class LoginUser extends HttpServlet {
 			if ("user".equalsIgnoreCase(userCus.getRole())) {
 				req.getRequestDispatcher("products").forward(req, resp);
 			} else if ("admin".equalsIgnoreCase(userCus.getRole())) {
-				req.getRequestDispatcher("admin/index.html").forward(req, resp);
+				req.getRequestDispatcher("admin/index.jsp").forward(req, resp);
 			}
 		} else {
 			req.setAttribute("errorMessage", "Tên người dùng hoặc mật khẩu không đúng!");

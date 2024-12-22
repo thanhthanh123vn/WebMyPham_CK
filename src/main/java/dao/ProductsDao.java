@@ -20,7 +20,29 @@ public class ProductsDao {
         System.out.println("haha");
         conn = utils.getConnection();
     }
+public boolean insertProduct(Product product) {
+        String sql = "insert into product (id,name,Detail,price,quantity,image,category_id) " +
+                "values(?,?,?,?,?,?,?)";
+        try {
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setInt(1, product.getId());
+            ps.setString(2, product.getName());
+            ps.setString(3, product.getDetail());
+            ps.setDouble(4, product.getPrice());
+            ps.setInt(5,product.getQuantity());
+            ps.setString(6, product.getImage());
+            ps.setInt(7,product.getCategory_id());
 
+            int row = ps.executeUpdate();
+            if(row>0){
+                return true;
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
+}
     public static List<Product> listProducts() {
         String sql = "SELECT * FROM products";
         List<Product> products = new ArrayList<>();

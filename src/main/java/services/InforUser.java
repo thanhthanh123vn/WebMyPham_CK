@@ -40,6 +40,22 @@ public void closeConnection(){
 //		//utils.closeConnection(conn);
 //		return user;
 //	}
+	public boolean  updateUser(User user) {
+		String sql = "update  users set username=? and email=? ";
+		try {
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setString(1,user.getFullName());
+			ps.setString(2,user.getEmail());
+
+			int row = ps.executeUpdate();
+			if(row>0)return true;
+
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	return false;
+	}
 
 	public User checkUser(String username, String password) {
 		String query = "SELECT * FROM users WHERE username = ? AND password = ?";

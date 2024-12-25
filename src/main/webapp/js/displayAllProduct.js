@@ -58,10 +58,11 @@ function displayBrands(brands) {
 // Xử lý slide thương hiệu
 function setupBrandSlides() {
     const brandItems = document.querySelectorAll(".brand-item");
+
     const itemsPerSlide = 8; // Hiển thị 8 thương hiệu mỗi slide
 
     brandItems.forEach((item, index) => {
-        item.style.display = index < itemsPerSlide ? "block" : "none";
+        item.style.display = index < itemsPerSlide ? "flex" : "none";
     });
 
     currentBrandSlideIndex = 0;
@@ -77,7 +78,7 @@ function showBrandSlide(index) {
     else currentBrandSlideIndex = index;
 
     brandItems.forEach((item, i) => {
-        item.style.display = (i >= currentBrandSlideIndex * itemsPerSlide && i < (currentBrandSlideIndex + 1) * itemsPerSlide) ? "block" : "none";
+        item.style.display = (i >= currentBrandSlideIndex * itemsPerSlide && i < (currentBrandSlideIndex + 1) * itemsPerSlide) ? "flex" : "none";
     });
 }
 

@@ -1,5 +1,6 @@
 <%@ page import="java.util.List" %>
 <%@ page import="object.Product" %>
+<%@ page import="com.google.gson.Gson" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -712,10 +713,12 @@
             </div>
         </div>
     </div>
-        <% List<Product> products = (List<Product>) request.getAttribute("listProduct");%>
+<% List<Product> products = (List<Product>) request.getAttribute("listProduct");
+   String productJson = new Gson().toJson(products);%>
+
 <script src="js/manageProduct.js"></script>
         <script >
-            const products = <%= products %>;
+            const products =  JSON.parse('<%= productJson %>');
         </script>
 
     <!-- Bootstrap core JavaScript-->

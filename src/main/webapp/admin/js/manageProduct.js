@@ -19,7 +19,7 @@ function displayProducts() {
             <td>${product.category}</td>
             <td>
                 <button onclick="editProduct(${index})">Sửa</button>
-                <button onclick="deleteProduct(${index})">Xóa</button>
+                <button onclick="deleteProduct(${index},${product})">Xóa</button>
             </td>
         </tr>`;
         productBody.innerHTML += row;
@@ -55,6 +55,25 @@ function editProduct(index) {
     document.getElementById("category").value = product.category;
     document.getElementById("stock").value = product.status;
     document.getElementById("productModal").style.display = "block";
+
+    fetch('updateProduct',{
+        method:"GET",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(product)
+    }).then(response => {
+        if (response.ok) {
+            alert(" Update Product thành công!");
+        } else {
+            alert("Lỗi sửa Product.");
+        }
+    }).catch(error => {
+        console.error("Lỗi:", error);
+        alert("Đã xảy ra lỗi khi Update product.");
+    });
+
+
 
     // Lưu lại index đang chỉnh sửa
     document.getElementById("productModal").dataset.index = index;
@@ -104,12 +123,31 @@ function saveProduct() {
 }
 
 // Xóa sản phẩm
-function deleteProduct(index) {
+function deleteProduct(index,product) {
+
+    fetch("deleteProductAdmin", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(product)
+    }).then(response => {
+        if (response.ok) {
+            alert("Đã thêm sản phẩm thành công!");
+        } else {
+            alert("Lỗi khi thêm sản phẩm.");
+        }
+    }).catch(error => {
+        console.error("Lỗi:", error);
+        alert("Đã xảy ra lỗi khi thêm sản phẩm.");
+    });
     if (confirm("Bạn có chắc chắn muốn xóa sản phẩm này?")) {
         products.splice(index, 1);
         displayProducts();
     }
+
 }
+
 
 // Ẩn modal
 function hideModal() {

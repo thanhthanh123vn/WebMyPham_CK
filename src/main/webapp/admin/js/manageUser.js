@@ -10,7 +10,7 @@ function displayUsers() {
     users.forEach((user, index) => {
         const row = `<tr>
             <td>${user.name}</td>
-            <td>${user.age}</td>
+            <td>${user.password}</td>
             <td>${user.address}</td>
             <td><img src="${user.image}" alt="${user.name}" width="50"></td>
             <td>${user.email}</td>
@@ -41,7 +41,7 @@ function editUser(index) {
     const user = users[index];
     document.getElementById("modalTitle").innerText = "Sửa Người Dùng";
     document.getElementById("userName").value = user.name;
-    document.getElementById("age").value = user.age;
+    document.getElementById("age").value = user.password;
     document.getElementById("address").value = user.address;
     document.getElementById("imageURL").value = user.image;
     document.getElementById("email").value = user.email;
@@ -49,6 +49,9 @@ function editUser(index) {
     document.getElementById("userModal").style.display = "block";
 
     // Lưu lại index đang chỉnh sửa
+
+
+
     document.getElementById("userModal").dataset.index = index;
 }
 

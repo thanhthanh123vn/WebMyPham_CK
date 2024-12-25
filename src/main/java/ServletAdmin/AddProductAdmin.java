@@ -22,9 +22,13 @@ public class AddProductAdmin extends HttpServlet {
         BufferedReader reader = request.getReader();
         Gson gson = new Gson();
         Product product = gson.fromJson(reader, Product.class);
-        dao.insertProduct(product);
+     boolean isSucces =    dao.insertProduct(product);
         // Xử lý sản phẩm (ví dụ: lưu vào cơ sở dữ liệu)
         // Bạn có thể thêm mã xử lý dữ liệu ở đây
+        if(isSucces){
+            System.out.println("Product added successfully");
+            return ;
+        }
 
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");

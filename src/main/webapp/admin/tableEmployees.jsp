@@ -736,7 +736,7 @@
 %>
         <script src="js/manageUser.js"></script>
         <script>
-            const users = <%= usersJson %>;
+            const users = JSON.parse('<%= usersJson %>');
             console.log(users); // Kiểm tra dữ liệu trong console
         </script>
 

@@ -120,7 +120,7 @@
           <h3>Bảo mật</h3>
           <div class="contact-info-update">
             <p><img src="https://hasaki.vn/images/icons/icon_key.svg"> Đổi mật khẩu</p>
-            <button onclick="window.location.href='changePwUser.html'">Cập nhật</button>
+            <button onclick="LinkupdatePass()">Cập nhật</button>
           </div>
           <h3>Liên kết mạng xã hội</h3>
           <div class="contact-info-update">

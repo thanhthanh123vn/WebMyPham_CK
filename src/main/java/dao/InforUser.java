@@ -1,6 +1,7 @@
 package dao;
 
 import object.User;
+import object.UserInf;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -12,12 +13,13 @@ import java.util.List;
 public class InforUser {
 	private Connection conn;
 	private Utils utils;
-	
+
 	public InforUser() {
 		// TODO Auto-generated constructor stub
 		utils = new Utils();
 		conn = utils.getConnection();
 	}
+
 	public boolean checkUser(String username, String password) {
         String sql = "SELECT * FROM user WHERE username = ? AND password = ?";
         try (PreparedStatement statement = conn.prepareStatement(sql)) {

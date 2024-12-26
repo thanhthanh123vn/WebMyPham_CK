@@ -12,18 +12,17 @@ import object.UserInf;
 import java.io.BufferedReader;
 import java.io.IOException;
 
-@WebServlet("/AddUser")
-public class AddUserAdmin extends HttpServlet {
+@WebServlet("/removeUser")
+public class RemoveUserServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         BufferedReader reader = request.getReader();
         Gson gson = new Gson();
         UserInf user = gson.fromJson(reader, UserInf.class);
-        System.out.println(user.toString());
 
-        // Logic thêm người dùng vào cơ sở dữ liệu
+        // Logic xóa người dùng khỏi cơ sở dữ liệu
         try {
             UserInfDao userDAO = new UserInfDao();
-          userDAO.insertUserAndAddress(user);
+            userDAO.deleteUserAndAddress(user.getId());
             response.setStatus(HttpServletResponse.SC_OK);
         } catch (Exception e) {
             e.printStackTrace();

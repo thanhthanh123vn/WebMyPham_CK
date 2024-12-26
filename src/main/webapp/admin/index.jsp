@@ -17,13 +17,16 @@
     <title>SB Admin 2 - Dashboard</title>
 
     <!-- Custom fonts for this template-->
-    <link href="admin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <!-- Custom fonts for this template-->
+    <base href="${pageContext.request.contextPath}/admin/">
+    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link
-        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-        rel="stylesheet">
+            href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+            rel="stylesheet">
 
     <!-- Custom styles for this template-->
-    <link href="admin/css/sb-admin-2.min.css" rel="stylesheet">
+    <link href="css/sb-admin-2.min.css" rel="stylesheet">
+
     <style>
        .bg-blueblue-primary{
             
@@ -65,7 +68,7 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
-                <a class="nav-link" href="index.html">
+                <a class="nav-link" href="index.jsp">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Bảng điều khiển</span></a>
             </li>
@@ -151,7 +154,7 @@
                 <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Thông tin Bảng</h6>
-                        <a class="collapse-item" href="table-admin-User">Thông tin người dùng</a>
+                        <a class="collapse-item" href="http://localhost:8080/WebMyPham__/table-admin-User">Thông tin người dùng</a>
                         <a class="collapse-item" href="../index/signUp.html">Thông tin Sản Phẩm</a>
                         <a class="collapse-item" href="forgot-password.html">Thông tin người quản trị</a>
                         <div class="collapse-divider"></div>

@@ -1,5 +1,6 @@
 package ServletAdmin;
 
+import dao.UserInfDao;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -7,6 +8,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import object.User;
 import dao.InforUser;
+import object.UserInf;
 import services.UserUtils;
 
 import java.io.IOException;
@@ -18,15 +20,16 @@ public class TableAdminUser extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        InforUser listUser = new InforUser();
-        List<User>reqUser = listUser.getList();
-        if(reqUser.size()==0){
-            req.setAttribute("errorMessage", "Chưa có user nào trong hệ thống");
+        UserInfDao dao =  new UserInfDao();
+        resp.setContentType("text/html");
+        List<UserInf> listUserInf = dao.getListUserInf();
+        System.out.println(listUserInf.size());
+        if(listUserInf.size()>0){
+            req.setAttribute("userInf", listUserInf);
+            req.getRequestDispatcher("admin/tableEmployees.jsp").forward(req, resp);
             return ;
         }
-
-        req.setAttribute("reqUser", reqUser);
-        req.getRequestDispatcher("admin/tablesEmployees.jsp").forward(req, resp);
+        req.setAttribute("error", "Không thể load sản phẩm");
 
     }
 }

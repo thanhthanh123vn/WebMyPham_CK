@@ -1,5 +1,9 @@
-function addProductCart(product) {
+
+const addCart = document.getElementById("card-product");
+
+addCart.onclick =   function addProductCart(product) {
     alert(product);
+
     var data = {
         action: "add",
         productId: product.id,

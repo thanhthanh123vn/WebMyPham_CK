@@ -23,3 +23,7 @@ function  UpdateUser(){
 
     });
 }
+function  LinkupdatePass(){
+
+window.location.href='../index/ChangPass.jsp'
+}

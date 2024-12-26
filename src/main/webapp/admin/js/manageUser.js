@@ -1,6 +1,6 @@
 // Dữ liệu người dùng mẫu
 
-
+displayUsers();
 
 // Hiển thị danh sách người dùng
 function displayUsers() {
@@ -9,10 +9,10 @@ function displayUsers() {
 
     users.forEach((user, index) => {
         const row = `<tr>
-            <td>${user.name}</td>
+            <td>${user.userName}</td>
             <td>${user.age}</td>
             <td>${user.address}</td>
-            <td><img src="${user.image}" alt="${user.name}" width="50"></td>
+            <td><img src="${user.imageURL}" alt="${user.userName}" width="50"></td>
             <td>${user.email}</td>
             <td>${user.phone}</td>
             <td>
@@ -33,6 +33,7 @@ function showAddModal() {
     document.getElementById("imageURL").value = "";
     document.getElementById("email").value = "";
     document.getElementById("phone").value = "";
+
     document.getElementById("userModal").style.display = "block";
 }
 
@@ -40,8 +41,8 @@ function showAddModal() {
 function editUser(index) {
     const user = users[index];
     document.getElementById("modalTitle").innerText = "Sửa Người Dùng";
-    document.getElementById("userName").value = user.name;
-    document.getElementById("age").value = user.age;
+    document.getElementById("userName").value = user.userName;
+    document.getElementById("age").value = user.password;
     document.getElementById("address").value = user.address;
     document.getElementById("imageURL").value = user.image;
     document.getElementById("email").value = user.email;
@@ -62,7 +63,8 @@ function saveUser() {
     const phone = document.getElementById("phone").value;
 
     const user = { name, password, address, image, email, phone };
-    fetch(`AddUser`, {
+
+    fetch(`http://localhost:8080/WebMyPham__/AddUser`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
@@ -93,6 +95,23 @@ function saveUser() {
 
 // Xóa người dùng
 function deleteUser(index) {
+    const user = users[index];
+    fetch(`http://localhost:8080/WebMyPham__/removeUser`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(user)
+    }).then(response => {
+        if (response.ok) {
+            alert("Đã thêm User thành công!");
+        } else {
+            alert("Lỗi khi thêm User.");
+        }
+    }).catch(error => {
+        console.error("Lỗi:", error);
+        alert("Đã xảy ra lỗi khi thêm User.");
+    });
     if (confirm("Bạn có chắc chắn muốn xóa người dùng này?")) {
         users.splice(index, 1);
         displayUsers();
@@ -105,5 +124,3 @@ function hideModal() {
     delete document.getElementById("userModal").dataset.index;
 }
 
-// Khởi tạo hiển thị
-displayUsers();

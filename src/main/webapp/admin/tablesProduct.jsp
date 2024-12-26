@@ -1,5 +1,9 @@
 <%@ page import="java.util.List" %>
 <%@ page import="object.Product" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+         pageEncoding="UTF-8"%>
+<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix = "f" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -19,7 +23,7 @@
         }
       
 
-  .bg-blueblue-primary{
+    .bg-blueblue-primary{
             
             background-color: #2e5f45;
                }
@@ -240,7 +244,7 @@
     </style>
 
     <title>SB Admin 2 - Tables</title>
-
+    <base href="${pageContext.request.contextPath}/admin/">
     <!-- Custom fonts for this template -->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link

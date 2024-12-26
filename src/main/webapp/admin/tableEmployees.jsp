@@ -1,7 +1,7 @@
-<%@ page import="object.User" %>
-<%@page import="java.io.Console"%>
+
 <%@ page import="java.util.List" %>
 <%@ page import="com.google.gson.Gson" %>
+<%@ page import="object.UserInf" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
@@ -160,7 +160,14 @@
         tbody tr:hover {
             background-color: #f1f1f1;
         }
-
+          input[type="password"] {
+               width: calc(100% - 22px);
+               padding: 10px;
+               margin-bottom: 20px;
+               border: 1px solid #ddd;
+               border-radius: 4px;
+               box-sizing: border-box;
+           }
         #userModal {
             display: none;
             position: fixed;
@@ -247,6 +254,7 @@
     <title>SB Admin 2 - Tables</title>
 
     <!-- Custom fonts for this template -->
+    <base href="${pageContext.request.contextPath}/admin/">
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
@@ -649,12 +657,12 @@
                                         </thead> 
                                         <tbody id="userBody">
                                              <!-- Dữ liệu người dùng sẽ được thêm vào bằng JavaScript -->
-<%--                                             <c:forEach var="user" items="${reqUser}" varStatus="status">--%>
+<%--                                             <c:forEach var="user" items="${userInf}" varStatus="status">--%>
 <%--                                                 <tr>--%>
-<%--                                                     <td>${user.name}</td>--%>
-<%--                                                     <td>${user.age}</td>--%>
+<%--                                                     <td>${user.userName}</td>--%>
+<%--                                                     <td>${user.userName}</td>--%>
 <%--                                                     <td>${user.address}</td>--%>
-<%--                                                     <td><img src="${user.image}" alt="${user.name}" width="50"></td>--%>
+<%--                                                     <td><img src="${user.imageURL}" alt="${user.userName}" width="50"></td>--%>
 <%--                                                     <td>${user.email}</td>--%>
 <%--                                                     <td>${user.phone}</td>--%>
 <%--                                                     <td>--%>
@@ -674,8 +682,9 @@
                                          <h3 id="modalTitle">Thêm Người Dùng</h3> 
                                          <label>Tên người dùng:</label> 
                                          <input type="text" id="userName"> 
-                                         <label>HassPassword:</label>
+                                         <label>Password:</label>
                                          <input type="password" id="age">
+
                                          <label>Địa chỉ:</label> 
                                          <input type="text" id="address"> 
                                          <label>Ảnh (URL):</label> 
@@ -687,17 +696,11 @@
                                           <button onclick="hideModal()">Hủy</button> </div> </div>
                 <!-- /.container-fluid -->
 
-            </div>
+                            </div>
             <!-- End of Main Content -->
 
             <!-- Footer -->
-            <footer class="sticky-footer bg-white">
-                <div class="container my-auto">
-                    <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; Your Website 2020</span>
-                    </div>
-                </div>
-            </footer>
+
             <!-- End of Footer -->
 
         </div>
@@ -731,12 +734,16 @@
         </div>
     </div>
             <%
-    List<User> users = (List<User>) request.getAttribute("reqUser");
-    String usersJson = new Gson().toJson(users);
+
+       List<UserInf> users = (List<UserInf>) request.getAttribute("userInf");
+          String usersInfJson = new Gson().toJson(users);
+
 %>
+        <base href="${pageContext.request.contextPath}/admin/">
         <script src="js/manageUser.js"></script>
         <script>
-            const users = <%= usersJson %>;
+
+            const users = <%= usersInfJson %>;
             console.log(users); // Kiểm tra dữ liệu trong console
         </script>
 

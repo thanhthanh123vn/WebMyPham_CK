@@ -29,11 +29,11 @@ public class LoginUser extends HttpServlet {
 
 			// Lưu cookie nếu muốn ghi nhớ thông tin đăng nhập
 			Cookie userCookie = new Cookie("userC", username);
-			Cookie passCookie = new Cookie("passC", password);
+//			Cookie passCookie = new Cookie("passC", password);
 			userCookie.setMaxAge(60 * 60 * 24); // Cookie tồn tại trong 1 ngày
-			passCookie.setMaxAge(60 * 60 * 24);
+//			passCookie.setMaxAge(60 * 60 * 24);
 			resp.addCookie(userCookie);
-			resp.addCookie(passCookie);
+//			resp.addCookie(passCookie);
 
 			if ("user".equalsIgnoreCase(userCus.getRole())) {
 				req.getRequestDispatcher("products").forward(req, resp);
@@ -42,7 +42,7 @@ public class LoginUser extends HttpServlet {
 			}
 		} else {
 			req.setAttribute("errorMessage", "Tên người dùng hoặc mật khẩu không đúng!");
-			req.getRequestDispatcher("login.jsp").forward(req, resp);
+			resp.sendRedirect("login.jsp?error=true");
 		}
 	}
 

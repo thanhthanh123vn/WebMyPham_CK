@@ -17,8 +17,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nthanh Header</title>
-
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/header.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/cartProduct.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/style.css">
+
     <link rel="icon" href="/image/logo.png" type="image/x-icon">
 
 

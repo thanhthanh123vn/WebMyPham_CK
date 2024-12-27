@@ -58,6 +58,7 @@ public boolean insertProduct(Product product) {
                 product.setDetail(resultSet.getString("Detail"));
                 product.setPrice(resultSet.getDouble("Price"));
                 product.setImage(resultSet.getString("Image"));
+                product.setCategory_id(resultSet.getInt("CategoryId"));
 //                product.setPriceNew(resultSet.getBigDecimal("PriceNew"));
 //                product.setDate(resultSet.getDate("Date"));
 //                product.setOrderProduct(resultSet.getInt("orderProduct"));

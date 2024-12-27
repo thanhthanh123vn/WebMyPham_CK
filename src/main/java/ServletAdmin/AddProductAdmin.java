@@ -12,7 +12,7 @@ import object.Product;
 import java.io.BufferedReader;
 import java.io.IOException;
 
-@WebServlet("/Add")
+@WebServlet("/AddProduct")
 public class AddProductAdmin extends HttpServlet {
     private static final long serialVersionUID = 1L;
 

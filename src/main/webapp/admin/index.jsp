@@ -1,8 +1,13 @@
-
+<%@ page import="object.User" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix = "f" uri = "http://java.sun.com/jsp/jstl/fmt" %>
+<% User user = (User) session.getAttribute("userLogin");
+    if (user != null) {
+
+
+    }%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -155,7 +160,7 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Thông tin Bảng</h6>
                         <a class="collapse-item" href="http://localhost:8080/WebMyPham__/table-admin-User">Thông tin người dùng</a>
-                        <a class="collapse-item" href="../index/signUp.html">Thông tin Sản Phẩm</a>
+                        <a class="collapse-item" href="http://localhost:8080/WebMyPham__/table-admin-Product">Thông tin Sản Phẩm</a>
                         <a class="collapse-item" href="forgot-password.html">Thông tin người quản trị</a>
                         <div class="collapse-divider"></div>
                       
@@ -369,7 +374,7 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small username">Nguyễn Thạnh</span>
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small username"> <%=user.getFullName()%></span>
                                 <img class="img-profile rounded-circle"
                                     src="img/undraw_profile.svg">
                             </a>

@@ -104,7 +104,14 @@ private Utils utils;
                 psUser.setString(1, userInf.getUserName());
                 psUser.setString(2, userInf.getEmail());
                 psUser.setString(3, userInf.getPassword());
-                psUser.executeUpdate();
+                int row =   psUser.executeUpdate();
+                if(row>0){
+                    System.out.println("Inserted user address successfully");
+
+                }else {
+                    System.out.println("Inserted user address failed");
+                }
+
 
                 // Lấy userID từ bảng Users
                 try (ResultSet generatedKeys = psUser.getGeneratedKeys()) {
@@ -124,7 +131,12 @@ private Utils utils;
                 psUserAddress.setString(3, userInf.getAddress());
                 psUserAddress.setString(4, userInf.getImageURL());
                 psUserAddress.setString(5, userInf.getPhone());
-                psUserAddress.executeUpdate();
+                 int row =       psUserAddress.executeUpdate();
+                 if(row>0){
+                     System.out.println("Inserted userAddree address successfully.");
+                     return ;
+                 }
+                System.out.println("Inserted userAddree address Fail.");
             }
 
             // Cam kết giao dịch
@@ -152,7 +164,7 @@ private Utils utils;
         // Phương thức xóa dữ liệu từ bảng Users và UserArress
         public void deleteUserAndAddress(int userID) {
             String deleteUserAddressSQL = "DELETE FROM UsersArress WHERE userID = ?";
-            String deleteUserSQL = "DELETE FROM Users WHERE userID = ?";
+            String deleteUserSQL = "DELETE FROM Users WHERE id = ?";
 
             try {
                 // Bắt đầu giao dịch
@@ -167,7 +179,11 @@ private Utils utils;
                 // Xóa từ bảng Users
                 try (PreparedStatement psUser = conn.prepareStatement(deleteUserSQL)) {
                     psUser.setInt(1, userID);
-                    psUser.executeUpdate();
+                   int row = psUser.executeUpdate();
+                   if(row>0){
+                        System.out.println("Deleted user address successfully");
+                   }
+
                 }
 
                 // Cam kết giao dịch

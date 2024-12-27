@@ -23,7 +23,7 @@ public class AddUserAdmin extends HttpServlet {
         // Logic thêm người dùng vào cơ sở dữ liệu
         try {
             UserInfDao userDAO = new UserInfDao();
-          userDAO.insertUserAndAddress(user);
+            userDAO.insertUserAndAddress(user);
             response.setStatus(HttpServletResponse.SC_OK);
         } catch (Exception e) {
             e.printStackTrace();

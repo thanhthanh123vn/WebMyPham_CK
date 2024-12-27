@@ -1,34 +1,56 @@
-// Dữ liệu người dùng mẫu
 
-displayUsers();
+    // Hiển thị danh sách người dùng
+    displayUsers();
+    isStart = false;
+var userInfs ;
+    async function displayUsers() {
+        const userBody = document.getElementById("userBody");
+        userBody.innerHTML = "";
 
-// Hiển thị danh sách người dùng
-function displayUsers() {
-    const userBody = document.getElementById("userBody");
-    userBody.innerHTML = "";
+        try {
+            const response = await fetch("http://localhost:8080/WebMyPham__/listUserInf");
+            if (!response.ok) {
+                throw new Error("Không thể tải danh sách ListUser Info.");
+            }
 
-    users.forEach((user, index) => {
-        const row = `<tr>
-            <td>${user.userName}</td>
-            <td>${user.age}</td>
-            <td>${user.address}</td>
-            <td><img src="${user.imageURL}" alt="${user.userName}" width="50"></td>
-            <td>${user.email}</td>
-            <td>${user.phone}</td>
-            <td>
-                <button onclick="editUser(${index})">Sửa</button>
-                <button onclick="deleteUser(${index})">Xóa</button>
-            </td>
-        </tr>`;
-        userBody.innerHTML += row;
-    });
+            const userInf = await response.json();
+            if(!isStart) {
+                userInfs = userInf;
+                isStart = true;
+            }
+
+            userInfs.forEach((user, index) => {
+
+
+                const row = `<tr>
+                    <td>${user.userName}</td>
+                    <td> ******</td>
+                    <td>${user.address}</td>
+                    <td><img src="${user.imageURL}" alt="${user.userName}" width="50"></td>
+                    <td>${user.email}</td>
+                    <td>${user.phone}</td>
+                    <td style="width: 200px">
+                        <button onclick="editUser(${index})">Sửa</button>
+                        <button onclick="deleteUser(${index})">Xóa</button>
+                    </td>
+                </tr>`;
+                userBody.innerHTML += row;
+            });
+        } catch (error) {
+            console.error("Lỗi:", error);
+        }
+    }
+
+
+
+function maskPassword(password) {
+    return '*'.repeat(password.length);
 }
-
 // Hiển thị modal thêm người dùng
 function showAddModal() {
     document.getElementById("modalTitle").innerText = "Thêm Người Dùng";
     document.getElementById("userName").value = "";
-    document.getElementById("age").value = "";
+    document.getElementById("password").value = "";
     document.getElementById("address").value = "";
     document.getElementById("imageURL").value = "";
     document.getElementById("email").value = "";
@@ -39,12 +61,12 @@ function showAddModal() {
 
 // Hiển thị modal sửa người dùng
 function editUser(index) {
-    const user = users[index];
+    const user = userInfs[index];
     document.getElementById("modalTitle").innerText = "Sửa Người Dùng";
     document.getElementById("userName").value = user.userName;
-    document.getElementById("age").value = user.password;
+    document.getElementById("password").value = user.password;
     document.getElementById("address").value = user.address;
-    document.getElementById("imageURL").value = user.image;
+    document.getElementById("imageURL").value = user.imageURL;
     document.getElementById("email").value = user.email;
     document.getElementById("phone").value = user.phone;
     document.getElementById("userModal").style.display = "block";
@@ -55,14 +77,17 @@ function editUser(index) {
 
 // Lưu người dùng (thêm hoặc sửa)
 function saveUser() {
-    const name = document.getElementById("userName").value;
-    const password = document.getElementById("age").value;
+    const userName = document.getElementById("userName").value;
+    const password = document.getElementById("password").value;
     const address = document.getElementById("address").value;
-    const image = document.getElementById("imageURL").value;
+    const imageURL = document.getElementById("imageURL").value;
     const email = document.getElementById("email").value;
     const phone = document.getElementById("phone").value;
+    console.log(userName);
 
-    const user = { name, password, address, image, email, phone };
+    const user = {
+        userName: userName, email: email, password: password, address: address, imageURL: imageURL, phone: phone
+    };
 
     fetch(`http://localhost:8080/WebMyPham__/AddUser`, {
         method: "POST",
@@ -72,7 +97,7 @@ function saveUser() {
         body: JSON.stringify(user)
     }).then(response => {
         if (response.ok) {
-            alert("Đã thêm User thành công!");
+
         } else {
             alert("Lỗi khi thêm User.");
         }
@@ -84,9 +109,9 @@ function saveUser() {
     const index = document.getElementById("userModal").dataset.index;
 
     if (index) {
-        users[index] = user; // Cập nhật người dùng
+        userInfs[index] = user; // Cập nhật người dùng
     } else {
-        users.push(user); // Thêm mới người dùng
+        userInfs.push(user); // Thêm mới người dùng
     }
 
     hideModal();
@@ -95,26 +120,25 @@ function saveUser() {
 
 // Xóa người dùng
 function deleteUser(index) {
-    const user = users[index];
+    const user = userInfs[index];
     fetch(`http://localhost:8080/WebMyPham__/removeUser`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
         },
         body: JSON.stringify(user)
-
     }).then(response => {
         if (response.ok) {
-            alert("Đã thêm User thành công!");
+
         } else {
-            alert("Lỗi khi thêm User.");
+            alert("Lỗi khi xóa User.");
         }
     }).catch(error => {
         console.error("Lỗi:", error);
-        alert("Đã xảy ra lỗi khi thêm User.");
+        alert("Đã xảy ra lỗi khi xóa User.");
     });
     if (confirm("Bạn có chắc chắn muốn xóa người dùng này?")) {
-        users.splice(index, 1);
+        userInfs.splice(index, 1);
         displayUsers();
     }
 }
@@ -124,4 +148,3 @@ function hideModal() {
     document.getElementById("userModal").style.display = "none";
     delete document.getElementById("userModal").dataset.index;
 }
-

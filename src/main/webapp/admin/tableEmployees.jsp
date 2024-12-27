@@ -681,17 +681,17 @@
                                          <span class="close" onclick="hideModal()">&times;</span> 
                                          <h3 id="modalTitle">Thêm Người Dùng</h3> 
                                          <label>Tên người dùng:</label> 
-                                         <input type="text" id="userName"> 
+                                         <input type="text" id="userName"  name="fullname">
                                          <label>Password:</label>
-                                         <input type="password" id="age">
+                                        <input type="password" id="password" name="password">
 
                                          <label>Địa chỉ:</label> 
-                                         <input type="text" id="address"> 
+                                         <input type="text" id="address" name="address">
                                          <label>Ảnh (URL):</label> 
-                                         <input type="text" id="imageURL"> 
+                                         <input type="text" id="imageURL" name="imageURL">
                                          <label>Email:</label>
-                                          <input type="email" id="email"> 
-                                          <label>SĐT:</label> <input type="text" id="phone"> 
+                                          <input type="email" id="email" name="email">
+                                          <label>SĐT:</label> <input type="text" id="phone" name="phone">
                                           <button onclick="saveUser()">Lưu</button> 
                                           <button onclick="hideModal()">Hủy</button> </div> </div>
                 <!-- /.container-fluid -->
@@ -739,11 +739,13 @@
           String usersInfJson = new Gson().toJson(users);
 
 %>
+
         <base href="${pageContext.request.contextPath}/admin/">
-        <script src="js/manageUser.js"></script>
-        <script>
+        <script src="js/manageUser.js">
+
 
             const users = <%= usersInfJson %>;
+
             console.log(users); // Kiểm tra dữ liệu trong console
         </script>
 

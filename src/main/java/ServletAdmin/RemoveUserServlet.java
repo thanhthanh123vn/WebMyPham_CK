@@ -22,7 +22,7 @@ public class RemoveUserServlet extends HttpServlet {
         // Logic xóa người dùng khỏi cơ sở dữ liệu
         try {
             UserInfDao userDAO = new UserInfDao();
-            userDAO.deleteUserAndAddress(user.getId());
+             userDAO.deleteUserAndAddress(user.getId());
             response.setStatus(HttpServletResponse.SC_OK);
         } catch (Exception e) {
             e.printStackTrace();

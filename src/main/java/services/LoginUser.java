@@ -1,7 +1,10 @@
 package services;
 
 import java.io.IOException;
+import java.time.LocalDate;
+import java.util.Date;
 
+import dao.IndexAdminDao;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.Cookie;
@@ -29,20 +32,38 @@ public class LoginUser extends HttpServlet {
 
 			// Lưu cookie nếu muốn ghi nhớ thông tin đăng nhập
 			Cookie userCookie = new Cookie("userC", username);
-//			Cookie passCookie = new Cookie("passC", password);
+//          Cookie passCookie = new Cookie("passC", password);
 			userCookie.setMaxAge(60 * 60 * 24); // Cookie tồn tại trong 1 ngày
-//			passCookie.setMaxAge(60 * 60 * 24);
+//          passCookie.setMaxAge(60 * 60 * 24);
 			resp.addCookie(userCookie);
-//			resp.addCookie(passCookie);
+//          resp.addCookie(passCookie);
 
 			if ("user".equalsIgnoreCase(userCus.getRole())) {
 				req.getRequestDispatcher("products").forward(req, resp);
 			} else if ("admin".equalsIgnoreCase(userCus.getRole())) {
+				IndexAdminDao dao = new IndexAdminDao();
+				LocalDate date = LocalDate.now();
+				int year = date.getYear();
+				System.out.println(year);
+
+				int month = date.getMonthValue();
+				System.out.println(month);
+
+				double TurnoverYear = dao.TurnoverInYear(year);
+				double TurnoverMonth = dao.TurnoverInMonth(month, year);
+				System.out.println("Doanh Thu Nam"+TurnoverYear);
+				if (TurnoverYear > 0 && TurnoverMonth > 0) {
+					req.setAttribute("TurnoverYear", TurnoverYear);
+					req.setAttribute("TurnoverMonth", TurnoverMonth);
+					req.getRequestDispatcher("admin/index.jsp").forward(req, resp);
+					return;
+				}
+				req.setAttribute("error", "Không thể tải Doanh thu Nam va Thang");
 				req.getRequestDispatcher("admin/index.jsp").forward(req, resp);
 			}
 		} else {
 			req.setAttribute("errorMessage", "Tên người dùng hoặc mật khẩu không đúng!");
-			resp.sendRedirect("login.jsp?error=true");
+			req.getRequestDispatcher("login.jsp").forward(req, resp);
 		}
 	}
 

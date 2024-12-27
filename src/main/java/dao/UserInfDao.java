@@ -88,6 +88,35 @@ private Utils utils;
         return listUserInf;
     }
 
+    public List<UserInf> searchUserInf(String name) {
+        List<UserInf> listUserInf = new ArrayList<>();
+        String sql = "SELECT ua.userID, u.userName, ua.email, u.password, ua.address, ua.imageURL, ua.phone " +
+                "FROM Users u " +
+                "JOIN UsersArress ua ON u.ID = ua.userID " +
+                "WHERE u.userName LIKE ?";
+
+        try {
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setString(1, "%" + name + "%");
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                UserInf userInf = new UserInf(
+                        rs.getInt("userID"),
+                        rs.getString("userName"),
+                        rs.getString("email"),
+                        rs.getString("password"),
+                        rs.getString("address"),
+                        rs.getString("imageURL"),
+                        rs.getString("phone")
+                );
+                listUserInf.add(userInf);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return listUserInf;
+    }
+
 
     // Phương thức chèn dữ liệu vào bảng Users và UserArress
     public void insertUserAndAddress(UserInf userInf) {
@@ -205,6 +234,13 @@ private Utils utils;
                 }
             }
         }
+
+    public static void main(String[] args) {
+        String name  ="%le%";
+        UserInfDao userInfDao = new UserInfDao();
+      List<UserInf> users =   userInfDao.searchUserInf(name);
+      System.out.println(users.size());
+    }
     }
 
 

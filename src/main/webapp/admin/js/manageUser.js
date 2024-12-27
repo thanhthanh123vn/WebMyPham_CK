@@ -142,7 +142,47 @@ function deleteUser(index) {
         displayUsers();
     }
 }
+  async function   searchUserInf(){
+      const userBody = document.getElementById("userBody");
+      userBody.innerHTML = "";
+        const keyword = document.getElementById("search").value;
+        const response = await fetch(`http://localhost:8080/WebMyPham__/searchUserInf?username=` + encodeURIComponent(keyword))
+      if (!response.ok) {
 
+          throw new Error("Phản hồi không hợp lệ.");
+      }
+
+      const searchUserInf = await response.json();
+        console.log(searchUserInf);
+
+
+
+     if (!response.ok) {
+
+         throw new Error("Phản hồi không hợp lệ.");
+     }
+      searchUserInf.forEach((user, index) => {
+
+
+          const row = `<tr>
+                    <td>${user.userName}</td>
+                    <td> ******</td>
+                    <td>${user.address}</td>
+                    <td><img src="${user.imageURL}" alt="${user.userName}" width="50"></td>
+                    <td>${user.email}</td>
+                    <td>${user.phone}</td>
+                    <td style="width: 200px">
+                        <button onclick="editUser(${index})">Sửa</button>
+                        <button onclick="deleteUser(${index})">Xóa</button>
+                    </td>
+                </tr>`;
+          userBody.innerHTML += row;
+      });
+
+
+
+
+    }
 // Ẩn modal
 function hideModal() {
     document.getElementById("userModal").style.display = "none";

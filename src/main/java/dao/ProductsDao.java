@@ -74,7 +74,8 @@ public class ProductsDao {
         //utils.closeConnection(conn);
         return products; // Trả về danh sách (có thể rỗng nếu không có dữ liệu hoặc có lỗi)
     }
-    public  static int  countsearchProduct(String name) {
+
+    public static int countsearchProduct(String name) {
         String sql = "SELECT count(*) FROM products WHERE Detail LIKE ?";
         List<Product> products = new ArrayList<>();
 
@@ -85,19 +86,14 @@ public class ProductsDao {
                 while (resultSet.next()) {
                     return resultSet.getInt(1);
                 }
-
-
             }
-
-
-
-
         } catch (Exception e) {
             e.printStackTrace();
         }
         //utils.closeConnection(conn);
         return -1; // Trả về danh sách (có thể rỗng nếu không có dữ liệu hoặc có lỗi)
     }
+
     public static Product getProductById(int id) {
         Product product = null;
         ProductDetail productDetail = null;
@@ -133,7 +129,7 @@ public class ProductsDao {
                 );
 
                 // Thiết lập các thuộc tính từ ProductDetail
-                productDetail   = new ProductDetail();
+                productDetail = new ProductDetail();
                 productDetail.setProductName(rs.getString("ProductName"));
                 productDetail.setCategory(rs.getString("Category"));
                 productDetail.setDescription(rs.getString("Description"));

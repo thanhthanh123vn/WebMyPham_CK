@@ -13,10 +13,13 @@ public class Product {
     private Date date;
     private int orderProduct;
     private int groupProductId;
-    private ProductDetail productDetail =new ProductDetail();
+    private ProductDetail productDetail = new ProductDetail();
+    private double discountPercentage;
+    private BigDecimal discountPrice;
 
     // Constructor không tham số
-    public Product() {}
+    public Product() {
+    }
 
     // Constructor với tham số
     public Product(int id, String name, String detail, BigDecimal price, String image, BigDecimal priceNew, Date date, int orderProduct, int groupProductId) {
@@ -29,20 +32,21 @@ public class Product {
         this.date = date;
         this.orderProduct = orderProduct;
         this.groupProductId = groupProductId;
+
     }
-    
+
 
     public Product(int id, String name, String detail, BigDecimal price, String image) {
-		super();
-		this.id = id;
-		this.name = name;
-		this.detail = detail;
-		this.price = price;
-		this.image = image;
-        this.productDetail  = new ProductDetail();
-	}
+        super();
+        this.id = id;
+        this.name = name;
+        this.detail = detail;
+        this.price = price;
+        this.image = image;
+        this.productDetail = new ProductDetail();
+    }
 
-	// Getter và Setter cho các thuộc tính
+    // Getter và Setter cho các thuộc tính
     public int getId() {
         return id;
     }
@@ -114,12 +118,41 @@ public class Product {
     public void setGroupProductId(int groupProductId) {
         this.groupProductId = groupProductId;
     }
-public ProductDetail getProductDetail() {
+
+    public ProductDetail getProductDetail() {
         return this.productDetail;
-}
-public void setProductDetail(ProductDetail productDetail) {
+    }
+
+    public void setProductDetail(ProductDetail productDetail) {
         this.productDetail = productDetail;
-}
+    }
+
+    public double getDiscountPercentage() {
+        return discountPercentage;
+    }
+
+    public void setDiscountPercentage(double discountPercentage) {
+        this.discountPercentage = discountPercentage;
+        calculateDiscountPrice();
+    }
+
+    private void calculateDiscountPrice() {
+        if (price != null && discountPercentage > 0) {
+            BigDecimal discount = price.multiply(BigDecimal.valueOf(discountPercentage / 100));
+            this.discountPrice = price.subtract(discount);
+        } else {
+            this.discountPrice = price;
+        }
+    }
+
+    public BigDecimal getDiscountPrice() {
+        return discountPrice;
+    }
+
+    public void setDiscountPrice(BigDecimal discountPrice) {
+        this.discountPrice = discountPrice;
+    }
+
     // Phương thức toString để hiển thị thông tin đối tượng Product
     @Override
     public String toString() {

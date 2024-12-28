@@ -17,6 +17,7 @@ public class ProductDetailsDao {
         utils = new Utils();
         conn = utils.getConnection();
     }
+
     public List<ProductDetail> listProductsDetail() {
         String sql = "SELECT * FROM product_details";
         List<ProductDetail> products = new ArrayList<>();
@@ -24,7 +25,7 @@ public class ProductDetailsDao {
         try (PreparedStatement statement = conn.prepareStatement(sql)) {
             ResultSet rs = statement.executeQuery();
 
-            while (rs.next()) {
+            while (rs.next())  {
                 System.out.println("ProductDetails success");
                 ProductDetail productDetail = new ProductDetail();
 

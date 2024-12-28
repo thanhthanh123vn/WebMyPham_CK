@@ -13,18 +13,10 @@ import object.UserInf;
 
 import java.io.IOException;
 import java.util.List;
-@WebServlet("/listUserInf")
+@WebServlet("/listProducts")
 
 public class ListProductAdmin {
-
-
-
-
-
-
-
-
-        private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
 
         protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -34,6 +26,7 @@ public class ListProductAdmin {
             ProductsDao dao = new ProductsDao();
             try {
                 List<Product> productList = dao.listProducts();
+                System.out.println(productList.size()+" Products");
 
 
 

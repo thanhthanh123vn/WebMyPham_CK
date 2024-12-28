@@ -1,9 +1,16 @@
 <%@ page import="java.util.List" %>
 <%@ page import="object.Product" %>
+<%@ page import="com.google.gson.Gson" %>
+<%@ page import="object.User" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix = "f" uri = "http://java.sun.com/jsp/jstl/fmt" %>
+<% User user = (User) session.getAttribute("userLogin");
+    if (user != null) {
+
+
+    }%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -582,7 +589,7 @@
                     <li class="nav-item dropdown no-arrow">
                         <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <span class="mr-2 d-none d-lg-inline text-gray-600 small">Nguyễn Thạnh</span>
+                            <span class="mr-2 d-none d-lg-inline text-gray-600 small"><%= user.getFullName()%></span>
                             <img class="img-profile rounded-circle"
                                 src="img/undraw_profile.svg">
                         </a>
@@ -624,7 +631,7 @@
                     <div class="card shadow mb-4" style="display: flex; flex-direction: row; align-items: center; 
                     text-align: center; justify-content: center; padding: 10px 20px;">  
 
-                        <button  onclick="showAddModal()">Thêm</button>
+                        <button  onclick="showAddProductModal()">Thêm</button>
                        
                         </div>
 
@@ -716,10 +723,13 @@
             </div>
         </div>
     </div>
-        <% List<Product> products = (List<Product>) request.getAttribute("listProduct");%>
+<%--        <base href="${pageContext.request.contextPath}/admin/">--%>
+        <% List<Product> products = (List<Product>) request.getAttribute("listProduct");
+            String productToJson =  new Gson().toJson(products);%>
 <script src="js/manageProduct.js"></script>
         <script >
-            const products = <%= products %>;
+            const products = <%= productToJson %>;
+            console.log(products);
         </script>
 
     <!-- Bootstrap core JavaScript-->

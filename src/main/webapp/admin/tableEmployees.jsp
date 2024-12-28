@@ -747,7 +747,7 @@ if (user != null) {
 
 %>
 
-        <base href="${pageContext.request.contextPath}/admin/">
+        u
         <script src="js/manageUser.js">
 
 

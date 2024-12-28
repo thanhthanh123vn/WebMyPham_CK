@@ -1,12 +1,14 @@
 // Declare products array to hold the data
-var products = [];
-
+var products ;
+alert("ProductAdmin");
+// Initialize display
+displayProducts();
 // Fetch and display the products
 async function displayProducts() {
     const productBody = document.getElementById("productBody");
     productBody.innerHTML = "";
     try {
-        const response = await fetch("http://localhost:8080/WebMyPham__/listProduct"); // Adjust URL to your backend endpoint
+        const response = await fetch("http://localhost:8080/WebMyPham__/listProducts"); // Adjust URL to your backend endpoint
         if (!response.ok) {
             throw new Error("Không thể tải danh sách sản phẩm.");
         }
@@ -16,11 +18,13 @@ async function displayProducts() {
         products.forEach((product, index) => {
             const row = `<tr>
                 <td>${product.name}</td>
-                <td>${product.brand}</td>
-                <td><img src="${product.image}" alt="${product.name}" width="50"></td>
+                <td>${product.category_id}</td>
                 <td>${product.price.toLocaleString()} đ</td>
+                <td>${product.quantity}</td>
+              
                 <td>${product.description}</td>
-                <td>${product.category}</td>
+                <td><img src="${product.image}" alt="${product.name}" width="50"></td>
+               
                 <td>
                     <button onclick="editProduct(${index})">Sửa</button>
                     <button onclick="deleteProduct(${index})">Xóa</button>
@@ -125,5 +129,4 @@ function hideModal() {
     delete document.getElementById("productModal").dataset.index;
 }
 
-// Initialize display
-displayProducts();
+

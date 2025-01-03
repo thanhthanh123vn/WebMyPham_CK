@@ -2,7 +2,7 @@
     // Hiển thị danh sách người dùng
     displayUsers();
     isStart = false;
-var userInfs ;
+    var userInfs ;
     async function displayUsers() {
         const userBody = document.getElementById("userBody");
         userBody.innerHTML = "";

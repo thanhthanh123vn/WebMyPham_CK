@@ -1,18 +1,19 @@
 // Declare products array to hold the data
+displayProducts();
 var products ;
 alert("ProductAdmin");
 // Initialize display
-displayProducts();
 // Fetch and display the products
 async function displayProducts() {
     const productBody = document.getElementById("productBody");
     productBody.innerHTML = "";
     try {
-        const response = await fetch("http://localhost:8080/WebMyPham__/listProducts"); // Adjust URL to your backend endpoint
+        const response = await fetch(`http://localhost:8080/WebMyPham__/listProducts`); // Adjust URL to your backend endpoint
         if (!response.ok) {
             throw new Error("Không thể tải danh sách sản phẩm.");
         }
         const productData = await response.json();
+
         products = productData; // Assign data to products
 
         products.forEach((product, index) => {
@@ -22,7 +23,7 @@ async function displayProducts() {
                 <td>${product.price.toLocaleString()} đ</td>
                 <td>${product.quantity}</td>
               
-                <td>${product.description}</td>
+                <td>${product.detail}</td>
                 <td><img src="${product.image}" alt="${product.name}" width="50"></td>
                
                 <td>

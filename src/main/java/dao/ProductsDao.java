@@ -43,7 +43,7 @@ public boolean insertProduct(Product product) {
         }
         return false;
 }
-    public static List<Product> listProducts() {
+    public  List<Product> listProducts() {
         String sql = "SELECT * FROM products";
         List<Product> products = new ArrayList<>();
 
@@ -54,6 +54,7 @@ public boolean insertProduct(Product product) {
                 System.out.println("ProductDetails success");
                 Product product = new Product();
                 product.setId(resultSet.getInt("Id"));
+                product.setQuantity(resultSet.getInt("quantity"));
                 product.setName(resultSet.getString("Name"));
                 product.setDetail(resultSet.getString("Detail"));
                 product.setPrice(resultSet.getDouble("Price"));

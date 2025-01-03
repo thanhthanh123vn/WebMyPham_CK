@@ -260,6 +260,9 @@ if (user != null) {
     <title>SB Admin 2 - Tables</title>
 
     <!-- Custom fonts for this template -->
+    <link href="https://use.fontawesome.com/releases/v5.0.4/css/all.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.1.8/css/dataTables.dataTables.css">
     <base href="${pageContext.request.contextPath}/admin/">
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link
@@ -747,7 +750,7 @@ if (user != null) {
 
 %>
 
-        u
+
         <script src="js/manageUser.js">
 
 
@@ -772,7 +775,10 @@ if (user != null) {
 
     <!-- Page level custom scripts -->
     <script src="js/demo/datatables-demo.js"></script>
-
+    <script src="https://cdn.datatables.net/2.1.8/js/dataTables.js"></script>
+        <script>
+            //let table = new DataTable('#userTable');
+        </script>
 </body>
 
 </html>

@@ -5,6 +5,7 @@
 <%@ taglib prefix = "f" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 <% User user = (User) session.getAttribute("userLogin");
     if (user != null) {
+        System.out.println("Admin User "+user.getFullName());
 
 
     }%>
@@ -159,8 +160,8 @@
                 <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Thông tin Bảng</h6>
-                        <a class="collapse-item" href="http://localhost:8080/WebMyPham__/table-admin-User">Thông tin người dùng</a>
-                        <a class="collapse-item" href="http://localhost:8080/WebMyPham__/table-admin-Product">Thông tin Sản Phẩm</a>
+                        <a class="collapse-item" href="${pageContext.request.contextPath}/table-admin-User">Thông tin người dùng</a>
+                        <a class="collapse-item" href="${pageContext.request.contextPath}/table-admin-Product">Thông tin Sản Phẩm</a>
                         <a class="collapse-item" href="forgot-password.html">Thông tin người quản trị</a>
                         <div class="collapse-divider"></div>
                       

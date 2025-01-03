@@ -21,6 +21,7 @@ public class TableAdminProduct extends HttpServlet {
             req.setAttribute("errorMessage","không có sản phẩm trong hệ thống");
             return ;
         }
+        System.out.println(listProduct.toString());
         req.setAttribute("listProduct", listProduct);
         req.getRequestDispatcher("admin/tablesProduct.jsp").forward(req, resp);
     }

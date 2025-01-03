@@ -60,11 +60,11 @@ public void closeConnection(){
 	public User checkUser(String username, String password) {
 		String query = "SELECT * FROM users WHERE username = ? AND password = ?";
 		try (PreparedStatement stmt = conn.prepareStatement(query)) {
-			String hashedPassword = hashPassword(password);
+			//String hashedPassword = hashPassword(password);
 
 
 			stmt.setString(1, username);
-			stmt.setString(2, hashedPassword);
+			stmt.setString(2, password);
 			ResultSet rs = stmt.executeQuery();
 
 			if (rs.next()) {

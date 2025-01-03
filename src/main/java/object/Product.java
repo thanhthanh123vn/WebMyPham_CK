@@ -147,6 +147,7 @@ public void setProductDetail(ProductDetail productDetail) {
                 ", detail='" + detail + '\'' +
                 ", price=" + price +
                 ", image='" + image + '\'' +
+                ", quantity=" + quantity +
                 ", priceNew=" + priceNew +
                 ", date=" + date +
                 ", orderProduct=" + orderProduct +

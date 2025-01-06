@@ -85,6 +85,12 @@ if (user != null) {
             justify-content: center;
             padding: 20px;
         }
+           .background-green{
+               background-color: #2E5F45;
+               color: white;
+               font-style: oblique;
+
+           }
 
         .product-item {
             background-color: white;
@@ -385,8 +391,8 @@ if (user != null) {
             <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">Thông tin Bảng</h6>
-                    <a class="collapse-item" href="tables.html">Thông tin người dùng</a>
-                    <a class="collapse-item" href="tablesProduct.jsp">Thông tin Sản Phẩm</a>
+                    <a class="collapse-item" href="#">Thông tin người dùng</a>
+                    <a class="collapse-item" href="${pageContext.request.contextPath}/table-admin-Product">Thông tin Sản Phẩm</a>
                     
                     <div class="collapse-divider"></div>
                   
@@ -655,14 +661,14 @@ if (user != null) {
                         <main> <section class="products"> 
                             <table id="userTable"> 
                                 <thead>
-                                     <tr>
-                                         <th>Tên Người Dùng</th> 
-                                         <th>Mật Khẩu</th>
-                                          <th>Địa Chỉ</th>
-                                           <th>Ảnh</th> 
-                                           <th>Email</th> 
-                                           <th>SĐT</th> 
-                                           <th>Hành Động</th> 
+                                     <tr id="list-header">
+                                         <th scope="col" class="background-green bold ">Tên Người Dùng</th>
+                                         <th  scope="col" class="background-green bold ">Mật Khẩu</th>
+                                          <th scope="col" class="background-green bold ">Địa Chỉ</th>
+                                           <th scope="col" class="background-green bold ">Ảnh</th>
+                                           <th scope="col" class="background-green bold ">Email</th>
+                                           <th  scope="col" class="background-green bold ">SĐT</th>
+                                           <th scope="col" class="background-green bold ">Hành Động</th>
                                             </tr> 
                                         </thead> 
                                         <tbody id="userBody">
@@ -776,9 +782,7 @@ if (user != null) {
     <!-- Page level custom scripts -->
     <script src="js/demo/datatables-demo.js"></script>
     <script src="https://cdn.datatables.net/2.1.8/js/dataTables.js"></script>
-        <script>
-            //let table = new DataTable('#userTable');
-        </script>
+
 </body>
 
 </html>

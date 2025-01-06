@@ -45,6 +45,12 @@
             color: white;
 
         }
+        .background-green{
+            background-color: #2E5F45;
+            color: white;
+            font-style: oblique;
+
+        }
 
 
         .updateUser {
@@ -85,6 +91,7 @@
             flex-wrap: wrap;
             justify-content: center;
             padding: 20px;
+
         }
 
         .product-item {
@@ -257,6 +264,7 @@
     <!-- Custom fonts for this template -->
     <link href="https://use.fontawesome.com/releases/v5.0.4/css/all.css" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
     <link rel="stylesheet" href="https://cdn.datatables.net/2.1.8/css/dataTables.dataTables.css">
     <base href="${pageContext.request.contextPath}/admin/">
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -378,8 +386,8 @@
             <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">Thông tin Bảng</h6>
-                    <a class="collapse-item" href="tables.html">Thông tin người dùng</a>
-                    <a class="collapse-item" href="tablesProduct.jsp">Thông tin Sản Phẩm</a>
+                    <a class="collapse-item" href="${pageContext.request.contextPath}/table-admin-User">Thông tin người dùng</a>
+                    <a class="collapse-item" href="#">Thông tin Sản Phẩm</a>
 
                     <div class="collapse-divider"></div>
 
@@ -643,19 +651,19 @@
                 <!-- DataTales Example -->
                 <div class="card shadow mb-4">
                     <div class="card-header py-3">
-                        <h6 class="m-0 font-weight-bold text-primary">Bảng User</h6>
+                        <h6 class="m-0 font-weight-bold text-primary">Bảng Product</h6>
                     </div>
                     <main> <section class="products">
-                        <table id="productTable">
-                            <thead>
-                            <tr>
-                                <th>Tên sản phẩm</th>
-                                <th>Mã danh mục</th>
-                                <th>Giá</th>
-                                <th>Tồn kho</th>
-                                <th>Mô tả</th>
-                                <th>URL Ảnh</th>
-                                <th>Hành động</th>
+                        <table id="productTables">
+                            <thead >
+                            <tr id="list-header">
+                                <th  scope="col" class="background-green bold "> Tên sản phẩm</th>
+                                <th  scope="col" class="background-green bold" >Mã danh mục</th>
+                                <th scope="col" class="background-green bold" > Giá</th>
+                                <th scope="col" class="background-green bold" >Tồn kho</th>
+                                <th scope="col" class="background-green bold" >Mô tả</th>
+                                <th scope="col" class="background-green bold">URL Ảnh</th>
+                                <th scope="col" class="background-green bold">Hành động</th>
                             </tr>
 
                             </thead>
@@ -747,13 +755,14 @@
         <!-- Page level plugins -->
         <script src="vendor/datatables/jquery.dataTables.min.js"></script>
         <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
-
+       <script src="https://cdn.datatables.net/2.1.8/js/dataTables.js"></script>
+            <script>
+                // let table = new DataTable('#productTables');
+            </script>
         <!-- Page level custom scripts -->
         <script src="js/demo/datatables-demo.js"></script>
 
-<%--        <script>--%>
-<%--            //let table = new DataTable('#userTable');--%>
-<%--        </script>--%>
+
 </body>
 
 </html>

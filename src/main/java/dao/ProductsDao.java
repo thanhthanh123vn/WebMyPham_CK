@@ -73,6 +73,19 @@ public boolean insertProduct(Product product) {
 
         return products;
     }
+    public boolean deleteProduct(int id){
+        String sql = "delete from products where id=?";
+        try {
+            PreparedStatement stm = conn.prepareStatement(sql);
+            stm.setInt(1, id);
+            int row = stm.executeUpdate();
+            if(row>0) return true;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
 
     public static List<Product> searchProduct(String name) {
         String sql = "SELECT * FROM products WHERE Detail LIKE ?";

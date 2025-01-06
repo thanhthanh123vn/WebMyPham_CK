@@ -1,7 +1,7 @@
 // Declare products array to hold the data
-displayProducts();
+// displayProducts();
 var products ;
-alert("ProductAdmin");
+var table;
 // Initialize display
 // Fetch and display the products
 async function displayProducts() {
@@ -16,27 +16,54 @@ async function displayProducts() {
 
         products = productData; // Assign data to products
 
-        products.forEach((product, index) => {
-            const row = `<tr>
-                <td>${product.name}</td>
-                <td>${product.category_id}</td>
-                <td>${product.price.toLocaleString()} đ</td>
-                <td>${product.quantity}</td>
-              
-                <td>${product.detail}</td>
-                <td><img src="${product.image}" alt="${product.name}" width="50"></td>
-               
-                <td>
-                    <button onclick="editProduct(${index})">Sửa</button>
-                    <button onclick="deleteProduct(${index})">Xóa</button>
-                </td>
-            </tr>`;
-            productBody.innerHTML += row;
+        var modifiedProduct = products.map((eachProduct, index) => {
+            return {
+                name: eachProduct.name,
+                category_id: eachProduct.category_id,
+                price: eachProduct.price.toString() + "đ",
+                quantity: eachProduct.quantity,
+                detail: eachProduct.detail,
+                image: `<img src="${eachProduct.image}" alt="${eachProduct.name}" width="50">`,
+                action: `<td style="display: flex; justify-content: space-around; text-align: center;">
+                            <button onClick="editProduct(${index})">Sửa</button>
+                            <button style="margin-left:10px;" onClick="deleteProduct(${index})">Xóa</button>
+                         </td>`
+            };
         });
+        productBody.style.color = "black";
+        table = $('#productTables').DataTable({
+            "processing": true,
+            data: modifiedProduct,
+            columns: [
+                { data: 'name' },
+                { data: 'category_id' },
+                { data: 'price' },
+                { data: 'quantity' },
+                { data: 'detail' },
+                { data: 'image' },
+                { data: 'action' }
+            ]
+        });
+
     } catch (error) {
         console.error("Lỗi:", error);
     }
 }
+
+$(document).ready(function (){
+    displayProducts();
+    $("#list-header").on({
+        mouseenter: function() {
+            $(this).css("background-color", "lightgray");
+        },
+        mouseleave: function(){
+            $(this).css("background-color", "lightblue");
+        },
+    });
+
+});
+
+
 
 // Show Add Product Modal
 function showAddProductModal() {

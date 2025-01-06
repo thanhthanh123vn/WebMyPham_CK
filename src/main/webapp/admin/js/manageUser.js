@@ -1,51 +1,70 @@
+// Hiển thị danh sách người dùng
 
-    // Hiển thị danh sách người dùng
-    displayUsers();
-    isStart = false;
-    var userInfs ;
-    async function displayUsers() {
-        const userBody = document.getElementById("userBody");
-        userBody.innerHTML = "";
+isStart = false;
+var userInfs =[{}];
 
-        try {
-            const response = await fetch("http://localhost:8080/WebMyPham__/listUserInf");
-            if (!response.ok) {
-                throw new Error("Không thể tải danh sách ListUser Info.");
-            }
+async function displayUsers() {
+    const userBody = document.getElementById("userBody");
+    userBody.innerHTML = "";
 
-            const userInf = await response.json();
-            if(!isStart) {
-                userInfs = userInf;
-                isStart = true;
-            }
-
-            userInfs.forEach((user, index) => {
-
-
-                const row = `<tr>
-                    <td>${user.userName}</td>
-                    <td> ******</td>
-                    <td>${user.address}</td>
-                    <td><img src="${user.imageURL}" alt="${user.userName}" width="50"></td>
-                    <td>${user.email}</td>
-                    <td>${user.phone}</td>
-                    <td style="width: 200px">
-                        <button onclick="editUser(${index})">Sửa</button>
-                        <button onclick="deleteUser(${index})">Xóa</button>
-                    </td>
-                </tr>`;
-                userBody.innerHTML += row;
-            });
-        } catch (error) {
-            console.error("Lỗi:", error);
+    try {
+        const response = await fetch("http://localhost:8080/WebMyPham__/listUserInf");
+        if (!response.ok) {
+            throw new Error("Không thể tải danh sách ListUser Info.");
         }
+
+        const userInf = await response.json();
+
+            userInfs = userInf;
+
+
+
+        var modifiedUsers = userInfs.map((user, index) => {
+            return {
+                userName: user.userName,
+                password: '******', // Mật khẩu bị ẩn
+                address: user.address,
+                imageURL: `<img src="${user.imageURL}" alt="${user.userName}" width="50">`,
+                email: user.email,
+                phone: user.phone,
+                action: `<td style="display: flex; justify-content: space-around; text-align: center;">
+                            <button onclick="editUser(${index})">Sửa</button>
+                            <button style="margin-left: 10px" onclick="deleteUser(${index})">Xóa</button>
+                        </td>`
+            };
+        });
+
+        $('#userTable').DataTable({
+            "processing": true,
+            data: modifiedUsers,
+            columns: [
+                { data: 'userName' },
+                { data: 'password' },
+                { data: 'address' },
+                { data: 'imageURL' },
+                { data: 'email' },
+                { data: 'phone' },
+                { data: 'action' }
+            ]
+        });
+
+    } catch (error) {
+        console.error("Lỗi:", error);
     }
-
-
-
-function maskPassword(password) {
-    return '*'.repeat(password.length);
 }
+$(document).ready(function (){
+    displayUsers();
+    $("#list-header").on({
+        mouseenter: function() {
+            $(this).css("background-color", "lightgray");
+        },
+        mouseleave: function(){
+            $(this).css("background-color", "lightblue");
+        },
+    });
+
+});
+
 // Hiển thị modal thêm người dùng
 function showAddModal() {
     document.getElementById("modalTitle").innerText = "Thêm Người Dùng";
@@ -83,10 +102,14 @@ function saveUser() {
     const imageURL = document.getElementById("imageURL").value;
     const email = document.getElementById("email").value;
     const phone = document.getElementById("phone").value;
-    console.log(userName);
 
     const user = {
-        userName: userName, email: email, password: password, address: address, imageURL: imageURL, phone: phone
+        userName: userName,
+        email: email,
+        password: password,
+        address: address,
+        imageURL: imageURL,
+        phone: phone
     };
 
     fetch(`http://localhost:8080/WebMyPham__/AddUser`, {
@@ -97,7 +120,7 @@ function saveUser() {
         body: JSON.stringify(user)
     }).then(response => {
         if (response.ok) {
-
+            alert("Người dùng đã được thêm hoặc sửa thành công!");
         } else {
             alert("Lỗi khi thêm User.");
         }
@@ -129,7 +152,7 @@ function deleteUser(index) {
         body: JSON.stringify(user)
     }).then(response => {
         if (response.ok) {
-
+            alert("Người dùng đã bị xóa.");
         } else {
             alert("Lỗi khi xóa User.");
         }
@@ -142,47 +165,48 @@ function deleteUser(index) {
         displayUsers();
     }
 }
-  async function   searchUserInf(){
-      const userBody = document.getElementById("userBody");
-      userBody.innerHTML = "";
-        const keyword = document.getElementById("search").value;
-        const response = await fetch(`http://localhost:8080/WebMyPham__/searchUserInf?username=` + encodeURIComponent(keyword))
-      if (!response.ok) {
 
-          throw new Error("Phản hồi không hợp lệ.");
-      }
-
-      const searchUserInf = await response.json();
-        console.log(searchUserInf);
-
-
-
-     if (!response.ok) {
-
-         throw new Error("Phản hồi không hợp lệ.");
-     }
-      searchUserInf.forEach((user, index) => {
-
-
-          const row = `<tr>
-                    <td>${user.userName}</td>
-                    <td> ******</td>
-                    <td>${user.address}</td>
-                    <td><img src="${user.imageURL}" alt="${user.userName}" width="50"></td>
-                    <td>${user.email}</td>
-                    <td>${user.phone}</td>
-                    <td style="width: 200px">
-                        <button onclick="editUser(${index})">Sửa</button>
-                        <button onclick="deleteUser(${index})">Xóa</button>
-                    </td>
-                </tr>`;
-          userBody.innerHTML += row;
-      });
-
-
-
-
+// Tìm kiếm thông tin người dùng
+async function searchUserInf() {
+    const userBody = document.getElementById("userBody");
+    userBody.innerHTML = "";
+    const keyword = document.getElementById("search").value;
+    const response = await fetch(`http://localhost:8080/WebMyPham__/searchUserInf?username=` + encodeURIComponent(keyword))
+    if (!response.ok) {
+        throw new Error("Phản hồi không hợp lệ.");
     }
+
+    const searchUserInf = await response.json();
+
+    var modifiedUsers = searchUserInf.map((user, index) => {
+        return {
+            userName: user.userName,
+            password: '******', // Mật khẩu bị ẩn
+            address: user.address,
+            imageURL: `<img src="${user.imageURL}" alt="${user.userName}" width="50">`,
+            email: user.email,
+            phone: user.phone,
+            action: `<td style="display: flex; justify-content: space-around; text-align: center;">
+                        <button onclick="editUser(${index})">Sửa</button>
+                        <button style="margin-left: 10px" onclick="deleteUser(${index})">Xóa</button>
+                    </td>`
+        };
+    });
+
+    $('#userTable').DataTable({
+        data: modifiedUsers,
+        columns: [
+            { data: 'userName' },
+            { data: 'password' },
+            { data: 'address' },
+            { data: 'imageURL' },
+            { data: 'email' },
+            { data: 'phone' },
+            { data: 'action' }
+        ]
+    });
+}
+
 // Ẩn modal
 function hideModal() {
     document.getElementById("userModal").style.display = "none";

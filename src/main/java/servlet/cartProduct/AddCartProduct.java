@@ -1,8 +1,7 @@
-package ServletAdmin;
+package servlet.cartProduct;
 
 import com.google.gson.Gson;
 import dao.ProductsDao;
-import dao.UserInfDao;
 import gson.GsonUtil;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -10,30 +9,33 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import object.Product;
-import object.UserInf;
+import object.cart.Cart;
+import object.cart.ProductCart;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
-@WebServlet("/removeProduct")
-public class RemoveProductAdmin extends HttpServlet {
-@Override
+@WebServlet("AddCart")
+public class AddCartProduct extends HttpServlet {
+    private static final long serialVersionUID = 1L;
+    Cart cart ;
+    AddCartProduct(Cart cart) {
+    this.cart = cart;
+}
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
         BufferedReader reader = request.getReader();
         Gson gson = GsonUtil.getGson();
         Product product = gson.fromJson(reader, Product.class);
-        System.out.println(product.toString()+"removeProduct");
+        cart.put(product);
 
-        // Logic xóa người dùng khỏi cơ sở dữ liệu
-        try {
-            ProductsDao productDao = new ProductsDao();
-           boolean deleteP = productDao.deleteProduct(product.getId());
-           if(deleteP)
-            response.setStatus(HttpServletResponse.SC_OK);
-        } catch (Exception e) {
-            e.printStackTrace();
-            response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
-        }
+        System.out.println("Product received: " + product);
+        response.setContentType("application/json");
+        response.setCharacterEncoding("UTF-8");
+
+
     }
 
     @Override

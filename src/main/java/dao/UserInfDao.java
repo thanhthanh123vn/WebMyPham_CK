@@ -120,65 +120,63 @@ private Utils utils;
 
     // Phương thức chèn dữ liệu vào bảng Users và UserArress
     public void insertUserAndAddress(UserInf userInf) {
-        String insertUserSQL = "INSERT INTO Users (userName, email,password) VALUES (?, ?,?)";
-        String insertUserAddressSQL = "INSERT INTO UsersArress (userID, email, address, imageURL, phone) VALUES (?, ?, ?, ?, ?)";
+        String insertUserSQL = "INSERT INTO users (userName, email, password) VALUES (?, ?, ?)";
+        String insertUserAddressSQL = "INSERT INTO usersarress (userID, email, address, imageURL, phone) VALUES (?, ?, ?, ?, ?)";
 
         try {
-            // Bắt đầu giao dịch
+            // Start transaction
             conn.setAutoCommit(false);
 
-            // Chèn vào bảng Users
+            // Insert into Users table
             int userID;
             try (PreparedStatement psUser = conn.prepareStatement(insertUserSQL, PreparedStatement.RETURN_GENERATED_KEYS)) {
                 psUser.setString(1, userInf.getUserName());
                 psUser.setString(2, userInf.getEmail());
                 psUser.setString(3, userInf.getPassword());
-                int row =   psUser.executeUpdate();
-                if(row>0){
-                    System.out.println("Inserted user address successfully");
-
-                }else {
-                    System.out.println("Inserted user address failed");
+                int row = psUser.executeUpdate();
+                if (row > 0) {
+                    System.out.println("Inserted user successfully");
+                } else {
+                    System.out.println("Inserting user failed");
                 }
 
-
-                // Lấy userID từ bảng Users
+                // Retrieve userID from Users table
                 try (ResultSet generatedKeys = psUser.getGeneratedKeys()) {
                     if (generatedKeys.next()) {
                         userID = generatedKeys.getInt(1);
+                        System.out.println("Inserted user ID: " + userID);
                     } else {
                         throw new SQLException("Creating user failed, no ID obtained.");
                     }
                 }
             }
 
-            // Chèn vào bảng UserArress
+            // Insert into UsersAddress table
             try (PreparedStatement psUserAddress = conn.prepareStatement(insertUserAddressSQL)) {
                 psUserAddress.setInt(1, userID);
                 psUserAddress.setString(2, userInf.getEmail());
-
                 psUserAddress.setString(3, userInf.getAddress());
                 psUserAddress.setString(4, userInf.getImageURL());
                 psUserAddress.setString(5, userInf.getPhone());
-                 int row =       psUserAddress.executeUpdate();
-                 if(row>0){
-                     System.out.println("Inserted userAddree address successfully.");
-                     return ;
-                 }
-                System.out.println("Inserted userAddree address Fail.");
+                int row = psUserAddress.executeUpdate();
+                if (row > 0) {
+                    System.out.println("Inserted user address successfully");
+                } else {
+                    System.out.println("Inserting user address failed");
+                }
             }
 
-            // Cam kết giao dịch
+            // Commit transaction
             conn.commit();
 
         } catch (SQLException e) {
+            e.printStackTrace();
             try {
-                // Rollback nếu có lỗi
+                // Rollback if there is an error
                 conn.rollback();
             } catch (SQLException ex) {
                 ex.printStackTrace();
             }
-            e.printStackTrace();
         } finally {
             try {
                 conn.setAutoCommit(true);
@@ -186,54 +184,60 @@ private Utils utils;
                 e.printStackTrace();
             }
         }
-
     }
 
 
-        // Phương thức xóa dữ liệu từ bảng Users và UserArress
-        public void deleteUserAndAddress(int userID) {
-            String deleteUserAddressSQL = "DELETE FROM UsersArress WHERE userID = ?";
-            String deleteUserSQL = "DELETE FROM Users WHERE id = ?";
 
-            try {
-                // Bắt đầu giao dịch
-                conn.setAutoCommit(false);
+    // Phương thức xóa dữ liệu từ bảng Users và UserArress
+    public void deleteUserAndAddress(int userID) {
+        String deleteUserAddressSQL = "DELETE FROM usersarress WHERE userID = ?";
+        String deleteUserSQL = "DELETE FROM users WHERE id = ?";
 
-                // Xóa từ bảng UsersArress
-                try (PreparedStatement psUserAddress = conn.prepareStatement(deleteUserAddressSQL)) {
-                    psUserAddress.setInt(1, userID);
-                    psUserAddress.executeUpdate();
-                }
+        try {
+            // Start transaction
+            conn.setAutoCommit(false);
 
-                // Xóa từ bảng Users
-                try (PreparedStatement psUser = conn.prepareStatement(deleteUserSQL)) {
-                    psUser.setInt(1, userID);
-                   int row = psUser.executeUpdate();
-                   if(row>0){
-                        System.out.println("Deleted user address successfully");
-                   }
-
-                }
-
-                // Cam kết giao dịch
-                conn.commit();
-
-            } catch (SQLException e) {
-                try {
-                    // Rollback nếu có lỗi
-                    conn.rollback();
-                } catch (SQLException ex) {
-                    ex.printStackTrace();
-                }
-                e.printStackTrace();
-            } finally {
-                try {
-                    conn.setAutoCommit(true);
-                } catch (SQLException e) {
-                    e.printStackTrace();
+            // Delete from UsersArress table
+            try (PreparedStatement psUserAddress = conn.prepareStatement(deleteUserAddressSQL)) {
+                psUserAddress.setInt(1, userID);
+                int row = psUserAddress.executeUpdate();
+                if (row > 0) {
+                    System.out.println("Deleted user address successfully");
+                } else {
+                    System.out.println("Deleting user address failed");
                 }
             }
+
+            // Delete from Users table
+            try (PreparedStatement psUser = conn.prepareStatement(deleteUserSQL)) {
+                psUser.setInt(1, userID);
+                int row = psUser.executeUpdate();
+                if (row > 0) {
+                    System.out.println("Deleted user successfully");
+                } else {
+                    System.out.println("Deleting user failed");
+                }
+            }
+
+            // Commit transaction
+            conn.commit();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            try {
+                // Rollback if there is an error
+                conn.rollback();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+        } finally {
+            try {
+                conn.setAutoCommit(true);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
+    }
 
     public static void main(String[] args) {
         String name  ="%le%";

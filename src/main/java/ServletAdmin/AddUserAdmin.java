@@ -2,6 +2,7 @@ package ServletAdmin;
 
 import com.google.gson.Gson;
 import dao.UserInfDao;
+import gson.GsonUtil;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -16,7 +17,7 @@ import java.io.IOException;
 public class AddUserAdmin extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         BufferedReader reader = request.getReader();
-        Gson gson = new Gson();
+        Gson gson = GsonUtil.getGson();
         UserInf user = gson.fromJson(reader, UserInf.class);
         System.out.println(user.toString());
 

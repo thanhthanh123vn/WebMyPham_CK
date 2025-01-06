@@ -1,9 +1,15 @@
+<%--
+  Created by IntelliJ IDEA.
+  User: nguye
+  Date: 1/6/2025
+  Time: 7:44 PM
+  To change this template use File | Settings | File Templates.
+--%>
 
 <%@ page import="java.util.List" %>
 <%@ page import="com.google.gson.Gson" %>
 <%@ page import="object.UserInf" %>
 <%@ page import="object.User"%>
-<%@ page import="object.Product" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
@@ -45,12 +51,6 @@
             color: white;
 
         }
-        .background-green{
-            background-color: #2E5F45;
-            color: white;
-            font-style: oblique;
-
-        }
 
 
         .updateUser {
@@ -87,10 +87,13 @@
         }
 
         .products {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
+
             padding: 20px;
+        }
+        .background-green{
+            background-color: #2E5F45;
+            color: white;
+            font-style: oblique;
 
         }
 
@@ -174,9 +177,15 @@
         tbody tr:hover {
             background-color: #f1f1f1;
         }
-
-
-        #productModal {
+        input[type="password"] {
+            width: calc(100% - 22px);
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        #userModal {
             display: none;
             position: fixed;
             z-index: 1;
@@ -190,7 +199,7 @@
             align-items: center;
         }
 
-        #ProductModalContent {
+        #userModalContent {
             background-color: #fff;
             margin: 15% auto;
             padding: 20px;
@@ -201,7 +210,7 @@
             border-radius: 8px;
         }
 
-        #productModal h3 {
+        #userModal h3 {
             margin-top: 0;
         }
 
@@ -264,7 +273,6 @@
     <!-- Custom fonts for this template -->
     <link href="https://use.fontawesome.com/releases/v5.0.4/css/all.css" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-
     <link rel="stylesheet" href="https://cdn.datatables.net/2.1.8/css/dataTables.dataTables.css">
     <base href="${pageContext.request.contextPath}/admin/">
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -276,6 +284,8 @@
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
 
     <!-- Custom styles for this page -->
+    <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+
 
 </head>
 
@@ -386,9 +396,9 @@
             <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">Thông tin Bảng</h6>
-                    <a class="collapse-item" href="${pageContext.request.contextPath}/table-admin-User">Thông tin người dùng</a>
-                    <a class="collapse-item" href="#">Thông tin Sản Phẩm</a>
-                    <a class="collapse-item" href="${pageContext.request.contextPath}/order-table">Quản lý đơn hàng</a>
+                    <a class="collapse-item" href="#">Thông tin người dùng</a>
+                    <a class="collapse-item" href="${pageContext.request.contextPath}/table-admin-Product">Thông tin Sản Phẩm</a>
+                    <a class="collapse-item" href="#">Quản lý đơn hàng</a>
 
                     <div class="collapse-divider"></div>
 
@@ -642,56 +652,65 @@
                 <!-- Page Heading -->
                 <h1 class="h3 mb-2 text-gray-800">Bảng</h1>
 
-                <div class="card shadow mb-4" style="display: flex; flex-direction: row; align-items: center;
-                    text-align: center; justify-content: center; padding: 10px 20px;">
 
-                    <button  onclick="showAddProductModal()">Thêm</button>
-
-                </div>
 
                 <!-- DataTales Example -->
                 <div class="card shadow mb-4">
                     <div class="card-header py-3">
-                        <h6 class="m-0 font-weight-bold text-primary">Bảng Product</h6>
+                        <h6 class="m-0 font-weight-bold text-primary">Bảng Quản lý đơn hàng</h6>
                     </div>
                     <main> <section class="products">
-                        <table id="productTables">
-                            <thead >
+                        <table id="orderTable">
+                            <thead>
                             <tr id="list-header">
-                                <th  scope="col" class="background-green bold "> Tên sản phẩm</th>
-                                <th  scope="col" class="background-green bold" >Mã danh mục</th>
-                                <th scope="col" class="background-green bold" > Giá</th>
-                                <th scope="col" class="background-green bold" >Tồn kho</th>
-                                <th scope="col" class="background-green bold" >Mô tả</th>
-                                <th scope="col" class="background-green bold">URL Ảnh</th>
-                                <th scope="col" class="background-green bold">Hành động</th>
-                            </tr>
+                                <th scope="col" class="background-green bold ">ID</th>
+                                <th scope="col" class="background-green bold ">Tên Người Dùng</th>
+                                <th  scope="col" class="background-green bold ">Địa chỉ</th>
+                                <th scope="col" class="background-green bold ">Điện thoại</th>
+                                <th scope="col" class="background-green bold ">Ngày tạo</th>
+                                <th scope="col" class="background-green bold ">In đơn</th>
 
+                            </tr>
                             </thead>
                             <tbody id="productBody">
                             <!-- Dữ liệu người dùng sẽ được thêm vào bằng JavaScript -->
+                                           <c:forEach var="order" items="${userOrder}" >
+                                                   <tr>
+                                                        <td>${order.id}</td>
+                                                         <td>${order.userName}</td>
+                                                         <td>${order.address}</td>
+
+                                                         <td>${order.phone}</td>
+                                                         <td>${order.create_date.toString()}</td>
+                                                          <td>
+                                                           <button onclick="PrintOrder(${order.id})">In</button>
+
+                                                            </td>
+                                                            </tr>
+                                                             </c:forEach>
+
+
                             </tbody>
                         </table>
                     </section>
                     </main> <!-- Modal thêm/sửa người dùng -->
-                    <div id="productModal"> <div id="ProductModalContent">
+                    <div id="userModal"> <div id="userModalContent">
                         <span class="close" onclick="hideModal()">&times;</span>
+                        <h3 id="modalTitle">Thêm Người Dùng</h3>
+                        <label>Tên người dùng:</label>
+                        <input type="text" id="userName"  name="fullname">
+                        <label>Password:</label>
+                        <input type="password" id="password" name="password">
 
-                        <h3 id="modalTitle">Thêm sản phẩm</h3>
-                        <label>Tên sản phẩm:</label>
-                        <input type="text" id="productName">
-                        <label>Mã danh mục:</label>
-                        <input type="number" id="category">
-                        <label>Giá:</label>
-                        <input type="number" id="price">
-                        <label>Tồn kho:</label>
-                        <input type="text" id="stock">
-                        <label>Mô tả:</label>
-                        <input type="text" id="description">
-                        <label>URL Ảnh:</label> <input type="text" id="imageURL">
-                        <button onclick="saveProduct()">Lưu</button>
-                        <button onclick="hideModal()">Hủy</button>
-                    </div>
+                        <label>Địa chỉ:</label>
+                        <input type="text" id="address" name="address">
+                        <label>Ảnh (URL):</label>
+                        <input type="text" id="imageURL" name="imageURL">
+                        <label>Email:</label>
+                        <input type="email" id="email" name="email">
+                        <label>SĐT:</label> <input type="text" id="phone" name="phone">
+                        <button onclick="saveUser()">Lưu</button>
+                        <button onclick="hideModal()">Hủy</button> </div> </div>
                     <!-- /.container-fluid -->
 
                 </div>
@@ -734,16 +753,13 @@
 
 
 
+        <script src="js/managerOrder.js">
 
-<%--                <% List<Product> products = (List<Product>) request.getAttribute("listProduct");--%>
-<%--        String productToJson =  new Gson().toJson(products);--%>
-<%--    %>--%>
-            <script src="js/manageProduct.js">
-                <%--const productsJs = <%= productToJson %>;--%>
-                <%--console.log(productsJs);--%>
-            </script>
 
-            <!-- Bootstrap core JavaScript-->
+          // Kiểm tra dữ liệu trong console
+        </script>
+
+        <!-- Bootstrap core JavaScript-->
         <script src="vendor/jquery/jquery.min.js"></script>
         <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
@@ -756,13 +772,13 @@
         <!-- Page level plugins -->
         <script src="vendor/datatables/jquery.dataTables.min.js"></script>
         <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
-       <script src="https://cdn.datatables.net/2.1.8/js/dataTables.js"></script>
-            <script>
-                // let table = new DataTable('#productTables');
-            </script>
+
         <!-- Page level custom scripts -->
         <script src="js/demo/datatables-demo.js"></script>
-
+        <script src="https://cdn.datatables.net/2.1.8/js/dataTables.js"></script>
+        <script>
+           let table = new DataTable('#orderTable');
+        </script>
 
 </body>
 

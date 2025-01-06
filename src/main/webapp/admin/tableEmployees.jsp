@@ -393,6 +393,7 @@ if (user != null) {
                     <h6 class="collapse-header">Thông tin Bảng</h6>
                     <a class="collapse-item" href="#">Thông tin người dùng</a>
                     <a class="collapse-item" href="${pageContext.request.contextPath}/table-admin-Product">Thông tin Sản Phẩm</a>
+                    <a class="collapse-item" href="${pageContext.request.contextPath}/order-table">Quản lý đơn hàng</a>
                     
                     <div class="collapse-divider"></div>
                   

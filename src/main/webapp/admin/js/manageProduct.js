@@ -1,8 +1,7 @@
 // Declare products array to hold the data
-// displayProducts();
-var products ;
+var products = [];
 var table;
-// Initialize display
+
 // Fetch and display the products
 async function displayProducts() {
     const productBody = document.getElementById("productBody");
@@ -24,13 +23,18 @@ async function displayProducts() {
                 quantity: eachProduct.quantity,
                 detail: eachProduct.detail,
                 image: `<img src="${eachProduct.image}" alt="${eachProduct.name}" width="50">`,
-                action: `<td style="display: flex; justify-content: space-around; text-align: center;">
+                action: `<div style="display: flex; justify-content: space-around; text-align: center;">
                             <button onClick="editProduct(${index})">Sửa</button>
                             <button style="margin-left:10px;" onClick="deleteProduct(${index})">Xóa</button>
-                         </td>`
+                         </div>`
             };
         });
-        productBody.style.color = "black";
+
+        if ($.fn.DataTable.isDataTable('#productTables')) {
+            $('#productTables').DataTable().clear().destroy(); // Destroy the existing instance
+            $('#productTables').empty(); // Empty the table to remove any artifacts
+        }
+
         table = $('#productTables').DataTable({
             "processing": true,
             data: modifiedProduct,
@@ -52,6 +56,7 @@ async function displayProducts() {
 
 $(document).ready(function (){
     displayProducts();
+
     $("#list-header").on({
         mouseenter: function() {
             $(this).css("background-color", "lightgray");
@@ -60,10 +65,7 @@ $(document).ready(function (){
             $(this).css("background-color", "lightblue");
         },
     });
-
 });
-
-
 
 // Show Add Product Modal
 function showAddProductModal() {
@@ -75,6 +77,9 @@ function showAddProductModal() {
     document.getElementById("category").value = "";
     document.getElementById("stock").value = "";
     document.getElementById("productModal").style.display = "block";
+
+    // Remove index attribute if adding new product
+    delete document.getElementById("productModal").dataset.index;
 }
 
 // Show Edit Product Modal
@@ -84,12 +89,79 @@ function editProduct(index) {
     document.getElementById("productName").value = product.name;
     document.getElementById("imageURL").value = product.image;
     document.getElementById("price").value = product.price;
-    document.getElementById("description").value = product.description;
-    document.getElementById("category").value = product.category;
-    document.getElementById("stock").value = product.stock;
+    document.getElementById("description").value = product.detail;
+    document.getElementById("category").value = product.category_id;
+    document.getElementById("stock").value = product.quantity;
     document.getElementById("productModal").style.display = "block";
 
-    document.getElementById("productModal").dataset.index = index; // Store the index for later use
+    // const name = document.getElementById("productName").value;
+    // const image = document.getElementById("imageURL").value;
+    // const price = parseFloat(document.getElementById("price").value);
+    // const description = document.getElementById("description").value;
+    // const stock = parseInt(document.getElementById("stock").value);
+    // const category = parseInt(document.getElementById("category").value);
+    //
+    // const curProduct = { name, image, price, detail: description, quantity: stock, category_id: category };
+    //
+    // // Store the index for later use
+    // document.getElementById("productModal").dataset.index = index;
+    // const  response = fetch("http://localhost:8080/WebMyPham__/EditProduct",{
+    //     method: "POST",
+    //     headers: { "Content-Type": "application/json" },
+    //     body: JSON.stringify(curProduct)
+    // }).then(response => {
+    //     console.log(response); // Kiểm tra phản hồi từ server
+    //     if (response.ok) {
+    //         alert("Sản phẩm đã được thêm hoặc sửa thành công!");
+    //         displayProducts(); // Refresh products after saving
+    //     } else {
+    //         return response.text().then(text => {throw new Error(text)}); // Lấy chi tiết lỗi từ phản hồi
+    //     }
+    // }).catch(error => {
+    //     console.error("Lỗi:", error);
+    //     alert("Đã xảy ra lỗi khi thêm hoặc sửa sản phẩm: " + error.message);
+    // });
+    // hideModal();
+}
+function  editProductSave(){
+    const name = document.getElementById("productName").value;
+    const image = document.getElementById("imageURL").value;
+    const price = parseFloat(document.getElementById("price").value);
+    const description = document.getElementById("description").value;
+    const stock = parseInt(document.getElementById("stock").value);
+    const category = parseInt(document.getElementById("category").value);
+
+    const product = { name, image, price, detail: description, quantity: stock, category_id: category };
+
+    const index = document.getElementById("productModal").dataset.index;
+    if (index !== undefined) {
+        products[index] = product; // Edit existing product
+    } else {
+        products.push(product); // Add new product
+    }
+
+    console.log(JSON.stringify(product)); // Kiểm tra dữ liệu trước khi gửi
+
+    const url =   "http://localhost:8080/WebMyPham__/EditProduct" ;
+
+    fetch(url, { // Adjust the URL for product saving
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(product)
+    }).then(response => {
+        console.log(response); // Kiểm tra phản hồi từ server
+        if (response.ok) {
+            alert("Sản phẩm đã được thêm hoặc sửa thành công!");
+            displayProducts(); // Refresh products after saving
+        } else {
+            return response.text().then(text => {throw new Error(text)}); // Lấy chi tiết lỗi từ phản hồi
+        }
+    }).catch(error => {
+        console.error("Lỗi:", error);
+        alert("Đã xảy ra lỗi khi thêm hoặc sửa sản phẩm: " + error.message);
+    });
+
+    hideModal();
 }
 
 // Save Product (Add or Edit)
@@ -98,35 +170,40 @@ function saveProduct() {
     const image = document.getElementById("imageURL").value;
     const price = parseFloat(document.getElementById("price").value);
     const description = document.getElementById("description").value;
-    const stock = document.getElementById("stock").value;
-    const category = document.getElementById("category").value;
+    const stock = parseInt(document.getElementById("stock").value);
+    const category = parseInt(document.getElementById("category").value);
 
-    const product = { name, image, price, description, stock, category };
+    const product = { name, image, price, detail: description, quantity: stock, category_id: category };
 
     const index = document.getElementById("productModal").dataset.index;
-    if (index) {
+    if (index !== undefined) {
         products[index] = product; // Edit existing product
     } else {
         products.push(product); // Add new product
     }
 
-    fetch("http://localhost:8080/WebMyPham__/AddProduct", { // Adjust the URL for product saving
+    console.log(JSON.stringify(product)); // Kiểm tra dữ liệu trước khi gửi
+
+    const url = index !== undefined ? "http://localhost:8080/WebMyPham__/EditProduct" : "http://localhost:8080/WebMyPham__/AddProduct";
+
+    fetch(url, { // Adjust the URL for product saving
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(product)
     }).then(response => {
+        console.log(response); // Kiểm tra phản hồi từ server
         if (response.ok) {
             alert("Sản phẩm đã được thêm hoặc sửa thành công!");
+            displayProducts(); // Refresh products after saving
         } else {
-            alert("Lỗi khi thêm hoặc sửa sản phẩm.");
+            return response.text().then(text => {throw new Error(text)}); // Lấy chi tiết lỗi từ phản hồi
         }
     }).catch(error => {
         console.error("Lỗi:", error);
-        alert("Đã xảy ra lỗi khi thêm hoặc sửa sản phẩm.");
+        alert("Đã xảy ra lỗi khi thêm hoặc sửa sản phẩm: " + error.message);
     });
 
     hideModal();
-    displayProducts();
 }
 
 // Delete Product
@@ -140,6 +217,7 @@ function deleteProduct(index) {
         }).then(response => {
             if (response.ok) {
                 products.splice(index, 1); // Remove product from local array
+                alert("Sản phẩm đã được xóa thành công!");
                 displayProducts();
             } else {
                 alert("Lỗi khi xóa sản phẩm.");
@@ -156,5 +234,3 @@ function hideModal() {
     document.getElementById("productModal").style.display = "none";
     delete document.getElementById("productModal").dataset.index;
 }
-
-

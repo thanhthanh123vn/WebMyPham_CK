@@ -72,4 +72,24 @@ public List<User> getList(){
 		return list;
 
 }
+	public boolean UpdateUser(User user) {
+		String sql = "UPDATE users SET username = ?, email = ?, password = ?, role = ?, created_at = ? WHERE id = ?";
+		try {
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setString(1, user.getFullName());
+			ps.setString(2, user.getEmail());
+			ps.setString(3, user.getPassword());
+			ps.setString(4, user.getRole());
+			ps.setDate(5, new java.sql.Date(user.getDate().getTime()));
+			ps.setInt(6, user.getId());
+
+			int row = ps.executeUpdate();
+			return row > 0;
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
+
 }

@@ -3,6 +3,9 @@
 isStart = false;
 var userInfs =[{}];
 
+
+
+
 async function displayUsers() {
     const userBody = document.getElementById("userBody");
     userBody.innerHTML = "";
@@ -34,6 +37,12 @@ async function displayUsers() {
             };
         });
 
+
+        if ($.fn.DataTable.isDataTable('#productTables')) {
+            $('#userTable').DataTable().clear().destroy(); // Destroy the existing instance
+            $('#userTable').empty(); // Empty the table to remove any artifacts
+        }
+
         $('#userTable').DataTable({
             "processing": true,
             data: modifiedUsers,
@@ -54,6 +63,8 @@ async function displayUsers() {
 }
 $(document).ready(function (){
     displayUsers();
+
+
     $("#list-header").on({
         mouseenter: function() {
             $(this).css("background-color", "lightgray");
@@ -92,6 +103,23 @@ function editUser(index) {
 
     // Lưu lại index đang chỉnh sửa
     document.getElementById("userModal").dataset.index = index;
+    const  response = fetch("http://localhost:8080/WebMyPham__/EditUser",{
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(user)
+    }).then(response => {
+        console.log(response); // Kiểm tra phản hồi từ server
+        if (response.ok) {
+            alert("Sản phẩm đã được thêm hoặc sửa thành công!");
+            displayProducts(); // Refresh products after saving
+        } else {
+            return response.text().then(text => {throw new Error(text)}); // Lấy chi tiết lỗi từ phản hồi
+        }
+    }).catch(error => {
+        console.error("Lỗi:", error);
+        alert("Đã xảy ra lỗi khi thêm hoặc sửa sản phẩm: " + error.message);
+    });
+    hideModal();
 }
 
 // Lưu người dùng (thêm hoặc sửa)

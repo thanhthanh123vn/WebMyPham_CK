@@ -1,5 +1,7 @@
 package object;
 
+import java.util.Date;
+
 public class UserInf {
     private int id;
     private String userName;
@@ -8,6 +10,7 @@ public class UserInf {
     private String imageURL;
     private String email;
     private String phone;
+    private Date create_date;
 
     // Constructor không đối số
     public UserInf() {}

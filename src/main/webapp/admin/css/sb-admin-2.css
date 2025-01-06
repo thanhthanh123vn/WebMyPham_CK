@@ -227,8 +227,10 @@ th {
 
 label {
   display: inline-block;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.8rem;
+  text:"Mục nhập trong trang"
 }
+
 
 button {
   border-radius: 0;

@@ -15,6 +15,7 @@ public class Product {
     private Date date;
     private int orderProduct;
     private int groupProductId;
+    private double discountPercentage;
     private ProductDetail productDetail =new ProductDetail();
 
     // Constructor không tham số
@@ -32,7 +33,7 @@ public class Product {
         this.orderProduct = orderProduct;
         this.groupProductId = groupProductId;
     }
-    
+
 
     public Product(int id, String name, String detail, double price, String image) {
 		super();
@@ -43,6 +44,20 @@ public class Product {
 		this.image = image;
         this.productDetail  = new ProductDetail();
 	}
+
+    public Product(int id, String name, double price) {
+        this.id = id;
+        this.name = name;
+        this.price = price;
+    }
+
+    public double getDiscountPercentage() {
+        return discountPercentage;
+    }
+
+    public void setDiscountPercentage(double discountPercentage) {
+        this.discountPercentage = discountPercentage;
+    }
 
     public int getCategory_id() {
         return category_id;

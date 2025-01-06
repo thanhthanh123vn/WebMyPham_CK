@@ -162,6 +162,7 @@
                         <h6 class="collapse-header">Thông tin Bảng</h6>
                         <a class="collapse-item" href="${pageContext.request.contextPath}/table-admin-User">Thông tin người dùng</a>
                         <a class="collapse-item" href="${pageContext.request.contextPath}/table-admin-Product">Thông tin Sản Phẩm</a>
+                        <a class="collapse-item" href="${pageContext.request.contextPath}/order-table">Quản lý đơn hàng</a>
                         <a class="collapse-item" href="forgot-password.html">Thông tin người quản trị</a>
                         <div class="collapse-divider"></div>
                       

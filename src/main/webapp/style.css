@@ -223,12 +223,12 @@ body {
 
 /* Product Listing Styling */
 .product-listing {
-    width: 75%;
+    width: 100%;
     float: right;
     display: grid
 ;
     background-color: #fff;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(5, 1fr);
     grid-gap: 20px;
 }
 

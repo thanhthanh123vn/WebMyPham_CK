@@ -16,8 +16,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Đơn hàng của tôi</title>
-  <link rel="stylesheet" href="../css/style.css">
-  <link rel="stylesheet" href="../css/infouser.css">
+
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/css/inforUser.css">
   <link rel="icon" href="../image/logo.png" type="image/x-icon">
 </head>
 
@@ -171,7 +171,7 @@
 
 
     </script>
-    <script src="../js/UpdateUser.js"></script>
+    <script src="${pageContext.request.contextPath}/js/UpdateUser.js"></script>
 
 </body>
 

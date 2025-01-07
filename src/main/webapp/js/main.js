@@ -54,44 +54,39 @@ function checkAll() {
     });
 }
 
-// Hàm bỏ chọn tất cả các checkbox
-function uncheckAll() {
-    let checkboxes = document.querySelectorAll('.item-checkbox');
-    checkboxes.forEach((checkbox) => {
-        checkbox.checked = false;
-    });
-}
 
-// Hàm hiển thị các mục đã được chọn
-// Gọi hàm khi có sự thay đổi trong các checkbox
-document.querySelectorAll('.item-checkbox').forEach((checkbox) => {
-    checkbox.addEventListener('change', getCheckedItems);
-});
 
-// Hàm lấy các checkbox đã được chọn
-function getCheckedItems() {
-    // Lấy tất cả các checkbox có class 'item-checkbox'
-    let checkboxes = document.querySelectorAll('.item-checkbox');
-    let checkedItems = [];
-
-    // Duyệt qua tất cả các checkbox và kiểm tra cái nào được chọn
-    checkboxes.forEach((checkbox) => {
-        if (checkbox.checked) {
-            checkedItems.push(checkbox.value);  // Thêm giá trị của checkbox đã được chọn vào mảng
-        }
-    });
-
-    // In ra các mục đã được chọn
-
-    let items = checkedItems[checkedItems.length - 1];
-    window.location.href = 'searchProduct.html';
-    uncheckAll();
-
-}
 
 
 
 function loadMain(){
     window.location.href = 'main.html';
+}
+
+
+    document.querySelectorAll('.item-checkbox').forEach((checkbox) => {
+    checkbox.addEventListener('change', getCheckedItems);
+});
+
+    function getCheckedItems() {
+    let checkboxes = document.querySelectorAll('.item-checkbox');
+    let checkedItems = [];
+
+    checkboxes.forEach((checkbox) => {
+    if (checkbox.checked) {
+    checkedItems.push(checkbox.value);
+}
+});
+
+    if (checkedItems.length > 0) {
+    let item = checkedItems[checkedItems.length - 1];  // Lấy mục đã chọn cuối cùng
+    window.location.href = 'CheckedBrand?filterBrand=' + item;
+}
+}
+
+    function uncheckAll() {
+    document.querySelectorAll('.item-checkbox').forEach(function (checkbox) {
+        checkbox.checked = false;
+    });
 }
 

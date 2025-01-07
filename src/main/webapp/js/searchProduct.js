@@ -8,7 +8,6 @@ async function searchProduct() {
     console.log(keyword);
 
 
-
     if (keyword === "") {
         resultDiv.innerHTML = "";
         hoverSearch.style.display = "none";
@@ -19,7 +18,6 @@ async function searchProduct() {
         const response = await fetch(`searchProduct?name=` + encodeURIComponent(keyword))
 
 
-
         if (!response.ok) {
 
             throw new Error("Phản hồi không hợp lệ.");
@@ -27,7 +25,7 @@ async function searchProduct() {
 
         const searchProducts = await response.json();
         console.log(searchProducts.products);
-         // Hiển thị thông báo
+        // Hiển thị thông báo
         hoverSearch.style.display = "none";
         displaySearchResults(searchProducts.products, resultDiv);
 
@@ -50,10 +48,9 @@ function displaySearchResults(products, resultDiv) {
     list.style.padding = "0";
 
 
-
     products.forEach(product => {
         const listItem = document.createElement("li");
-        list.style.cursor="pointer";
+        list.style.cursor = "pointer";
 
         listItem.style.display = "flex";
         listItem.style.alignItems = "center";
@@ -68,11 +65,11 @@ function displaySearchResults(products, resultDiv) {
                 <p style="margin: 0; color: black;">${product.price.toLocaleString()} VND</p>
             </div>
         `;
-        listItem.onclick =function (){
+        listItem.onclick = function () {
             detailsProducts(product.id);
         };
         list.appendChild(listItem);
-        list.onclick =function (){
+        list.onclick = function () {
             detailsProducts(product.id);
         };
     });
@@ -83,27 +80,33 @@ function displaySearchResults(products, resultDiv) {
 }
 
 
+document.addEventListener("click", function () {
+    const searchInput = document.getElementById("searchInput");
+    const resultDiv = document.getElementById("resultSearchProducts");
+    const hoverSearch = document.getElementById("searchNotification");
+    searchInput.addEventListener("blur", function () {
 
-    document.addEventListener("click", function () {
-        const searchInput = document.getElementById("searchInput");
-        const resultDiv = document.getElementById("resultSearchProducts");
-        const hoverSearch = document.getElementById("searchNotification");
-        searchInput.addEventListener("blur", function () {
-
-                resultDiv.innerHTML = "";
-                resultDiv.style.display = "none";
+        resultDiv.innerHTML = "";
+        resultDiv.style.display = "none";
 
 
-        });
-
-        searchInput.addEventListener("focus", function () {
-            if (resultDiv.innerHTML.trim() !== "") {
-                resultDiv.style.display = "block";
-            }
-        });
     });
-function  detailsProducts(productId){
-    console.log("productDetail" ,productId);
-    window.location.href = `productDetail?id=`+productId;
+
+    searchInput.addEventListener("focus", function () {
+        if (resultDiv.innerHTML.trim() !== "") {
+            resultDiv.style.display = "block";
+        }
+    });
+});
+
+function detailsProducts(productId) {
+    console.log("productDetail", productId);
+    window.location.href = `productDetail?id=` + productId;
 
 }
+
+
+
+
+
+

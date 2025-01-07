@@ -153,6 +153,31 @@ public class ProductsDao {
         //utils.closeConnection(conn);
         return products; // Trả về danh sách (có thể rỗng nếu không có dữ liệu hoặc có lỗi)
     }
+    public static List<Product> searchBrand(String name) {
+        String sql = "SELECT * FROM products WHERE name LIKE ?";
+        List<Product> products = new ArrayList<>();
+
+        try (PreparedStatement cmd = conn.prepareStatement(sql)) {
+            cmd.setString(1, "%" + name + "%");
+
+            try (ResultSet resultSet = cmd.executeQuery()) {
+                while (resultSet.next()) {
+                    Product product = new Product();
+                    product.setId(resultSet.getInt("Id"));
+                    product.setName(resultSet.getString("Name"));
+                    product.setDetail(resultSet.getString("Detail"));
+                    product.setPrice(resultSet.getDouble("Price"));
+                    product.setImage(resultSet.getString("Image"));
+                    products.add(product);
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        //utils.closeConnection(conn);
+        return products; // Trả về danh sách (có thể rỗng nếu không có dữ liệu hoặc có lỗi)
+    }
+
     public  static int  countsearchProduct(String name) {
         String sql = "SELECT count(*) FROM products WHERE Detail LIKE ?";
         List<Product> products = new ArrayList<>();
@@ -239,5 +264,28 @@ public class ProductsDao {
             e.printStackTrace();
         }
         return product;
+    }
+    public List<Product> searchPriceProduct(double toPrice , double fromPrice){
+        List<Product> products = new ArrayList<>();
+        String sql = "SELECT * FROM products WHERE price >= ? AND price <= ?";
+        try {
+            PreparedStatement stm = conn.prepareStatement(sql);
+            stm.setDouble(1, toPrice);
+            stm.setDouble(2, fromPrice);
+            ResultSet rs = stm.executeQuery();
+            while (rs.next()) {
+                Product product = new Product();
+                product.setId(rs.getInt("Id"));
+                product.setName(rs.getString("Name"));
+                product.setDetail(rs.getString("Detail"));
+                product.setPrice(rs.getDouble("Price"));
+                product.setImage(rs.getString("Image"));
+                products.add(product);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return products;
     }
 }

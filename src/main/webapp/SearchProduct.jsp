@@ -2,6 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
 <%@ page import="object.User" %>
+<%@ page import="object.Product" %>
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix = "f" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 
@@ -17,9 +18,8 @@
 </head>
 <body>
 <div id="web-service">
-    <jsp:include page="header.jsp">
-        <jsp:param name="paramName" value="paramValue" />
-    </jsp:include>
+    <jsp:include page="header.jsp"/>
+
 
     <div id="session-body">
         <div class="container">
@@ -35,25 +35,25 @@
                 <h3>Khoảng Giá</h3>
                 <div class="price-filter">
                     <div class="space-price">
-                        <input type="text" placeholder="Từ"> <input type="text"
-                                                                    placeholder="Đến">
+                        <input type="text" placeholder="Từ" id="toPrice">
+                        <input type="text" placeholder="Đến" id="fromPrice">
                     </div>
-                    <button>Áp Dụng</button>
+                    <button onclick="searchProdcutToPrice()">Áp Dụng</button>
                 </div>
                 <h3>Thương Hiệu</h3>
                 <ul>
-                    <li><input type="checkbox" class="item-checkbox"
-                    >Cocoon</li>
-                    <li><input type="checkbox" class="item-checkbox">
-                        Maybelline</li>
-                    <li><input type="checkbox" class="item-checkbox">
-                        Emmié by Happy Skin</li>
-                    <li><input type="checkbox" class="item-checkbox">
-                        Torriden</li>
-                    <li><input type="checkbox" class="item-checkbox">
-                        Vaseline</li>
-                    <li><input type="checkbox" class="item-checkbox">
+                    <li><input type="checkbox" class="item-checkbox" value="L'Oreal"
+                    >L'Oreal</li>
+                    <li><input type="checkbox" class="item-checkbox" value="Klairs">
+                        Klairs</li>
+                    <li><input type="checkbox" class="item-checkbox" value="CeraVe">
+                        CeraVe</li>
+                    <li><input type="checkbox" class="item-checkbox" value="La Roche-Posay">
+                        La Roche-Posay</li>
+                    <li><input type="checkbox" class="item-checkbox" value="Anessa">
                         Anessa</li>
+                    <li><input type="checkbox" class="item-checkbox" value="Vichy">
+                        Vichy</li>
                     <li><input type="checkbox" class="item-checkbox">
                         Laneige</li>
                 </ul>
@@ -194,10 +194,10 @@
                     <li><input type="checkbox" class="item-checkbox"> Đức</li>
                 </ul>
             </div>
-            <div class="product-listing">
+             <div class="product-listing">
                 <c:if test="${not empty products}">
                 <c:forEach var="product" items="${products}">
-                    <div class="product" onclick="redirectToDetails(product.id)">
+                    <div class="product redirectToDetails"  data-product-id="${product.id}">
                         <img src="${product.image}" alt="${product.name}">
                         <h4>${product.name}</h4>
                         <div class="vn_names">${product.detail}</div>
@@ -230,26 +230,16 @@
     }
 
 </script>
-<script>
-    function redirectToDetails(productId) {
-        // Chuyển hướng đến Servlet với ID sản phẩm
-
-        window.location.href = `productDetail?id=`+productId;
-    }
-</script>
-
-<script src="js/main.js"></script>
-<script src="js/searchProduct.js">
-
-
-</script>
 
 <%
 
     // Lấy username từ session
     User user = (User) session.getAttribute("user");
 
+
+
     String username = user.getFullName();
+    System.out.println(username + " jahdJSPSEA");
 
 
 
@@ -258,21 +248,35 @@
         username = "";
     }
 %>
-<% String searchProducts = (String)request.getAttribute("products");
-%>
 
+
+
+<script src="js/main.js"></script>
+<script src="js/searchProduct.js">
+
+
+</script>
+<script src="js/searchBrands.js"></script>
+<script src="js/updateUserMain.js">
+</script>
 <script>
 
-    const searchProducts = "<%= searchProducts %>";
-</script>
 
-<script src="js/updateUserMain.js">
+    document.querySelectorAll('.redirectToDetails').forEach(item => {
+        item.addEventListener('click', function() {
+            var productId = this.getAttribute('data-product-id');
+            window.location.href = 'productDetail?id=' + productId;
+        });
+    });
+
+
 
 </script>
 <script>
     // Gán username từ server vào biến JavaScript
     const username = "<%= username %>";
     console.log(username);
+
 
     // Kiểm tra trạng thái đăng nhập và gọi hàm loginUser nếu đã đăng nhập
     if (username && username.trim() !== "") {
@@ -309,6 +313,15 @@
             .catch(error => console.error("Lỗi kết nối:", error));
     }
 </script>
+<% String searchProducts = (String)request.getAttribute("products");
+%>
+
+<script>
+
+    const searchProducts = "<%= searchProducts %>";
+</script>
+
+
 
 
 

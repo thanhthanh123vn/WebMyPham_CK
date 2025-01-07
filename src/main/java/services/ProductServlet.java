@@ -24,6 +24,7 @@ public class ProductServlet extends HttpServlet {
         CategoryDao categoryDao = new CategoryDao();
 
 
+
         int startIndex = 0;
 
         try {

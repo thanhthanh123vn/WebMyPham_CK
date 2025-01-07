@@ -31,8 +31,6 @@ public class SearchProductPage extends HttpServlet {
 
             List<Product> products = productsDao.searchProduct(searchProduct);
             req.setAttribute("products", products);
-            System.out.println(products.toString()+"  danh-muc");
-            System.out.println("search ");
             req.getRequestDispatcher("SearchProduct.jsp").forward(req, resp);
 
 

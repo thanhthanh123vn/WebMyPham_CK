@@ -2,6 +2,7 @@
 <%@ page import="object.Product" %>
 <%@ page import="com.google.gson.Gson" %>
 <%@ page import="gson.GsonUtil" %>
+<%@ page import="object.User" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -198,7 +199,75 @@
 </div>
 
 <script src="js/detailProduct.js"></script>
+<script src="js/searchProduct.js"></script>
+<script src="js/updateUserMain.js"></script>
 <script src="js/main.js"></script>
+<%
+
+    // Lấy username từ session
+    User user = (User) session.getAttribute("user");
+
+    String username = user.getFullName();
+
+
+    // Nếu cưa đăng nhập, gán giá trị rỗng
+    if (username == null) {
+        username = "";
+    }
+%>
+<script>
+    function categorySearch() {
+
+        const searchInput = document.getElementById("searchInput").value;
+        console.log(searchInput)
+        window.location.href = `danh-muc?name=` + searchInput;
+
+
+    }
+
+</script>
+<script>
+    // Gán username từ server vào biến JavaScript
+    const username = "<%= username %>";
+    console.log(username);
+
+    // Kiểm tra trạng thái đăng nhập và gọi hàm loginUser nếu đã đăng nhập
+    if (username && username.trim() !== "") {
+        loginUser();
+    }
+
+    // Đảm bảo xử lý nút đăng xuất
+    document.addEventListener("DOMContentLoaded", () => {
+        const logoutButtons = document.querySelectorAll(".logout-account");
+        logoutButtons.forEach(button => {
+            button.addEventListener("click", () => {
+                logoutUser();
+            });
+        });
+    });
+
+    // Hàm xử lý đăng xuất
+    function logoutUser() {
+        console.log("Đăng xuất...");
+
+        // Gửi yêu cầu đến server để xóa session
+        fetch("LogoutServlet", {
+            method: "POST"
+        })
+            .then(response => {
+                if (response.ok) {
+                    console.log("Đăng xuất thành công");
+                    // Chuyển hướng người dùng về trang đăng nhập hoặc trang chủ
+                    window.location.href = "index.jsp";
+                } else {
+                    console.error("Lỗi khi đăng xuất");
+                }
+            })
+            .catch(error => console.error("Lỗi kết nối:", error));
+    }
+</script>
+
+
 <% Product product = (Product) request.getAttribute("products");
     String productJson = new GsonUtil().getGson().toJson(product);%>
 <script>

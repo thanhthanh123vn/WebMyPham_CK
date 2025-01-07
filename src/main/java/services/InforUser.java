@@ -41,11 +41,12 @@ public void closeConnection(){
 //		return user;
 //	}
 	public boolean  updateUser(User user) {
-		String sql = "update  users set username=? and email=? ";
+		String sql = "update  users set username=? and email=? where id = ? ";
 		try {
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ps.setString(1,user.getFullName());
 			ps.setString(2,user.getEmail());
+			ps.setInt(3,user.getId());
 
 			int row = ps.executeUpdate();
 			if(row>0)return true;
@@ -55,6 +56,25 @@ public void closeConnection(){
 			e.printStackTrace();
 		}
 	return false;
+	}
+	public boolean  updateUserAddress(User user) {
+		String sql = "update  users set  email=?  and malle =? and date = ? where id = ? ";
+		try {
+			PreparedStatement ps = conn.prepareStatement(sql);
+
+			ps.setString(1,user.getEmail());
+			ps.setString(2,user.getMalle());
+			ps.setDate(3,new java.sql.Date(user.getDate().getTime()));
+			ps.setInt(4,user.getId());
+
+			int row = ps.executeUpdate();
+			if(row>0)return true;
+
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return false;
 	}
 
 	public User checkUser(String username, String password) {

@@ -74,8 +74,8 @@
               <a>Tải ảnh của bạn</a>
             </div>
             <div class="profile-picture-right">
-              <input type="email" value="${sessionScope.user.email}" readonly>
-              <input type="text" value="${sessionScope.user.fullName}">
+              <input type="email" name="email" value="${sessionScope.user.email}" readonly>
+              <input type="text" name="name" value="${sessionScope.user.fullName}">
             </div>
           </div>
 
@@ -170,6 +170,7 @@
 
       <%
     User user = (User)session.getAttribute("user");
+    String username = user.getFullName();
     String malle = user.getMalle();
     Date date = user.getDate();
     SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
@@ -180,6 +181,46 @@
       console.log(malle);
       const dateBTh = "<%= dateString %>";
       console.log(dateBTh);
+    </script>
+    <script>
+      // Gán username từ server vào biến JavaScript
+      const username = "<%= username %>";
+      console.log(username);
+
+      // Kiểm tra trạng thái đăng nhập và gọi hàm loginUser nếu đã đăng nhập
+      if (username && username.trim() !== "") {
+        loginUser();
+      }
+
+      // Đảm bảo xử lý nút đăng xuất
+      document.addEventListener("DOMContentLoaded", () => {
+        const logoutButtons = document.querySelectorAll(".logout-account");
+        logoutButtons.forEach(button => {
+          button.addEventListener("click", () => {
+            logoutUser();
+          });
+        });
+      });
+
+      // Hàm xử lý đăng xuất
+      function logoutUser() {
+        console.log("Đăng xuất...");
+
+        // Gửi yêu cầu đến server để xóa session
+        fetch("LogoutServlet", {
+          method: "POST"
+        })
+                .then(response => {
+                  if (response.ok) {
+                    console.log("Đăng xuất thành công");
+                    // Chuyển hướng người dùng về trang đăng nhập hoặc trang chủ
+                    window.location.href = "index.jsp";
+                  } else {
+                    console.error("Lỗi khi đăng xuất");
+                  }
+                })
+                .catch(error => console.error("Lỗi kết nối:", error));
+      }
     </script>
 
     <script src="../js/navigation.js">

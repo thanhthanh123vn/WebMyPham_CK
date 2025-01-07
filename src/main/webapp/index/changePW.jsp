@@ -1,4 +1,4 @@
-
+<%@ page import="object.User" %>
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
@@ -97,99 +97,65 @@
 
     <script src="../js/validator.js"></script>
 
-    <script>
-        var registerForm = document.getElementsByClassName('register-form');
-        registerForm.onclick = function(){
 
-            // Kiểm tra dữ liệu form
-            console.log("onlick");
-            const fullname = localStorage.getItem('tagData');
+         <%
 
-            const password = document.getElementById('password').value;
-            const re_password = document.getElementById('re-password').value;
-            const confi_password = document.getElementById('confirm-password').value;
-            // Tạo một đối tượng chứa thông tin người dùng
-            const userData = {
-                fullname:fullname,
+    // Lấy username từ session
+    User user = (User) session.getAttribute("user");
 
-                password: password
-            };
-
-            // Kiểm tra xem email đã tồn tại chưa
-            fetch('http://localhost:3000/users')
-                .then(response => response.json())
-                .then(users => {
-                    const fullName = localStorage.getItem('tagData');
-                    const existingUser = users.find(user => user.fullName === userData.fullName);
-
-                    if (existingUser) {
-                        if(userData.password === existingUser.password && re_password === confi_password){
-                            // Email đã tồn tại, cập nhật mật khẩu
-                            fetch(`http://localhost:3000/users/${existingUser.id}`, {
-                                method: 'PATCH',
-                                headers: {
-                                    'Content-Type': 'application/json'
-                                },
-                                body: JSON.stringify({ password: userData.password }) // Cập nhật mật khẩu
-                            })
-                                .then(response => {
-                                    if (!response.ok) {
-                                        throw new Error('Cập nhật mật khẩu thất bại!');
-                                        alert('Cập nhật mật khẩu thất bại!');
-                                    }
-                                    return response.json();
-                                })
-                                .then(data => {
-                                    console.log('Cập nhật mật khẩu thành công:', data);
-                                    alert('Mật khẩu đã được cập nhật thành công!');
-                                    //window.location.href = 'login.html'; // Chuyển hướng đến trang đăng nhập
-                                })
-                                .catch(error => {
-                                    console.error('Lỗi khi cập nhật mật khẩu:', error);
-                                    alert('Cập nhật mật khẩu thất bại!');
-                                });
-                        }
-                    } else {
-                        // Nếu email chưa tồn tại, thực hiện đăng ký
-                        fetch('http://localhost:3000/users', {
-                            method: 'POST',
-                            headers: {
-                                'Content-Type': 'application/json'
-                            },
-                            body: JSON.stringify(userData) // Gửi dữ liệu đăng ký
-                        })
-                            .then(response => {
-                                if (!response.ok) {
-                                    throw new Error('Đăng ký thất bại!');
-                                }
-                                return response.json();
-                            })
-                            .then(data => {
-                                console.log('Thành công:', data);
-                                window.location.href = 'login.html'; // Chuyển hướng đến trang đăng nhập
-                            })
-                            .catch(error => {
-                                console.error('Lỗi trong quá trình đăng ký:', error);
-                                alert('Đăng ký thất bại!');
-                            });
-                    }
-                })
-                .catch(error => {
-                    console.error('Lỗi khi kiểm tra email:', error);
-                    alert('Lỗi kiểm tra email!');
-                });
-        }
+    String username = user.getFullName();
 
 
+    // Nếu cưa đăng nhập, gán giá trị rỗng
+    if (username == null) {
+        username = "";
+    }
+%>
 
+     <script>
+         // Gán username từ server vào biến JavaScript
+         const username = "<%= username %>";
+         console.log(username);
 
+         // Kiểm tra trạng thái đăng nhập và gọi hàm loginUser nếu đã đăng nhập
+         if (username && username.trim() !== "") {
+             loginUser();
+         }
 
-    </script>
+         // Đảm bảo xử lý nút đăng xuất
+         document.addEventListener("DOMContentLoaded", () => {
+             const logoutButtons = document.querySelectorAll(".logout-account");
+             logoutButtons.forEach(button => {
+                 button.addEventListener("click", () => {
+                     logoutUser();
+                 });
+             });
+         });
 
+         // Hàm xử lý đăng xuất
+         function logoutUser() {
+             console.log("Đăng xuất...");
+
+             // Gửi yêu cầu đến server để xóa session
+             fetch("LogoutServlet", {
+                 method: "POST"
+             })
+                 .then(response => {
+                     if (response.ok) {
+                         console.log("Đăng xuất thành công");
+                         // Chuyển hướng người dùng về trang đăng nhập hoặc trang chủ
+                         window.location.href = "index.jsp";
+                     } else {
+                         console.error("Lỗi khi đăng xuất");
+                     }
+                 })
+                 .catch(error => console.error("Lỗi kết nối:", error));
+         }
+     </script>
 
     <script>
 
-        loginUser();
+
         // Lấy danh sách tất cả các phần tử có class "logout-account"
         var logoutElements = document.getElementsByClassName("logout-account");
 

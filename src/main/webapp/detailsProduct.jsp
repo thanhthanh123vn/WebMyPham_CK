@@ -1,4 +1,7 @@
 <%@ page import="object.ProductDetail" %>
+<%@ page import="object.Product" %>
+<%@ page import="com.google.gson.Gson" %>
+<%@ page import="gson.GsonUtil" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
@@ -16,13 +19,15 @@
           crossorigin="anonymous" referrerpolicy="no-referrer"/>
 
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/detailProduct.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/header.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/footer.css">
 
 
 </head>
 
 <body>
 <div id="web-service">
-  <jsp:include page="${pageContext.request.contextPath}/header.jsp"/>
+  <jsp:include page="header.jsp"/>
     <div class="session-body">
         <div class="containers">
             <div class="slection-product">
@@ -139,12 +144,12 @@
                                         <button type="button" class="button-light-green">
                                             <i class="fa-solid fa-location-dot"></i> 224/224 Chi Nhánh Còn sản phẩm
                                         </button>
-                                        <button type="button" class="button-dark-green" id="card-prodcut" onclick="function addCartProduct(${products}){
-                                            addCart(products);
-                                            increaseCartCount();
-                                                }">
+                                        <button type="button" class="button-dark-green" id="card-product" >
                                             <i class="fa-sharp fa-solid fa-cart-shopping"></i> GIỎ HÀNG
                                         </button>
+
+
+
                                         <button type="button" class="button-orange">
                                             <span class="size-end" onclick="window.location.href='payAddress.html'">Mua ngay NowFree 2H</span>
                                         </button>
@@ -187,13 +192,18 @@
                 </div>
             </div>
         </div>
-   <jsp:include page="${pageContext.request.contextPath}/footer.jsp"/>
+    </div>
+
+   <jsp:include page="footer.jsp"/>
 </div>
 
-<script src="${pageContext.request.contextPath}/js/detailProduct.js"></script>
-<script src="${pageContext.request.contextPath}/js/main.js"></script>
-
+<script src="js/detailProduct.js"></script>
+<script src="js/main.js"></script>
+<% Product product = (Product) request.getAttribute("products");
+String productJson = new GsonUtil().getGson().toJson(product);%>
 <script>
+
+
     function selectImage(imageSrc) {
         console.log(imageSrc);
         const displayedImage = document.getElementById('display-combobox');
@@ -201,7 +211,11 @@
         displayedImage.style.display = 'block'; // Hiển thị hình ảnh đã chọn
     }
 
-    var cardProduct = document.getElementById('card-prodcut');
+    var cardProduct = document.getElementById('card-product');
+    cardProduct.onclick = function () {
+        increaseCartCount()
+    }
+
 
 
     function increaseCartCount() {
@@ -214,12 +228,8 @@
         var detail = info.querySelector('.product-title')?.textContent.trim() || '';
         var price = info.querySelector('.price')?.textContent.trim() || '';
 
-        var product = {
-            image: image,
-            name: name,
-            detail: detail,
-            price: price
-        };
+        var product = <%=productJson%>
+        console.log(product);
 
 
         // Kiểm tra xem phần tử có tồn tại hay không
@@ -234,8 +244,9 @@
 
             // Tăng giá trị lên 1 và cập nhật lại nội dung
             cartCountElement.textContent = currentCount + 1;
+            addCart(product);
 
-            alert("Thêm sản phẩm thành công");
+
         } else {
             console.log("Không tìm thấy phần tử có class 'cart-count'");
         }

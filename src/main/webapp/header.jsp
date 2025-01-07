@@ -146,7 +146,7 @@
                 <div class="header-icon-sub">
                     <img src="https://hasaki.vn/images/graphics/icon_header_1.svg">
 
-                    <a href="index/cartProduct.jsp" class="cart-icon"> Giỏ hàng <span
+                    <a href="cartProduct.jsp" class="cart-icon"> Giỏ hàng <span
                             class="cart-count">2</span></a>
                 </div>
             </div>

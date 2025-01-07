@@ -31,7 +31,7 @@ public class ProductDetailServlet extends HttpServlet {
 
             ProductDetail productDetail = product.getProductDetail();
             System.out.println( " ProductDetails "+productDetail.toString());
-            System.out.println(" ProductDetails "+product.toString());
+            System.out.println(" Product "+product.toString());
             if (productDetail == null) {
                 throw new NullPointerException("Product detail not found for product ID: " + productId);
             }
@@ -41,7 +41,7 @@ public class ProductDetailServlet extends HttpServlet {
             request.setAttribute("products", product);
 
             // Chuyển tiếp đến trang chi tiết sản phẩm (JSP)
-            request.getRequestDispatcher("index/detailsProduct.jsp").forward(request, response);
+            request.getRequestDispatcher("detailsProduct.jsp").forward(request, response);
         } catch (Exception e) {
             e.printStackTrace(); // Log lỗi để debug
             response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, e.getMessage());

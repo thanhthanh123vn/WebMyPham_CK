@@ -8,6 +8,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import object.Product;
 import object.cart.Cart;
 import object.cart.ProductCart;
@@ -17,25 +18,41 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-@WebServlet("AddCart")
+@WebServlet("/AddCart")
 public class AddCartProduct extends HttpServlet {
     private static final long serialVersionUID = 1L;
-    Cart cart ;
-    AddCartProduct(Cart cart) {
-    this.cart = cart;
-}
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+    public AddCartProduct() {
+        super();
+    }
+
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         BufferedReader reader = request.getReader();
         Gson gson = GsonUtil.getGson();
+        HttpSession session = request.getSession();
+
+        // Lấy đối tượng cart từ session hoặc tạo mới nếu chưa có
+        Cart cart = (Cart) session.getAttribute("cart");
+        if (cart == null) {
+            cart = new Cart();
+        }
+
         Product product = gson.fromJson(reader, Product.class);
-        cart.put(product);
+        if (product != null) {
+            cart.put(product);
+            session.setAttribute("cart", cart);
 
-        System.out.println("Product received: " + product);
-        response.setContentType("application/json");
-        response.setCharacterEncoding("UTF-8");
+            System.out.println("Thêm giỏ hàng thành công");
 
-
+            // Thiết lập phản hồi JSON
+            response.setContentType("application/json");
+            response.setCharacterEncoding("UTF-8");
+            response.getWriter().write("{\"message\":\"Thêm giỏ hàng thành công\"}");
+        } else {
+            response.setContentType("application/json");
+            response.setCharacterEncoding("UTF-8");
+            response.getWriter().write("{\"error\":\"Lỗi khi thêm vào giỏ hàng\"}");
+        }
     }
 
     @Override

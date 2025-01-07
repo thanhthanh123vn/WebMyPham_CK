@@ -58,17 +58,18 @@ public void closeConnection(){
 	}
 
 	public User checkUser(String username, String password) {
-		String query = "SELECT * FROM users WHERE username = ? AND password = ?";
+		String query = "SELECT u.* ,ua.* FROM users u join usersarress ua on ua.userid = u.id  WHERE username = ? AND password = ?";
 		try (PreparedStatement stmt = conn.prepareStatement(query)) {
-			//String hashedPassword = hashPassword(password);
+			String hashedPassword = hashPassword(password);
 
 
 			stmt.setString(1, username);
-			stmt.setString(2, password);
+			stmt.setString(2, hashedPassword);
 			ResultSet rs = stmt.executeQuery();
 
 			if (rs.next()) {
-				return new User(rs.getInt("id"), rs.getString("username"), rs.getString("email"), rs.getString("password"),rs.getString("role"));
+				return new User(rs.getInt("id"), rs.getString("username"), rs.getString("email"), rs.getString("password"),rs.getString("role"),
+						rs.getString("malle"),rs.getDate("date"),rs.getString("phone"));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -133,16 +134,8 @@ public void closeConnection(){
 
 	public static void main(String[] args)  throws Exception {
 		InforUser inforUser = new InforUser();
+		System.out.println( inforUser.hashPassword("123456"));
 
-
-
-
-		boolean insertUser = inforUser.insertUser( "LeThanh","22130255@st.hcmuaf.edu.vn","123456");
-		if(insertUser) {
-			System.out.println("Chen thanh cong");
-			return ;
-		}
-		System.out.println("Chenf that bai");
 	}
 
 }

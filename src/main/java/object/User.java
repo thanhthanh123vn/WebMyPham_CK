@@ -9,14 +9,19 @@ public class User {
     private String password;
     private Date date;
     private String role;
+    private String malle;
+    private String sdt;
 
     // Constructors
-    public User(int id, String fullName, String email, String password, Date date) {
+    public User(int id, String fullName, String email, String password, String role , String malle, Date date,String sdt) {
         this.id = id;
         this.fullName = fullName;
         this.email = email;
+        this.role = role;
         this.password = password;
+        this.malle = malle;
         this.date = date;
+        this.sdt = sdt;
     }
     public User(int id, String fullName, String email, String password, String  role) {
         this.id = id;
@@ -29,6 +34,22 @@ public class User {
     public User(String fullName, String email) {
         this.fullName = fullName;
         this.email = email;
+    }
+
+    public String getMalle() {
+        return malle;
+    }
+
+    public void setMalle(String malle) {
+        this.malle = malle;
+    }
+
+    public String getSdt() {
+        return sdt;
+    }
+
+    public void setSdt(String sdt) {
+        this.sdt = sdt;
     }
 
     public User() {

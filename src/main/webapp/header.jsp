@@ -19,7 +19,7 @@
         <div class="logo-left">
 
             <div class="logo">
-                <img src="images/logo.png" alt="NThanh.vn">
+                <img src="${pageContext.request.contextPath}/images/logo.png" alt="NThanh.vn">
                 <div class="logo-text">
                     <h3>TTT.vn</h3>
                     <span>Chất lượng thật - Giá trị thật</span>

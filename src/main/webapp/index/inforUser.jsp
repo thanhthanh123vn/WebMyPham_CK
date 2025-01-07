@@ -1,4 +1,6 @@
-<%--
+<%@ page import="object.User" %>
+<%@ page import="java.util.Date" %>
+<%@ page import="java.text.SimpleDateFormat" %><%--
   Created by IntelliJ IDEA.
   User: nguye
   Date: 12/25/2024
@@ -17,13 +19,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Đơn hàng của tôi</title>
 
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/header.css">
   <link rel="stylesheet" href="${pageContext.request.contextPath}/css/inforUser.css">
-  <link rel="icon" href="../image/logo.png" type="image/x-icon">
+
+  <link rel="icon" href="${pageContext.request.contextPath}/images/logo.png" type="image/x-icon">
 </head>
 
 <body>
 <div id="web-service">
-  <jsp:include page="../header.jsp"/>
+<jsp:include page="../header.jsp"/>
   <div id="session-body">
     <div class="container">
       <div class="breadcrumb">
@@ -62,6 +66,7 @@
       </div>
       <div class="account-info-container">
         <div class="account-section">
+          <form action="http://localhost:8080/WebMyPham__/updateInforUser" method="post" class="form" id="register-form">
           <h2>Thông tin tài khoản</h2>
           <div class="profile-picture">
             <div class="profile-picture-left">
@@ -69,39 +74,32 @@
               <a>Tải ảnh của bạn</a>
             </div>
             <div class="profile-picture-right">
-              <input type="email" value="${user.email}" name="email" id="email"  readonly>
-              <input type="text" value="${user.fullName}" name="fullName" id="fullname" readonly>
+              <input type="email" value="${sessionScope.user.email}" readonly>
+              <input type="text" value="${sessionScope.user.fullName}">
             </div>
           </div>
 
 
           <div class="gender-selection">
-            <label><input type="radio" name="gender" value="male"> Nam</label>
-            <label><input type="radio" name="gender" value="female"> Nữ</label>
-            <label><input type="radio" name="gender" value="unspecified" checked> Không xác định</label>
+            <label><input type="radio" name="gender" value="Nam" id="Nam"> Nam</label>
+            <label><input type="radio" name="gender" value="Nữ" id="Nu"> Nữ</label>
+            <label><input type="radio" name="gender" value="Không xác định" id="unspecified"> Không xác định</label>
           </div>
 
           <label>Ngày sinh (Không bắt buộc)</label>
           <div class="birthdate-selection">
-            <select>
-              <option>Ngày</option>
-              <!-- Thêm các tùy chọn ngày -->
-            </select>
-            <select>
-              <option>Tháng</option>
-              <!-- Thêm các tùy chọn tháng -->
-            </select>
-            <select>
-              <option>Năm</option>
-              <!-- Thêm các tùy chọn năm -->
-            </select>
+          <select id="date"></select>
+          <select id="month"></select>
+          <select id="year"></select>
           </div>
           <div class=".birthdate-selection-footer">
 
             <label><input type="checkbox"> Nhận thông tin khuyến mãi qua e-mail</label>
-            <button class="update-btn" onclick="UpdateUser()" >Cập nhật</button>
+            <button class="update-btn" >Cập nhật</button>
           </div>
-        </div>
+          </form>
+
+      </div>
 
         <div class="contact-section">
           <h3>Số điện thoại và Email</h3>
@@ -113,14 +111,14 @@
           <div class="contact-info-update">
             <p><img src="https://hasaki.vn/images/icons/icon_email.svg"> Email
               </br>
-              ${user.email}
+              ${sessionScope.user.email}
             </p>
 
           </div>
           <h3>Bảo mật</h3>
           <div class="contact-info-update">
             <p><img src="https://hasaki.vn/images/icons/icon_key.svg"> Đổi mật khẩu</p>
-            <button onclick="LinkupdatePass()">Cập nhật</button>
+            <button onclick="window.location.href='http://localhost:8080/WebMyPham__/index/changePW.jsp'">Cập nhật</button>
           </div>
           <h3>Liên kết mạng xã hội</h3>
           <div class="contact-info-update">
@@ -135,9 +133,7 @@
 
       </div>
     </div>
-
-
-    <jsp:include page="../footer.jsp"/>
+   <jsp:include page="../footer.jsp"/>
 
     <script src="../js/searchProduct.js"></script>
 
@@ -171,7 +167,24 @@
 
 
     </script>
-    <script src="${pageContext.request.contextPath}/js/UpdateUser.js"></script>
+
+      <%
+    User user = (User)session.getAttribute("user");
+    String malle = user.getMalle();
+    Date date = user.getDate();
+    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+    String dateString = sdf.format(date);
+%>
+    <script>
+      const malle = "<%= malle %>";
+      console.log(malle);
+      const dateBTh = "<%= dateString %>";
+      console.log(dateBTh);
+    </script>
+
+    <script src="../js/navigation.js">
+
+    </script>
 
 </body>
 

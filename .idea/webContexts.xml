@@ -11,6 +11,7 @@
         <entry key="file://$PROJECT_DIR$/src/main/webapp/index.jsp" value="file://$PROJECT_DIR$/src/main/webapp" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/index/SearchProduct.jsp" value="file://$PROJECT_DIR$/src/main/webapp" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/index/detailsProduct.jsp" value="file://$PROJECT_DIR$/src/main/webapp/index" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/index/inforUser.jsp" value="file://$PROJECT_DIR$/src/main/webapp/index" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/index/signUp.jsp" value="file://$PROJECT_DIR$/src/main/webapp/index" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/login.jsp" value="file://$PROJECT_DIR$/src/main/webapp" />
       </map>

@@ -3,6 +3,7 @@ package dao;
 import object.User;
 import object.UserInf;
 
+import java.security.MessageDigest;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -90,6 +91,34 @@ public List<User> getList(){
 			e.printStackTrace();
 			return false;
 		}
+	}
+	public boolean UpdatePassWord(String  password , int id) {
+		String sql = "UPDATE users SET password = ? WHERE id = ?";
+		try {
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setString(1, password);
+			ps.setInt(2, id);
+
+
+			int row = ps.executeUpdate();
+			return row > 0;
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+			return false;
+	}
+	public String hashPassword(String password) throws Exception {
+		MessageDigest md = MessageDigest.getInstance("SHA-256");
+		byte[] hash = md.digest(password.getBytes("UTF-8"));
+		StringBuilder hexString = new StringBuilder();
+
+		for (byte b : hash) {
+			String hex = Integer.toHexString(0xff & b);
+			if (hex.length() == 1) hexString.append('0');
+			hexString.append(hex);
+		}
+		return hexString.toString();
 	}
 
 }

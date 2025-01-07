@@ -59,10 +59,12 @@ function displayBrands(brands) {
 function setupBrandSlides() {
     const brandItems = document.querySelectorAll(".brand-item");
 
-    const itemsPerSlide = 8; // Hiển thị 8 thương hiệu mỗi slide
+
+    const itemsPerSlide = 7; // Hiển thị 8 thương hiệu mỗi slide
 
     brandItems.forEach((item, index) => {
-        item.style.display = index < itemsPerSlide ? "flex" : "none";
+        item.style.display = index < itemsPerSlide ? "block" : "none";
+
     });
 
     currentBrandSlideIndex = 0;
@@ -70,7 +72,7 @@ function setupBrandSlides() {
 
 function showBrandSlide(index) {
     const brandItems = document.querySelectorAll(".brand-item");
-    const itemsPerSlide = 8;
+    const itemsPerSlide = 7;
     const totalSlides = Math.ceil(brandItems.length / itemsPerSlide);
 
     if (index < 0) currentBrandSlideIndex = totalSlides - 1;
@@ -78,7 +80,7 @@ function showBrandSlide(index) {
     else currentBrandSlideIndex = index;
 
     brandItems.forEach((item, i) => {
-        item.style.display = (i >= currentBrandSlideIndex * itemsPerSlide && i < (currentBrandSlideIndex + 1) * itemsPerSlide) ? "flex" : "none";
+        item.style.display = (i >= currentBrandSlideIndex * itemsPerSlide && i < (currentBrandSlideIndex + 1) * itemsPerSlide) ? "block" : "none";
     });
 }
 
@@ -104,8 +106,8 @@ function displayCategories(categories) {
         categoryContainer.classList.add("category");
 
         categoryContainer.innerHTML = `
-            <img src="${ct.image}" alt="${ct.name}">
-            <p>${ct.name}</p>
+            <img src="${ct.image}" alt="${ct.categoryName}">
+            <p>${ct.categoryName}</p>
         `;
 
         categoryListDiv.appendChild(categoryContainer);

@@ -37,13 +37,14 @@
                                 <p>${cartItem.detail}</p>
                                 <span>${cartItem.price} <del>229.000 ₫</del></span>
                                 <div class="actions">
-                                    <a href="#">Yêu thích</a> | <a href="#">Xóa</a>
+                                    <a href="#">Yêu thích</a> | <a href="" onclick="removeProduct(${cartItem.id})">Xóa</a>
                                 </div>
                                 <div class="promotion">Tặng ngay phần quà khi mua tại cửa hàng còn quà</div>
                             </div>
                         </div>
-                        <div class="quantity">
-                            <input type="number" value="${cartItem.count}" min="1">
+                        <div class="quantity" >
+                            <input type="number" value="${cartItem.count}" name="quantity" min="1"
+                                   onchange="updateProductQuantity(${cartItem.id}, this.value)">
                         </div>
                         <div class="total-price">${cartItem.price * cartItem.count}</div>
                     </div>
@@ -70,7 +71,7 @@
     <jsp:include page="footer.jsp"/>
 </div>
 <script src="${pageContext.request.contextPath}/js/main.js"></script>
-<script src="${pageContext.request.contextPath}/js/searchProduct.js"></script>
+<script src="${pageContext.request.contextPath}/js/cartProduct.js"></script>
 <script src="${pageContext.request.contextPath}/js/updateUserMain.js"></script>
 
 <script>
@@ -97,41 +98,8 @@
     }
 
 </script>
-<script src="../js/detailProduct.js"></script>
 
-<script>
 
-    document.addEventListener('DOMContentLoaded', function () {
-        // Lấy tất cả các nút "Xóa"
-        const deleteButtons = document.querySelectorAll('.actions a');
-
-        deleteButtons.forEach(button => {
-            button.addEventListener('click', function (event) {
-                event.preventDefault(); // Ngăn không cho trang tải lại
-                // Lấy phần tử chứa sản phẩm
-                const cartItem = this.closest('.cart-item');
-                if (cartItem) {
-                    // Xóa sản phẩm khỏi giỏ hàng
-                    cartItem.remove();
-                    updateCartSummary();
-                }
-            });
-        });
-
-        function updateCartSummary() {
-            // Tính lại tổng cộng sau khi xóa sản phẩm
-            const totalPrices = document.querySelectorAll('.total-price');
-            let total = 0;
-
-            totalPrices.forEach(priceElement => {
-                const priceText = priceElement.textContent.replace(/[^\d]/g, '');
-                total += parseInt(priceText, 10);
-            });
-
-            // Cập nhật tổng cộng
-            document.querySelector('.cart-summary p strong span').textContent = total.toLocaleString() + " ₫";
-        }
-    });
 
 </script>
 <script>

@@ -223,11 +223,12 @@ body {
 
 /* Product Listing Styling */
 .product-listing {
-    width: 100%;
+    width: 75%;
     float: right;
-    display: grid;
+    display: grid
+;
     background-color: #fff;
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     grid-gap: 20px;
 }
 
@@ -841,9 +842,14 @@ strong {
 }
 
 .brand-item {
-    flex: 0 0 20%;
     text-align: center;
-    display: none;
+    width: 120px;
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 10px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: box-shadow 0.3s ease;
 }
 
 .brand-logo {

@@ -31,7 +31,7 @@ public class BrandServlet extends HttpServlet {
 
         // Kết nối đến cơ sở dữ liệu (giả định bạn có sẵn kết nối DatabaseUtils)
         try (Connection conn = utils.getConnection()) {
-            String sql = "SELECT id, name, image FROM products";
+            String sql = "SELECT id, name, image FROM brands";
             PreparedStatement stmt = conn.prepareStatement(sql);
             ResultSet rs = stmt.executeQuery();
 

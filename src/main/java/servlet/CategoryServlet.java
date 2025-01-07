@@ -3,6 +3,7 @@ package servlet;
 import com.google.gson.Gson;
 import dao.CategoryDao;
 import dao.Utils;
+import gson.GsonUtil;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -33,10 +34,11 @@ public class CategoryServlet extends HttpServlet {
             int startIndex = 0;
             startIndex = request.getParameter("startIndex") != null ? Integer.parseInt(request.getParameter("startIndex")) : 0;
             List<Categories> categories = categoryDao.getAllCategories(startIndex);
-            System.out.println(categories.size());
+            System.out.println(categories.toString());
 
             // Trả về dữ liệu JSON
-            String json = new Gson().toJson(categories);
+            String json = new GsonUtil().getGson().toJson(categories);
+            
             response.getWriter().write(json);
 
 

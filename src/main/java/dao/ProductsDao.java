@@ -20,6 +20,25 @@ public class ProductsDao {
         System.out.println("haha");
         conn = utils.getConnection();
     }
+    public List<String> getImageProductDetail(int id){
+        List<String> result = new ArrayList<>();
+        String sql = "select image from listimageproductdetail where productid =?";
+        try {
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+                result.add(rs.getString("image"));
+            }
+
+
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return result;
+
+    }
     public boolean updateProduct(Product product) {
         String sql = "UPDATE products SET name = ?, Detail = ?, price = ?, quantity = ?, image = ?, CategoryID = ? WHERE id = ?";
         try {
@@ -211,6 +230,7 @@ public class ProductsDao {
                 productDetail.setVolume(rs.getString("Volume"));
                 productDetail.setSensitiveSkinSafe(rs.getBoolean("IsSensitiveSkinSafe"));
                 productDetail.setCreatedAt(rs.getTimestamp("CreatedAt").toLocalDateTime());
+
 
                 // Gắn ProductDetail vào Product (giả định bạn có setter cho thuộc tính này)
                 product.setProductDetail(productDetail);

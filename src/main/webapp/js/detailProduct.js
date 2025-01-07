@@ -1,6 +1,6 @@
 function addCart(product) {
 
-    if (confirm("Bạn có chắc chắn muốn thêm sản phẩm này?")) {
+
 
         fetch("http://localhost:8080/WebMyPham__/AddCart", { // Adjust the URL for product removal
             method: "POST",
@@ -17,5 +17,5 @@ function addCart(product) {
             console.error("Lỗi:", error);
             alert("Lỗi khi khi thêm  sản phẩm vào giỏ.");
         });
-    }
+
 }

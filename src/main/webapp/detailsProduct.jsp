@@ -3,9 +3,9 @@
 <%@ page import="com.google.gson.Gson" %>
 <%@ page import="gson.GsonUtil" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-         pageEncoding="UTF-8"%>
-<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix = "f" uri = "http://java.sun.com/jsp/jstl/fmt" %>
+         pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="f" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -21,13 +21,26 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/detailProduct.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/header.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/footer.css">
+    <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: #F2F1F6;
+        }
 
+
+        .font-size {
+            font-size: 14px;
+        }
+
+    </style>
 
 </head>
 
 <body>
 <div id="web-service">
-  <jsp:include page="header.jsp"/>
+    <jsp:include page="header.jsp"/>
     <div class="session-body">
         <div class="containers">
             <div class="slection-product">
@@ -48,34 +61,15 @@
                     <div class="product-detail"> <!--bao quanh chi tiết-->
                         <div class="image-product"> <!--chi tiết ảnh bên trái-->
                             <div class="container-image"> <!--list ảnh scroll-->
+                                <c:forEach var="image" items="${listImage}">
+                                <div class="image-item">
+                                    <img src="${image}" alt="Image" onclick="selectImage(this.src)">
+                                </div>
+                                </c:forEach>
 
-                                <div class="image-item">
-                                    <img src="https://media.hcdn.vn/catalog/product/f/a/facebook-dynamic-205100137-1695896128.png"
-                                         alt="Image 1" onclick="selectImage(this.src)">
-                                </div>
-                                <div class="image-item">
-                                    <img src="https://media.hcdn.vn/catalog/product/p/r/promotions-auto-nuoc-tay-trang-tuoi-mat-l-oreal-3-in-1-danh-cho-da-dau-da-hon-hop-400ml_VLF3ivLnqLaFKFed.png"
-                                         alt="Image 2" onclick="selectImage(this.src)">
-                                </div>
-                                <div class="image-item">
-                                    <img src="https://media.hcdn.vn/catalog/product/n/u/nuoc-tay-trang-tuoi-mat-l-oreal-3-in-1-danh-cho-da-dau-da-hon-hop-400ml-1684996339_img_385x385_622873_fit_center.jpg"
-                                         alt="Image 3" onclick="selectImage(this.src)">
-                                </div>
-                                <div class="image-item">
-                                    <img src="https://media.hcdn.vn/catalog/product/n/u/nuoc-tay-trang-tuoi-mat-l-oreal-3-in-1-danh-cho-da-dau-da-hon-hop-400ml-1-1684996339_img_385x385_622873_fit_center.jpg"
-                                         alt="Image 4" onclick="selectImage(this.src)">
-                                </div>
-                                <div class="image-item">
-                                    <img src="https://media.hcdn.vn/catalog/product/n/u/nuoc-tay-trang-tuoi-mat-l-oreal-3-in-1-danh-cho-da-dau-da-hon-hop-400ml-3-1684996340_img_385x385_622873_fit_center.jpg"
-                                         alt="Image 5" onclick="selectImage(this.src)">
-                                </div>
-                                <div class="image-item">
-                                    <img src="https://media.hcdn.vn/catalog/product/n/u/nuoc-tay-trang-tuoi-mat-l-oreal-3-in-1-danh-cho-da-dau-da-hon-hop-400ml-2-1684996339_img_385x385_622873_fit_center.jpg"
-                                         alt="Image 6" onclick="selectImage(this.src)">
-                                </div>
                             </div>
                             <img id="display-combobox"
-                                 src="https://media.hcdn.vn/catalog/product/f/a/facebook-dynamic-205100137-1695896128.png">
+                                 src="${products.image}">
                         </div>
                         <div class="infor-product">
                             <ul>
@@ -109,12 +103,15 @@
                                 <li class="title">Dung Tich:</li>
                                 <ul class="inline-list">
                                     <%
-                                        ProductDetail volume =(ProductDetail) request.getAttribute("product");
-                                     String [] volumes = volume.getVolume().split(" ");%>
+                                        ProductDetail volume = (ProductDetail) request.getAttribute("product");
+                                        String[] volumes = volume.getVolume().split(" ");%>
 
-                                    <li><a href="#"><%=volumes[0]%></a></li>
-                                    <li><a href="#"><%=volumes[1]%></a></li>
-                                    <li><a href="#"><%=volumes[2]%></a></li>
+                                    <li><a href="#"><%=volumes[0]%>
+                                    </a></li>
+                                    <li><a href="#"><%=volumes[1]%>
+                                    </a></li>
+                                    <li><a href="#"><%=volumes[2]%>
+                                    </a></li>
 
                                     <li><a href="#">Công dụng:</a></li>
 
@@ -123,17 +120,21 @@
                                 <div id="image-used">
                                     <!-- <img src="" alt="Ảnh Công Dụng"> -->
                                 </div>
-                                <li>Số lượng: <span>1</span></li>
+                                <a class="quantity" >Số lượng :
+                                    <input  type="number" value="1" name="quantity" min="1"
+                                           style=" width: 30px;">
+                                </a>
                                 <li>
-                                    <a href="#">
+                                    <a href="#" style="font-size: 16px;">
                                 <span class="color-orange italic-bold">N<i
-                                        class="fa-regular fa-circle-check"></i>WFree</span>
+                                        class="fa-regular fa-circle-check font-size"></i>WFree</span>
                                         Giao Nhanh Miễn Phí 2H tại 222 Chi Nhánh: </a>
                                 </li>
-                                <li>Bạn muốn nhận hàng trước <span class="color-orange">10h</span> ngày mai. Đặt hàng
+                                <li style="font-size: 16px;">Bạn muốn nhận hàng trước <span class="color-orange font-size">10h</span> ngày mai.
+                                    Đặt hàng
                                     trước
-                                    <span class="color-orange">24h</span> và chọn giao hàng <span
-                                            class="color-orange">2h</span>
+                                    <span class="color-orange font-size">24h</span> và chọn giao hàng <span
+                                            class="color-orange font-size">2h</span>
                                     ở
                                     bước
                                     thanh toán.
@@ -144,10 +145,9 @@
                                         <button type="button" class="button-light-green">
                                             <i class="fa-solid fa-location-dot"></i> 224/224 Chi Nhánh Còn sản phẩm
                                         </button>
-                                        <button type="button" class="button-dark-green" id="card-product" >
+                                        <button type="button" class="button-dark-green" id="card-product">
                                             <i class="fa-sharp fa-solid fa-cart-shopping"></i> GIỎ HÀNG
                                         </button>
-
 
 
                                         <button type="button" class="button-orange">
@@ -194,13 +194,13 @@
         </div>
     </div>
 
-   <jsp:include page="footer.jsp"/>
+    <jsp:include page="footer.jsp"/>
 </div>
 
 <script src="js/detailProduct.js"></script>
 <script src="js/main.js"></script>
 <% Product product = (Product) request.getAttribute("products");
-String productJson = new GsonUtil().getGson().toJson(product);%>
+    String productJson = new GsonUtil().getGson().toJson(product);%>
 <script>
 
 
@@ -217,7 +217,6 @@ String productJson = new GsonUtil().getGson().toJson(product);%>
     }
 
 
-
     function increaseCartCount() {
         // Lấy phần tử có class 'cart-count'
         const cartCountElement = document.querySelector('.cart-count');
@@ -229,7 +228,7 @@ String productJson = new GsonUtil().getGson().toJson(product);%>
         var price = info.querySelector('.price')?.textContent.trim() || '';
 
         var product = <%=productJson%>
-        console.log(product);
+            console.log(product);
 
 
         // Kiểm tra xem phần tử có tồn tại hay không

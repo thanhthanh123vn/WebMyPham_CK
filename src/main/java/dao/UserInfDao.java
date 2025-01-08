@@ -187,7 +187,7 @@ private Utils utils;
     }
 
 public boolean insertAddressUser(UserInf userInf){
-        String sql = "update usersarress set address = ?, phone = ? , fullname = ? where phone = ?";
+        String sql = "update usersarress set address = ?, phone = ? , fullName = ? where phone = ?";
         try {
             PreparedStatement stm = conn.prepareStatement(sql);
             stm.setString(1, userInf.getAddress());

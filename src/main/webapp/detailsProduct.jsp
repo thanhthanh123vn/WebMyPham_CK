@@ -152,7 +152,7 @@
 
 
                                         <button type="button" class="button-orange">
-                                            <span class="size-end" onclick="window.location.href='payAddress.html'">Mua ngay NowFree 2H</span>
+                                            <span class="size-end" onclick="window.location.href='index/payAddress.jsp'">Mua ngay NowFree 2H</span>
                                         </button>
                                     </li>
                                 </ul>

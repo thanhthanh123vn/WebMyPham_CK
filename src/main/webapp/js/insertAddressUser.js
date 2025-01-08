@@ -20,8 +20,12 @@ function addAddressUser() {
         }).then(response => {
             if (response.ok) {
                 alert("Địa chỉ người dùng đã được thêm thành công!");
+                window.location.href = "http://localhost:8080/WebMyPham__/AddAddressUser";
             } else {
-                alert("Lỗi khi thêm địa chỉ người dùng.");
+                response.text().then(text => {
+                    console.error("Lỗi:", response.status, text);
+                    alert("Lỗi khi thêm địa chỉ người dùng: " + text);
+                });
             }
         }).catch(error => {
             console.error("Lỗi:", error);

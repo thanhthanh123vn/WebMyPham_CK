@@ -73,12 +73,12 @@
     </div>
     <div class="modal-footer">
         <button class="btn cancel-btn" onclick="resetForm()" >Hủy</button>
-        <button class="btn continue-btn"   onclick="continueToNext()">Tiếp tục</button>
+        <button class="btn continue-btn"   onclick="addAddressUser()">Tiếp tục</button>
     </div>
 
 </div>
 </body>
-<script src="../js/main.js"></script>
+<script src="${pageContext.request.contextPath}/js/loadAddress.js"></script>
 <script src="${pageContext.request.contextPath}/js/insertAddressUser.js"></script>
 
 </html>

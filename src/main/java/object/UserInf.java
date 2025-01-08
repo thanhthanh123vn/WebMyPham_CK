@@ -15,6 +15,12 @@ public class UserInf {
     // Constructor không đối số
     public UserInf() {}
 
+    public UserInf(String userName, String address, String phone) {
+        this.userName = userName;
+        this.address = address;
+        this.phone = phone;
+    }
+
     // Constructor đầy đủ đối số
     public UserInf( int id ,String userName, String email, String password, String address, String imageURL, String phone) {
         this.id = id ;

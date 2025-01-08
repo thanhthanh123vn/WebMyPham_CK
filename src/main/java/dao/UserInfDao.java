@@ -186,7 +186,24 @@ private Utils utils;
         }
     }
 
+public boolean insertAddressUser(UserInf userInf){
+        String sql = "update usersarress set address = ?, phone = ? , fullname = ? where phone = ?";
+        try {
+            PreparedStatement stm = conn.prepareStatement(sql);
+            stm.setString(1, userInf.getAddress());
+            stm.setString(2, userInf.getPhone());
+            stm.setString(3,userInf.getUserName());
+            stm.setString(4, userInf.getPhone());
 
+            int row = stm.executeUpdate();
+            return row>0;
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+            return false;
+}
 
     // Phương thức xóa dữ liệu từ bảng Users và UserArress
     public void deleteUserAndAddress(int userID) {

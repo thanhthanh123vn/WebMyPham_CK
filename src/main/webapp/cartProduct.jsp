@@ -53,7 +53,7 @@
                 <div class="cart-summary cart-vat">
                     <p>Tạm tính: <span>${sessionScope.cart.totalCart}</span></p>
                     <p>(Đã bao gồm VAT)</p>
-                    <button id="hang-1" class="checkout-btn order-product">Tiến hành đặt hàng</button>
+                    <button id="hang-1" class="checkout-btn order-product" onclick="">Tiến hành đặt hàng</button>
                 </div>
 
             </div>

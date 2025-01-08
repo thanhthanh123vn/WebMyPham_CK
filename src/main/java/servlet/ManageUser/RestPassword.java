@@ -34,7 +34,13 @@ public class RestPassword extends HttpServlet {
         // Gửi email bằng lớp Email
         boolean emailSent = Email.sendEmail(toEmail, tieuDe, noiDung);
         InforUser dao = new InforUser();
-        boolean updatePass = dao.UpdatePassWord(maXacNhan, toEmail);
+        boolean updatePass = false;
+        try {
+
+         updatePass = dao.UpdatePassWord(dao.hashPassword(maXacNhan), toEmail);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
 
 

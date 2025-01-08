@@ -288,4 +288,29 @@ public class ProductsDao {
         }
         return products;
     }
+    public Product getProductOnId(int id){
+        String sql = "SELECT * FROM products WHERE id = ?";
+        Product product = null;
+        try {
+            PreparedStatement stm = conn.prepareStatement(sql);
+            stm.setInt(1, id);
+            ResultSet rs = stm.executeQuery();
+            if (rs.next()) {
+
+                product = new Product();
+                product.setId(rs.getInt("Id"));
+                product.setName(rs.getString("Name"));
+                product.setDetail(rs.getString("Detail"));
+                product.setPrice(rs.getDouble("Price"));
+                product.setImage(rs.getString("Image"));
+
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+
+        return product;
+    }
 }

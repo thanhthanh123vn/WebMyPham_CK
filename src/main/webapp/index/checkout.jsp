@@ -1,4 +1,5 @@
-<%--
+<%@ page import="object.Product" %>
+<%@ page import="gson.GsonUtil" %><%--
   Created by IntelliJ IDEA.
   User: nguye
   Date: 1/8/2025
@@ -88,9 +89,9 @@
                     <textarea placeholder="Ghi chú"></textarea>
                     <div class="total">
                         <span class="total-label">Tổng tiền (1):</span>
-                        <span class="total-amount">${sessionScope.cart.totalCart}</span>
+                        <span class="total-amount">${sessionScope.cart.totalCar}</span>
                     </div>
-                    <button class="order-button" onclick="window.location.href='main.html'"> Đặt hàng</button>
+                    <button class="order-button" onclick="CompleteProduct()"> Đặt hàng</button>
                     <p class="terms-note">
                         Nhấn "Đặt hàng" đồng nghĩa việc bạn đồng ý tuân theo
                         <a href="#">Chính sách xử lý dữ liệu cá nhân</a> &
@@ -106,7 +107,7 @@
     <!-- Right Section -->
     <div class="right-section">
         <div class="order-summary">
-            <button class="order-btn" onclick="window.location.href='main.html'"> Đặt hàng</button>
+            <button class="order-btn" onclick="redirectPay()"> Đặt hàng</button>
             <div class="invoice">
                 <span>Thông tin xuất hóa đơn</span>
                 <a href="#">Nhập</a>
@@ -135,7 +136,20 @@
         </div>
     </div>
 </div>
-<script src="../js/delivery.js"></script>
-<script src="../js/checkout.js"></script>
+<% Product product = (Product) request.getAttribute("product");
+    String topayProduct = new GsonUtil().getGson().toJson(product)
+            ;
+    Product cart = (Product) request.getAttribute("cart");
+    String topayCartProduct = new GsonUtil().getGson().toJson(cart);
+%>
+<script>
+    const  topayProduct = <%=topayProduct%>
+    const  topayCartProduct = <%=topayCartProduct%>;
+</script>
+
+<script src="${pageContext.request.contextPath}/js/checkout.js">
+
+
+</script>
 </body>
 </html>

@@ -1,12 +1,12 @@
 function redirectPay(){
     if(topayProduct){
-        fetch("http://localhost:8080/WebMyPham__/CheckOutProduct", {
+        fetch("http://localhost:8080/WebMyPham__/ManagerProduct", {
             method: "POST",
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify(topayProduct)
         }).then(response => {
             if (response.ok) {
-
+                window.location.href = "http://localhost:8080/WebMyPham__/ManagerProduct";
 
             } else {
                 response.text().then(text => {
@@ -23,13 +23,13 @@ function redirectPay(){
     }
 
     if(topayCartProduct){
-        fetch("http://localhost:8080/WebMyPham__/CheckOutProduct", {
+        fetch("http://localhost:8080/WebMyPham__/ManagerProduct", {
             method: "POST",
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify(topayCartProduct)
         }).then(response => {
             if (response.ok) {
-
+                window.location.href = "http://localhost:8080/WebMyPham__/ManagerProduct";
 
             } else {
                 response.text().then(text => {

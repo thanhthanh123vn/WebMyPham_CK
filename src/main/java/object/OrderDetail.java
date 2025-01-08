@@ -3,6 +3,7 @@ package object;
 import java.util.List;
 
 public class OrderDetail {
+    private int orderId;
     private String recipientName;
     private String phoneNumber;
     private String address;
@@ -11,13 +12,17 @@ public class OrderDetail {
     private double totalPrice;
 
     // Constructor
-    public OrderDetail(String recipientName, String phoneNumber, String address, List<object.Product> productList, int totalQuantity, double totalPrice) {
+    public OrderDetail(int orderId , String recipientName, String phoneNumber, String address, List<object.Product> productList, int totalQuantity, double totalPrice) {
         this.recipientName = recipientName;
         this.phoneNumber = phoneNumber;
         this.address = address;
         this.productList = productList;
         this.totalQuantity = totalQuantity;
         this.totalPrice = totalPrice;
+        this.orderId = orderId;
+    }
+
+    public OrderDetail() {
     }
 
     // Getters and Setters

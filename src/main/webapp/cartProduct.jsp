@@ -60,10 +60,10 @@
 
             <div class="cart-summary">
                 <h3>Hóa đơn của bạn</h3>
-                <p>Tạm tính: <span>${sessionScope.cart.totalCart}</span></p>
+                <p>Tạm tính: <span >${sessionScope.cart.totalCart}</span></p>
                 <p>Giảm giá: <span>-0 ₫</span></p>
-                <p><strong>Tổng cộng: <span>${sessionScope.cart.totalCart}</span></strong></p>
-                <button id="hang-2" class="checkout-btn order-product">Tiến hành đặt hàng</button>
+                <p><strong>Tổng cộng: <span class="totalPrice">${sessionScope.cart.totalCart}</span></strong></p>
+                <button id="hang-2" class="checkout-btn order-product" onclick="checkProductInvaild()">Tiến hành đặt hàng</button>
             </div>
         </div>
     </div>

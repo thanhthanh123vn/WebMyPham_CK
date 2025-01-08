@@ -38,14 +38,12 @@ public class OrderDao {
             PreparedStatement ps = conn.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                Order order = new Order(
-                        rs.getInt("userid"),
-                        rs.getString("fullName"),
-                        rs.getString("address"),
-                        rs.getString("phone"),
-                        rs.getDate("orderDate")
-
-                );
+                Order order = new Order();
+                    order.setUserId( rs.getInt("userid"));
+                    order.setUserName(rs.getString("fullName"));
+                    order.setAddress(rs.getString("address"));
+                    order.setPhone( rs.getString("phone"));
+                    order.setCreate_date(rs.getDate("orderDate"));
                 userOrder.add(order);
 
             }
@@ -84,7 +82,13 @@ public class OrderDao {
                 if (!orderDetailsMap.containsKey(fullName)) {
                     List<Product> productList = new ArrayList<>();
                     productList.add(product);
-                    OrderDetail orderDetail = new OrderDetail(fullName, phone, address, productList, quantity, price);
+                    OrderDetail orderDetail = new OrderDetail();
+                    orderDetail.setRecipientName(fullName);
+                    orderDetail.setPhoneNumber(phone);
+                    orderDetail.setAddress(address);
+                    orderDetail.setProductList(productList);
+                    orderDetail.setTotalQuantity(quantity);
+                    orderDetail.setTotalPrice(price);
                     orderDetailsMap.put(fullName, orderDetail);
                 } else {
                     OrderDetail orderDetail = orderDetailsMap.get(fullName);
@@ -99,5 +103,44 @@ public class OrderDao {
         }
         return new ArrayList<>(orderDetailsMap.values());
     }
+    public boolean insertOrder(Order order) {
+        String sql = "INSERT INTO orders VALUES (?,?)";
+        try{
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setInt(1, order.getUserId());
+            ps.setDate(2,new java.sql.Date(order.getCreate_date().getTime()));
+            int rows = ps.executeUpdate();
+
+
+            return rows > 0;
+
+
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return false;
+    }
+    public boolean insertOrderDetail(int orderId, int productId,int userID,int quantity,double price ) {
+        String sql = "INSERT INTO orderdetails VALUES (?,?,?,?,?)";
+        try{
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setInt(1, orderId);
+            ps.setInt(2, productId);
+            ps.setInt(3, userID);
+            ps.setInt(4, quantity);
+            ps.setDouble(5, price);
+            int rows = ps.executeUpdate();
+            return rows > 0;
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
+
+    }
+
 
 }

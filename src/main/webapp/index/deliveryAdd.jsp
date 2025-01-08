@@ -1,4 +1,6 @@
-<%@ page import="object.UserInf" %><%--
+<%@ page import="object.UserInf" %>
+<%@ page import="gson.GsonUtil" %>
+<%@ page import="object.Product" %><%--
   Created by IntelliJ IDEA.
   User: nguye
   Date: 1/8/2025
@@ -51,17 +53,20 @@
   <div class="modal-footer">
     <a href="#" class="add-address-link">Thêm địa chỉ mới <i class="fas fa-plus-circle"></i></a>
     <button class="btn cancel-btn" onclick="window.location.href='payAddress.jsp'">Hủy</button>
-    <button class="btn continue-btn" id="back" onclick="window.location.href='checkout.jsp'">Tiếp tục</button>
+    <button class="btn continue-btn" id="back" onclick="redirectPay()">Tiếp tục</button>
   </div>
 </div>
-<script>
-  var back = document.getElementById('back');
-  back.onclick = function () {
-    window.location.href = 'checkout.html';
-  }
-</script>
 
-<script src="${pageContext.request.contextPath}/js/delivery.js"></script>
+<% Product product = (Product) request.getAttribute("product");
+String topayProduct = new GsonUtil().getGson().toJson(product)
+        ;
+  Product cart = (Product) request.getAttribute("cart");
+  String topayCartProduct = new GsonUtil().getGson().toJson(cart);
+%>
+<script src="${pageContext.request.contextPath}/js/delivery.js">
+  const  topayProduct = JSON.parse(<%=topayProduct%>);
+  const  topayCartProduct = JSON.parse(<%=topayCartProduct%>);
+</script>
 
 </body>
 </html>

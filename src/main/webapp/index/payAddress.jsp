@@ -1,4 +1,6 @@
-<%--
+<%@ page import="object.Product" %>
+<%@ page import="gson.GsonUtil" %>
+<%@ page import="object.cart.Cart" %><%--
   Created by IntelliJ IDEA.
   User: nguye
   Date: 1/8/2025
@@ -12,8 +14,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Đơn hàng của tôi</title>
-    <link rel="stylesheet" href="../css/payAddress.css">
-    <link rel="icon" href="../image/logo.png" type="image/x-icon">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/payAddress.css">
+    <link rel="icon" href="${pageContext.request.contextPath}/images/logo.png" type="image/x-icon">
 </head>
 <body>
 <div class="address-modal">
@@ -73,13 +75,35 @@
     </div>
     <div class="modal-footer">
         <button class="btn cancel-btn" onclick="resetForm()" >Hủy</button>
-        <button class="btn continue-btn"   onclick="addAddressUser()">Tiếp tục</button>
+        <button class="btn continue-btn" id="continue-button" onclick="continueButton()">Tiếp tục</button>
+
     </div>
 
 </div>
 </body>
 <script src="${pageContext.request.contextPath}/js/loadAddress.js"></script>
-<script src="${pageContext.request.contextPath}/js/insertAddressUser.js"></script>
+<% Product product =(Product) request.getAttribute("PayProduct");
+String toProductJson = new GsonUtil().getGson().toJson(product);
+
+Cart cart = (Cart) session.getAttribute("cart");
+    String toCartJson = new GsonUtil().getGson().toJson(cart);
+
+%>
+<script>
+    const product =  <%=toProductJson%>;
+    const cart =  <%=toCartJson%>;
+    function continueButton() {
+
+        addAddressUser(); // Gọi hàm thêm địa chỉ
+        requestProduct(); // Gọi hàm xử lý sản phẩm
+    }
+
+
+
+</script>
+<script src="${pageContext.request.contextPath}/js/insertAddressUser.js">
+
+</script>
 
 </html>
 

@@ -39,7 +39,7 @@ public class AddAddressUser extends HttpServlet {
         }
     }
 
-    @Override
+//    @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession(true);
         session.setAttribute("userAddress", userAddress);

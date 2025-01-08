@@ -25,4 +25,14 @@ async function updateProductQuantity(productId, quantity) {
         alert("Lỗi khi cập nhật số lượng sản phẩm trong giỏ hàng.");
     }
 }
+function  checkProductInvaild(){
+    const totalPrice = document.querySelector(".totalPrice").value;
+    if(totalPrice){
+        window.location.href = `index/payAddress.jsp`;
 
+    }else {
+        alert("Bạn chưa mua đơn hàng nào");
+    }
+
+
+}

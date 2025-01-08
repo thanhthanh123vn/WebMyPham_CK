@@ -151,8 +151,8 @@
                                         </button>
 
 
-                                        <button type="button" class="button-orange">
-                                            <span class="size-end" onclick="window.location.href='index/payAddress.jsp'">Mua ngay NowFree 2H</span>
+                                        <button type="button" class="button-orange" onclick="payProductDetail(${products.id})">
+                                            <span class="size-end" >Mua ngay NowFree 2H</span>
                                         </button>
                                     </li>
                                 </ul>
@@ -222,6 +222,10 @@
         console.log(searchInput)
         window.location.href = `danh-muc?name=` + searchInput;
 
+
+    }
+    function payProductDetail(productId) {
+        window.location.href = `${pageContext.request.contextPath}/payProduct?productId=`+productId;
 
     }
 

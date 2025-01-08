@@ -4,6 +4,7 @@ import java.util.Date;
 
 public class Order {
     private int id;
+    private int userId;
     private String userName;
 
     private String address;
@@ -11,13 +12,24 @@ public class Order {
     private String phone;
     private Date create_date;
 
-    public Order(int id, String userName, String address , String phone, Date create_date) {
+    public Order() {
+    }
+
+    public Order(int id, int userId, String userName, String address , String phone, Date create_date) {
         this.id = id;
         this.userName = userName;
         this.address = address;
-
+        this.userId = userId;
         this.phone = phone;
         this.create_date = create_date;
+    }
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 
     public Date getCreate_date() {
@@ -61,4 +73,5 @@ public class Order {
     public void setId(int id) {
         this.id = id;
     }
+
 }

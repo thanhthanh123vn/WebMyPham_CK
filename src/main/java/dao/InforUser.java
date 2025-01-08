@@ -108,6 +108,23 @@ public List<User> getList(){
 		}
 			return false;
 	}
+	public boolean UpdatePassWord(String  password  ,String email) {
+		String sql = "UPDATE users SET password = ? WHERE email = ?";
+		try {
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setString(1, password);
+			ps.setString(2, email);
+
+
+			int row = ps.executeUpdate();
+			return row > 0;
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
+
 	public String hashPassword(String password) throws Exception {
 		MessageDigest md = MessageDigest.getInstance("SHA-256");
 		byte[] hash = md.digest(password.getBytes("UTF-8"));

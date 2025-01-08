@@ -125,7 +125,7 @@
 
 
 			<button  type="submit" class="form-submit">Đăng Nhập</button>
-			<a id="quenmk">Quên mật khẩu</a>
+			<a id="quenmk" href="index/forgot-pass.jsp">Quên mật khẩu</a>
 			<p>Hoặc đăng nhập bằng</p>
 			<div class="login-alt">
 				<img

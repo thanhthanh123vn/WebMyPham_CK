@@ -88,9 +88,9 @@
 
           <label>Ngày sinh (Không bắt buộc)</label>
           <div class="birthdate-selection">
-          <select id="date"></select>
-          <select id="month"></select>
-          <select id="year"></select>
+          <select id="date" name="date"></select>
+          <select id="month" name="month"></select>
+          <select id="year" name="year"></select>
           </div>
           <div class=".birthdate-selection-footer">
 

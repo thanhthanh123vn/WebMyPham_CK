@@ -26,11 +26,11 @@ public class UpdateInforUser extends HttpServlet {
         String month = request.getParameter("month");
         String year = request.getParameter("year");
         String birthDate = year + "-" + month + "-" + date;
-        String dateString = "2025-01-08";
+
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         Date date1 = null;
         try {
-            date1 = sdf.parse(dateString);
+            date1 = sdf.parse(birthDate);
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -44,9 +44,18 @@ public class UpdateInforUser extends HttpServlet {
             user.setMalle(gender);
             user.setDate(date1);
 
-            userDAO.updateUser(user);
-             request.getSession().setAttribute("user", user);
+            boolean updateUser = userDAO.updateUser(user);
+            boolean updateUserAddress = userDAO.updateUserAddress(user);
+            if(updateUser && updateUserAddress) {
+            System.out.println("Update User Thành công");
+            request.getSession().setAttribute("user", user);
             response.sendRedirect("index/inforUser.jsp");
+            }else {
+                System.out.println("Update User khong Thành công");
+                request.setAttribute("errorMessage" ,"Không thể cập nhập thông tin người dùng");
+                response.sendRedirect("index/inforUser.jsp");
+            }
+
         }
     }
 }

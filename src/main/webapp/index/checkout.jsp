@@ -89,7 +89,9 @@
                     <textarea placeholder="Ghi chú"></textarea>
                     <div class="total">
                         <span class="total-label">Tổng tiền (1):</span>
-                        <span class="total-amount">${sessionScope.cart.totalCar}</span>
+                        if($ notempty ${sessionScope.cart.totalCar}){
+                        <span class="total-amount">${sessionScope.cart.totalCar}</span>}
+
                     </div>
                     <button class="order-button" onclick="CompleteProduct()"> Đặt hàng</button>
                     <p class="terms-note">
@@ -115,7 +117,24 @@
             <div class="order-details">
                 <div class="row">
                     <span class="label">Tạm tính (1)</span>
-                    <span class="value">${sessionScope.cart.totalCart}</span>
+
+                    <c:choose>
+                        <c:when test="${not empty sessionScope.cart.totalCar}">
+                            <span class="total-amount">${sessionScope.cart.totalCar}</span>
+                        </c:when>
+                        <c:otherwise>
+
+                        </c:otherwise>
+                    </c:choose>
+                    <c:choose>
+                        <c:when test="${not empty product.price}">
+                            <span class="total-amount">${product.price}</span>
+                        </c:when>
+                        <c:otherwise>
+
+                        </c:otherwise>
+                    </c:choose>
+
                 </div>
                 <div class="row">
                     <span class="label">Giảm giá</span>

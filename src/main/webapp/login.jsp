@@ -135,7 +135,7 @@
 					alt="Google">
 			</div>
 			<p class="sign-up">
-				Bạn chưa có tài khoản? <a href="signUp.html">Đăng ký</a>
+				Bạn chưa có tài khoản? <a href="signUp.jsp">Đăng ký</a>
 			</p>
 		</form>
 	</div>

@@ -6,6 +6,8 @@ function redirectPay(){
             body: JSON.stringify(topayProduct)
         }).then(response => {
             if (response.ok) {
+                window.location.href = "http://localhost:8080/WebMyPham__/CheckOutProduct";
+
 
 
             } else {
@@ -29,7 +31,7 @@ function redirectPay(){
             body: JSON.stringify(topayCartProduct)
         }).then(response => {
             if (response.ok) {
-
+                window.location.href = "http://localhost:8080/WebMyPham__/CheckOutProduct";
 
             } else {
                 response.text().then(text => {

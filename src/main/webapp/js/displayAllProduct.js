@@ -44,10 +44,15 @@ function displayBrands(brands) {
         const brandItem = document.createElement("div");
         brandItem.classList.add("brand-item");
 
+
         brandItem.innerHTML = `
             <img src="${brand.image}" alt="${brand.name}" class="brand-logo">
             <p class="brand-name">${brand.name}</p>
         `;
+        brandItem.onclick = function (){
+            window.location.href = `CheckedBrand?filterBrand=${brand.name}`;
+
+        }
 
         brandListDiv.appendChild(brandItem);
     });
@@ -109,6 +114,9 @@ function displayCategories(categories) {
             <img src="${ct.image}" alt="${ct.categoryName}">
             <p>${ct.categoryName}</p>
         `;
+        categoryContainer.onclick = function (){
+            window.location.href = `searchProdcutCategory?name=${ct.categoryID}`;
+        }
 
         categoryListDiv.appendChild(categoryContainer);
     });

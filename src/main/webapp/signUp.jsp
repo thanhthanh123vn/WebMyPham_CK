@@ -415,7 +415,7 @@ a.txt_color_1:hover {
 		</div>
 
 	</div>
-<script src="../js/validatorSignUp.js"></script>
+<script src="${pageContext.request.contextPath}/js/validatorSignUp.js"></script>
 	<script>
 		document
 				.getElementById("verifyUserName")
@@ -430,7 +430,7 @@ a.txt_color_1:hover {
 
 							// Gửi yêu cầu AJAX đến servlet
 							var xhr = new XMLHttpRequest();
-							xhr.open("POST", "../SendEmail", true);
+							xhr.open("POST", "${pageContext.request.contextPath}/SendEmail", true);
 							xhr.setRequestHeader("Content-Type",
 									"application/x-www-form-urlencoded");
 							xhr.onreadystatechange = function() {

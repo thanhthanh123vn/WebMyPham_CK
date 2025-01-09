@@ -121,7 +121,8 @@ public class ProductsDao {
             PreparedStatement stm = conn.prepareStatement(sql);
             stm.setInt(1, id);
             int row = stm.executeUpdate();
-            if(row>0) return true;
+            if(row>0)
+                return true;
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -152,6 +153,30 @@ public class ProductsDao {
         }
         //utils.closeConnection(conn);
         return products; // Trả về danh sách (có thể rỗng nếu không có dữ liệu hoặc có lỗi)
+    }
+    public List<Product> searchProductCategory(int category_id) {
+        String sql = "SELECT * FROM products WHERE CategoryID = ?";
+        List<Product> products = new ArrayList<>();
+        try{
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setInt(1, category_id);
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+                Product product = new Product();
+                product.setId(rs.getInt("Id"));
+                product.setName(rs.getString("Name"));
+                product.setDetail(rs.getString("Detail"));
+                product.setPrice(rs.getDouble("Price"));
+                product.setImage(rs.getString("Image"));
+                product.setCategory_id(rs.getInt("CategoryId"));
+                products.add(product);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return products;
+
     }
     public static List<Product> searchBrand(String name) {
         String sql = "SELECT * FROM products WHERE name LIKE ?";

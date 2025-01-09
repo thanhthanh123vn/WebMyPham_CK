@@ -27,12 +27,13 @@ async function updateProductQuantity(productId, quantity) {
 }
 function  checkProductInvaild(){
     const totalPrice = document.querySelector(".totalPrice").value;
-    if(totalPrice){
+    console.log(totalPrice);
+    // if(totalPrice){
         window.location.href = `index/payAddress.jsp`;
 
-    }else {
-        alert("Bạn chưa mua đơn hàng nào");
-    }
+    // }else {
+    //     alert("Bạn chưa mua đơn hàng nào");
+    // }
 
 
 }

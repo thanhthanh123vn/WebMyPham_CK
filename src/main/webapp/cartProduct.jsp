@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="object.cart.Cart" %>
+<%@ page import="object.User" %>
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix = "f" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
@@ -53,7 +54,7 @@
                 <div class="cart-summary cart-vat">
                     <p>Tạm tính: <span>${sessionScope.cart.totalCart}</span></p>
                     <p>(Đã bao gồm VAT)</p>
-                    <button id="hang-1" class="checkout-btn order-product" onclick="">Tiến hành đặt hàng</button>
+                    <button id="hang-1" class="checkout-btn order-product" >Tiến hành đặt hàng</button>
                 </div>
 
             </div>
@@ -63,19 +64,35 @@
                 <p>Tạm tính: <span >${sessionScope.cart.totalCart}</span></p>
                 <p>Giảm giá: <span>-0 ₫</span></p>
                 <p><strong>Tổng cộng: <span class="totalPrice">${sessionScope.cart.totalCart}</span></strong></p>
-                <button id="hang-2" class="checkout-btn order-product" onclick="checkProductInvaild()">Tiến hành đặt hàng</button>
+                <button id="hang-2" class="checkout-btn order-product" >Tiến hành đặt hàng</button>
             </div>
         </div>
     </div>
 
     <jsp:include page="footer.jsp"/>
 </div>
+<%
+
+    // Lấy username từ session
+    User user = (User) session.getAttribute("user");
+
+    String username = user.getFullName();
+
+
+    // Nếu cưa đăng nhập, gán giá trị rỗng
+    if (username == null) {
+        username = "";
+    }
+%>
+<script>
+    const  username = <%=username%>;
+</script>
+
 <script src="${pageContext.request.contextPath}/js/main.js"></script>
 <script src="${pageContext.request.contextPath}/js/cartProduct.js"></script>
 <script src="${pageContext.request.contextPath}/js/updateUserMain.js"></script>
 
 <script>
-
     loginUser();
     // Lấy danh sách tất cả các phần tử có class "logout-account"
     var logoutElements = document.getElementsByClassName("logout-account");
@@ -101,16 +118,16 @@
 
 
 
-</script>
+
 <script>
     var hang1 = document.getElementById('hang-1');
     hang1.onclick = function () {
-        window.location.href = 'payAddress.html';
+       checkProductInvaild();
     }
 
     var hang2 = document.getElementById('hang-2');
     hang2.onclick = function() {
-        window.location.href = 'payAddress.html';
+        checkProductInvaild();
     }
 </script>
 

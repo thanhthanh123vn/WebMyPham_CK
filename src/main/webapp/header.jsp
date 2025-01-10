@@ -34,7 +34,7 @@
                        onkeydown="searchProduct()">
 
 
-                <div id="resultSearchProducts" class="resultSearchProducts"  style="display: none" >
+                <div id="resultSearchProducts" class="resultSearchProducts"   style="display: none" >
 
 
                 </div>
@@ -147,7 +147,7 @@
                     <img src="https://hasaki.vn/images/graphics/icon_header_1.svg">
 
                     <a href="cartProduct.jsp" class="cart-icon"> Giỏ hàng <span
-                            class="cart-count">2</span></a>
+                            class="cart-count"></span></a>
                 </div>
             </div>
         </div>

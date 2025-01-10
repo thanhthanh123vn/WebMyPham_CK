@@ -18,6 +18,7 @@ public class TableOrderAdmin extends HttpServlet {
         OrderDao dao = new OrderDao();
 
         List<Order> userOrder = dao.getUserOrder();
+        System.out.println(userOrder.toString());
         if(!userOrder.isEmpty()){
             req.setAttribute("userOrder", userOrder);
             System.out.println(userOrder.toString());

@@ -276,6 +276,14 @@
             })
             .catch(error => console.error("Lỗi kết nối:", error));
     }
+    function toggleChat() {
+        var chatBox = document.getElementById("chatBox");
+        if (chatBox.style.display === "none" || chatBox.style.display === "") {
+            chatBox.style.display = "flex";
+        } else {
+            chatBox.style.display = "none";
+        }
+    }
 </script>
 
 

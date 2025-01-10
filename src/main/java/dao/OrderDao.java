@@ -39,12 +39,14 @@ public class OrderDao {
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 Order order = new Order();
-                    order.setUserId( rs.getInt("userid"));
+                    order.setId( rs.getInt("userid"));
                     order.setUserName(rs.getString("fullName"));
                     order.setAddress(rs.getString("address"));
                     order.setPhone( rs.getString("phone"));
                     order.setCreate_date(rs.getDate("orderDate"));
-                userOrder.add(order);
+
+
+                    userOrder.add(order);
 
             }
         } catch (Exception e) {

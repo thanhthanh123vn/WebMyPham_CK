@@ -18,14 +18,14 @@
     <div class="container">
         <footer>
             <div id="chat-icon">
-                <div class="chat-box-icon" id="chat-box-icon">
+                <div class="chat-box-icon" id="chat-box-icon" >
                     <img src="https://wsc.hasaki.vn/assets/customer_icons/appIcon.svg"
                          style="width: 60px;"
-                         alt="Chat Icon" >
+                         alt="Chat Icon" onclick="toggleChat()">
                 </div>
                 <div class="chat-box" id="chatBox" style="display: none;">
                     <div class="chat-content">
-                        <button class="close-chat" >X</button>
+                        <button class="close-chat" onclick="toggleChat()" >X</button>
                         <p>Xin chào! Bạn cần hỗ trợ gì?</p>
                         <!-- Add more chat messages here if needed -->
                     </div>

@@ -36,6 +36,7 @@ async function displayUsers() {
                         </td>`
             };
         });
+       console.log( modifiedUsers);
 
 
         if ($.fn.DataTable.isDataTable('#productTables')) {

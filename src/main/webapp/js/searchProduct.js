@@ -47,11 +47,10 @@ function displaySearchResults(products, resultDiv) {
     list.style.listStyle = "none";
     list.style.padding = "0";
 
-
     products.forEach(product => {
         const listItem = document.createElement("li");
-        list.style.cursor = "pointer";
 
+        listItem.style.cursor = "pointer";
         listItem.style.display = "flex";
         listItem.style.alignItems = "center";
         listItem.style.padding = "10px";
@@ -59,37 +58,36 @@ function displaySearchResults(products, resultDiv) {
 
         listItem.innerHTML = `
             <img src="${product.image}" alt="${product.name}" 
-                style="width: 50px; height: 50px; margin-right: 10px; border-radius: 5px;">
+                 style="width: 50px; height: 50px; margin-right: 10px; border-radius: 5px;">
             <div style="flex-grow: 1;">
-                <p style="margin: 0; color:black; font-weight: bold;">${product.detail}</p>
+                <p style="margin: 0; color: black; font-weight: bold;">${product.detail}</p>
                 <p style="margin: 0; color: black;">${product.price.toLocaleString()} VND</p>
             </div>
         `;
+
+        // Gán sự kiện onclick cho từng listItem
         listItem.onclick = function () {
             detailsProducts(product.id);
         };
+
         list.appendChild(listItem);
-        list.onclick = function () {
-            detailsProducts(product.id);
-        };
     });
 
     resultDiv.appendChild(list);
-
-
 }
 
 
-document.addEventListener("click", function () {
+
+
+document.addEventListener("DOMContentLoaded", function () {
     const searchInput = document.getElementById("searchInput");
     const resultDiv = document.getElementById("resultSearchProducts");
-    const hoverSearch = document.getElementById("searchNotification");
+
     searchInput.addEventListener("blur", function () {
-
-        resultDiv.innerHTML = "";
-        resultDiv.style.display = "none";
-
-
+        setTimeout(() => {
+            resultDiv.innerHTML = "";
+            resultDiv.style.display = "none";
+        }, 200); // Đợi một chút để xử lý sự kiện click vào sản phẩm
     });
 
     searchInput.addEventListener("focus", function () {
@@ -98,6 +96,7 @@ document.addEventListener("click", function () {
         }
     });
 });
+
 
 function detailsProducts(productId) {
     console.log("productDetail", productId);

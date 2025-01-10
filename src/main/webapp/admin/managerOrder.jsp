@@ -376,9 +376,9 @@
             <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">Màn hình đăng nhập</h6>
-                    <a class="collapse-item" href="../index/login.html">Đăng nhập</a>
-                    <a class="collapse-item" href="../index/signUp.html">Đăng ký</a>
-                    <a class="collapse-item" href="forgot-password.html">Quên mật khẩu</a>
+                    <a class="collapse-item" href="${pageContext.request.contextPath}/login.jsp">Đăng nhập</a>
+                    <a class="collapse-item" href="${pageContext.request.contextPath}/signUp.jsp">Đăng ký</a>
+                    <a class="collapse-item" href="${pageContext.request.contextPath}/index/forgot-pass.jsp">Quên mật khẩu</a>
                     <div class="collapse-divider"></div>
                     <h6 class="collapse-header">Trang khác:</h6>
                     <a class="collapse-item" href="404.html">404 Page</a>
@@ -415,12 +415,7 @@
 
         <!-- Nav Item - Tables -->
 
-        <li class="nav-item">
-            <a class="nav-link" href="tables.html">
-                <i class="fas fa-fw fa-table"></i>
-                <span>Bảng</span></a>
 
-        </li>
 
         <!-- Divider -->
         <hr class="sidebar-divider d-none d-md-block">

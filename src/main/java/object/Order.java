@@ -74,4 +74,15 @@ public class Order {
         this.id = id;
     }
 
+    @Override
+    public String toString() {
+        return "Order{" +
+                "id=" + id +
+                ", userId=" + userId +
+                ", userName='" + userName + '\'' +
+                ", address='" + address + '\'' +
+                ", phone='" + phone + '\'' +
+                ", create_date=" + create_date +
+                '}';
+    }
 }

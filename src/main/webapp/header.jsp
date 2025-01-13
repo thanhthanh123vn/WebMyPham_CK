@@ -140,7 +140,7 @@
                 </div>
                 <div class="header-icon-sub">
                     <img src="https://hasaki.vn/images/graphics/icon_header_3.svg">
-                    <a href="#" id="htkh"> Hỗ trợ </br>khách hàng
+                    <a href="${pageContext.request.contextPath}/index/htch.jsp" id="htkh"> Hỗ trợ </br>khách hàng
                     </a>
                 </div>
                 <div class="header-icon-sub">

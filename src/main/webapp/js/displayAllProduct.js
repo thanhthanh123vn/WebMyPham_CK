@@ -2,14 +2,16 @@ const brandListDiv = document.querySelector(".brand-list");
 const categoryListDiv = document.querySelector(".category-product");
 let currentBrandSlideIndex = 0;
 let currentCategorySlideIndex = 0;
+let currentHotPSlideIndex = 0;
 
 // Gửi yêu cầu để lấy danh sách thương hiệu và danh mục từ Servlet
 async function fetchBrandAndCategoryList() {
     try {
         // Gửi yêu cầu song song để lấy danh sách thương hiệu và danh mục
-        const [brandResponse, categoryResponse] = await Promise.all([
+        const [brandResponse, categoryResponse,hotProduct] = await Promise.all([
             fetch("brandList"),
-            fetch(`categoryList?startIndex=${encodeURIComponent(currentCategorySlideIndex)}`)
+            fetch(`categoryList?startIndex=${encodeURIComponent(currentCategorySlideIndex)}`),
+            fetch("hotProduct")
         ]);
 
         if (!brandResponse.ok) {
@@ -18,12 +20,18 @@ async function fetchBrandAndCategoryList() {
         if (!categoryResponse.ok) {
             throw new Error("Không thể tải danh sách danh mục.");
         }
+        if (!hotProduct.ok) {
+            throw new Error("Không thể tải danh sách hotProduct.");
+        }
 
         const brands = await brandResponse.json();
         const categories = await categoryResponse.json();
+        const  hotsP = await  hotProduct.json();
 
         displayBrands(brands);
         displayCategories(categories);
+        displayHotProducts(hotsP);
+
     } catch (error) {
         console.error("Lỗi xảy ra:", error);
         brandListDiv.innerHTML = "<p>Đã xảy ra lỗi khi tải danh sách thương hiệu.</p>";
@@ -149,6 +157,17 @@ function showCategorySlide(index) {
         item.style.display = (i >= currentCategorySlideIndex * itemsPerSlide && i < (currentCategorySlideIndex + 1) * itemsPerSlide) ? "block" : "none";
     });
 }
+function setupHotProductSlides() {
+    const hotProductItems = document.querySelectorAll(".product-card"); // Chọn tất cả sản phẩm nổi bật
+    const itemsPerSlide = 6; // Số sản phẩm hiển thị mỗi slide
+
+    // Hiển thị sản phẩm thuộc slide đầu tiên
+    hotProductItems.forEach((item, index) => {
+        item.style.display = index < itemsPerSlide ? "block" : "none";
+    });
+
+    currentHotPSlideIndex = 0; // Đặt chỉ số slide hiện tại là 0
+}
 
 function prevCategorySlide() {
     showCategorySlide(currentCategorySlideIndex - 1);
@@ -157,6 +176,64 @@ function prevCategorySlide() {
 function nextCategorySlide() {
     showCategorySlide(currentCategorySlideIndex + 1);
 }
+function displayHotProducts(hotProducts) {
+    const productCarouselDiv = document.querySelector(".product-cards");
 
+
+    productCarouselDiv.innerHTML = '';
+
+    if (hotProducts.length === 0) {
+        productCarouselDiv.innerHTML = "<p>Không có sản phẩm nổi bật.</p>";
+        return;
+    }
+
+    hotProducts.forEach((product) => {
+        const productCard = document.createElement("div");
+        productCard.classList.add("product-card");
+
+        // Nội dung HTML cho mỗi sản phẩm
+        productCard.innerHTML = `
+            <img src="${product.image}" alt="${product.name}" class="product-image">
+            <p class="sales-count">${product.quantity} đã bán</p>
+            <p class="product-name">${product.name}</p>
+        `;
+
+        // Gắn sự kiện click cho từng sản phẩm (chuyển hướng đến trang chi tiết sản phẩm)
+        productCard.onclick = function () {
+            window.location.href = `ProductDetails?productId=${product.id}`;
+        };
+
+
+        productCarouselDiv.appendChild(productCard);
+    });
+    setupHotProductSlides();
+}
+// Hiển thị các slide sản phẩm nổi bật
+function showHotPSlide(index) {
+    const hotProductItems = document.querySelectorAll(".product-card");
+    const itemsPerSlide = 6;
+    const totalSlides = Math.ceil(hotProductItems.length / itemsPerSlide);
+
+    // Điều chỉnh chỉ số slide
+    if (index < 0) currentHotPSlideIndex = totalSlides - 1;
+    else if (index >= totalSlides) currentHotPSlideIndex = 0;
+    else currentHotPSlideIndex = index;
+
+    // Hiển thị sản phẩm thuộc slide hiện tại, ẩn các sản phẩm còn lại
+    hotProductItems.forEach((item, i) => {
+        item.style.display = (i >= currentHotPSlideIndex * itemsPerSlide && i < (currentHotPSlideIndex + 1) * itemsPerSlide) ? "block" : "none";
+    });
+}
+
+// Chuyển đến slide trước
+function prevHotPSlide() {
+
+    showHotPSlide(currentHotPSlideIndex - 1);
+}
+
+// Chuyển đến slide kế tiếp
+function nextHotPSlide() {
+    showHotPSlide(currentHotPSlideIndex + 1);
+}
 // Tải danh sách thương hiệu và danh mục khi trang được tải
 document.addEventListener("DOMContentLoaded", fetchBrandAndCategoryList);

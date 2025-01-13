@@ -338,4 +338,55 @@ public class ProductsDao {
 
         return product;
     }
+    public List<Product> getTop10Products() {
+        List<Product> products = new ArrayList<>();
+        String query = "SELECT p.id, p.name,p.image, SUM(od.quantity) AS total_quantity\n" +
+                "                FROM Products p\n" +
+                "                JOIN OrderDetails od ON p.ID = od.ProductID\n" +
+                "                GROUP BY p.ID, p.name\n" +
+                "                ORDER BY total_quantity DESC\n" +
+                "                LIMIT 5;";
+        try {
+             PreparedStatement ps = conn.prepareStatement(query);
+             ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                // Tạo đối tượng ProductsDao và ánh xạ dữ liệu
+                Product product = new Product();
+                product.setId(rs.getInt("id"));
+                product.setName(rs.getString("name"));
+                product.setImage(rs.getString("image"));
+                product.setQuantity(rs.getInt("total_quantity"));
+                products.add(product); // Thêm vào danh sách
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return products;
+    }
+public List<Product> getHotProduct(){
+        List<Product> products = new ArrayList<>();
+        String sql = "SELECT p.id, p.`name`, c.CategoryName,p.image,COUNT(*) as SL\n" +
+                "from products p join categories c\n" +
+                "on p.CategoryID = c.CategoryID\n" +
+                "join orderdetails od on p.id = od.ProductID\n" +
+                "GROUP BY p.CategoryID";
+        try {
+            PreparedStatement stm = conn.prepareStatement(sql);
+            ResultSet rs = stm.executeQuery();
+            while (rs.next()) {
+                Product product = new Product();
+                product.setId(rs.getInt("id"));
+                product.setName(rs.getString("CategoryName"));
+                product.setImage(rs.getString("image"));
+                product.setQuantity(rs.getInt("SL"));
+                products.add(product);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+
+        return products;
+}
 }

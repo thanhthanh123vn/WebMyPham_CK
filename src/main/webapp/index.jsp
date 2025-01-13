@@ -1,5 +1,7 @@
 <%@ page import="object.User" %>
 <%@page import="java.io.Console" %>
+<%@ page import="java.util.List" %>
+<%@ page import="object.Product" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -150,6 +152,41 @@
     border-radius: 2px;padding: 10px 12px; cursor: pointer; background-color:gray ; border: 2px; border-radius: 2px;"
                             onclick="nextBrandSlide()">&#10095;
                     </button>
+                </div>
+            </div>
+            <div class="product-carousel">
+                <div class="product-carousel-header">Sản phẩm nổi bật</div>
+                <div class="product-cards">
+                    <div class="product-card">
+
+                    </div>
+                </div>
+
+                <div class="directPage">
+                    <button class="prevCategory prev" style="     border: 2px;
+    border-radius: 2px;padding: 10px 12px; cursor: pointer; background-color:gray ; border: 2px; border-radius: 2px;"
+                            onclick="prevHotPSlide()">&#10094;
+                    </button>
+                    <button class="nextCategory next" style="border: 2px;
+    border-radius: 2px;padding: 10px 12px; cursor: pointer; background-color:gray ; border: 2px; border-radius: 2px;"
+                            onclick="nextHotPSlide()">&#10095;
+                    </button>
+                </div>
+            </div>
+
+
+            <div class="top-search-section">
+                <div class="top-search-header">Top Tìm Kiếm</div>
+                <div class="top-search-list">
+                    <c:forEach var="topP" items="${topProduct}">
+                    <div class="top-search-item">
+                        <img src="${topP.image}" alt="${topP.name}">
+                        <div class="item-info">
+                            <p class="item-title">${topP.name}</p>
+                            <p class="item-count">${topP.quantity}</p>
+                        </div>
+                    </div>
+                    </c:forEach>
                 </div>
             </div>
 

@@ -992,7 +992,7 @@ strong {
 
 .top-search-item {
     width: auto;
-    height: 350px;
+    height: 200px;
     text-align: center;
     background-color: #fff;
     border-radius: 8px;
@@ -1007,8 +1007,8 @@ strong {
 }
 
 .top-search-item img {
-    width: auto;
-    height: auto;
+    width: 200px;
+    height: 150px;
     object-fit: contain;
     transition: transform 0.3s ease; /* Thêm hiệu ứng chuyển động */
 }

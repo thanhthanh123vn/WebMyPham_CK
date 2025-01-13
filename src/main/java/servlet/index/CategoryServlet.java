@@ -1,8 +1,6 @@
-package servlet;
+package servlet.index;
 
-import com.google.gson.Gson;
 import dao.CategoryDao;
-import dao.Utils;
 import gson.GsonUtil;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -12,14 +10,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import object.Categories;
 
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @WebServlet("/categoryList")
 public class CategoryServlet extends HttpServlet {

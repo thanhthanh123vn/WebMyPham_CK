@@ -908,7 +908,7 @@ strong {
 
 .top-search-item img {
     width: auto;
-    height: auto;
+    height: 200px;
     object-fit: contain;
     transition: transform 0.3s ease; /* Thêm hiệu ứng chuyển động */
 }

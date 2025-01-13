@@ -183,7 +183,7 @@
                         <img src="${topP.image}" alt="${topP.name}">
                         <div class="item-info">
                             <p class="item-title">${topP.name}</p>
-                            <p class="item-count">${topP.quantity}</p>
+                            <p class="item-count">${topP.quantity} sản phẩm</p>
                         </div>
                     </div>
                     </c:forEach>

@@ -193,11 +193,10 @@ function displayHotProducts(hotProducts) {
 
         // Nội dung HTML cho mỗi sản phẩm
         productCard.innerHTML = `
-            <img src="${product.image}" alt="${product.name}" class="product-image">
-            <p class="sales-count">${product.quantity} đã bán</p>
+            <img src="${product.image}" alt="${product.name}" >
+            <p class="sales-count">${product.quantity} sản phẩm đã bán</p>
             <p class="product-name">${product.name}</p>
         `;
-
         // Gắn sự kiện click cho từng sản phẩm (chuyển hướng đến trang chi tiết sản phẩm)
         productCard.onclick = function () {
             window.location.href = `productDetail?id=${product.id}`;

@@ -24,10 +24,6 @@ import java.util.List;
 
 @WebServlet("/ManagerProduct")
 public class ManagerProduct extends HttpServlet {
-
-
-
-
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         OrderDao dao = new OrderDao();
@@ -49,7 +45,6 @@ public class ManagerProduct extends HttpServlet {
 
 
             if (isSuccess && isOrderDetail) {
-
                 req.setAttribute("product", product);
                 req.getRequestDispatcher("index/qldonhang.jsp").forward(req, resp);
             } else {
@@ -69,8 +64,6 @@ public class ManagerProduct extends HttpServlet {
                     isOrderDetail = dao.insertOrderDetail(order.getId(), cproduct.getId(), id, cproduct.getQuantity(), cproduct.getPrice());
 
                 }
-
-
             }
             if(isSuccess&&isOrderDetail) {
 

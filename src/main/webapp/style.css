@@ -930,10 +930,9 @@ strong {
 .product-cards {
     display: flex;
     flex-wrap: nowrap; /* Các thẻ sản phẩm nằm ngang */
-    overflow-x: auto; /* Cho phép cuộn ngang */
+
     gap: 20px;
-    scrollbar-width: thin; /* Thanh cuộn nhỏ lại (dành cho Firefox) */
-    scrollbar-color: rgba(136, 136, 136, 0.5) #f1f1f1; /* Thanh cuộn mờ (dành cho Firefox) */
+
 }
 
 .product-cards::-webkit-scrollbar {
@@ -996,7 +995,7 @@ strong {
     text-align: center;
     background-color: #fff;
     border-radius: 8px;
-    overflow: hidden;
+
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
     cursor: pointer;
     transition: transform 0.3s ease;
@@ -1007,8 +1006,8 @@ strong {
 }
 
 .top-search-item img {
-    width: 200px;
-    height: 150px;
+    width: auto;
+    height: 200px;
     object-fit: contain;
     transition: transform 0.3s ease; /* Thêm hiệu ứng chuyển động */
 }

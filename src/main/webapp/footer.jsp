@@ -7,12 +7,12 @@
 --%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
-<html>
+
 <head>
 
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/footer.css">
 </head>
-<body>
+
 
 <div id="session-footer">
     <div class="container">
@@ -316,5 +316,3 @@
         </footer>
     </div>
 </div>
-</body>
-</html>

@@ -143,6 +143,35 @@ public class OrderDao {
         return false;
 
     }
+    public boolean removerOrder(int id){
+        String sql = "DELETE FROM orders WHERE UserId = ?";
+        try{
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setInt(1, id);
+            int rows = ps.executeUpdate();
+            return rows > 0;
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+    public boolean removerOrderDetail(int id,int productId){
+        String sql = "DELETE FROM orderdetails WHERE UserId = ?,ProductID = ?";
+        try{
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setInt(1, id);
+            ps.setInt(2, productId);
+            int rows = ps.executeUpdate();
+            return rows > 0;
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    }
 
 
-}
+

@@ -53,7 +53,7 @@
                     </a>
                 </div>
                 <div class="menu-item">
-                    <a href="giao-2h.html">
+                    <a href="http://localhost:8080/WebMyPham__/index/ship2H.jsp">
                         <img src="https://media.hcdn.vn/hsk/icon/hsk-icon-nowfree-v2.png" alt="Giao 2H"/>
                         <p>Giao 2H</p>
                     </a>
@@ -103,7 +103,7 @@
                     </div>
                 </div>
 
-                <div class="products" id="productSlider">
+                <div class="products" id="s">
                     <!-- Các sản phẩm sẽ được chèn vào đây -->
 
                 </div>

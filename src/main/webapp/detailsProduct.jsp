@@ -63,9 +63,9 @@
                         <div class="image-product"> <!--chi tiết ảnh bên trái-->
                             <div class="container-image"> <!--list ảnh scroll-->
                                 <c:forEach var="image" items="${listImage}">
-                                <div class="image-item">
-                                    <img src="${image}" alt="Image" onclick="selectImage(this.src)">
-                                </div>
+                                    <div class="image-item">
+                                        <img src="${image}" alt="Image" onclick="selectImage(this.src)">
+                                    </div>
                                 </c:forEach>
 
                             </div>
@@ -123,7 +123,7 @@
                                 </div>
                                 <a class="quantity" >Số lượng :
                                     <input  type="number" value="1" name="quantity" min="1"
-                                           style=" width: 30px;">
+                                            style=" width: 30px;">
                                 </a>
                                 <li>
                                     <a href="#" style="font-size: 16px;">
@@ -190,6 +190,42 @@
                             </li>
                         </ul>
                     </div>
+                </div>
+                <div class="main-infor-detail">
+
+                    <div class="choose-detail">
+                        <ul>
+                            <li><a href="#">Thông tin</a></li>
+                            <li><a href="#">Thông số</a></li>
+                            <li><a href="#">Thành phần</a></li>
+                            <li><a href="#">Cách dùng</a></li>
+                            <li><a href="#">Đánh giá</a></li>
+                            <li><a href="#">Hỏi </a></li>
+                        </ul>
+                    </div>
+
+                    <c:choose>
+                        <c:when test="${products.name == 'LOreal'}">
+                            <jsp:include page="viewShare/index/LOrealViewShare.jsp" />
+                        </c:when>
+                        <c:when test="${products.name == 'Klairs'}">
+                            <jsp:include page="viewShare/index/KlairsViewShare.jsp" />
+                        </c:when>
+                        <c:when test="${products.name == 'CeraVe'}">
+                            <jsp:include page="viewShare/index/CeraVeViewShare.jsp" />
+                        </c:when>
+                        <c:when test="${products.name == 'Anessa'}">
+                            <jsp:include page="viewShare/index/AnessaViewShare.jsp" />
+                        </c:when>
+                        <c:otherwise>
+                            <p>Sản phẩm không xác định.</p>
+                        </c:otherwise>
+                    </c:choose>
+
+
+
+
+
                 </div>
             </div>
         </div>

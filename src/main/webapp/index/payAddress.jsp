@@ -82,20 +82,15 @@
 </div>
 </body>
 <script src="${pageContext.request.contextPath}/js/loadAddress.js"></script>
-<% Product product =(Product) request.getAttribute("PayProduct");
-String toProductJson = new GsonUtil().getGson().toJson(product);
 
-Cart cart = (Cart) session.getAttribute("cart");
-    String toCartJson = new GsonUtil().getGson().toJson(cart);
 
 %>
 <script>
-    const product =  <%=toProductJson%>;
-    const cart =  <%=toCartJson%>;
+
     function continueButton() {
 
         addAddressUser(); // Gọi hàm thêm địa chỉ
-        requestProduct(); // Gọi hàm xử lý sản phẩm
+
     }
 
 

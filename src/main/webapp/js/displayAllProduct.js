@@ -159,7 +159,7 @@ function showCategorySlide(index) {
 }
 function setupHotProductSlides() {
     const hotProductItems = document.querySelectorAll(".product-card"); // Chọn tất cả sản phẩm nổi bật
-    const itemsPerSlide = 6; // Số sản phẩm hiển thị mỗi slide
+    const itemsPerSlide = 5; // Số sản phẩm hiển thị mỗi slide
 
     // Hiển thị sản phẩm thuộc slide đầu tiên
     hotProductItems.forEach((item, index) => {
@@ -200,7 +200,7 @@ function displayHotProducts(hotProducts) {
 
         // Gắn sự kiện click cho từng sản phẩm (chuyển hướng đến trang chi tiết sản phẩm)
         productCard.onclick = function () {
-            window.location.href = `ProductDetails?productId=${product.id}`;
+            window.location.href = `productDetail?id=${product.id}`;
         };
 
 
@@ -211,7 +211,7 @@ function displayHotProducts(hotProducts) {
 // Hiển thị các slide sản phẩm nổi bật
 function showHotPSlide(index) {
     const hotProductItems = document.querySelectorAll(".product-card");
-    const itemsPerSlide = 6;
+    const itemsPerSlide = 5;
     const totalSlides = Math.ceil(hotProductItems.length / itemsPerSlide);
 
     // Điều chỉnh chỉ số slide

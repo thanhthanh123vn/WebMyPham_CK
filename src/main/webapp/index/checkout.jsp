@@ -89,8 +89,19 @@
                     <textarea placeholder="Ghi chú"></textarea>
                     <div class="total">
                         <span class="total-label">Tổng tiền (1):</span>
-                        if($ notempty ${sessionScope.cart.totalCar}){
-                        <span class="total-amount">${sessionScope.cart.totalCar}</span>}
+
+                        <c:choose>
+                            <c:when test="${ not empty sessionScope.cart.totalCar}">
+                                <span class="total-amount">${sessionScope.cart.totalCar}</span>
+                            </c:when>
+                            <c:when test="${not empty sessionScope.payProduct.price}">
+                                <span class="total-amount">${sessionScope.payProduct.price}</span>
+                            </c:when>
+
+                            <c:otherwise>
+
+                            </c:otherwise>
+                        </c:choose>
 
                     </div>
                     <button class="order-button" onclick="CompleteProduct()"> Đặt hàng</button>
@@ -122,18 +133,14 @@
                         <c:when test="${not empty sessionScope.cart.totalCar}">
                             <span class="total-amount">${sessionScope.cart.totalCar}</span>
                         </c:when>
-                        <c:otherwise>
-
-                        </c:otherwise>
-                    </c:choose>
-                    <c:choose>
-                        <c:when test="${not empty product.price}">
-                            <span class="total-amount">${product.price}</span>
+                        <c:when test="${not empty sessionScope.payProduct.price}">
+                            <span class="total-amount">${sessionScope.payProduct.price}</span>
                         </c:when>
                         <c:otherwise>
-
+                            <span class="total-amount">0</span>
                         </c:otherwise>
                     </c:choose>
+
 
                 </div>
                 <div class="row">
@@ -146,7 +153,18 @@
                 </div>
                 <div class="row total">
                     <span class="label">Thành tiền (Đã VAT)</span>
-                    <span class="value">${sessionScope.cart.totalCart}</span>
+                    <c:choose>
+                        <c:when test="${not empty sessionScope.cart.totalCar}">
+                            <span class="total-amount">${sessionScope.cart.totalCar}</span>
+                        </c:when>
+                        <c:when test="${not empty sessionScope.payProduct.price}">
+                            <span class="total-amount">${sessionScope.payProduct.price}</span>
+                        </c:when>
+
+                        <c:otherwise>
+
+                        </c:otherwise>
+                    </c:choose>
                 </div>
             </div>
             <div class="policy">
@@ -155,20 +173,15 @@
         </div>
     </div>
 </div>
-<% Product product = (Product) request.getAttribute("product");
-    String topayProduct = new GsonUtil().getGson().toJson(product)
-            ;
-    Product cart = (Product) request.getAttribute("cart");
-    String topayCartProduct = new GsonUtil().getGson().toJson(cart);
-%>
+
+
+
 <script>
-    const  topayProduct = <%=topayProduct%>
-    const  topayCartProduct = <%=topayCartProduct%>;
+    function  CompleteProduct(){
+        window.open("${pageContext.request.contextPath}/ManagerProduct");
+    }
 </script>
 
-<script src="${pageContext.request.contextPath}/js/checkout.js">
 
-
-</script>
 </body>
 </html>

@@ -9,6 +9,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import object.Order;
 import object.Product;
 import object.User;
@@ -23,29 +24,22 @@ import java.util.List;
 
 @WebServlet("/ManagerProduct")
 public class ManagerProduct extends HttpServlet {
-    Product product = null;
-    Cart cart = null;
-
-    @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        BufferedReader reader = req.getReader();
-
-        Gson gson = GsonUtil.getGson();
-        product = gson.fromJson(reader, Product.class);
-        cart = gson.fromJson(reader, Cart.class);
 
 
-    }
+
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         OrderDao dao = new OrderDao();
+        HttpSession session = req.getSession();
         Date date = new Date();
         User user = (User) req.getSession().getAttribute("user");
         int id = user.getId();
         Order order = new Order();
         order.setId(id);
         order.setCreate_date(date);
+        Product product = (Product)session.getAttribute("payProduct");
+        Cart cart = (Cart)session.getAttribute("cart");
         if (product != null) {
 
 
@@ -71,8 +65,8 @@ public class ManagerProduct extends HttpServlet {
             List<ProductCart> productCarts = cart.getList();
             List<Product> products = getProducts(productCarts);
             if (!products.isEmpty()) {
-                for (Product product : products) {
-                    isOrderDetail = dao.insertOrderDetail(order.getId(), product.getId(), id, product.getQuantity(), product.getPrice());
+                for (Product cproduct : products) {
+                    isOrderDetail = dao.insertOrderDetail(order.getId(), cproduct.getId(), id, cproduct.getQuantity(), cproduct.getPrice());
 
                 }
 

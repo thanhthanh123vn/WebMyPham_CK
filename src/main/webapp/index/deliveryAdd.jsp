@@ -52,20 +52,14 @@
   </div>
   <div class="modal-footer">
     <a href="#" class="add-address-link">Thêm địa chỉ mới <i class="fas fa-plus-circle"></i></a>
-    <button class="btn cancel-btn" onclick="window.location.href='payAddress.jsp'">Hủy</button>
-    <button class="btn continue-btn" id="back" onclick="redirectPay()">Tiếp tục</button>
+    <button class="btn cancel-btn" onclick="window.location.href='index/payAddress.jsp'">Hủy</button>
+    <button class="btn continue-btn" id="back" onclick="window.location.href='index/checkout.jsp'">Tiếp tục</button>
   </div>
 </div>
 
-<% Product product = (Product) request.getAttribute("product");
-String topayProduct = new GsonUtil().getGson().toJson(product)
-        ;
-  Product cart = (Product) request.getAttribute("cart");
-  String topayCartProduct = new GsonUtil().getGson().toJson(cart);
-%>
-<script src="${pageContext.request.contextPath}/js/delivery.js">
-  const  topayProduct = JSON.parse(<%=topayProduct%>);
-  const  topayCartProduct = JSON.parse(<%=topayCartProduct%>);
+
+
+
 </script>
 
 </body>

@@ -1,5 +1,8 @@
 <%@ page import="object.Product" %>
-<%@ page import="gson.GsonUtil" %><%--
+<%@ page import="gson.GsonUtil" %>
+<%@ page import="object.cart.Cart" %>
+<%@ page import="java.util.List" %>
+<%@ page import="object.cart.ProductCart" %><%--
   Created by IntelliJ IDEA.
   User: nguye
   Date: 1/8/2025
@@ -168,17 +171,41 @@
 
             <div class="cart-item">
               <div class="product-info">
-                <img src="https://media.hcdn.vn/catalog/product/p/r/promotions-auto-nuoc-tay-trang-tuoi-mat-l-oreal-3-in-1-danh-cho-da-dau-da-hon-hop-400ml_qo5GfcimUJ2bPNQd_img_80x80_d200c5_fit_center.png" alt="L'OREAL">
-                <div class="product-details">
-                  <h3 class="nameProduct"> L'OREAL</h3>
-                  <p class="detailProduct">Nước Tẩy Trang L'Oreal Tươi Mát Cho Da Dầu, Hỗn Hợp 400ml</p>
-                  <span class="priceProduct"> </span>
-                  <div class="actions">
-                    <a href="#">Yêu thích</a> |<a href="#">Hủy Đặt Hàng</a>
-                  </div>
-                  <div class="promotion">Tặng ngay phần quà khi mua tại cửa hàng còn quà</div>
-                  <div class="promotion" class="quantityProduct">Số lượng : 1</div>
-                </div>
+                <c:choose>
+                  <c:when test="${not empty sessionScope.cart.list}">
+                    <c:forEach var="cartItem" items="${sessionScope.cart.list}">
+                      <img src="${cartItem.image}" alt="L'OREAL">
+                      <div class="product-details">
+                        <h3 class="nameProduct"> ${cartItem.name}</h3>
+                        <p class="detailProduct">${cartItem.detail}</p>
+                        <span class="priceProduct"> </span>
+                        <div class="actions">
+                          <a href="#">Yêu thích</a> |<a href="#">Hủy Đặt Hàng</a>
+                        </div>
+                        <div class="promotion">Tặng ngay phần quà khi mua tại cửa hàng còn quà</div>
+                        <div class="promotion quantityProduct">Số lượng : ${cartItem.count}</div>
+                      </div>
+                    </c:forEach>
+                  </c:when>
+                  <c:when test="${not empty sessionScope.payProduct}">
+                    <img src="${sessionScope.payProduct.image}" alt="${sessionScope.payProduct.name}">
+                    <div class="product-details">
+                      <h3 class="nameProduct"> ${sessionScope.payProduct.name}</h3>
+                      <p class="detailProduct">${sessionScope.payProduct.detail}</p>
+                      <span class="priceProduct"> </span>
+                      <div class="actions">
+                        <a href="#">Yêu thích</a> |<a href="#">Hủy Đặt Hàng</a>
+                      </div>
+                      <div class="promotion">Tặng ngay phần quà khi mua tại cửa hàng còn quà</div>
+                      <div class="promotion quantityProduct">Số lượng : ${sessionScope.payProduct.quantity}</div>
+                    </div>
+                  </c:when>
+                  <c:otherwise>
+                    <!-- Xử lý trường hợp khi không có sản phẩm trong giỏ hoặc sản phẩm thanh toán -->
+                  </c:otherwise>
+                </c:choose>
+
+
               </div>
 
             </div>
@@ -201,18 +228,9 @@
   </div>
   <jsp:include page="../footer.jsp"/>
 </div>
-<% Product product = (Product) request.getAttribute("product");
-  String topayProduct = new GsonUtil().getGson().toJson(product)
-          ;
-  Product cart = (Product) request.getAttribute("cart");
-  String topayCartProduct = new GsonUtil().getGson().toJson(cart);
-%>
-<script src="${pageContext.request.contextPath}/js/updateUserMain.js"></script>
-<script src="${pageContext.request.contextPath}/js/managerProduct.js">
 
-  const  topayProduct = <%= topayProduct %>;
-  const  topayCartProduct = <%= topayCartProduct %>;
-</script>
+<script src="${pageContext.request.contextPath}/js/updateUserMain.js"></script>
+
 </body>
 
 </html>

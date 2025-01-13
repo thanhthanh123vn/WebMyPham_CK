@@ -327,6 +327,7 @@ public class ProductsDao {
                 product.setName(rs.getString("Name"));
                 product.setDetail(rs.getString("Detail"));
                 product.setPrice(rs.getDouble("Price"));
+                product.setQuantity(1);
                 product.setImage(rs.getString("Image"));
 
             }

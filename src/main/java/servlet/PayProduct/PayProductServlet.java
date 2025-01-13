@@ -26,6 +26,7 @@ public class PayProductServlet extends HttpServlet {
 
         Product product = dao.getProductOnId(Integer.parseInt(productID));
         if(product != null) {
+            session.setAttribute("payProduct", product);
             request.setAttribute("PayProduct", product);
             request.getRequestDispatcher("index/payAddress.jsp").forward(request, response);
         }else {

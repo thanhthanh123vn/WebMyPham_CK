@@ -238,6 +238,7 @@
 <script src="js/searchProduct.js"></script>
 <script src="js/updateUserMain.js"></script>
 <script src="js/main.js"></script>
+<script src="js/addCartProduct.js"></script>
 <%
 
     // Lấy username từ session
@@ -311,6 +312,7 @@
 <% Product product = (Product) request.getAttribute("products");
     String productJson = new GsonUtil().getGson().toJson(product);%>
 <script>
+    const  productCart =  <%=productJson%>;
 
 
     function selectImage(imageSrc) {

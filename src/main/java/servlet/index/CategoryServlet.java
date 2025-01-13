@@ -25,9 +25,9 @@ public class CategoryServlet extends HttpServlet {
             int startIndex = 0;
             startIndex = request.getParameter("startIndex") != null ? Integer.parseInt(request.getParameter("startIndex")) : 0;
             List<Categories> categories = categoryDao.getAllCategories(startIndex);
-            System.out.println(categories.toString());
 
-            // Trả về dữ liệu JSON
+
+
             String json = new GsonUtil().getGson().toJson(categories);
             
             response.getWriter().write(json);

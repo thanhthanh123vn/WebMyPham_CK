@@ -107,10 +107,16 @@
                     <!-- Các sản phẩm sẽ được chèn vào đây -->
 
                 </div>
-                <%--                <div class="directPage">--%>
-                <%--                    <button class="prev" style="padding: 10px 12px; background-color:gray ; cursor: pointer; border: 2px; border-radius: 2px;" onclick="changeSlide(-1)">&#10094;</button>--%>
-                <%--                    <button class="next"  onclick="changeSlide(1)">&#10095;</button>--%>
-                <%--                </div>--%>
+                <div class="directPage">
+                    <button class="prevCategory prev" style="     border: 2px;
+    border-radius: 2px;padding: 10px 12px; cursor: pointer; background-color:gray ; border: 2px; border-radius: 2px;"
+                               onclick="prevFlashSaleSlide()">&#10094;
+                </button>
+                    <button class="nextCategory next" style="border: 2px;
+                            border-radius: 2px;padding: 10px 12px; cursor: pointer; background-color:gray ; border: 2px; border-radius: 2px;"
+                            onclick="nextFlashSaleSlide()">&#10095;
+                    </button>
+                </div>
             </div>
             <div class="list-product">
                 <div class="list-header">
@@ -179,7 +185,7 @@
                 <div class="top-search-header">Top Tìm Kiếm</div>
                 <div class="top-search-list">
                     <c:forEach var="topP" items="${topProduct}">
-                    <div class="top-search-item">
+                    <div class="top-search-item" onclick="topProductDetail(${topP.id})">
                         <img src="${topP.image}" alt="${topP.name}">
                         <div class="item-info">
                             <p class="item-title">${topP.name}</p>
@@ -255,6 +261,9 @@
     function redirectToDetails(productId) {
         // Chuyển hướng đến Servlet với ID sản phẩm
 
+        window.location.href = `productDetail?id=` + productId
+    }
+    function  topProductDetail(productId) {
         window.location.href = `productDetail?id=` + productId
     }
 

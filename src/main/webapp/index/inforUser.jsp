@@ -47,20 +47,20 @@
             </div>
           </div>
           <div class="menu_profile">
-            <a href="qliUser.html" class="item_menu_profile ">Quản lý tài
+            <a href="http://localhost:8080/WebMyPham__/index/inforUser.jsp" class="item_menu_profile ">Quản lý tài
               khoản</a>
-            <a href="accumulationOfP.html" class="item_menu_profile ">TTT tích
+            <a href="https://hasaki.vn/user/loyalty/home" class="item_menu_profile ">Hasaki tích
               điểm</a>
-            <a href="inforUser.html" class="item_menu_profile active">Thông tin tài
+            <a href="http://localhost:8080/WebMyPham__/index/inforUser.jsp" class="item_menu_profile active">Thông tin tài
               khoản</a>
-            <a href="qldonhang.html" class="item_menu_profile ">Đơn hàng
+            <a href="http://localhost:8080/WebMyPham__/index/qldonhang.jsp" class="item_menu_profile ">Đơn hàng
               của tôi</a>
-            <a href="myBooking.html" class="item_menu_profile ">Booking của tôi</a>
-            <a href="#" class="item_menu_profile ">Sổ địa chỉ
+            <a href="https://hasaki.vn/bookings/history" class="item_menu_profile ">Booking của tôi</a>
+            <a href="http://localhost:8080/WebMyPham__/index/newaddress.jsp" class="item_menu_profile ">Sửa địa chỉ
               nhận hàng</a>
-            <a href="spyt.html" class="item_menu_profile ">Danh sách yêu thích</a>
-            <a href="redeemProduct.html" class="item_menu_profile ">Mua lại</a>
-            <a href="q&a.html" class="item_menu_profile ">Hỏi đáp</a>
+            <a href="https://hasaki.vn/wishlist" class="item_menu_profile ">Danh sách yêu thích</a>
+            <a href="https://hasaki.vn/user/repurchase-products" class="item_menu_profile ">Mua lại</a>
+            <a href="https://hasaki.vn/sales/product/question" class="item_menu_profile ">Hỏi đáp</a>
           </div>
         </div>
       </div>

@@ -56,8 +56,8 @@ function loginUser() {
 			const menuItems = [
 				{ href: "http://localhost:8080/WebMyPham__/index/inforUser.jsp", className: "account-user account", iconClass: "fas fa-user", text: "Tài khoản của bạn" },
 				{ href: "http://localhost:8080/WebMyPham__/index/qldonhang.jsp", className: "account-user orders-product", iconClass: "fas fa-box", text: "Quản lý đơn hàng" },
-				{ href: "../index/spyt.html", className: "account-user product-like", iconClass: "fas fa-heart", text: "Sản phẩm yêu thích" },
-				{ href: "../index/addressbook.html", className: "account-user address", iconClass: "fas fa-map-marker-alt", text: "Địa chỉ giao hàng" },
+				{ href: "http://localhost:8080/WebMyPham__/index/qldonhang.jsp", className: "account-user product-like", iconClass: "fas fa-heart", text: "Sản phẩm yêu thích" },
+				{ href: "http://localhost:8080/WebMyPham__/index/addressbook.jsp", className: "account-user address", iconClass: "fas fa-map-marker-alt", text: "Địa chỉ giao hàng" },
 				{ href: "#", className: "account-user logout-account", iconClass: "fas fa-sign-out-alt", text: "Thoát" }
 			];
 			// Tạo các liên kết trong .dropdown-content

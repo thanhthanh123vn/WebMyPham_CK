@@ -390,6 +390,36 @@ public List<Product> getHotProduct(){
 
         return products;
 }
+    public List<Product> flashSale() {
+        List<Product> products = new ArrayList<>();
+        String sql = "SELECT p.*, pm.discountPercentage FROM products p JOIN promotions pm ON p.id = pm.productid";
+        try {
+            PreparedStatement stm = conn.prepareStatement(sql);
+            ResultSet rs = stm.executeQuery();
+            while (rs.next()) {
+                Product product = new Product();
+                product.setId(rs.getInt("id")); // ID sản phẩm
+                product.setDetail(rs.getString("detail"));
+                product.setName(rs.getString("Name")); // Tên sản phẩm
+                product.setImage(rs.getString("Image")); // Đường dẫn hình ảnh
+                product.setQuantity(rs.getInt("quantity")); // Số lượng sản phẩm
+                product.setPrice(rs.getDouble("Price")); // Giá gốc của sản phẩm
+
+                // Lấy giá trị discount (phần trăm giảm giá) từ bảng promotions
+                double discount = rs.getDouble("discountPercentage");
+                product.setDiscountPercentage(discount);
+
+                // Tính giá mới sau khi áp dụng giảm giá
+                double newPrice = rs.getDouble("Price") - (rs.getDouble("Price") * discount);
+                product.setPriceNew(newPrice);
+
+                products.add(product);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return products;
+    }
 
 
 }

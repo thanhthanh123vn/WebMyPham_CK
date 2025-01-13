@@ -40,20 +40,20 @@
                         </div>
                     </div>
                     <div class="menu_profile">
-                        <a href="qliUser.html" class="item_menu_profile ">Quản lý tài
+                        <a href="http://localhost:8080/WebMyPham__/index/inforUser.jsp" class="item_menu_profile ">Quản lý tài
                             khoản</a>
-                        <a href="accumulationOfP.html" class="item_menu_profile ">TTT tích
+                        <a href="https://hasaki.vn/user/loyalty/home" class="item_menu_profile ">Hasaki tích
                             điểm</a>
-                        <a href="inforUser.html" class="item_menu_profile ">Thông tin tài
+                        <a href="http://localhost:8080/WebMyPham__/index/inforUser.jsp" class="item_menu_profile active">Thông tin tài
                             khoản</a>
-                        <a href="qldonhang.html" class="item_menu_profile ">Đơn hàng
+                        <a href="http://localhost:8080/WebMyPham__/index/qldonhang.jsp" class="item_menu_profile ">Đơn hàng
                             của tôi</a>
-                        <a href="myBooking.html" class="item_menu_profile ">Booking của tôi</a>
-                        <a href="addressbook.html" class="item_menu_profile active ">Sổ địa chỉ
+                        <a href="https://hasaki.vn/bookings/history" class="item_menu_profile ">Booking của tôi</a>
+                        <a href="http://localhost:8080/WebMyPham__/index/newaddress.jsp" class="item_menu_profile ">Sửa địa chỉ
                             nhận hàng</a>
-                        <a href="spyt.html" class="item_menu_profile ">Danh sách yêu thích</a>
-                        <a href="redeemProduct.html" class="item_menu_profile ">Mua lại</a>
-                        <a href="q&a.html" class="item_menu_profile ">Hỏi đáp</a>
+                        <a href="https://hasaki.vn/wishlist" class="item_menu_profile ">Danh sách yêu thích</a>
+                        <a href="https://hasaki.vn/user/repurchase-products" class="item_menu_profile ">Mua lại</a>
+                        <a href="https://hasaki.vn/sales/product/question" class="item_menu_profile ">Hỏi đáp</a>
                     </div>
                 </div>
             </div>
@@ -63,7 +63,7 @@
                         <h5 class="title-1">Sổ địa chỉ</h5>
                         <div class="box">
                             <h6 class="title-2">Bạn muốn giao hàng đến địa chỉ khác? </h6>
-                            <button id="ids" class="btn-1">Thêm địa chỉ mới</button></div>
+                            <button id="ids" class="btn-1" >Thêm địa chỉ mới</button></div>
                     </div>
                 </div>
             </div>
@@ -71,7 +71,70 @@
     </div>
   <jsp:include page="${pageContext.request.contextPath}/footer.jsp"/>
 </div>
-<script src="../js/updateUserMain.js"></script>
+<script src="${pageContext.request.contextPath}/js/updateUserMain.js"></script>
+<%
+
+    // Lấy username từ session
+    User user = (User) session.getAttribute("user");
+
+    String username = user.getFullName();
+
+
+    // Nếu cưa đăng nhập, gán giá trị rỗng
+    if (username == null) {
+        username = "";
+    }
+%>
+
+<script>
+    // Gán username từ server vào biến JavaScript
+    const username = "<%= username %>";
+    console.log(username);
+
+    // Kiểm tra trạng thái đăng nhập và gọi hàm loginUser nếu đã đăng nhập
+    if (username && username.trim() !== "") {
+        loginUser();
+    }
+
+    // Đảm bảo xử lý nút đăng xuất
+    document.addEventListener("DOMContentLoaded", () => {
+        const logoutButtons = document.querySelectorAll(".logout-account");
+        logoutButtons.forEach(button => {
+            button.addEventListener("click", () => {
+                logoutUser();
+            });
+        });
+    });
+
+    // Hàm xử lý đăng xuất
+    function logoutUser() {
+        console.log("Đăng xuất...");
+
+        // Gửi yêu cầu đến server để xóa session
+        fetch("LogoutServlet", {
+            method: "POST"
+        })
+            .then(response => {
+                if (response.ok) {
+                    console.log("Đăng xuất thành công");
+                    // Chuyển hướng người dùng về trang đăng nhập hoặc trang chủ
+                    window.location.href = "index.jsp";
+                } else {
+                    console.error("Lỗi khi đăng xuất");
+                }
+            })
+            .catch(error => console.error("Lỗi kết nối:", error));
+    }
+    function toggleChat() {
+        var chatBox = document.getElementById("chatBox");
+        if (chatBox.style.display === "none" || chatBox.style.display === "") {
+            chatBox.style.display = "flex";
+        } else {
+            chatBox.style.display = "none";
+        }
+    }
+</script>
+
 <script>
     document.getElementById("ids").onclick = function () {
         window.location.href = "${pageContext.request.contextPath}/index/newaddress.jsp";
@@ -79,6 +142,8 @@
 
 
 </script>
+
+
 </body>
 
 </html>

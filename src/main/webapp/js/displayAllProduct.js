@@ -3,17 +3,21 @@ const categoryListDiv = document.querySelector(".category-product");
 let currentBrandSlideIndex = 0;
 let currentCategorySlideIndex = 0;
 let currentHotPSlideIndex = 0;
+let currentFlashSaleSlideIndex = 0;
 
 // Gửi yêu cầu để lấy danh sách thương hiệu và danh mục từ Servlet
 async function fetchBrandAndCategoryList() {
     try {
         // Gửi yêu cầu song song để lấy danh sách thương hiệu và danh mục
-        const [brandResponse, categoryResponse,hotProduct] = await Promise.all([
+        const [flashSale,brandResponse, categoryResponse,hotProduct] = await Promise.all([
+            fetch("flashSale"),
             fetch("brandList"),
             fetch(`categoryList?startIndex=${encodeURIComponent(currentCategorySlideIndex)}`),
             fetch("hotProduct")
         ]);
-
+        if (!flashSale.ok) {
+            throw new Error("Không thể tải danh sách thương hiệu.");
+        }
         if (!brandResponse.ok) {
             throw new Error("Không thể tải danh sách thương hiệu.");
         }
@@ -23,7 +27,7 @@ async function fetchBrandAndCategoryList() {
         if (!hotProduct.ok) {
             throw new Error("Không thể tải danh sách hotProduct.");
         }
-
+        const  flashSaleP = await  flashSale.json();
         const brands = await brandResponse.json();
         const categories = await categoryResponse.json();
         const  hotsP = await  hotProduct.json();
@@ -31,6 +35,7 @@ async function fetchBrandAndCategoryList() {
         displayBrands(brands);
         displayCategories(categories);
         displayHotProducts(hotsP);
+        displayFlashSaleProducts(flashSaleP);
 
     } catch (error) {
         console.error("Lỗi xảy ra:", error);
@@ -234,5 +239,83 @@ function prevHotPSlide() {
 function nextHotPSlide() {
     showHotPSlide(currentHotPSlideIndex + 1);
 }
+
+// Hiển thị danh sách sản phẩm Flash Sale
+function displayFlashSaleProducts(flashSaleProducts) {
+    const flashSaleDiv = document.querySelector("#productSlider");
+
+    flashSaleDiv.innerHTML = '';
+
+    if (flashSaleProducts.length === 0) {
+        flashSaleDiv.innerHTML = "<p>Không có sản phẩm Flash Sale.</p>";
+        return;
+    }
+
+    flashSaleProducts.forEach((product) => {
+        const discountPercentage = Math.round(product.discount * 100); // Tính phần trăm giảm giá
+        const productItem = document.createElement('div');
+        productItem.classList.add('product-item');
+        productItem.innerHTML = `
+            <img src="${product.image}" alt="${product.name}">
+            <div class="product-info">
+                <span class="discount">${discountPercentage}% OFF</span>
+                <span class="price">${product.priceNew}₫</span>
+                <span class="original-price"><s>${product.price}₫</s></span>
+                <p class="product-name">${product.detail}</p>
+            </div>
+        `;
+
+        // Gắn sự kiện click cho từng sản phẩm (chuyển hướng đến trang chi tiết sản phẩm)
+        productItem.onclick = function () {
+            window.location.href = `productDetail?id=${product.id}`;
+        };
+
+        flashSaleDiv.appendChild(productItem);
+    });
+
+    setupFlashSaleSlides();
+}
+
+// Hiển thị các slide sản phẩm Flash Sale
+function showFlashSaleSlide(index) {
+    const flashSaleItems = document.querySelectorAll(".product-item"); // Sửa lại class cho đúng
+    const itemsPerSlide = 6;
+    const totalSlides = Math.ceil(flashSaleItems.length / itemsPerSlide);
+
+
+    if (index < 0) currentFlashSaleSlideIndex = totalSlides - 1;
+    else if (index >= totalSlides) currentFlashSaleSlideIndex = 0;
+    else currentFlashSaleSlideIndex = index;
+
+
+    flashSaleItems.forEach((item, i) => {
+        item.style.display = (i >= currentFlashSaleSlideIndex * itemsPerSlide && i < (currentFlashSaleSlideIndex + 1) * itemsPerSlide) ? "flex" : "none";
+    });
+}
+
+// Chuyển đến slide trước
+function prevFlashSaleSlide() {
+
+    showFlashSaleSlide(currentFlashSaleSlideIndex - 1);
+}
+
+// Chuyển đến slide kế tiếp
+function nextFlashSaleSlide() {
+    showFlashSaleSlide(currentFlashSaleSlideIndex + 1);
+}
+
+// Cài đặt các slide sản phẩm Flash Sale
+function setupFlashSaleSlides() {
+    const flashSaleItems = document.querySelectorAll("#flashSaleSlider .product-item"); // Sửa lại class cho đúng
+    const itemsPerSlide = 6; // Số sản phẩm hiển thị mỗi slide
+
+    // Hiển thị sản phẩm thuộc slide đầu tiên
+    flashSaleItems.forEach((item, index) => {
+        item.style.display = index < itemsPerSlide ? "flex" : "none";
+    });
+
+    currentFlashSaleSlideIndex = 0; // Đặt chỉ số slide hiện tại là 0
+}
+
 // Tải danh sách thương hiệu và danh mục khi trang được tải
 document.addEventListener("DOMContentLoaded", fetchBrandAndCategoryList);

@@ -3,7 +3,8 @@
 <%@ page import="object.cart.Cart" %>
 <%@ page import="java.util.List" %>
 <%@ page import="object.cart.ProductCart" %>
-<%@ page import="object.User" %><%--
+<%@ page import="object.User" %>
+<%@ page import="java.util.ArrayList" %><%--
   Created by IntelliJ IDEA.
   User: nguye
   Date: 1/8/2025
@@ -169,86 +170,16 @@
                             </select>
                         </div>
                     </div>
-                    <div id="content-list">
+                    <div id="productContainer">
 
 
 
-                                <div class="cart-item">
-                            <c:choose>
-                                <!-- Kiểm tra nếu giỏ hàng có sản phẩm -->
-                                <c:when test="${not empty sessionScope.cart.list}">
-                                    <c:forEach var="cartItem" items="${sessionScope.cart.list}">
-                                        <div class="product-info">
-                                            <img src="${cartItem.image}" alt="${cartItem.name}">
-                                            <div class="product-details">
-                                                <h3 class="nameProduct">${cartItem.name}</h3>
-                                                <p class="detailProduct">${cartItem.detail}</p>
-                                                <span class="priceProduct">
-            <c:choose>
-                <c:when test="${cartItem.price != null}">
-                    ${cartItem.price}
-                </c:when>
-                <c:otherwise>
-                    N/A
-                </c:otherwise>
-            </c:choose>
-          </span>
-                                                <div class="actions">
-                                                    <a href="#">Yêu thích</a> | <a href="#" onclick="remoteOrderProduct(cartItem.id)">Hủy Đặt Hàng</a>
-                                                </div>
-                                                <div class="promotion">Tặng ngay phần quà khi mua tại cửa hàng còn quà
-                                                </div>
-                                                <div class="promotion quantityProduct">Số lượng: ${cartItem.count}</div>
-                                            </div>
-                                        </div>
-                                    </c:forEach>
-                                </c:when>
 
-
-                                <!-- Nếu giỏ hàng không có sản phẩm nhưng có sản phẩm thanh toán -->
-                                <c:otherwise>
-                                    <c:if test="${not empty sessionScope.payProduct}">
-                                    <div class="cart-item">
-                                        <div class="product-info">
-                                            <img src="${sessionScope.payProduct.image}"
-                                                 alt="${sessionScope.payProduct.name}">
-                                            <div class="product-details">
-                                                <h3 class="nameProduct">${sessionScope.payProduct.name}</h3>
-                                                <p class="detailProduct">${sessionScope.payProduct.detail}</p>
-                                                <span class="priceProduct">
-                                <c:choose>
-                                    <c:when test="${sessionScope.payProduct.price != null}">
-                                        ${sessionScope.payProduct.price}
-                                    </c:when>
-
-                                </c:choose>
-                              </span>
-                                                <div class="actions">
-                                                    <a href="#">Yêu thích</a> | <a href="#" onclick="remoteOrderProduct(${sessionScope.payProduct.id})">Hủy Đặt Hàng</a>
-                                                </div>
-                                                <div class="promotion">Tặng ngay phần quà khi mua tại cửa hàng còn quà
-                                                </div>
-                                                <div class="promotion quantityProduct">Số lượng:
-                                                    <c:choose>
-                                                        <c:when test="${sessionScope.payProduct.quantity != null}">
-                                                            ${sessionScope.payProduct.quantity}
-                                                        </c:when>
-
-                                                    </c:choose>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </c:if>
-                                </c:otherwise>
-                            </c:choose>
-
-
-                        </div>
 
                     </div>
 
-                    <div style="margin-top: 30px;">
-                        <a href="index.jsp" class="btn" style="  color: white;
+                    <div style="display: flex; justify-content: center; margin-top: 30px;">
+                        <a href="http://localhost:8080/WebMyPham__/index.jsp" class="btn" style="  color: white;
             background-color: #055617;
             border: none;
             padding: 15px;
@@ -267,19 +198,50 @@
 
 
 <%
-
-    // Lấy username từ session
+    // Lấy thông tin người dùng từ session
     User user = (User) session.getAttribute("user");
+    String username = (user != null) ? user.getFullName() : "";
 
-    String username = user.getFullName();
+    // Lấy dữ liệu giỏ hàng từ session
+    Cart cartData = (Cart) session.getAttribute("cart");
+    List<ProductCart> productCarts = (cartData != null) ? cartData.getList() : new ArrayList<>();
 
-
-    // Nếu cưa đăng nhập, gán giá trị rỗng
-    if (username == null) {
-        username = "";
-    }
+    // Lấy sản phẩm thanh toán từ session
+    Product payProduct = (Product) session.getAttribute("payProduct");
 %>
- <script src="${pageContext.request.contextPath}/js/updateUserMain.js"></script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const productContainer = document.getElementById("productContainer");
+
+        // Dữ liệu giỏ hàng và sản phẩm thanh toán
+        const cartData = <%= new com.google.gson.Gson().toJson(productCarts) %>;
+        const payProductData = <%= payProduct != null ? new com.google.gson.Gson().toJson(payProduct) : "null" %>;
+
+
+
+        // Hiển thị sản phẩm từ giỏ hàng
+        if (cartData && cartData.length > 0) {
+            cartData.forEach(product => {
+                productContainer.innerHTML += createProductHTML(product);
+            });
+        }
+        // Hiển thị sản phẩm thanh toán
+        else if (payProductData) {
+            productContainer.innerHTML += createProductHTML(payProductData, true);
+        }
+        // Nếu không có sản phẩm nào
+        else {
+            productContainer.innerHTML = "<p>Không có sản phẩm nào trong giỏ hàng hoặc thanh toán.</p>";
+        }
+    });
+
+
+</script>
+<script src="${pageContext.request.contextPath}/js/loadQldh.js"></script>
+        <script src="${pageContext.request.contextPath}/js/updateUserMain.js"></script>
+
+
 <script>
     // Gán username từ server vào biến JavaScript
     const username = "<%= username %>";

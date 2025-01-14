@@ -204,7 +204,7 @@ function displayHotProducts(hotProducts) {
         `;
         // Gắn sự kiện click cho từng sản phẩm (chuyển hướng đến trang chi tiết sản phẩm)
         productCard.onclick = function () {
-            window.location.href = `productDetail?id=${product.id}`;
+            window.location.href = `danh-muc?name=${product.detail}`;
         };
 
 

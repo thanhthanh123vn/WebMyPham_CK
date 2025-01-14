@@ -350,7 +350,7 @@ public class ProductsDao {
     }
     public List<Product> getTop10Products() {
         List<Product> products = new ArrayList<>();
-        String query = "SELECT p.id, p.name,p.image, SUM(od.quantity) AS total_quantity\n" +
+        String query = "SELECT p.id, p.name,p.image,p.detail, SUM(od.quantity) AS total_quantity\n" +
                 "                FROM Products p\n" +
                 "                JOIN OrderDetails od ON p.ID = od.ProductID\n" +
                 "                GROUP BY p.ID, p.name\n" +
@@ -363,6 +363,7 @@ public class ProductsDao {
                 // Tạo đối tượng ProductsDao và ánh xạ dữ liệu
                 Product product = new Product();
                 product.setId(rs.getInt("id"));
+                product.setDetail(rs.getString("detail"));
                 product.setName(rs.getString("name"));
                 product.setImage(rs.getString("image"));
                 product.setQuantity(rs.getInt("total_quantity"));
@@ -375,7 +376,7 @@ public class ProductsDao {
     }
 public List<Product> getHotProduct(){
         List<Product> products = new ArrayList<>();
-        String sql = "SELECT p.id, p.`name`, c.CategoryName,p.image,COUNT(*) as SL\n" +
+        String sql = "SELECT p.id, p.`name`,p.detail, c.CategoryName,p.image,COUNT(*) as SL\n" +
                 "from products p join categories c\n" +
                 "on p.CategoryID = c.CategoryID\n" +
                 "join orderdetails od on p.id = od.ProductID\n" +
@@ -386,6 +387,7 @@ public List<Product> getHotProduct(){
             while (rs.next()) {
                 Product product = new Product();
                 product.setId(rs.getInt("id"));
+                product.setDetail(rs.getString("detail"));
                 product.setName(rs.getString("CategoryName"));
                 product.setImage(rs.getString("image"));
                 product.setQuantity(rs.getInt("SL"));

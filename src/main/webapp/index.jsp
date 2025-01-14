@@ -185,7 +185,7 @@
                 <div class="top-search-header">Top Tìm Kiếm</div>
                 <div class="top-search-list">
                     <c:forEach var="topP" items="${topProduct}">
-                    <div class="top-search-item" onclick="topProductDetail(${topP.id})">
+                        <div class="top-search-item" onclick="redirectToDetails('${topP.name}')">
                         <img src="${topP.image}" alt="${topP.name}">
                         <div class="item-info">
                             <p class="item-title">${topP.name}</p>
@@ -201,7 +201,7 @@
 
                 <c:forEach var="product" items="${products}">
 
-                    <div class="product" onclick="redirectToDetails(${product.id})">
+                    <div class="product" onclick="redirectToProductDetails('${product.id}')">
                         <img src="${product.image}" alt="${product.name}">
                         <h4>${product.name}</h4>
                         <div class="vn_names">${product.detail}</div>
@@ -294,14 +294,18 @@
 <script src="js/displayAllProduct.js"></script>
 
 <script>
-    function redirectToDetails(productId) {
+    function redirectToDetails(name) {
         // Chuyển hướng đến Servlet với ID sản phẩm
 
-        window.location.href = `productDetail?id=` + productId
+        window.location.href = `danh-muc?name=` + name
     }
-    function  topProductDetail(productId) {
-        window.location.href = `productDetail?id=` + productId
+    function redirectToProductDetails(id) {
+        // Chuyển hướng đến Servlet với ID sản phẩm
+
+        window.location.href = `productDetail?id=` + id
     }
+
+
 
 </script>
 

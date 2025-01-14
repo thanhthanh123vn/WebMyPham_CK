@@ -91,8 +91,8 @@
                         <span class="total-label">Tổng tiền (1):</span>
 
                         <c:choose>
-                            <c:when test="${ not empty sessionScope.cart.totalCar}">
-                                <span class="total-amount">${sessionScope.cart.totalCar}</span>
+                            <c:when test="${ not empty sessionScope.cart.totalCart}">
+                                <span class="total-amount">${sessionScope.cart.totalCart}</span>
                             </c:when>
                             <c:when test="${not empty sessionScope.payProduct.price}">
                                 <span class="total-amount">${sessionScope.payProduct.price}</span>
@@ -130,8 +130,8 @@
                     <span class="label">Tạm tính (1)</span>
 
                     <c:choose>
-                        <c:when test="${not empty sessionScope.cart.totalCar}">
-                            <span class="total-amount">${sessionScope.cart.totalCar}</span>
+                        <c:when test="${not empty sessionScope.cart.totalCart}">
+                            <span class="total-amount">${sessionScope.cart.totalCart}</span>
                         </c:when>
                         <c:when test="${not empty sessionScope.payProduct.price}">
                             <span class="total-amount">${sessionScope.payProduct.price}</span>
@@ -154,8 +154,8 @@
                 <div class="row total">
                     <span class="label">Thành tiền (Đã VAT)</span>
                     <c:choose>
-                        <c:when test="${not empty sessionScope.cart.totalCar}">
-                            <span class="total-amount">${sessionScope.cart.totalCar}</span>
+                        <c:when test="${not empty sessionScope.cart.totalCart}">
+                            <span class="total-amount">${sessionScope.cart.totalCart}</span>
                         </c:when>
                         <c:when test="${not empty sessionScope.payProduct.price}">
                             <span class="total-amount">${sessionScope.payProduct.price}</span>

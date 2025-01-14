@@ -387,9 +387,10 @@
             <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">Thông tin Bảng</h6>
-                    <a class="collapse-item" href="${pageContext.request.contextPath}/table-admin-User">Thông tin người dùng</a>
-                    <a class="collapse-item" href="#">Thông tin Sản Phẩm</a>
+                    <a class="collapse-item" href="${pageContext.request.contextPath}/table-admin-User">Quản lý người dùng</a>
+                    <a class="collapse-item" href="${pageContext.request.contextPath}/table-admin-Product">Quản lý Sản Phẩm</a>
                     <a class="collapse-item" href="${pageContext.request.contextPath}/order-table">Quản lý đơn hàng</a>
+                    <a class="collapse-item" href="forgot-password.html">Quản lý giảm giá</a>
 
                     <div class="collapse-divider"></div>
 
@@ -619,7 +620,7 @@
                                 Nhật ký hoạt động
                             </a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                            <a class="dropdown-item" href="http://localhost:8080/WebMyPham__/login.jsp" data-toggle="modal" data-target="#logoutModal">
                                 <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                                 Đăng xuất
                             </a>
@@ -654,6 +655,7 @@
                         <table id="productTables">
                             <thead >
                             <tr id="list-header">
+                                <th  scope="col" class="background-green bold "> ID</th>
                                 <th  scope="col" class="background-green bold "> Tên sản phẩm</th>
                                 <th  scope="col" class="background-green bold" >Mã danh mục</th>
                                 <th scope="col" class="background-green bold" > Giá</th>
@@ -674,6 +676,8 @@
                         <span class="close" onclick="hideModal()">&times;</span>
 
                         <h3 id="modalTitle">Thêm sản phẩm</h3>
+                        <label>ID:</label>
+                        <input type="text" id="id">
                         <label>Tên sản phẩm:</label>
                         <input type="text" id="productName">
                         <label>Mã danh mục:</label>
@@ -683,7 +687,7 @@
                         <label>Tồn kho:</label>
                         <input type="text" id="stock">
                         <label>Mô tả:</label>
-                        <input type="text" id="description">
+                        <textarea id="description"></textarea>
                         <label>URL Ảnh:</label> <input type="text" id="imageURL">
                         <button onclick="saveProduct()">Lưu</button>
                         <button onclick="hideModal()">Hủy</button>
@@ -758,6 +762,10 @@
             </script>
         <!-- Page level custom scripts -->
         <script src="js/demo/datatables-demo.js"></script>
+            <script src="https://cdn.ckeditor.com/4.20.2/standard/ckeditor.js"></script>
+            <script>
+                CKEDITOR.replace('description');
+            </script>
 
 
 </body>

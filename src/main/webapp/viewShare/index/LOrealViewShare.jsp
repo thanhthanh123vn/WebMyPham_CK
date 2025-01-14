@@ -132,7 +132,7 @@
           </div>
           <div id="Q&A">
             <h3>Hỏi đáp</h3>
-            <input type="text" placeholder="Bạn có câu hỏi với sản phẩm này? Đặt câu hỏi ngay." />
+            <input style="height: 100px" type="text" placeholder="Bạn có câu hỏi với sản phẩm này? Đặt câu hỏi ngay." />
             <button>Gửi</button>
 
             <div class="question">

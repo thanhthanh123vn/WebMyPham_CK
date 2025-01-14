@@ -391,9 +391,10 @@ if (user != null) {
             <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">Thông tin Bảng</h6>
-                    <a class="collapse-item" href="#">Thông tin người dùng</a>
-                    <a class="collapse-item" href="${pageContext.request.contextPath}/table-admin-Product">Thông tin Sản Phẩm</a>
+                    <a class="collapse-item" href="${pageContext.request.contextPath}/table-admin-User">Quản lý người dùng</a>
+                    <a class="collapse-item" href="${pageContext.request.contextPath}/table-admin-Product">Quản lý Sản Phẩm</a>
                     <a class="collapse-item" href="${pageContext.request.contextPath}/order-table">Quản lý đơn hàng</a>
+                    <a class="collapse-item" href="forgot-password.html">Quản lý giảm giá</a>
                     
                     <div class="collapse-divider"></div>
                   
@@ -623,7 +624,7 @@ if (user != null) {
                                 Nhật ký hoạt động
                             </a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                            <a class="dropdown-item" href="http://localhost:8080/WebMyPham__/login.jsp" data-toggle="modal" data-target="#logoutModal">
                                 <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                                 Đăng xuất
                             </a>
@@ -659,7 +660,7 @@ if (user != null) {
                                 <thead>
                                      <tr id="list-header">
                                          <th scope="col" class="background-green bold ">Tên Người Dùng</th>
-                                         <th  scope="col" class="background-green bold ">Mật Khẩu</th>
+                                         <th  scope="col" class="background-green bold ">Role</th>
                                           <th scope="col" class="background-green bold ">Địa Chỉ</th>
                                            <th scope="col" class="background-green bold ">Ảnh</th>
                                            <th scope="col" class="background-green bold ">Email</th>
@@ -694,7 +695,9 @@ if (user != null) {
                                          <h3 id="modalTitle">Thêm Người Dùng</h3> 
                                          <label>Tên người dùng:</label> 
                                          <input type="text" id="userName"  name="fullname">
-                                         <label>Password:</label>
+                                         <label>Role:</label>
+                                        <input type="text" id="role" name="role">
+                                        <label>Password:</label>
                                         <input type="password" id="password" name="password">
 
                                          <label>Địa chỉ:</label> 
@@ -740,7 +743,7 @@ if (user != null) {
                 <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="login.html">Logout</a>
+                    <a class="btn btn-primary" href="http://localhost:8080/WebMyPham__/login.jsp">Logout</a>
                 </div>
             </div>
         </div>

@@ -11,6 +11,7 @@ public class UserInf {
     private String email;
     private String phone;
     private Date create_date;
+    private String role;
 
     // Constructor không đối số
     public UserInf() {}
@@ -22,7 +23,7 @@ public class UserInf {
     }
 
     // Constructor đầy đủ đối số
-    public UserInf( int id ,String userName, String email, String password, String address, String imageURL, String phone) {
+    public UserInf( int id ,String userName, String email, String password, String address, String imageURL, String phone,String role) {
         this.id = id ;
         this.userName = userName;
         this.password = password;
@@ -30,6 +31,17 @@ public class UserInf {
         this.imageURL = imageURL;
         this.email = email;
         this.phone = phone;
+        this.role = role;
+    }
+    public UserInf( int id ,String userName, String email, String password, String address, String imageURL, String phone ) {
+        this.id = id ;
+        this.userName = userName;
+        this.password = password;
+        this.address = address;
+        this.imageURL = imageURL;
+        this.email = email;
+        this.phone = phone;
+
     }
 
     public UserInf(String phone, String userName, String password, String address, String imageURL, String email) {
@@ -41,6 +53,13 @@ public class UserInf {
         this.email = email;
     }
 
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
 // Getters và setters
 
     public int getId() {

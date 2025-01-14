@@ -103,7 +103,7 @@
                     </div>
                 </div>
 
-                <div class="products" id="s">
+                <div class="products" id="productSlider">
                     <!-- Các sản phẩm sẽ được chèn vào đây -->
 
                 </div>
@@ -252,6 +252,42 @@
     }
 
 </script>
+
+
+
+<script>
+    // Lấy phần tử hiển thị thời gian
+    var timerDay = document.querySelector('.timer-day');
+
+    // Thời gian kết thúc khuyến mãi (1 ngày từ thời điểm hiện tại)
+    var endTime = new Date();
+    endTime.setDate(endTime.getDate() + 1); // Thêm 1 ngày
+
+    function updateTimer() {
+        var now = new Date();
+        var remainingTime = endTime - now;
+
+        if (remainingTime <= 0) {
+            timerDay.innerHTML = "Khuyến mãi đã kết thúc!";
+            clearInterval(timerInterval); // Dừng cập nhật
+            return;
+        }
+
+        var hours = Math.floor((remainingTime % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        var minutes = Math.floor((remainingTime % (1000 * 60 * 60)) / (1000 * 60));
+        var seconds = Math.floor((remainingTime % (1000 * 60)) / 1000);
+
+        timerDay.innerHTML = hours + ":" + minutes + ":" + seconds;
+    }
+
+    // Cập nhật thời gian mỗi giây
+    var timerInterval = setInterval(updateTimer, 1000);
+
+    // Hiển thị lần đầu
+    updateTimer();
+
+</script>
+
 <script src="js/main.js"></script>
 <script src="js/searchProduct.js"></script>
 <script src="js/updateUserMain.js"></script>
@@ -342,38 +378,6 @@
 </script>
 
 
-<script>
-    // Lấy phần tử hiển thị thời gian
-    var timerDay = document.querySelector('.timer-day');
-
-    // Thời gian kết thúc khuyến mãi (1 ngày từ thời điểm hiện tại)
-    var endTime = new Date();
-    endTime.setDate(endTime.getDate() + 1); // Thêm 1 ngày
-
-    function updateTimer() {
-        var now = new Date();
-        var remainingTime = endTime - now;
-
-        if (remainingTime <= 0) {
-            timerDay.innerHTML = "Khuyến mãi đã kết thúc!";
-            clearInterval(timerInterval); // Dừng cập nhật
-            return;
-        }
-
-        var hours = Math.floor((remainingTime % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        var minutes = Math.floor((remainingTime % (1000 * 60 * 60)) / (1000 * 60));
-        var seconds = Math.floor((remainingTime % (1000 * 60)) / 1000);
-
-        timerDay.innerHTML = ` ${hours} : ${minutes} : ${seconds} `;
-    }
-
-    // Cập nhật thời gian mỗi giây
-    var timerInterval = setInterval(updateTimer, 1000);
-
-    // Hiển thị lần đầu
-    updateTimer();
-
-</script>
 
 
 </body>

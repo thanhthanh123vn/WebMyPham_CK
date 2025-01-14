@@ -71,6 +71,7 @@
 
     <jsp:include page="footer.jsp"/>
 </div>
+<script src="${pageContext.request.contextPath}/js/updateUserMain.js"></script>
 <%
 
     // Lấy username từ session
@@ -85,12 +86,12 @@
     }
 %>
 <script>
-    const  username = <%=username%>;
+    const  username = '<%=username%>';
 </script>
 
 <script src="${pageContext.request.contextPath}/js/main.js"></script>
 <script src="${pageContext.request.contextPath}/js/cartProduct.js"></script>
-<script src="${pageContext.request.contextPath}/js/updateUserMain.js"></script>
+
 
 <script>
     loginUser();

@@ -1,4 +1,4 @@
-<%--
+<%@ page import="object.User" %><%--
   Created by IntelliJ IDEA.
   User: nguye
   Date: 1/13/2025

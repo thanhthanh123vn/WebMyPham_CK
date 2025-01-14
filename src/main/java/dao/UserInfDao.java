@@ -66,7 +66,7 @@ private Utils utils;
     // Phương thức lấy danh sách người dùng
     public List<UserInf> getListUserInf(){
         List<UserInf> listUserInf = new ArrayList<>();
-        String sql = "select ua.userID, u.userName, ua.email, u.password, ua.address, ua.imageURL, ua.phone from Users u join UsersArress ua on u.ID = ua.userID";
+        String sql = "select ua.userID, u.userName,u.role, ua.email, u.password, ua.address, ua.imageURL, ua.phone from Users u join UsersArress ua on u.ID = ua.userID";
         try {
             PreparedStatement ps = conn.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
@@ -78,7 +78,8 @@ private Utils utils;
                         rs.getString("password"),
                         rs.getString("address"),
                         rs.getString("imageURL"),
-                        rs.getString("phone")
+                        rs.getString("phone"),
+                        rs.getString("role")
                 );
                 listUserInf.add(userInf);
             }
@@ -107,7 +108,8 @@ private Utils utils;
                         rs.getString("password"),
                         rs.getString("address"),
                         rs.getString("imageURL"),
-                        rs.getString("phone")
+                        rs.getString("phone"),
+                        rs.getString("role")
                 );
                 listUserInf.add(userInf);
             }

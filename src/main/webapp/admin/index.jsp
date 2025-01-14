@@ -160,10 +160,10 @@
                 <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Thông tin Bảng</h6>
-                        <a class="collapse-item" href="${pageContext.request.contextPath}/table-admin-User">Thông tin người dùng</a>
-                        <a class="collapse-item" href="${pageContext.request.contextPath}/table-admin-Product">Thông tin Sản Phẩm</a>
+                        <a class="collapse-item" href="${pageContext.request.contextPath}/table-admin-User">Quản lý người dùng</a>
+                        <a class="collapse-item" href="${pageContext.request.contextPath}/table-admin-Product">Quản lý Sản Phẩm</a>
                         <a class="collapse-item" href="${pageContext.request.contextPath}/order-table">Quản lý đơn hàng</a>
-                        <a class="collapse-item" href="forgot-password.html">Thông tin người quản trị</a>
+                        <a class="collapse-item" href="forgot-password.html">Quản lý giảm giá</a>
                         <div class="collapse-divider"></div>
                       
                     </div>
@@ -391,7 +391,7 @@
                                     Nhật ký hoạt động
                                 </a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                                <a class="dropdown-item" href="http://localhost:8080/WebMyPham__/login.jsp" data-toggle="modal" data-target="#logoutModal">
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Đăng xuất
                                 </a>

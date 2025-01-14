@@ -18,7 +18,7 @@ public class EditUserAdmin extends HttpServlet {
         BufferedReader reader = request.getReader();
         Gson gson = GsonUtil.getGson();
         UserInf user = gson.fromJson(reader, UserInf.class);
-        System.out.println(user.toString());
+
 
         // Logic thêm người dùng vào cơ sở dữ liệu
         try {

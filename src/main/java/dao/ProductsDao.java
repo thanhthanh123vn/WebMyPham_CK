@@ -117,11 +117,20 @@ public class ProductsDao {
     }
     public boolean deleteProduct(int id){
         String sql = "delete from products where id=?";
+        String sqlPD = "delete from productdetail where id = ? ";
+        
         try {
+            PreparedStatement ps = conn.prepareStatement(sqlPD);
+            ps.setInt(1, id);
+            int row = ps.executeUpdate();
+
+
+
+
             PreparedStatement stm = conn.prepareStatement(sql);
             stm.setInt(1, id);
-            int row = stm.executeUpdate();
-            if(row>0)
+            int rowP = stm.executeUpdate();
+            if(row>0 && rowP>0)
                 return true;
 
         } catch (SQLException e) {

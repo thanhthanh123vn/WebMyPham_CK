@@ -25,6 +25,11 @@ public class EditProductAdmin extends HttpServlet {
         Gson gson = GsonUtil.getGson();
         Product product = gson.fromJson(reader, Product.class);
         boolean isSuccess  =  dao.updateProduct(product);
+        if(isSuccess){
+        System.out.println("Cập nhập sản phẩm thành công");
+        }else {
+            System.out.println("Cập nhập sản phẩm không thành công");
+        }
         // Xử lý sản phẩm (ví dụ: lưu vào cơ sở dữ liệu)
         // Bạn có thể thêm mã xử lý dữ liệu ở đây
         String json = gson.toJson(product);

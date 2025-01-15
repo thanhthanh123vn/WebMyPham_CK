@@ -169,7 +169,7 @@ a.txt_color_1:hover {
 </head>
 <body>
 	<div class="main_content_sub_login">
-		<form id="form-head-register" action="../SignUser" method="post" onsubmit="return validateForm()">
+		<form id="form-head-register" action="${pageContext.request.contextPath}/SignUser" method="post" onsubmit="return validateForm()">
 
 			<div class="alert alert-warning alert-dismissible" id="warningAlert"
 				style="display: none;">

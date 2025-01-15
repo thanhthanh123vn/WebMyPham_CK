@@ -8,8 +8,9 @@ function createProductHTML(product, isPayProduct = false) {
                             <p class="detailProduct">${product.detail || "Không có mô tả"}</p>
                             <span class="priceProduct">${product.price ? product.price + "đ" : "N/A"}</span>
                             <div class="actions">
-                                <a href="#">Yêu thích</a> |
-                                <a href="#" onclick="removeOrderProduct(${product.id})">Hủy Đặt Hàng</a>
+                                <a onclick="wishlist('${product.id}')">Yêu thích</a> |
+                              <a href="#" onclick="removeOrderProduct('${product.id}', event)">Hủy Đặt Hàng</a>
+
                             </div>
                             <div class="promotion">Tặng ngay phần quà khi mua tại cửa hàng còn quà</div>
                             <div class="promotion quantityProduct">Số lượng: ${isPayProduct ? (product.quantity || "N/A") : product.count}</div>
@@ -18,8 +19,22 @@ function createProductHTML(product, isPayProduct = false) {
                 </div>
             `;
 }
-// Hàm xử lý hủy đặt hàng
-function removeOrderProduct(productId) {
-    console.log("Hủy đặt hàng sản phẩm có ID:", productId);
-    // Thêm logic xử lý hủy đặt hàng ở đây
+function removeOrderProduct(productId, event) {
+    event.preventDefault(); // Ngừng hành động mặc định (reload trang)
+    window.location.href = "http://localhost:8080/WebMyPham__/cancelOrder?id=" + productId;
+}
+function wishlist(productID) {
+    fetch("http://localhost:8080/WebMyPham__/wishlist?id=" + productID, {
+        method: "POST"
+    })
+        .then(response => {
+            if (response.ok) {
+                console.log("Yêu cầu đã được xử lý thành công");
+            } else {
+                console.log("Đã xảy ra lỗi khi gửi yêu cầu");
+            }
+        })
+        .catch(error => {
+            console.log("Lỗi mạng:", error);
+        });
 }

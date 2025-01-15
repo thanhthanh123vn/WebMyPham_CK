@@ -46,6 +46,7 @@ public class PromotionsDao {
         return promotionsList;
     }
 
+
     // Thêm promotion mới
     public boolean addPromotion(Promotions promotion) {
         String sql = "INSERT INTO promotions (ProductID, Name, discountPercentage, discount, startDate, endDate, createdAt) VALUES (?, ?, ?, ?, ?, ?, ?)";
@@ -55,9 +56,9 @@ public class PromotionsDao {
             ps.setString(2, promotion.getName());
             ps.setBigDecimal(3, promotion.getDiscountPercentage());
             ps.setString(4, promotion.getDiscount());
-            ps.setDate(5, new java.sql.Date(promotion.getStartDate().getTime()));
-            ps.setDate(6, new java.sql.Date(promotion.getEndDate().getTime()));
-            ps.setDate(7, new java.sql.Date(promotion.getCreatedAt().getTime()));
+            ps.setDate(5, promotion.getStartDate());
+            ps.setDate(6,promotion.getEndDate());
+            ps.setDate(7, promotion.getCreatedAt());
 
             return ps.executeUpdate() > 0;
 
@@ -70,17 +71,16 @@ public class PromotionsDao {
 
     // Sửa promotion theo id
     public boolean updatePromotion(Promotions promotion) {
-        String sql = "UPDATE promotions SET ProductID = ?, Name = ?, discountPercentage = ?, discount = ?, startDate = ?, endDate = ?, createdAt = ? WHERE id = ?";
+        String sql = "UPDATE promotions SET ProductID = ?, Name = ?, discountPercentage = ?, discount = ?, startDate = ?, endDate = ? WHERE id = ?";
 
         try (PreparedStatement ps = con.prepareStatement(sql)) {
             ps.setInt(1, promotion.getProductId());
             ps.setString(2, promotion.getName());
             ps.setBigDecimal(3, promotion.getDiscountPercentage());
             ps.setString(4, promotion.getDiscount());
-            ps.setDate(5, new java.sql.Date(promotion.getStartDate().getTime()));
-            ps.setDate(6, new java.sql.Date(promotion.getEndDate().getTime()));
-            ps.setDate(7, new java.sql.Date(promotion.getCreatedAt().getTime()));
-            ps.setInt(8, promotion.getId());
+            ps.setDate(5, promotion.getStartDate());
+            ps.setDate(6, promotion.getEndDate());
+            ps.setInt(7, promotion.getId());
 
             return ps.executeUpdate() > 0;
 

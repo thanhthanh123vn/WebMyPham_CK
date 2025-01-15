@@ -1,3 +1,10 @@
+<%--
+  Created by IntelliJ IDEA.
+  User: nguye
+  Date: 1/16/2025
+  Time: 12:52 AM
+  To change this template use File | Settings | File Templates.
+--%>
 <%@ page import="object.Product" %>
 <%@ page import="gson.GsonUtil" %>
 <%@ page import="object.cart.Cart" %>
@@ -194,7 +201,7 @@
         </div>
     </div>
 </div>
-    <jsp:include page="../footer.jsp"/>
+<jsp:include page="../footer.jsp"/>
 
 
 <%
@@ -203,19 +210,13 @@
     String username = (user != null) ? user.getFullName() : "";
 
     // Lấy dữ liệu giỏ hàng từ session
-    Cart cartData = (Cart) session.getAttribute("cartQL");
-    List<ProductCart> productCarts = (cartData != null) ? cartData.getList() : new ArrayList<>();
-    Product payProduct = (Product) session.getAttribute("productQL");
+
+    Product payProduct = (Product) session.getAttribute("Wishlistproduct");
 
     // Lấy sản phẩm thanh toán từ session
 
 
-    if(cartData !=null){
-        session.removeAttribute("cart");
-    }
-    if(payProduct !=null){
-        session.removeAttribute("payProduct");
-    }
+
 %>
 
 <script>
@@ -223,19 +224,12 @@
         const productContainer = document.getElementById("productContainer");
 
         // Dữ liệu giỏ hàng và sản phẩm thanh toán
-        const cartData = <%= new com.google.gson.Gson().toJson(productCarts) %>;
+
         const payProductData = <%= payProduct != null ? new com.google.gson.Gson().toJson(payProduct) : "null" %>;
 
 
 
-        // Hiển thị sản phẩm từ giỏ hàng
-        if (cartData && cartData.length > 0) {
-            cartData.forEach(product => {
-                productContainer.innerHTML += createProductHTML(product);
-            });
-        }
-        // Hiển thị sản phẩm thanh toán
-        else if (payProductData) {
+     if (payProductData) {
             productContainer.innerHTML += createProductHTML(payProductData, true);
         }
         // Nếu không có sản phẩm nào
@@ -247,7 +241,7 @@
 
 </script>
 <script src="${pageContext.request.contextPath}/js/loadQldh.js"></script>
-        <script src="${pageContext.request.contextPath}/js/updateUserMain.js"></script>
+<script src="${pageContext.request.contextPath}/js/updateUserMain.js"></script>
 
 
 <script>

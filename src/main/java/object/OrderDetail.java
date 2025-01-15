@@ -7,18 +7,25 @@ public class OrderDetail {
     private String recipientName;
     private String phoneNumber;
     private String address;
-    private List<object.Product> productList;
+    private int productID;
     private int totalQuantity;
     private double totalPrice;
-
+    private List<Product> productList;
     // Constructor
-    public OrderDetail(int orderId , String recipientName, String phoneNumber, String address, List<object.Product> productList, int totalQuantity, double totalPrice) {
+    public OrderDetail(int orderId , String recipientName, String phoneNumber, String address, int productList, int totalQuantity, double totalPrice) {
         this.recipientName = recipientName;
         this.phoneNumber = phoneNumber;
         this.address = address;
-        this.productList = productList;
+        this.productID = productList;
         this.totalQuantity = totalQuantity;
         this.totalPrice = totalPrice;
+        this.orderId = orderId;
+    }
+
+    public OrderDetail(int totalQuantity, double totalPrice, int productID, int orderId) {
+        this.totalQuantity = totalQuantity;
+        this.totalPrice = totalPrice;
+        this.productID = productID;
         this.orderId = orderId;
     }
 
@@ -50,11 +57,19 @@ public class OrderDetail {
         this.address = address;
     }
 
-    public List<object.Product> getProductList() {
+    public int getProductId() {
+        return productID;
+    }
+
+    public void setProductId(int productList) {
+        this.productID = productList;
+    }
+
+    public List<Product> getProductList() {
         return productList;
     }
 
-    public void setProductList(List<object.Product> productList) {
+    public void setProductList(List<Product> productList) {
         this.productList = productList;
     }
 

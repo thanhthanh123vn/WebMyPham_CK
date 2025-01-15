@@ -124,7 +124,7 @@ public boolean updateUser(User user) {
 
 	}
 	public boolean checkInfoUser(String username , String email) {
-		String sql = "SELECT * FROM user WHERE username = ? AND email = ?";
+		String sql = "SELECT * FROM users WHERE username = ? AND email = ?";
 		try (PreparedStatement statement = conn.prepareStatement(sql)) {
 			statement.setString(1, username);
 			statement.setString(2, email);

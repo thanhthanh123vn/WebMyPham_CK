@@ -254,6 +254,17 @@
       color: black;
     }
 
+    label {
+      display: block;
+      margin-bottom: 5px; /* Khoảng cách giữa label và input */
+    }
+
+    input[type="date"] {
+      display: block;
+      width: calc(100% - 22px);
+      padding: 10px;
+      margin-bottom: 15px; /* Khoảng cách giữa các input */
+    }
 
 
     .updateUser:hover{
@@ -647,7 +658,7 @@
         <div class="card shadow mb-4" style="display: flex; flex-direction: row; align-items: center;
                     text-align: center; justify-content: center; padding: 10px 20px;">
 
-          <button  onclick="showAddModal()">Thêm</button>
+          <button  onclick="showAddPromotionModal()">Thêm</button>
 
         </div>
 
@@ -699,12 +710,12 @@
             <label>Name:</label>
             <input type="text" id="role" name="role">
             <label>Phần trăm giảm giá:</label>
-            <input type="password" id="password" name="password">
+            <input type="text" id="password" name="password">
 
             <label>Ngày bắt đầu:</label>
-            <input type="text" id="address" name="address">
+            <input type="date" id="address" name="address">
             <label>Ngày kết thúc</label>
-            <input type="text" id="imageURL" name="imageURL">
+            <input type="date" id="imageURL" name="imageURL">
 
             <button onclick="savePromotion()">Lưu</button>
             <button onclick="hideModal()">Hủy</button> </div> </div>

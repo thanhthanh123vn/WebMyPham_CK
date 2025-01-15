@@ -262,7 +262,7 @@
 
     }
     function payProductDetail(productId) {
-        window.location.href = `${pageContext.request.contextPath}/payProduct?productId=`+productId;
+        window.location.href = `index/payAddress.jsp`;
 
     }
 

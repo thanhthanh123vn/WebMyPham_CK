@@ -68,14 +68,14 @@ public class SignUser extends HttpServlet {
 
 		if (!checkInfoUser && codeAth.equals(codeFromSession)) {
 			System.out.println("SignUp");
-			inforUser.insertUser(username, password, email);
+			inforUser.insertUser(username, email, password);
 			session.setAttribute("username", username);
-			session.setAttribute("showAlert", "true");
+			request.setAttribute("showAlert", "true");
 			request.getRequestDispatcher("index.jsp").forward(request, response);
 
 		} else {
 			System.out.println(codeAth);
-			session.setAttribute("errorMessage", "true");
+			request.setAttribute("errorMessage", "true");
 			response.sendRedirect("index/signUp.jsp");
 		}
 

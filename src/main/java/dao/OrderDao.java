@@ -4,10 +4,7 @@ import object.Order;
 import object.OrderDetail;
 import object.Product;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -94,7 +91,7 @@ public class OrderDao {
                     orderDetailsMap.put(fullName, orderDetail);
                 } else {
                     OrderDetail orderDetail = orderDetailsMap.get(fullName);
-                    orderDetail.getProductList().add(product);
+
                     orderDetail.setTotalQuantity(orderDetail.getTotalQuantity() + quantity);
                     orderDetail.setTotalPrice(orderDetail.getTotalPrice() + price);
                 }
@@ -105,45 +102,64 @@ public class OrderDao {
         }
         return new ArrayList<>(orderDetailsMap.values());
     }
-    public boolean insertOrder(Order order) {
-        String sql = "INSERT INTO orders (UserID, OrderDate, Status) VALUES (?, ?, ?)";
+    public boolean insertOrderWithDetails(Order order, OrderDetail orderDetail) {
+        String insertOrderSQL = "INSERT INTO orders (UserID, OrderDate, Status) VALUES (?, ?, ?)";
+        String insertOrderDetailSQL = "INSERT INTO orderdetails (OrderID, ProductID, UserId, Quantity, Price) VALUES (?, ?, ?, ?, ?)";
 
+        try {
+            // Tắt auto-commit để thực hiện giao dịch
+            conn.setAutoCommit(false);
 
-        try{
-            PreparedStatement ps = conn.prepareStatement(sql);
-            ps.setInt(1, order.getId());
-            ps.setDate(2, new java.sql.Date(order.getCreate_date().getTime()));
-            ps.setString(3, "Pending"); // Hoặc trạng thái khác như "Completed".
-            int rows = ps.executeUpdate();
+            // Thêm bản ghi vào bảng `orders`
+            PreparedStatement orderPs = conn.prepareStatement(insertOrderSQL, Statement.RETURN_GENERATED_KEYS);
+            orderPs.setInt(1, order.getUserId());
+            orderPs.setDate(2, new java.sql.Date(order.getCreate_date().getTime()));
+            orderPs.setString(3, "Pending"); // Trạng thái mặc định
+            int orderRows = orderPs.executeUpdate();
 
+            if (orderRows > 0) {
+                // Lấy OrderID tự động tạo
+                ResultSet generatedKeys = orderPs.getGeneratedKeys();
+                if (generatedKeys.next()) {
+                    int orderId = generatedKeys.getInt(1); // Lấy giá trị OrderID từ khóa tự tăng
 
-            return rows > 0;
+                    // Thêm bản ghi vào bảng `orderdetails`
+                    PreparedStatement detailPs = conn.prepareStatement(insertOrderDetailSQL);
+                    detailPs.setInt(1, orderId);
+                    detailPs.setInt(2, orderDetail.getProductId());
+                    detailPs.setInt(3, order.getUserId());
+                    detailPs.setInt(4, orderDetail.getTotalQuantity());
+                    detailPs.setDouble(5, orderDetail.getTotalPrice());
 
+                    int detailRows = detailPs.executeUpdate(); // Thực hiện thêm bản ghi chi tiết
 
+                    // Kiểm tra bản ghi được thêm thành công
+                    if (detailRows > 0) {
+                        conn.commit(); // Cam kết giao dịch
+                        return true;
+                    }
+                }
+            }
 
-
+            conn.rollback(); // Nếu lỗi, rollback giao dịch
         } catch (Exception e) {
+            try {
+                conn.rollback(); // Rollback nếu có lỗi xảy ra
+            } catch (SQLException rollbackEx) {
+                rollbackEx.printStackTrace();
+            }
             e.printStackTrace();
+        } finally {
+            try {
+                conn.setAutoCommit(true); // Bật lại auto-commit
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
         }
-
         return false;
     }
-    public boolean insertOrderDetail(int orderId, int productId, int userId, int quantity, double price) {
-        String sql = "INSERT INTO orderdetails (OrderID, ProductID, UserId, Quantity, Price) VALUES (?, ?, ?, ?, ?)";
-        try {
-             PreparedStatement ps = conn.prepareStatement(sql);
-            ps.setInt(1, orderId);
-            ps.setInt(2, productId);
-            ps.setInt(3, userId);
-            ps.setInt(4, quantity);
-            ps.setDouble(5, price);
-            int rowsAffected = ps.executeUpdate();
-            return rowsAffected > 0;
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return false;
-        }
-    }
+
+
 
     public boolean removerOrder(int id){
         String sql = "DELETE FROM orders WHERE UserId = ?";

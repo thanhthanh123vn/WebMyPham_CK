@@ -22,7 +22,15 @@ public class PrintOrderServlet extends HttpServlet {
 
 
         OrderDao dao = new OrderDao();
-        List<OrderDetail> orderDetails = dao.getOrderDetails(Integer.parseInt(orderId));
+        int oid = -1;
+       try{
+         oid = Integer.parseInt(orderId);
+
+       } catch (Exception e) {
+           e.printStackTrace();
+
+       }
+        List<OrderDetail> orderDetails = dao.getOrderDetails(oid);
         System.out.println(orderDetails.size()+" orderdetail");
 
 

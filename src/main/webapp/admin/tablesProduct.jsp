@@ -1,6 +1,23 @@
+
 <%@ page import="java.util.List" %>
-<%@ page import="object.Product" %>
 <%@ page import="com.google.gson.Gson" %>
+<%@ page import="object.UserInf" %>
+<%@ page import="object.User"%>
+<%@ page import="object.Product" %>
+<<<<<<< HEAD
+<%@ page import="com.google.gson.Gson" %>
+=======
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+         pageEncoding="UTF-8"%>
+<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix = "f" uri = "http://java.sun.com/jsp/jstl/fmt" %>
+<% User user = (User) session.getAttribute("userLogin");
+    if (user != null) {
+
+
+
+    }%>
+>>>>>>> Thanh
 <!DOCTYPE html>
 <html lang="en">
 
@@ -12,44 +29,50 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <style>
-           body {
+        body {
             font-family: Arial, sans-serif;
             background-color: #f4f4f4;
             margin: 0;
             padding: 0;
         }
-      
 
-  .bg-blueblue-primary{
-            
+
+        .bg-blueblue-primary{
+
             background-color: #2e5f45;
-               }
-               .badge-danger{
-                   color: black;
-       
-               }
-               .btn{
-                   background-color: #28a745;
-                   color: white;
-                
-               }
-             
+        }
+        .badge-danger{
+            color: black;
 
-          .updateUser {
-         
-         
-       
-         padding: 10px 20px;
-         border-radius: 5px;
-         text-decoration: none;
-         margin-left: 20px;  
-         cursor: pointer;
-         margin-left: 44%;
-         margin-top: 1%;
-     }  
-     
-     
-     
+        }
+        .btn{
+            background-color: #28a745;
+            color: white;
+
+        }
+        .background-green{
+            background-color: #2E5F45;
+            color: white;
+            font-style: oblique;
+
+        }
+
+
+        .updateUser {
+
+
+
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            margin-left: 20px;
+            cursor: pointer;
+            margin-left: 44%;
+            margin-top: 1%;
+        }
+
+
+
         header {
             background-color: #333;
             color: white;
@@ -73,6 +96,7 @@
             flex-wrap: wrap;
             justify-content: center;
             padding: 20px;
+
         }
 
         .product-item {
@@ -155,7 +179,7 @@
         tbody tr:hover {
             background-color: #f1f1f1;
         }
-        
+
 
         #productModal {
             display: none;
@@ -201,7 +225,7 @@
         }
 
         button {
-        background-color: #28a745;
+            background-color: #28a745;
             color: white;
             padding: 10px 20px;
             border: none;
@@ -226,41 +250,44 @@
             text-decoration: none;
             cursor: pointer;
         }
-  th{
-    color: black;
-  }
+        th{
+            color: black;
+        }
 
 
 
-     .updateUser:hover{
-      
-     background-color: #00ff40;
-     text-decoration:none ;
-     color: white;
-  }
+        .updateUser:hover{
+
+            background-color: #00ff40;
+            text-decoration:none ;
+            color: white;
+        }
     </style>
 
     <title>SB Admin 2 - Tables</title>
 
     <!-- Custom fonts for this template -->
+    <link href="https://use.fontawesome.com/releases/v5.0.4/css/all.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.1.8/css/dataTables.dataTables.css">
+    <base href="${pageContext.request.contextPath}/admin/">
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link
-        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-        rel="stylesheet">
+            href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+            rel="stylesheet">
 
     <!-- Custom styles for this template -->
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
 
     <!-- Custom styles for this page -->
-    <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
-    
 
 </head>
 
 <body id="page-top">
 
-  <!-- Page Wrapper -->
-  <div id="wrapper">
+<!-- Page Wrapper -->
+<div id="wrapper">
 
     <!-- Sidebar -->
     <ul class="navbar-nav bg-blueblue-primary sidebar sidebar-dark accordion" id="accordionSidebar">
@@ -294,7 +321,7 @@
         <!-- Nav Item - Pages Collapse Menu -->
         <li class="nav-item">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
-                aria-expanded="true" aria-controls="collapseTwo">
+               aria-expanded="true" aria-controls="collapseTwo">
                 <i class="fas fa-fw fa-cog"></i>
                 <span>Thành Phần</span>
             </a>
@@ -310,12 +337,12 @@
         <!-- Nav Item - Utilities Collapse Menu -->
         <li class="nav-item">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
-                aria-expanded="true" aria-controls="collapseUtilities">
+               aria-expanded="true" aria-controls="collapseUtilities">
                 <i class="fas fa-fw fa-wrench"></i>
                 <span>Tiện ích</span>
             </a>
             <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
-                data-parent="#accordionSidebar">
+                 data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">Custom Utilities:</h6>
                     <a class="collapse-item" href="utilities-color.html">Màu</a>
@@ -337,41 +364,43 @@
         <!-- Nav Item - Pages Collapse Menu -->
         <li class="nav-item">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
-                aria-expanded="true" aria-controls="collapsePages">
+               aria-expanded="true" aria-controls="collapsePages">
                 <i class="fas fa-fw fa-folder"></i>
                 <span>Trang</span>
             </a>
             <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">Màn hình đăng nhập</h6>
-                    <a class="collapse-item" href="../index/login.html">Đăng nhập</a>
-                    <a class="collapse-item" href="../index/signUp.html">Đăng ký</a>
-                    <a class="collapse-item" href="forgot-password.html">Quên mật khẩu</a>
+                    <a class="collapse-item" href="${pageContext.request.contextPath}/login.jsp">Đăng nhập</a>
+                    <a class="collapse-item" href="${pageContext.request.contextPath}/signUp.jsp">Đăng ký</a>
+                    <a class="collapse-item" href="${pageContext.request.contextPath}/index/forgot-pass.jsp">Quên mật khẩu</a>
                     <div class="collapse-divider"></div>
                     <h6 class="collapse-header">Trang khác:</h6>
                     <a class="collapse-item" href="404.html">404 Page</a>
                     <a class="collapse-item" href="blank.html">Blank Page</a>
                 </div>
             </div>
-            
+
         </li>
         <li class="nav-item">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
-                aria-expanded="true" aria-controls="collapsePages">
+               aria-expanded="true" aria-controls="collapsePages">
                 <i class="fas fa-fw fa-folder"></i>
                 <span>Bảng</span>
             </a>
             <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">Thông tin Bảng</h6>
-                    <a class="collapse-item" href="tables.html">Thông tin người dùng</a>
-                    <a class="collapse-item" href="tablesProduct.html">Thông tin Sản Phẩm</a>
-                    
+                    <a class="collapse-item" href="${pageContext.request.contextPath}/table-admin-User">Quản lý người dùng</a>
+                    <a class="collapse-item" href="${pageContext.request.contextPath}/table-admin-Product">Quản lý Sản Phẩm</a>
+                    <a class="collapse-item" href="${pageContext.request.contextPath}/order-table">Quản lý đơn hàng</a>
+                    <a class="collapse-item" href="forgot-password.html">Quản lý giảm giá</a>
+
                     <div class="collapse-divider"></div>
-                  
+
                 </div>
             </div>
-            
+
         </li>
         <!-- Nav Item - Charts -->
         <!-- <li class="nav-item">
@@ -381,13 +410,8 @@
         </li> -->
 
         <!-- Nav Item - Tables -->
-         
-        <li class="nav-item">
-            <a class="nav-link" href="tables.html">
-                <i class="fas fa-fw fa-table"></i>
-                <span>Bảng</span></a>
 
-        </li>
+
 
         <!-- Divider -->
         <hr class="sidebar-divider d-none d-md-block">
@@ -397,7 +421,7 @@
             <button class="rounded-circle border-0" id="sidebarToggle"></button>
         </div>
 
-     
+
 
     </ul>
     <!-- End of Sidebar -->
@@ -418,10 +442,10 @@
 
                 <!-- Topbar Search -->
                 <form
-                    class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                        class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
                     <div class="input-group">
-                        <input type="text" class="form-control bg-light border-0 small" placeholder="Tìm kiếm..."
-                            aria-label="Search" aria-describedby="basic-addon2">
+                        <input type="text" class="form-control bg-light border-0 small" id="search" onkeydown="searchUserInf()" placeholder="Tìm kiếm..."
+                               aria-label="Search" aria-describedby="basic-addon2">
                         <div class="input-group-append">
                             <button class="btn" type="button" style="background-color: #28a745; color: white; z-index: 1;">
                                 <i class="fas fa-search fa-sm"></i>
@@ -436,19 +460,19 @@
                     <!-- Nav Item - Search Dropdown (Visible Only XS) -->
                     <li class="nav-item dropdown no-arrow d-sm-none">
                         <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <i class="fas fa-search fa-fw"></i>
                         </a>
                         <!-- Dropdown - Messages -->
                         <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
-                            aria-labelledby="searchDropdown">
+                             aria-labelledby="searchDropdown">
                             <form class="form-inline mr-auto w-100 navbar-search">
                                 <div class="input-group">
                                     <input type="text" class="form-control bg-light border-0 small"
-                                        placeholder="Search for..." aria-label="Search"
-                                        aria-describedby="basic-addon2">
+                                           placeholder="Search for..." aria-label="Search"
+                                           aria-describedby="basic-addon2">
                                     <div class="input-group-append">
-                                        <button class="btn btn-primary" type="button">
+                                        <button class="btn btn-primary" type="button" onclick="searchUserInf()">
                                             <i class="fas fa-search fa-sm"></i>
                                         </button>
                                     </div>
@@ -460,14 +484,14 @@
                     <!-- Nav Item - Alerts -->
                     <li class="nav-item dropdown no-arrow mx-1">
                         <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <i class="fas fa-bell fa-fw"></i>
                             <!-- Counter - Alerts -->
                             <span class="badge badge-danger badge-counter">3+</span>
                         </a>
                         <!-- Dropdown - Alerts -->
                         <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                            aria-labelledby="alertsDropdown">
+                             aria-labelledby="alertsDropdown">
                             <h6 class="dropdown-header">
                                 Trung tâm cảnh báo
                             </h6>
@@ -511,21 +535,21 @@
                     <!-- Nav Item - Messages -->
                     <li class="nav-item dropdown no-arrow mx-1">
                         <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <i class="fas fa-envelope fa-fw"></i>
                             <!-- Counter - Messages -->
                             <span class="badge badge-danger badge-counter">7</span>
                         </a>
                         <!-- Dropdown - Messages -->
                         <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                            aria-labelledby="messagesDropdown">
+                             aria-labelledby="messagesDropdown">
                             <h6 class="dropdown-header">
                                 Trung tâm tin nhắn
                             </h6>
                             <a class="dropdown-item d-flex align-items-center" href="#">
                                 <div class="dropdown-list-image mr-3">
                                     <img class="rounded-circle" src="img/undraw_profile_1.svg"
-                                        alt="...">
+                                         alt="...">
                                     <div class="status-indicator bg-success"></div>
                                 </div>
                                 <div class="font-weight-bold">
@@ -537,7 +561,7 @@
                             <a class="dropdown-item d-flex align-items-center" href="#">
                                 <div class="dropdown-list-image mr-3">
                                     <img class="rounded-circle" src="img/undraw_profile_2.svg"
-                                        alt="...">
+                                         alt="...">
                                     <div class="status-indicator"></div>
                                 </div>
                                 <div>
@@ -548,7 +572,7 @@
                             <a class="dropdown-item d-flex align-items-center" href="#">
                                 <div class="dropdown-list-image mr-3">
                                     <img class="rounded-circle" src="img/undraw_profile_3.svg"
-                                        alt="...">
+                                         alt="...">
                                     <div class="status-indicator bg-warning"></div>
                                 </div>
                                 <div>
@@ -560,7 +584,7 @@
                             <a class="dropdown-item d-flex align-items-center" href="#">
                                 <div class="dropdown-list-image mr-3">
                                     <img class="rounded-circle" src="https://source.unsplash.com/Mv9hjnEUHR4/60x60"
-                                        alt="...">
+                                         alt="...">
                                     <div class="status-indicator bg-success"></div>
                                 </div>
                                 <div>
@@ -578,14 +602,15 @@
                     <!-- Nav Item - User Information -->
                     <li class="nav-item dropdown no-arrow">
                         <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <span class="mr-2 d-none d-lg-inline text-gray-600 small">Nguyễn Thạnh</span>
+                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span class="mr-2 d-none d-lg-inline text-gray-600 small"><%= user.getFullName()%></span>
+
                             <img class="img-profile rounded-circle"
-                                src="img/undraw_profile.svg">
+                                 src="img/undraw_profile.svg">
                         </a>
                         <!-- Dropdown - User Information -->
                         <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                            aria-labelledby="userDropdown">
+                             aria-labelledby="userDropdown">
                             <a class="dropdown-item" href="#">
                                 <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                 Hồ sơ
@@ -599,7 +624,7 @@
                                 Nhật ký hoạt động
                             </a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                            <a class="dropdown-item" href="http://localhost:8080/WebMyPham__/login.jsp" data-toggle="modal" data-target="#logoutModal">
                                 <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                                 Đăng xuất
                             </a>
@@ -609,109 +634,108 @@
                 </ul>
 
             </nav>
-                <!-- End of Topbar -->
+            <!-- End of Topbar -->
 
-                <!-- Begin Page Content -->
-              
-                <div class="container-fluid">
+            <!-- Begin Page Content -->
 
-                    <!-- Page Heading -->
-                    <h1 class="h3 mb-2 text-gray-800">Bảng</h1>
-                   
-                    <div class="card shadow mb-4" style="display: flex; flex-direction: row; align-items: center; 
-                    text-align: center; justify-content: center; padding: 10px 20px;">  
+            <div class="container-fluid">
 
-                        <button  onclick="showAddModal()">Thêm</button>
-                       
-                        </div>
+                <!-- Page Heading -->
+                <h1 class="h3 mb-2 text-gray-800">Bảng</h1>
 
-                    <!-- DataTales Example -->  
-                    <div class="card shadow mb-4">  
-                        <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Bảng User</h6>
-                        </div>
-                        <main> <section class="products"> 
-                            <table id="userTable"> 
-                                <thead>
-                                    <tr>
-                                        <th>Tên sản phẩm</th>
-                                        <th>Mã danh mục</th>
-                                        <th>Giá</th>
-                                        <th>Tồn kho</th>
-                                        <th>Mô tả</th>
-                                        <th>URL Ảnh</th>
-                                        <th>Hành động</th>
-                                    </tr>
-                                    
-                                        </thead> 
-                                        <tbody id="productBody">
-                                             <!-- Dữ liệu người dùng sẽ được thêm vào bằng JavaScript --> </tbody> 
-                                            </table> 
-                                        </section> 
-                                    </main> <!-- Modal thêm/sửa người dùng --> 
-                                    <div id="productModal"> <div id="ProductModalContent">
-                                         <span class="close" onclick="hideModal()">&times;</span> 
-                                   
-                                         <h3 id="modalTitle">Thêm sản phẩm</h3> 
-                                         <label>Tên sản phẩm:</label> 
-                                         <input type="text" id="productName"> 
-                                         <label>Mã danh mục:</label> 
-                                         <input type="number" id="category"> 
-                                         <label>Giá:</label> 
-                                         <input type="number" id="price"> 
-                                         <label>Tồn kho:</label> 
-                                         <input type="text" id="stock"> 
-                                         <label>Mô tả:</label>
-                                          <input type="text" id="description"> 
-                                          <label>URL Ảnh:</label> <input type="text" id="imageURL"> 
-                                          <button onclick="saveProduct()">Lưu</button> 
-                                          <button onclick="hideModal()">Hủy</button> 
-                                        </div> 
-                                    </div>
-                <!-- /.container-fluid -->
+                <div class="card shadow mb-4" style="display: flex; flex-direction: row; align-items: center;
+                    text-align: center; justify-content: center; padding: 10px 20px;">
+
+                    <button  onclick="showAddProductModal()">Thêm</button>
+
+                </div>
+
+                <!-- DataTales Example -->
+                <div class="card shadow mb-4">
+                    <div class="card-header py-3">
+                        <h6 class="m-0 font-weight-bold text-primary">Bảng Product</h6>
+                    </div>
+                    <main> <section class="products">
+                        <table id="productTables">
+                            <thead >
+                            <tr id="list-header">
+                                <th  scope="col" class="background-green bold "> ID</th>
+                                <th  scope="col" class="background-green bold "> Tên sản phẩm</th>
+                                <th  scope="col" class="background-green bold" >Mã danh mục</th>
+                                <th scope="col" class="background-green bold" > Giá</th>
+                                <th scope="col" class="background-green bold" >Tồn kho</th>
+                                <th scope="col" class="background-green bold" >Mô tả</th>
+                                <th scope="col" class="background-green bold">URL Ảnh</th>
+                                <th scope="col" class="background-green bold">Hành động</th>
+                            </tr>
+
+                            </thead>
+                            <tbody id="productBody">
+                            <!-- Dữ liệu người dùng sẽ được thêm vào bằng JavaScript -->
+                            </tbody>
+                        </table>
+                    </section>
+                    </main> <!-- Modal thêm/sửa người dùng -->
+                    <div id="productModal"> <div id="ProductModalContent">
+                        <span class="close" onclick="hideModal()">&times;</span>
+
+                        <h3 id="modalTitle">Thêm sản phẩm</h3>
+                        <label>ID:</label>
+                        <input type="text" id="id">
+                        <label>Tên sản phẩm:</label>
+                        <input type="text" id="productName">
+                        <label>Mã danh mục:</label>
+                        <input type="number" id="category">
+                        <label>Giá:</label>
+                        <input type="number" id="price">
+                        <label>Tồn kho:</label>
+                        <input type="text" id="stock">
+                        <label>Mô tả:</label>
+                        <textarea id="description"></textarea>
+                        <label>URL Ảnh:</label> <input type="text" id="imageURL">
+                        <button onclick="saveProduct()">Lưu</button>
+                        <button onclick="hideModal()">Hủy</button>
+                    </div>
+                    <!-- /.container-fluid -->
+
+                </div>
+                <!-- End of Main Content -->
+
+                <!-- Footer -->
+
+                <!-- End of Footer -->
 
             </div>
-            <!-- End of Main Content -->
+            <!-- End of Content Wrapper -->
 
-            <!-- Footer -->
-            <footer class="sticky-footer bg-white">
-                <div class="container my-auto">
-                    <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; Your Website 2020</span>
+        </div>
+        <!-- End of Page Wrapper -->
+
+        <!-- Scroll to Top Button-->
+        <a class="scroll-to-top rounded" href="#page-top">
+            <i class="fas fa-angle-up"></i>
+        </a>
+
+        <!-- Logout Modal-->
+        <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+             aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                        <a class="btn btn-primary" href="login.html">Logout</a>
                     </div>
                 </div>
-            </footer>
-            <!-- End of Footer -->
-
-        </div>
-        <!-- End of Content Wrapper -->
-
-    </div>
-    <!-- End of Page Wrapper -->
-
-    <!-- Scroll to Top Button-->
-    <a class="scroll-to-top rounded" href="#page-top">
-        <i class="fas fa-angle-up"></i>
-    </a>
-
-    <!-- Logout Modal-->
-    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-                <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="login.html">Logout</a>
-                </div>
             </div>
         </div>
+<<<<<<< HEAD
     </div>
 <% List<Product> products = (List<Product>) request.getAttribute("listProduct");
    String productJson = new Gson().toJson(products);%>
@@ -720,23 +744,44 @@
         <script >
             const products =  JSON.parse('<%= productJson %>');
         </script>
+=======
+>>>>>>> Thanh
 
-    <!-- Bootstrap core JavaScript-->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-    <!-- Core plugin JavaScript-->
-    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 
-    <!-- Custom scripts for all pages-->
-    <script src="js/sb-admin-2.min.js"></script>
 
-    <!-- Page level plugins -->
-    <script src="vendor/datatables/jquery.dataTables.min.js"></script>
-    <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
+<%--                <% List<Product> products = (List<Product>) request.getAttribute("listProduct");--%>
+<%--        String productToJson =  new Gson().toJson(products);--%>
+<%--    %>--%>
+            <script src="js/manageProduct.js">
+                <%--const productsJs = <%= productToJson %>;--%>
+                <%--console.log(productsJs);--%>
+            </script>
 
-    <!-- Page level custom scripts -->
-    <script src="js/demo/datatables-demo.js"></script>
+            <!-- Bootstrap core JavaScript-->
+        <script src="vendor/jquery/jquery.min.js"></script>
+        <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+        <!-- Core plugin JavaScript-->
+        <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+        <!-- Custom scripts for all pages-->
+        <script src="js/sb-admin-2.min.js"></script>
+
+        <!-- Page level plugins -->
+        <script src="vendor/datatables/jquery.dataTables.min.js"></script>
+        <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
+       <script src="https://cdn.datatables.net/2.1.8/js/dataTables.js"></script>
+            <script>
+                // let table = new DataTable('#productTables');
+            </script>
+        <!-- Page level custom scripts -->
+        <script src="js/demo/datatables-demo.js"></script>
+            <script src="https://cdn.ckeditor.com/4.20.2/standard/ckeditor.js"></script>
+            <script>
+                CKEDITOR.replace('description');
+            </script>
+
 
 </body>
 

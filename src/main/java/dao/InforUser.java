@@ -1,7 +1,9 @@
 package dao;
 
 import object.User;
+import object.UserInf;
 
+import java.security.MessageDigest;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -12,12 +14,13 @@ import java.util.List;
 public class InforUser {
 	private Connection conn;
 	private Utils utils;
-	
+
 	public InforUser() {
 		// TODO Auto-generated constructor stub
 		utils = new Utils();
 		conn = utils.getConnection();
 	}
+<<<<<<< HEAD
 	public boolean UpdateUser(User user){
 		String sql = "update user set username=?,email =? ,password=? where username=?";
 		try {
@@ -39,6 +42,9 @@ public class InforUser {
 
 
 	}
+=======
+
+>>>>>>> Thanh
 	public boolean checkUser(String username, String password) {
         String sql = "SELECT * FROM user WHERE username = ? AND password = ?";
         try (PreparedStatement statement = conn.prepareStatement(sql)) {
@@ -91,4 +97,69 @@ public List<User> getList(){
 		return list;
 
 }
+	public boolean UpdateUser(User user) {
+		String sql = "UPDATE users SET username = ?, email = ?, password = ?, role = ?, created_at = ? WHERE id = ?";
+		try {
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setString(1, user.getFullName());
+			ps.setString(2, user.getEmail());
+			ps.setString(3, user.getPassword());
+			ps.setString(4, user.getRole());
+			ps.setDate(5, new java.sql.Date(user.getDate().getTime()));
+			ps.setInt(6, user.getId());
+
+			int row = ps.executeUpdate();
+			return row > 0;
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
+	public boolean UpdatePassWord(String  password , int id) {
+		String sql = "UPDATE users SET password = ? WHERE id = ?";
+		try {
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setString(1, password);
+			ps.setInt(2, id);
+
+
+			int row = ps.executeUpdate();
+			return row > 0;
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+			return false;
+	}
+	public boolean UpdatePassWord(String  password  ,String email) {
+		String sql = "UPDATE users SET password = ? WHERE email = ?";
+		try {
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setString(1, password);
+			ps.setString(2, email);
+
+
+			int row = ps.executeUpdate();
+			return row > 0;
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
+
+	public String hashPassword(String password) throws Exception {
+		MessageDigest md = MessageDigest.getInstance("SHA-256");
+		byte[] hash = md.digest(password.getBytes("UTF-8"));
+		StringBuilder hexString = new StringBuilder();
+
+		for (byte b : hash) {
+			String hex = Integer.toHexString(0xff & b);
+			if (hex.length() == 1) hexString.append('0');
+			hexString.append(hex);
+		}
+		return hexString.toString();
+	}
+
 }

@@ -145,7 +145,7 @@ footer {
 }
 
 .contact-section {
-    display: flex;
+    /*display: flex;*/
     justify-content: center;
     padding: 20px;
     background-color: #f1f1f1;
@@ -908,7 +908,7 @@ strong {
 
 .top-search-item img {
     width: auto;
-    height: auto;
+    height: 200px;
     object-fit: contain;
     transition: transform 0.3s ease; /* Thêm hiệu ứng chuyển động */
 }

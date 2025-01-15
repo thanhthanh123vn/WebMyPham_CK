@@ -2,6 +2,8 @@ package object;
 
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class ProductDetail {
@@ -32,7 +34,7 @@ public class ProductDetail {
 
     private String fullIngredients;
 
-
+    private List<String> listImage;
     private String howToUse;
 
 
@@ -61,6 +63,7 @@ public class ProductDetail {
 
     // Default constructor
     public ProductDetail() {
+        listImage = new ArrayList<String>();
     }
 
     // Getters and setters
@@ -207,7 +210,16 @@ public class ProductDetail {
     public void setCreatedAt(LocalDateTime createdAt) {
         this.createdAt = createdAt;
     }
-@Override
+
+    public List<String> getListImage() {
+        return listImage;
+    }
+
+    public void setListImage(List<String> listImage) {
+        this.listImage = listImage;
+    }
+
+    @Override
     public String toString(){
         return "Brand"+this.brand;
 

@@ -1,11 +1,17 @@
-<%@ page import="object.User" %>
-<%@page import="java.io.Console"%>
+
 <%@ page import="java.util.List" %>
 <%@ page import="com.google.gson.Gson" %>
+<%@ page import="object.UserInf" %>
+<%@ page import="object.User"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix = "f" uri = "http://java.sun.com/jsp/jstl/fmt" %>
+<% User user = (User) session.getAttribute("userLogin");
+if (user != null) {
+
+
+}%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -79,6 +85,12 @@
             justify-content: center;
             padding: 20px;
         }
+           .background-green{
+               background-color: #2E5F45;
+               color: white;
+               font-style: oblique;
+
+           }
 
         .product-item {
             background-color: white;
@@ -160,7 +172,14 @@
         tbody tr:hover {
             background-color: #f1f1f1;
         }
-
+          input[type="password"] {
+               width: calc(100% - 22px);
+               padding: 10px;
+               margin-bottom: 20px;
+               border: 1px solid #ddd;
+               border-radius: 4px;
+               box-sizing: border-box;
+           }
         #userModal {
             display: none;
             position: fixed;
@@ -247,6 +266,10 @@
     <title>SB Admin 2 - Tables</title>
 
     <!-- Custom fonts for this template -->
+    <link href="https://use.fontawesome.com/releases/v5.0.4/css/all.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.1.8/css/dataTables.dataTables.css">
+    <base href="${pageContext.request.contextPath}/admin/">
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
@@ -348,9 +371,9 @@
             <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">Màn hình đăng nhập</h6>
-                    <a class="collapse-item" href="../index/login.html">Đăng nhập</a>
-                    <a class="collapse-item" href="../index/signUp.html">Đăng ký</a>
-                    <a class="collapse-item" href="forgot-password.html">Quên mật khẩu</a>
+                    <a class="collapse-item" href="${pageContext.request.contextPath}/login.jsp">Đăng nhập</a>
+                    <a class="collapse-item" href="${pageContext.request.contextPath}/signUp.jsp">Đăng ký</a>
+                    <a class="collapse-item" href="${pageContext.request.contextPath}/index/forgot-pass.jsp">Quên mật khẩu</a>
                     <div class="collapse-divider"></div>
                     <h6 class="collapse-header">Trang khác:</h6>
                     <a class="collapse-item" href="404.html">404 Page</a>
@@ -368,8 +391,10 @@
             <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">Thông tin Bảng</h6>
-                    <a class="collapse-item" href="tables.html">Thông tin người dùng</a>
-                    <a class="collapse-item" href="tablesProduct.jsp">Thông tin Sản Phẩm</a>
+                    <a class="collapse-item" href="${pageContext.request.contextPath}/table-admin-User">Quản lý người dùng</a>
+                    <a class="collapse-item" href="${pageContext.request.contextPath}/table-admin-Product">Quản lý Sản Phẩm</a>
+                    <a class="collapse-item" href="${pageContext.request.contextPath}/order-table">Quản lý đơn hàng</a>
+                    <a class="collapse-item" href="forgot-password.html">Quản lý giảm giá</a>
                     
                     <div class="collapse-divider"></div>
                   
@@ -386,12 +411,7 @@
 
         <!-- Nav Item - Tables -->
          
-        <li class="nav-item">
-            <a class="nav-link" href="tables.html">
-                <i class="fas fa-fw fa-table"></i>
-                <span>Bảng</span></a>
 
-        </li>
 
         <!-- Divider -->
         <hr class="sidebar-divider d-none d-md-block">
@@ -424,7 +444,7 @@
                 <form
                     class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
                     <div class="input-group">
-                        <input type="text" class="form-control bg-light border-0 small" placeholder="Tìm kiếm..."
+                        <input type="text" class="form-control bg-light border-0 small" id="search" onkeydown="searchUserInf()" placeholder="Tìm kiếm..."
                             aria-label="Search" aria-describedby="basic-addon2">
                         <div class="input-group-append">
                             <button class="btn" type="button" style="background-color: #28a745; color: white; z-index: 1;">
@@ -452,7 +472,7 @@
                                         placeholder="Search for..." aria-label="Search"
                                         aria-describedby="basic-addon2">
                                     <div class="input-group-append">
-                                        <button class="btn btn-primary" type="button">
+                                        <button class="btn btn-primary" type="button" onclick="searchUserInf()">
                                             <i class="fas fa-search fa-sm"></i>
                                         </button>
                                     </div>
@@ -583,7 +603,8 @@
                     <li class="nav-item dropdown no-arrow">
                         <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <span class="mr-2 d-none d-lg-inline text-gray-600 small">Nguyễn Thạnh</span>
+                            <span class="mr-2 d-none d-lg-inline text-gray-600 small"><%= user.getFullName()%></span>
+
                             <img class="img-profile rounded-circle"
                                 src="img/undraw_profile.svg">
                         </a>
@@ -603,7 +624,7 @@
                                 Nhật ký hoạt động
                             </a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                            <a class="dropdown-item" href="http://localhost:8080/WebMyPham__/login.jsp" data-toggle="modal" data-target="#logoutModal">
                                 <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                                 Đăng xuất
                             </a>
@@ -637,24 +658,24 @@
                         <main> <section class="products"> 
                             <table id="userTable"> 
                                 <thead>
-                                     <tr>
-                                         <th>Tên Người Dùng</th> 
-                                         <th>Mật Khẩu</th>
-                                          <th>Địa Chỉ</th>
-                                           <th>Ảnh</th> 
-                                           <th>Email</th> 
-                                           <th>SĐT</th> 
-                                           <th>Hành Động</th> 
+                                     <tr id="list-header">
+                                         <th scope="col" class="background-green bold ">Tên Người Dùng</th>
+                                         <th  scope="col" class="background-green bold ">Role</th>
+                                          <th scope="col" class="background-green bold ">Địa Chỉ</th>
+                                           <th scope="col" class="background-green bold ">Ảnh</th>
+                                           <th scope="col" class="background-green bold ">Email</th>
+                                           <th  scope="col" class="background-green bold ">SĐT</th>
+                                           <th scope="col" class="background-green bold ">Hành Động</th>
                                             </tr> 
                                         </thead> 
                                         <tbody id="userBody">
                                              <!-- Dữ liệu người dùng sẽ được thêm vào bằng JavaScript -->
-<%--                                             <c:forEach var="user" items="${reqUser}" varStatus="status">--%>
+<%--                                             <c:forEach var="user" items="${userInf}" varStatus="status">--%>
 <%--                                                 <tr>--%>
-<%--                                                     <td>${user.name}</td>--%>
-<%--                                                     <td>${user.age}</td>--%>
+<%--                                                     <td>${user.userName}</td>--%>
+<%--                                                     <td>${user.userName}</td>--%>
 <%--                                                     <td>${user.address}</td>--%>
-<%--                                                     <td><img src="${user.image}" alt="${user.name}" width="50"></td>--%>
+<%--                                                     <td><img src="${user.imageURL}" alt="${user.userName}" width="50"></td>--%>
 <%--                                                     <td>${user.email}</td>--%>
 <%--                                                     <td>${user.phone}</td>--%>
 <%--                                                     <td>--%>
@@ -673,31 +694,28 @@
                                          <span class="close" onclick="hideModal()">&times;</span> 
                                          <h3 id="modalTitle">Thêm Người Dùng</h3> 
                                          <label>Tên người dùng:</label> 
-                                         <input type="text" id="userName"> 
-                                         <label>HassPassword:</label>
-                                         <input type="password" id="age">
+                                         <input type="text" id="userName"  name="fullname">
+                                         <label>Role:</label>
+                                        <input type="text" id="role" name="role">
+                                        <label>Password:</label>
+                                        <input type="password" id="password" name="password">
+
                                          <label>Địa chỉ:</label> 
-                                         <input type="text" id="address"> 
+                                         <input type="text" id="address" name="address">
                                          <label>Ảnh (URL):</label> 
-                                         <input type="text" id="imageURL"> 
+                                         <input type="text" id="imageURL" name="imageURL">
                                          <label>Email:</label>
-                                          <input type="email" id="email"> 
-                                          <label>SĐT:</label> <input type="text" id="phone"> 
+                                          <input type="email" id="email" name="email">
+                                          <label>SĐT:</label> <input type="text" id="phone" name="phone">
                                           <button onclick="saveUser()">Lưu</button> 
                                           <button onclick="hideModal()">Hủy</button> </div> </div>
                 <!-- /.container-fluid -->
 
-            </div>
+                            </div>
             <!-- End of Main Content -->
 
             <!-- Footer -->
-            <footer class="sticky-footer bg-white">
-                <div class="container my-auto">
-                    <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; Your Website 2020</span>
-                    </div>
-                </div>
-            </footer>
+
             <!-- End of Footer -->
 
         </div>
@@ -725,18 +743,30 @@
                 <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="login.html">Logout</a>
+                    <a class="btn btn-primary" href="http://localhost:8080/WebMyPham__/login.jsp">Logout</a>
                 </div>
             </div>
         </div>
     </div>
             <%
-    List<User> users = (List<User>) request.getAttribute("reqUser");
-    String usersJson = new Gson().toJson(users);
+
+       List<UserInf> users = (List<UserInf>) request.getAttribute("userInf");
+          String usersInfJson = new Gson().toJson(users);
+
 %>
+<<<<<<< HEAD
         <script src="js/manageUser.js"></script>
         <script>
             const users = JSON.parse('<%= usersJson %>');
+=======
+
+
+        <script src="js/manageUser.js">
+
+
+            const users = <%= usersInfJson %>;
+
+>>>>>>> Thanh
             console.log(users); // Kiểm tra dữ liệu trong console
         </script>
 
@@ -756,6 +786,7 @@
 
     <!-- Page level custom scripts -->
     <script src="js/demo/datatables-demo.js"></script>
+    <script src="https://cdn.datatables.net/2.1.8/js/dataTables.js"></script>
 
 </body>
 

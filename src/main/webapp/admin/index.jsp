@@ -1,8 +1,14 @@
-
+<%@ page import="object.User" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix = "f" uri = "http://java.sun.com/jsp/jstl/fmt" %>
+<% User user = (User) session.getAttribute("userLogin");
+    if (user != null) {
+        System.out.println("Admin User "+user.getFullName());
+
+
+    }%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -17,13 +23,16 @@
     <title>SB Admin 2 - Dashboard</title>
 
     <!-- Custom fonts for this template-->
-    <link href="admin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <!-- Custom fonts for this template-->
+    <base href="${pageContext.request.contextPath}/admin/">
+    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link
-        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-        rel="stylesheet">
+            href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+            rel="stylesheet">
 
     <!-- Custom styles for this template-->
-    <link href="admin/css/sb-admin-2.min.css" rel="stylesheet">
+    <link href="css/sb-admin-2.min.css" rel="stylesheet">
+
     <style>
        .bg-blueblue-primary{
             
@@ -65,7 +74,7 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
-                <a class="nav-link" href="index.html">
+                <a class="nav-link" href="index.jsp">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Bảng điều khiển</span></a>
             </li>
@@ -131,9 +140,9 @@
                 <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Màn hình đăng nhập</h6>
-                        <a class="collapse-item" href="../index/login.html">Đăng nhập</a>
-                        <a class="collapse-item" href="../index/signUp.html">Đăng ký</a>
-                        <a class="collapse-item" href="forgot-password.html">Quên mật khẩu</a>
+                        <a class="collapse-item" href="${pageContext.request.contextPath}/login.jsp">Đăng nhập</a>
+                        <a class="collapse-item" href="${pageContext.request.contextPath}/signUp.jsp">Đăng ký</a>
+                        <a class="collapse-item" href="${pageContext.request.contextPath}/index/forgot-pass.jsp">Quên mật khẩu</a>
                         <div class="collapse-divider"></div>
                         <h6 class="collapse-header">Trang khác:</h6>
                         <a class="collapse-item" href="404.html">404 Page</a>
@@ -151,9 +160,10 @@
                 <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Thông tin Bảng</h6>
-                        <a class="collapse-item" href="table-admin-User">Thông tin người dùng</a>
-                        <a class="collapse-item" href="../index/signUp.html">Thông tin Sản Phẩm</a>
-                        <a class="collapse-item" href="forgot-password.html">Thông tin người quản trị</a>
+                        <a class="collapse-item" href="${pageContext.request.contextPath}/table-admin-User">Quản lý người dùng</a>
+                        <a class="collapse-item" href="${pageContext.request.contextPath}/table-admin-Product">Quản lý Sản Phẩm</a>
+                        <a class="collapse-item" href="${pageContext.request.contextPath}/order-table">Quản lý đơn hàng</a>
+                        <a class="collapse-item" href="forgot-password.html">Quản lý giảm giá</a>
                         <div class="collapse-divider"></div>
                       
                     </div>
@@ -169,12 +179,7 @@
 
             <!-- Nav Item - Tables -->
              
-            <li class="nav-item">
-                <a class="nav-link" href="tables.html">
-                    <i class="fas fa-fw fa-table"></i>
-                    <span>Bảng</span></a>
 
-            </li>
 
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
@@ -366,7 +371,7 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small username">Nguyễn Thạnh</span>
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small username"> <%=user.getFullName()%></span>
                                 <img class="img-profile rounded-circle"
                                     src="img/undraw_profile.svg">
                             </a>
@@ -386,7 +391,7 @@
                                     Nhật ký hoạt động
                                 </a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                                <a class="dropdown-item" href="http://localhost:8080/WebMyPham__/login.jsp" data-toggle="modal" data-target="#logoutModal">
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Đăng xuất
                                 </a>
@@ -419,7 +424,7 @@
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                                 Thu nhập (Hàng tháng)</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">1.018.800.000 VNĐ</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">${TurnoverMonth}</div>
                                         </div>
                                         <div class="col-auto">
                                             <i class="fas fa-calendar fa-2x text-gray-300"></i>
@@ -437,7 +442,7 @@
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
                                                 Thu nhập (Hàng năm)</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">5,430,900,000 VNĐ</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">${TurnoverYear}</div>
                                         </div>
                                         <div class="col-auto">
                                             <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>

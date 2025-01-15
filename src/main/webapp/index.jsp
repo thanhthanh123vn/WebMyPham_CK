@@ -1,9 +1,11 @@
 <%@ page import="object.User" %>
-<%@page import="java.io.Console"%>
+<%@page import="java.io.Console" %>
+<%@ page import="java.util.List" %>
+<%@ page import="object.Product" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-         pageEncoding="UTF-8"%>
-<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix = "f" uri = "http://java.sun.com/jsp/jstl/fmt" %>
+         pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="f" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,7 +20,7 @@
 <body>
 <div id="web-service">
 
-<jsp:include page="header.jsp"/>
+    <jsp:include page="header.jsp"/>
     <div id="session-body">
         <div class="container">
             <!-- Sidebar -->
@@ -51,7 +53,7 @@
                     </a>
                 </div>
                 <div class="menu-item">
-                    <a href="giao-2h.html">
+                    <a href="http://localhost:8080/WebMyPham__/index/ship2H.jsp">
                         <img src="https://media.hcdn.vn/hsk/icon/hsk-icon-nowfree-v2.png" alt="Giao 2H"/>
                         <p>Giao 2H</p>
                     </a>
@@ -105,26 +107,38 @@
                     <!-- Các sản phẩm sẽ được chèn vào đây -->
 
                 </div>
-<%--                <div class="directPage">--%>
-<%--                    <button class="prev" style="padding: 10px 12px; background-color:gray ; cursor: pointer; border: 2px; border-radius: 2px;" onclick="changeSlide(-1)">&#10094;</button>--%>
-<%--                    <button class="next"  onclick="changeSlide(1)">&#10095;</button>--%>
-<%--                </div>--%>
+                <div class="directPage">
+                    <button class="prevCategory prev" style="     border: 2px;
+    border-radius: 2px;padding: 10px 12px; cursor: pointer; background-color:gray ; border: 2px; border-radius: 2px;"
+                               onclick="prevFlashSaleSlide()">&#10094;
+                </button>
+                    <button class="nextCategory next" style="border: 2px;
+                            border-radius: 2px;padding: 10px 12px; cursor: pointer; background-color:gray ; border: 2px; border-radius: 2px;"
+                            onclick="nextFlashSaleSlide()">&#10095;
+                    </button>
+                </div>
             </div>
             <div class="list-product">
                 <div class="list-header">
                     <span>Danh Mục Sản Phẩm</span>
                 </div>
-                    <!-- Lặp qua danh sách các sản phẩm -->
+                <!-- Lặp qua danh sách các sản phẩm -->
                 <div class="products2 category-product" id="category-product">
                     <!-- Danh mục sản phẩm sẽ được tải vào đây -->
                 </div>
 
                 <div class="directPage">
-                    <button class="prevCategory prev" onclick="prevCategorySlide()">&#10094;</button>
-                    <button class="nextCategory next" onclick="nextCategorySlide()">&#10095;</button>
+                    <button class="prevCategory prev" style="     border: 2px;
+    border-radius: 2px;padding: 10px 12px; cursor: pointer; background-color:gray ; border: 2px; border-radius: 2px;"
+                            onclick="prevCategorySlide()">&#10094;
+                    </button>
+                    <button class="nextCategory next" style="    border: 2px;
+    border-radius: 2px;padding: 10px 12px; cursor: pointer; background-color:gray ; border: 2px; border-radius: 2px;"
+                            onclick="nextCategorySlide()">&#10095;
+                    </button>
                 </div>
             </div>
-                <!-- Form thêm sản phẩm mới -->
+            <!-- Form thêm sản phẩm mới -->
 
 
             <div class="brand-section">
@@ -136,18 +150,58 @@
 
                 </div>
                 <div class="directPage">
-                    <button class="prevBrand prev"  onclick="prevBrandSlide()">&#10094;</button>
-                    <button class="nextBrand next"   onclick="nextBrandSlide()">&#10095;</button>
+                    <button class="prevBrand prev" style=" padding: 10px 12px;     border: 2px;
+    border-radius: 2px; cursor: pointer; background-color:gray ; border: 2px; border-radius: 2px;"
+                            onclick="prevBrandSlide()">&#10094;
+                    </button>
+                    <button class="nextBrand next" style="     border: 2px;
+    border-radius: 2px;padding: 10px 12px; cursor: pointer; background-color:gray ; border: 2px; border-radius: 2px;"
+                            onclick="nextBrandSlide()">&#10095;
+                    </button>
+                </div>
+            </div>
+            <div class="product-carousel">
+                <div class="product-carousel-header">Sản phẩm nổi bật</div>
+                <div class="product-cards">
+                    <div class="product-card">
+
+                    </div>
+                </div>
+
+                <div class="directPage">
+                    <button class="prevCategory prev" style="     border: 2px;
+    border-radius: 2px;padding: 10px 12px; cursor: pointer; background-color:gray ; border: 2px; border-radius: 2px;"
+                            onclick="prevHotPSlide()">&#10094;
+                    </button>
+                    <button class="nextCategory next" style="border: 2px;
+    border-radius: 2px;padding: 10px 12px; cursor: pointer; background-color:gray ; border: 2px; border-radius: 2px;"
+                            onclick="nextHotPSlide()">&#10095;
+                    </button>
                 </div>
             </div>
 
+
+            <div class="top-search-section">
+                <div class="top-search-header">Top Tìm Kiếm</div>
+                <div class="top-search-list">
+                    <c:forEach var="topP" items="${topProduct}">
+                        <div class="top-search-item" onclick="redirectToDetails('${topP.name}')">
+                        <img src="${topP.image}" alt="${topP.name}">
+                        <div class="item-info">
+                            <p class="item-title">${topP.name}</p>
+                            <p class="item-count">${topP.quantity} sản phẩm</p>
+                        </div>
+                    </div>
+                    </c:forEach>
+                </div>
+            </div>
 
 
             <div class="product-listing">
 
                 <c:forEach var="product" items="${products}">
 
-                    <div class="product"   onclick="redirectToDetails(${product.id})">
+                    <div class="product" onclick="redirectToProductDetails('${product.id}')">
                         <img src="${product.image}" alt="${product.name}">
                         <h4>${product.name}</h4>
                         <div class="vn_names">${product.detail}</div>
@@ -170,8 +224,6 @@
 </div>
 
 
-
-
 <%
 
 
@@ -190,27 +242,70 @@
 <%--</script>--%>
 
 <script>
-    function  categorySearch(){
+    function categorySearch() {
 
         const searchInput = document.getElementById("searchInput").value;
         console.log(searchInput)
-        window.location.href =`danh-muc?name=`+searchInput;
+        window.location.href = `danh-muc?name=` + searchInput;
 
 
     }
 
 </script>
+
+
+
+<script>
+    // Lấy phần tử hiển thị thời gian
+    var timerDay = document.querySelector('.timer-day');
+
+    // Thời gian kết thúc khuyến mãi (1 ngày từ thời điểm hiện tại)
+    var endTime = new Date();
+    endTime.setDate(endTime.getDate() + 1); // Thêm 1 ngày
+
+    function updateTimer() {
+        var now = new Date();
+        var remainingTime = endTime - now;
+
+        if (remainingTime <= 0) {
+            timerDay.innerHTML = "Khuyến mãi đã kết thúc!";
+            clearInterval(timerInterval); // Dừng cập nhật
+            return;
+        }
+
+        var hours = Math.floor((remainingTime % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        var minutes = Math.floor((remainingTime % (1000 * 60 * 60)) / (1000 * 60));
+        var seconds = Math.floor((remainingTime % (1000 * 60)) / 1000);
+
+        timerDay.innerHTML = hours + ":" + minutes + ":" + seconds;
+    }
+
+    // Cập nhật thời gian mỗi giây
+    var timerInterval = setInterval(updateTimer, 1000);
+
+    // Hiển thị lần đầu
+    updateTimer();
+
+</script>
+
 <script src="js/main.js"></script>
 <script src="js/searchProduct.js"></script>
 <script src="js/updateUserMain.js"></script>
 <script src="js/displayAllProduct.js"></script>
 
 <script>
-    function redirectToDetails(productId) {
+    function redirectToDetails(name) {
         // Chuyển hướng đến Servlet với ID sản phẩm
 
-        window.location.href = `productDetail?id=`+productId
+        window.location.href = `danh-muc?name=` + name
     }
+    function redirectToProductDetails(id) {
+        // Chuyển hướng đến Servlet với ID sản phẩm
+
+        window.location.href = `productDetail?id=` + id
+    }
+
+
 
 </script>
 
@@ -220,7 +315,6 @@
     User user = (User) session.getAttribute("user");
 
     String username = user.getFullName();
-
 
 
     // Nếu cưa đăng nhập, gán giá trị rỗng
@@ -268,12 +362,18 @@
             })
             .catch(error => console.error("Lỗi kết nối:", error));
     }
+    function toggleChat() {
+        var chatBox = document.getElementById("chatBox");
+        if (chatBox.style.display === "none" || chatBox.style.display === "") {
+            chatBox.style.display = "flex";
+        } else {
+            chatBox.style.display = "none";
+        }
+    }
 </script>
 
 
-
-
-<% String searchProducts = (String)request.getAttribute("products");
+<% String searchProducts = (String) request.getAttribute("products");
 %>
 
 <script>
@@ -282,40 +382,6 @@
 </script>
 
 
-
-
-<script>
-    // Lấy phần tử hiển thị thời gian
-    var timerDay = document.querySelector('.timer-day');
-
-    // Thời gian kết thúc khuyến mãi (1 ngày từ thời điểm hiện tại)
-    var endTime = new Date();
-    endTime.setDate(endTime.getDate() + 1); // Thêm 1 ngày
-
-    function updateTimer() {
-        var now = new Date();
-        var remainingTime = endTime - now;
-
-        if (remainingTime <= 0) {
-            timerDay.innerHTML = "Khuyến mãi đã kết thúc!";
-            clearInterval(timerInterval); // Dừng cập nhật
-            return;
-        }
-
-        var hours = Math.floor((remainingTime % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        var minutes = Math.floor((remainingTime % (1000 * 60 * 60)) / (1000 * 60));
-        var seconds = Math.floor((remainingTime % (1000 * 60)) / 1000);
-
-        timerDay.innerHTML = ` ${hours} : ${minutes} : ${seconds} `;
-    }
-
-    // Cập nhật thời gian mỗi giây
-    var timerInterval = setInterval(updateTimer, 1000);
-
-    // Hiển thị lần đầu
-    updateTimer();
-
-</script>
 
 
 </body>

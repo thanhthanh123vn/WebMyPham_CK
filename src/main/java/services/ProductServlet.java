@@ -22,6 +22,9 @@ public class ProductServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         ProductsDao productDetails = new ProductsDao();
         CategoryDao categoryDao = new CategoryDao();
+        List<Product> topProduct = productDetails.getTop10Products();
+
+
 
 
         int startIndex = 0;
@@ -40,6 +43,8 @@ public class ProductServlet extends HttpServlet {
 
                 request.setAttribute("categories", categories);
                 request.setAttribute("startIndex", startIndex); // Truyền startIndex vào request
+                request.setAttribute("topProduct", topProduct);
+
                 request.getRequestDispatcher("index.jsp").forward(request, response);
             } else {
                 request.setAttribute("errorMessage", "Không có sản phẩm nào được tìm thấy!");

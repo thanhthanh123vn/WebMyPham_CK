@@ -17,7 +17,7 @@ public class Email {
 // Email 22130260@st.hcmuaf.edu.vn
 // password :rbkp djik rbkx emxx
 	static final String from = "22130260@st.hcmuaf.edu.vn";
-	static final String password = "rbkpdjikrbkxemxx";
+	static final String password = "rwvkvrbobqiyhpqf";
 
 	public static boolean sendEmail(String to, String tieuDe, String noiDung) {
 		// Properties : khai báo các thuộc tính

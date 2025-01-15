@@ -29,11 +29,11 @@ public class AdminFilter implements Filter {
         HttpServletRequest req = (HttpServletRequest) request;
         HttpServletResponse resp = (HttpServletResponse) response;
 
-        HttpSession session = req.getSession(false);
+        HttpSession session = req.getSession(true);
 
         if (session != null) {
             String role = "";
-            User user = (User) session.getAttribute("user");
+            User user = (User) session.getAttribute("userLogin");
             if (user != null) {
 
              role = user.getRole(); // Lấy thông tin role từ session

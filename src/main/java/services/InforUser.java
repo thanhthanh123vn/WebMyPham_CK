@@ -40,9 +40,45 @@ public void closeConnection(){
 //		//utils.closeConnection(conn);
 //		return user;
 //	}
+public boolean updateUser(User user) {
+	String sql = "update users set username=?, email=? where id = ?";
+	try {
+		PreparedStatement ps = conn.prepareStatement(sql);
+		ps.setString(1, user.getFullName());
+		ps.setString(2, user.getEmail());
+		ps.setInt(3, user.getId());
+
+		int row = ps.executeUpdate();
+		return row > 0;
+
+	} catch (Exception e) {
+		e.printStackTrace();
+	}
+	return false;
+}
+
+	public boolean updateUserAddress(User user) {
+		String sql = "update usersarress set email = ?, malle = ?, dateBth=? where userID = ?";
+		try {
+			PreparedStatement stm = conn.prepareStatement(sql);
+			stm.setString(1, user.getEmail());
+			stm.setString(2, user.getMalle());
+			stm.setDate(3, new java.sql.Date(user.getDate().getTime()));
+			stm.setInt(4, user.getId());
+
+			int row = stm.executeUpdate();
+			return row > 0;
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
+
+
 
 	public User checkUser(String username, String password) {
-		String query = "SELECT * FROM users WHERE username = ? AND password = ?";
+		String query = "SELECT u.* ,ua.* FROM users u join usersarress ua on ua.userid = u.id  WHERE username = ? AND password = ?";
 		try (PreparedStatement stmt = conn.prepareStatement(query)) {
 			String hashedPassword = hashPassword(password);
 
@@ -52,7 +88,8 @@ public void closeConnection(){
 			ResultSet rs = stmt.executeQuery();
 
 			if (rs.next()) {
-				return new User(rs.getInt("id"), rs.getString("username"), rs.getString("email"), rs.getString("password"),rs.getString("role"));
+				return new User(rs.getInt("id"), rs.getString("username"), rs.getString("email"), rs.getString("password"),rs.getString("role"),
+						rs.getString("malle"),rs.getDate("dateBth"),rs.getString("phone"));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -117,16 +154,8 @@ public void closeConnection(){
 
 	public static void main(String[] args)  throws Exception {
 		InforUser inforUser = new InforUser();
+		System.out.println( inforUser.hashPassword("123456"));
 
-
-
-
-		boolean insertUser = inforUser.insertUser( "LeThanh","22130255@st.hcmuaf.edu.vn","123456");
-		if(insertUser) {
-			System.out.println("Chen thanh cong");
-			return ;
-		}
-		System.out.println("Chenf that bai");
 	}
 
 }

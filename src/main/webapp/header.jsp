@@ -19,7 +19,7 @@
         <div class="logo-left">
 
             <div class="logo">
-                <img src="images/logo.png" alt="NThanh.vn">
+                <img src="${pageContext.request.contextPath}/images/logo.png" alt="NThanh.vn">
                 <div class="logo-text">
                     <h3>TTT.vn</h3>
                     <span>Chất lượng thật - Giá trị thật</span>
@@ -34,7 +34,7 @@
                        onkeydown="searchProduct()">
 
 
-                <div id="resultSearchProducts" class="resultSearchProducts"  style="display: none" >
+                <div id="resultSearchProducts" class="resultSearchProducts"   style="display: none" >
 
 
                 </div>
@@ -135,19 +135,19 @@
                 <div class="header-icon-sub">
                     <img
                             src="https://hasaki.vn/images/graphics/icon_header_store.svg">
-                    <a href="#" id="htch"> Hệ thống</br> cửa hàng
+                    <a href="http://localhost:8080/WebMyPham__/index/htch.jsp" id="htch"> Hệ thống</br> cửa hàng
                     </a>
                 </div>
                 <div class="header-icon-sub">
                     <img src="https://hasaki.vn/images/graphics/icon_header_3.svg">
-                    <a href="#" id="htkh"> Hỗ trợ </br>khách hàng
+                    <a href="${pageContext.request.contextPath}/index/htkh.jsp" id="htkh"> Hỗ trợ </br>khách hàng
                     </a>
                 </div>
                 <div class="header-icon-sub">
                     <img src="https://hasaki.vn/images/graphics/icon_header_1.svg">
 
-                    <a href="cartProduct.html" class="cart-icon"> Giỏ hàng <span
-                            class="cart-count">2</span></a>
+                    <a href="cartProduct.jsp" class="cart-icon"> Giỏ hàng <span
+                            class="cart-count"></span></a>
                 </div>
             </div>
         </div>

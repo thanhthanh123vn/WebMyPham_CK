@@ -45,12 +45,15 @@ public class ManagerProduct extends HttpServlet {
 
 
             if (isSuccess && isOrderDetail) {
-                req.setAttribute("product", product);
+                session.setAttribute("productQL", product);
                 req.getRequestDispatcher("index/qldonhang.jsp").forward(req, resp);
             } else {
+                System.out.println("Mua ngay đó nha"+product.toString());
+                req.setAttribute("product", product);
                 req.setAttribute("errorMessage", "Khong the chen Order");
                 req.getRequestDispatcher("index/qldonhang.jsp").forward(req, resp);
             }
+
 
 
         }
@@ -66,11 +69,11 @@ public class ManagerProduct extends HttpServlet {
                 }
             }
             if(isSuccess&&isOrderDetail) {
-
-            req.setAttribute("cart", cart);
-
+             req.setAttribute("cart", cart);
             req.getRequestDispatcher("index/qldonhang.jsp").forward(req, resp);
             }else {
+
+                session.setAttribute("cartQL", cart);
                 req.setAttribute("errorMessage", "Khong the chen Order");
                 req.getRequestDispatcher("index/qldonhang.jsp").forward(req, resp);
             }

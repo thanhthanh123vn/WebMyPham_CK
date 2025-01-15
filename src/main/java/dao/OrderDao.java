@@ -106,11 +106,14 @@ public class OrderDao {
         return new ArrayList<>(orderDetailsMap.values());
     }
     public boolean insertOrder(Order order) {
-        String sql = "INSERT INTO orders VALUES (?,?)";
+        String sql = "INSERT INTO orders (UserID, OrderDate, Status) VALUES (?, ?, ?)";
+
+
         try{
             PreparedStatement ps = conn.prepareStatement(sql);
-            ps.setInt(1, order.getUserId());
-            ps.setDate(2,new java.sql.Date(order.getCreate_date().getTime()));
+            ps.setInt(1, order.getId());
+            ps.setDate(2, new java.sql.Date(order.getCreate_date().getTime()));
+            ps.setString(3, "Pending"); // Hoặc trạng thái khác như "Completed".
             int rows = ps.executeUpdate();
 
 
@@ -125,24 +128,23 @@ public class OrderDao {
 
         return false;
     }
-    public boolean insertOrderDetail(int orderId, int productId,int userID,int quantity,double price ) {
-        String sql = "INSERT INTO orderdetails VALUES (?,?,?,?,?)";
-        try{
-            PreparedStatement ps = conn.prepareStatement(sql);
+    public boolean insertOrderDetail(int orderId, int productId, int userId, int quantity, double price) {
+        String sql = "INSERT INTO orderdetails (OrderID, ProductID, UserId, Quantity, Price) VALUES (?, ?, ?, ?, ?)";
+        try {
+             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setInt(1, orderId);
             ps.setInt(2, productId);
-            ps.setInt(3, userID);
+            ps.setInt(3, userId);
             ps.setInt(4, quantity);
             ps.setDouble(5, price);
-            int rows = ps.executeUpdate();
-            return rows > 0;
-
-        } catch (Exception e) {
+            int rowsAffected = ps.executeUpdate();
+            return rowsAffected > 0;
+        } catch (SQLException e) {
             e.printStackTrace();
+            return false;
         }
-        return false;
-
     }
+
     public boolean removerOrder(int id){
         String sql = "DELETE FROM orders WHERE UserId = ?";
         try{

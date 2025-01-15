@@ -199,15 +199,17 @@
 
 <%
     // Lấy thông tin người dùng từ session
-    User user = (User) request.getAttribute("user");
+    User user = (User) session.getAttribute("user");
     String username = (user != null) ? user.getFullName() : "";
 
     // Lấy dữ liệu giỏ hàng từ session
-    Cart cartData = (Cart) request.getAttribute("cart");
+    Cart cartData = (Cart) session.getAttribute("cartQL");
     List<ProductCart> productCarts = (cartData != null) ? cartData.getList() : new ArrayList<>();
+    Product payProduct = (Product) session.getAttribute("productQL");
 
     // Lấy sản phẩm thanh toán từ session
-    Product payProduct = (Product) session.getAttribute("product");
+
+
     if(cartData !=null){
         session.removeAttribute("cart");
     }

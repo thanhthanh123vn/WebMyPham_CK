@@ -18,7 +18,7 @@
     <div class="header-main">
         <div class="logo-left">
 
-            <div class="logo">
+            <div class="logo" onclick="window.location.href='${pageContext.request.contextPath}/index.jsp'">
                 <img src="${pageContext.request.contextPath}/images/logo.png" alt="NThanh.vn">
                 <div class="logo-text">
                     <h3>TTT.vn</h3>

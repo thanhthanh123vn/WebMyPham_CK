@@ -47,7 +47,7 @@
             </div>
             <div class="icons">
                 <div class="menu-item">
-                    <a href="sale-cuoi-thang.html">
+                    <a href="">
                         <img src="https://media.hcdn.vn/hsk/icon/black-friday_2024.png" alt="Black Friday"/>
                         <p>Sale Cuối Tháng</p>
                     </a>

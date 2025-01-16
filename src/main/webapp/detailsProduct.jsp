@@ -217,6 +217,9 @@
                         <c:when test="${products.name == 'Anessa'}">
                             <jsp:include page="viewShare/index/AnessaViewShare.jsp" />
                         </c:when>
+                        <c:when test="${products.name == 'La Roche-Posay'}">
+                            <jsp:include page="viewShare/index/LaRoche-Posay.jsp" />
+                        </c:when>
                         <c:otherwise>
                             <p>Sản phẩm không xác định.</p>
                         </c:otherwise>

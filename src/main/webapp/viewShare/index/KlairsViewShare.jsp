@@ -26,28 +26,27 @@
                         <table>
                             <tr>
                                 <td>Barcode</td>
-                                <td>${product.barcode}</td>
+                                <td>${product.barcode != null ? product.barcode : ''}</td>
                             </tr>
                             <tr>
                                 <td>Thương Hiệu</td>
-                                <td>${product.brand}</td>
+                                <td>${product.brand != null ? product.brand : ''}</td>
                             </tr>
                             <tr>
                                 <td>Xuất xứ thương hiệu</td>
-                                <td>${product.brandOrigin}
-                                </td>
+                                <td>${product.brandOrigin != null ? product.brandOrigin : ''}</td>
                             </tr>
                             <tr>
                                 <td>Nơi sản xuất</td>
-                                <td>${product.manufactureLocation}</td>
+                                <td>${product.manufactureLocation != null ? product.manufactureLocation : ''}</td>
                             </tr>
                             <tr>
                                 <td>Loại da</td>
-                                <td>${product.skinSolution}
-                                </td>
+                                <td>${product.skinSolution != null ? product.skinSolution : ''}</td>
                             </tr>
                         </table>
                     </div>
+
                     <div id="ingredient">
                         <h3>Thành phần sản phẩm</h3>
                         <h4>1.Nước Hoa Hồng ${products.name} Klairs Dành Cho Da Nhạy Cảm 180ml</h4>

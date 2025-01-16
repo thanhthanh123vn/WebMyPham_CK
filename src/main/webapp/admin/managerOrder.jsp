@@ -14,7 +14,7 @@
          pageEncoding="UTF-8"%>
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix = "f" uri = "http://java.sun.com/jsp/jstl/fmt" %>
-<% User user = (User) session.getAttribute("userLogin");
+<% User user = (User) session.getAttribute("user");
     if (user != null) {
 
 

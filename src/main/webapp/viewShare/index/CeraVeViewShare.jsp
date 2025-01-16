@@ -17,7 +17,7 @@
               sữa rửa mặt</a> đến từ <a href="#"> thương hiệu mỹ phẩm ${product.brand}</a> của Mỹ, với sự
               kết hợp của ba Ceramides thiết yếu, Hyaluronic Acid sản phẩm giúp làm sạch và giữ ẩm cho làn
               da mà không ảnh hưởng đến hàng rào bảo vệ da mặt và cơ thể.</p>
-            <p>Hiện sản phẩm Sữa Rửa Mặt ${product.name} Sạch Sâu đã có mặt tại TTT với 2 loại và 3 dung
+            <p>Hiện sản phẩm Sữa Rửa Mặt ${products.name} Sạch Sâu đã có mặt tại TTT với 2 loại và 3 dung
               tích (88ml; 236ml; 473ml):
             </p>
             <ul>
@@ -30,34 +30,33 @@
             <img src="https://media.hcdn.vn/wysiwyg/kimhuy/sua-rua-mat-cerave-sach-sau-cho-da-thuong-den-da-dau.jpg"
                  alt="Ảnh Sản phẩm">
           </div>
-          <div id="parameter">
-            <h3>Thông số sản phẩm</h3>
-            <table>
-              <tr>
-                <td>Barcode</td>
-                <td>${product.barcode}</td>
-              </tr>
-              <tr>
-                <td>Thương Hiệu</td>
-                <td>${product.brand}</td>
-              </tr>
-              <tr>
-                <td>Xuất xứ thương hiệu</td>
-                <td>${product.brandOrigin}
-                </td>
-              </tr>
-              <tr>
-                <td>Nơi sản xuất</td>
-                <td>${product.manufactureLocation}</td>
-              </tr>
-              <tr>
-                <td>Loại da</td>
-                <td>${product.skinSolution}
-                </td>
-              </tr>
-            </table>
-          </div>
-          <div id="ingredient">
+<div id="parameter">
+  <h3>Thông số sản phẩm</h3>
+  <table>
+    <tr>
+      <td>Barcode</td>
+      <td>${product.barcode != null ? product.barcode : ''}</td>
+    </tr>
+    <tr>
+      <td>Thương Hiệu</td>
+      <td>${product.brand != null ? product.brand : ''}</td>
+    </tr>
+    <tr>
+      <td>Xuất xứ thương hiệu</td>
+      <td>${product.brandOrigin != null ? product.brandOrigin : ''}</td>
+    </tr>
+    <tr>
+      <td>Nơi sản xuất</td>
+      <td>${product.manufactureLocation != null ? product.manufactureLocation : ''}</td>
+    </tr>
+    <tr>
+      <td>Loại da</td>
+      <td>${product.skinSolution != null ? product.skinSolution : ''}</td>
+    </tr>
+  </table>
+</div>
+
+<div id="ingredient">
             <h3>Thành phần sản phẩm</h3>
             <h4>1.Sữa Rửa Mặt ${products.name} Sạch Sâu Cho Da Thường Đến Da Dầu</h4>
             <strong>Thành phần chính:</strong>
@@ -79,7 +78,7 @@
                 Methylparaben, Propylparaben, Carbomer, Xanthan Gum.
               </li>
             </ul>
-            <h4>2.Sữa Rửa Mặt ${product.name} Sạch Sâu Cho Da Thường Đến Da Khô</h4>
+            <h4>2.Sữa Rửa Mặt ${products.name} Sạch Sâu Cho Da Thường Đến Da Khô</h4>
             <strong>Thành phần chính:</strong>
             <ul>
               <li>3 loại Ceramides (1, 3, 6-II): thiết yếu giúp khôi phục hàng rào độ ẩm da.

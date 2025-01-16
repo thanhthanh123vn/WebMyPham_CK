@@ -23,7 +23,7 @@
 
 <body>
 <div id="web-service">
-<jsp:include page="${pageContext.request.contextPath}/header.jsp"/>
+<jsp:include page="../header.jsp"/>
   <div id="session-body">
     <div class="container">
       <div class="breadcrumb">

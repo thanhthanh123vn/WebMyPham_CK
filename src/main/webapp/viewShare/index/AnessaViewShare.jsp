@@ -8,44 +8,44 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 
+
                     <div id="information">
-                        <p><span class="font-bold">Kem chống nắng giúp bảo vệ da khỏi tia UVB & UVA dài và giảm bóng nhờn ${product.name}</span>
+                        <p><span class="font-bold">Kem chống nắng giúp bảo vệ da khỏi tia UVB & UVA dài và giảm bóng nhờn ${products.name}</span>
                             là kem chống nắng dành cho da dầu phiên bản công thức cải tiến mới đến từ <a href="#">
                                 thương hiệu dược mỹ phẩm ${product.brand}</a>
                             , giúp kiểm soát bóng nhờn và bảo vệ da trước tác hại từ ánh nắng & ô nhiễm, ngăn chặn các
                             tác nhân gây lão hóa sớm. Sản phẩm có công thức chống thấm nước thích hợp dùng hằng ngày và
                             cả những hoạt động ngoài trời.</p>
-                        <img src="https://media.hcdn.vn/wysiwyg/kimhuy/nuoc-hoa-hong-klairs-danh-cho-da-nhay-cam-180ml-3.gif"
+                        <img src="https://media.hcdn.vn/wysiwyg/MaiQuynh/sua-chong-nang-anessa-duong-da-kiem-dau-moi-2024-1.jpg"
                              alt="Ảnh Sản phẩm">
                     </div>
-                    <div id="parameter">
-                        <h3>Thông số sản phẩm</h3>
-                        <table>
-                            <tr>
-                                <td>Barcode</td>
-                                <td>${product.barcode}</td>
-                            </tr>
-                            <tr>
-                                <td>Thương Hiệu</td>
-                                <td>${product.brand}</td>
-                            </tr>
-                            <tr>
-                                <td>Xuất xứ thương hiệu</td>
-                                <td>${product.brandOrigin}
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Nơi sản xuất</td>
-                                <td>${product.manufactureLocation}</td>
-                            </tr>
-                            <tr>
-                                <td>Loại da</td>
-                                <td>${product.skinSolution}
-                                </td>
-                            </tr>
-                        </table>
-                    </div>
-                    <div id="ingredient">
+<div id="parameter">
+    <h3>Thông số sản phẩm</h3>
+    <table>
+        <tr>
+            <td>Barcode</td>
+            <td>${product.barcode != null ? product.barcode : ''}</td>
+        </tr>
+        <tr>
+            <td>Thương Hiệu</td>
+            <td>${products.name != null ? products.name : ''}</td>
+        </tr>
+        <tr>
+            <td>Xuất xứ thương hiệu</td>
+            <td>${product.brandOrigin != null ? product.brandOrigin : ''}</td>
+        </tr>
+        <tr>
+            <td>Nơi sản xuất</td>
+            <td>${product.manufactureLocation != null ? product.manufactureLocation : ''}</td>
+        </tr>
+        <tr>
+            <td>Loại da</td>
+            <td>${product.skinSolution != null ? product.skinSolution : ''}</td>
+        </tr>
+    </table>
+</div>
+
+<div id="ingredient">
                         <h3>Thành phần sản phẩm</h3>
                         <ul>
                             <li>XL-PROTECT: màng lọc đã được cấp bằng sáng chế, cung cấp khả năng bảo vệ vượt trội khỏi

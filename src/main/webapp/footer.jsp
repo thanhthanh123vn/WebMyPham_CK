@@ -37,12 +37,12 @@
                 <div class="footer-info">
                     <div class="footer-header">
                         <div class="info-item">
-                            <img src="../image/thanhtoan_footer.svg"
+                            <img src="https://media.hcdn.vn/hsk/icons/icon_footer_1.png"
                                  alt="Thanh toán khi nhận hàng">
                             <p>Thanh toán </br>khi nhận hàng</p>
                         </div>
                         <div class="info-item">
-                            <img src="../image/giaonhanh_footer.svg"
+                            <img src="https://media.hcdn.vn/hsk/icons/icon_footer_2.png"
                                  alt="Giao nhanh miễn phí 2H">
                             <p>Giao nhanh</br> miễn phí 2H</p>
                         </div>
@@ -52,13 +52,13 @@
                             <p>30 ngày đổi trả</br> miễn phí</p>
                         </div>
                         <div class="info-item">
-                            <img src="../image/thuonghieu.webp"
+                            <img src="https://media.hcdn.vn/hsk/icons/icon_footer_4.png"
                                  alt="Thương hiệu uy tín">
                             <p>Thương hiệu uy tín </br>theo yêu cầu</p>
                         </div>
                         <div class="contact-item">
                             <div class="icon">
-                                <img src="../image/icons_hotline_kn.png"
+                                <img src="/image/icons_hotline_kn.png"
                                      alt="Khiếu nại, Góp ý">
                                 <p style="width: 80%;"> Khiếu nại, Góp ý</p>
                             </div>

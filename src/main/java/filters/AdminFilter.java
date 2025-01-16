@@ -33,7 +33,7 @@ public class AdminFilter implements Filter {
 
         if (session != null) {
             String role = "";
-            User user = (User) session.getAttribute("userLogin");
+            User user = (User) session.getAttribute("user");
             if (user != null) {
 
              role = user.getRole(); // Lấy thông tin role từ session

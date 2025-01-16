@@ -25,31 +25,33 @@
                  alt="Ảnh Sản phẩm">
           </div>
           <div id="parameter">
-            <h3>Thông số sản phẩm</h3>
-            <table>
-              <tr>
-                <td>Barcode</td>
-                <td>${product.barcode}</td>
-              </tr>
-              <tr>
-                <td>Thương Hiệu</td>
-                <td>${product.brand}</td>
-              </tr>
-              <tr>
-                <td>Xuất xứ thương hiệu</td>
-                <td>${product.brandOrigin}</td>
-              </tr>
-              <tr>
-                <td>Nơi sản xuất</td>
-                <td>${product.manufactureLocation}</td>
-              </tr>
-              <tr>
-                <td>Loại da</td>
-                <td>${product.skinSolution}</td>
-              </tr>
-            </table>
+
+              <h3>Thông số sản phẩm</h3>
+              <table>
+                <tr>
+                  <td>Barcode</td>
+                  <td>${product.barcode != null ? product.barcode : ''}</td>
+                </tr>
+                <tr>
+                  <td>Thương Hiệu</td>
+                  <td>${product.brand != null ? product.brand : ''}</td>
+                </tr>
+                <tr>
+                  <td>Xuất xứ thương hiệu</td>
+                  <td>${product.brandOrigin != null ? product.brandOrigin : ''}</td>
+                </tr>
+                <tr>
+                  <td>Nơi sản xuất</td>
+                  <td>${product.manufactureLocation != null ? product.manufactureLocation : ''}</td>
+                </tr>
+                <tr>
+                  <td>Loại da</td>
+                  <td>${product.skinSolution != null ? product.skinSolution : ''}</td>
+                </tr>
+              </table>
           </div>
-          <div id="ingredient">
+
+            <div id="ingredient">
             <h3>Thành phần sản phẩm</h3>
 
             <h4>2. ${products.name} Micellar Water 3-in-1 Refreshing Even For Sensitive Skin (Xanh dương nhạt)</h4>

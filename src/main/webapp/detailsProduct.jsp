@@ -35,6 +35,14 @@
             font-size: 14px;
         }
 
+
+         .hover-orange-active {
+             border: 2px solid orange;
+             border-radius: 5px; /* Thêm độ cong cho viền nếu cần */
+             padding: 5px; /* Đảm bảo viền không đè lên nội dung */
+         }
+
+
     </style>
 
 </head>
@@ -107,22 +115,22 @@
                                         ProductDetail volume = (ProductDetail) request.getAttribute("product");
                                         String[] volumes = volume.getVolume().split(" ");%>
 
-                                    <li><a href="#"><%=volumes[0]%>
+                                    <li><a href="#" class="hover-orange" onclick="hoverOrange()"><%=volumes[0]%>
                                     </a></li>
-                                    <li><a href="#"><%=volumes[1]%>
+                                    <li><a href="#" class="hover-orange"  onclick="hoverOrange()"><%=volumes[1]%>
                                     </a></li>
-                                    <li><a href="#"><%=volumes[2]%>
+                                    <li><a href="#"  class="hover-orange" onclick="hoverOrange()"><%=volumes[2]%>
                                     </a></li>
 
-                                    <li><a href="#">Công dụng:</a></li>
+
 
                                 </ul>
                                 <li class="title">Công dụng: <span class="useed"></span></li>
                                 <div id="image-used">
                                     <!-- <img src="" alt="Ảnh Công Dụng"> -->
                                 </div>
-                                <a class="quantity" >Số lượng :
-                                    <input  type="number" value="1" name="quantity" min="1"
+                                <a class="quantity"  >Số lượng :
+                                    <input   style="width: 40px; color: #333333;" type="number" value="1" name="quantity" min="1"
                                             style=" width: 30px;">
                                 </a>
                                 <li>
@@ -141,7 +149,7 @@
                                     thanh toán.
                                     <a href="#"> Xem chi tiết</a>
                                 </li>
-                                <ul style="">
+                                <ul style="margin: 0;padding: 0;">
                                     <li style="display: flex; gap: 10px; justify-content: space-around; margin-right: 20px;">
                                         <button type="button" class="button-light-green">
                                             <i class="fa-solid fa-location-dot"></i> 224/224 Chi Nhánh Còn sản phẩm
@@ -254,20 +262,41 @@
     if (username == null) {
         username = "";
     }
+ Product product = (Product) request.getAttribute("products");
+    String productJson = new GsonUtil().getGson().toJson(product);
 %>
 <script>
-    function categorySearch() {
-
-        const searchInput = document.getElementById("searchInput").value;
-        console.log(searchInput)
-        window.location.href = `danh-muc?name=` + searchInput;
 
 
+        function hoverOrange(event) {
+        // Xóa lớp 'hover-orange-active' khỏi tất cả các thẻ có class 'hover-orange'
+        document.querySelectorAll('.hover-orange').forEach(el => el.classList.remove('hover-orange-active'));
+
+        // Thêm lớp 'hover-orange-active' vào thẻ được click
+        event.target.classList.add('hover-orange-active');
     }
-    function payProductDetail(productId) {
-        window.location.href = "http://localhost:8080/WebMyPham__/payProduct?productId="+productId;
 
-    }
+function categorySearch() {
+
+const searchInput = document.getElementById("searchInput").value;
+console.log(searchInput)
+window.location.href = `danh-muc?name=` + searchInput;
+
+
+}
+function payProductDetail(productId) {
+window.location.href = "http://localhost:8080/WebMyPham__/payProduct?productId="+productId;
+
+}
+        function  sendComment(){
+            const product = <%=productJson%>;
+            var id = product.id;
+            const comment = document.getElementById("rating_content").value;
+
+            window.location.href = "http://localhost:8080/WebMyPham__/sendComment?productID=" + id+"&comment="+comment;
+
+        }
+
 
 </script>
 <script>
@@ -309,11 +338,11 @@
             })
             .catch(error => console.error("Lỗi kết nối:", error));
     }
+
 </script>
 
 
-<% Product product = (Product) request.getAttribute("products");
-    String productJson = new GsonUtil().getGson().toJson(product);%>
+
 
 <script>
     const  productCart =  <%=productJson%>;

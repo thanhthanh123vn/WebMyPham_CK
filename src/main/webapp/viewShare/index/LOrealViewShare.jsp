@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: nguye
@@ -132,34 +133,50 @@
             <p>Chia sẻ nhận xét của bạn về sản phẩm này</p>
             <a href="#" class="submit-review">Viết Bình luận</a>
           </div>
-          <div id="Q&A">
+          <div id="Q&A" style="margin-left: 4%">
             <h3>Hỏi đáp</h3>
-            <input style="height: 100px"  type="text" placeholder="Bạn có câu hỏi với sản phẩm này? Đặt câu hỏi ngay." />
-            <button>Gửi</button>
+            <textarea class="form-control" id="rating_content" name="rating_content" placeholder="Nhập mô tả tại đây"></textarea>
+            <a  class="submit-review" onclick="sendComment()"  style="
+    display: inline-block;
+    margin-top: 15px;
+    padding: 10px 20px;
+    background-color: #f48024;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 14px;
+    font-weight: bold;
+    text-align: center;
+margin-bottom: 15px;">Gửi</a>
 
-            <div class="question">
-              <p><strong>Kim Tuyền - 02/12/2024</strong></p>
-              <p>Giá bên ngoài cửa hàng có giống trên đây không ạ?</p>
-              <p><span>Thích 0</span> - <a href="#">Trả lời</a></p>
-            </div>
 
-            <div class="answer">
-              <p><strong>Hasaki - 02/12/2024</strong></p>
-              <p>Dạ giá sản phẩm tại các cửa hàng thuộc hệ thống Hasaki...</p>
-              <p><span>Thích 0</span></p>
-            </div>
+            <c:forEach var="comment" items="${comments}">
+              <c:if test="${not empty comment.content}">
+                <div class="question">
+                  <p><strong>${sessionScope.user.fullName}</strong></p>
+                  <p>${comment.content}</p>
+                  <p><span>Thích 0</span> - <a href="#">Trả lời</a></p>
+                </div>
+              </c:if>
+            </c:forEach>
 
-            <div class="question">
-              <p><strong>Khánh Lâm - 28/11/2024</strong></p>
-              <p>Da dầu chọn nắp nào ạ?</p>
-              <p><span>Thích 1</span> - <a href="#">Trả lời</a></p>
-            </div>
+          <%--            <div class="answer">--%>
+<%--              <p><strong>Hasaki - 02/12/2024</strong></p>--%>
+<%--              <p>Dạ giá sản phẩm tại các cửa hàng thuộc hệ thống Hasaki...</p>--%>
+<%--              <p><span>Thích 0</span></p>--%>
+<%--            </div>--%>
 
-            <div class="answer">
-              <p><strong>Hasaki - 28/11/2024</strong></p>
-              <p>Hasaki xin chào, để tiện hỗ trợ hơn...</p>
-              <p><span>Thích 1</span></p>
-            </div>
+<%--            <div class="question">--%>
+<%--              <p><strong>Khánh Lâm - 28/11/2024</strong></p>--%>
+<%--              <p>Da dầu chọn nắp nào ạ?</p>--%>
+<%--              <p><span>Thích 1</span> - <a href="#">Trả lời</a></p>--%>
+<%--            </div>--%>
+
+<%--            <div class="answer">--%>
+<%--              <p><strong>Hasaki - 28/11/2024</strong></p>--%>
+<%--              <p>Hasaki xin chào, để tiện hỗ trợ hơn...</p>--%>
+<%--              <p><span>Thích 1</span></p>--%>
+<%--            </div>--%>
           </div>
 
     </div>

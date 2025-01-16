@@ -224,7 +224,7 @@ li.custom-font-size {
 
 /* Viền xanh cho các mục trong inline-list */
 .inline-list li {
-    border: 1px solid lightgreen;
+    border: 1px solid #636d77;
     padding: 5px;
     border-radius: 5px;
     display: inline-block;
@@ -319,8 +319,8 @@ li.custom-font-size {
 
 .button-light-green {
     margin-top: 10px;
-
-    background-color: lightgreen; /* Màu xanh lá nhạt */
+    padding: 7px 20px 6px 33px;
+    background-color: #cfeadd; /* Màu xanh lá nhạt */
     color: black; /* Màu chữ */
     border: none; /* Bỏ viền */
 
@@ -331,7 +331,7 @@ li.custom-font-size {
 .button-dark-green {
     margin-top: 10px;
     margin-left: 10px;
-    background-color: green; /* Màu xanh lá đậm */
+    background-color: #326E52; /* Màu xanh lá đậm */
     color: white; /* Màu chữ trắng */
     border: none; /* Bỏ viền */
     padding: 10px 20px; /* Đệm cho nút */
@@ -341,10 +341,10 @@ li.custom-font-size {
 
 .button-orange {
     margin-top: 10px;
-    background-color: orange; /* Màu cam */
+    background-color: #ff6600; /* Màu cam */
     color: black; /* Màu chữ */
     border: none; /* Bỏ viền */
-    padding: 10px 20px; /* Đệm cho nút */
+    padding: 5px 10px;
     border-radius: 5px; /* Bo góc */
     cursor: pointer; /* Con trỏ chuột khi hover */
 }
@@ -503,7 +503,7 @@ strong {
 
 #ingredient ul li {
     margin: 5px 0; /* Khoảng cách giữa các dòng */
-    font-size: 16px; /* Cỡ chữ của nội dung */
+    font-size: 13px !important; /* Cỡ chữ của nội dung */
     line-height: 1.6; /* Độ cao dòng để dễ đọc */
 }
 #use {
@@ -515,7 +515,7 @@ strong {
 }
 
 #use h3 {
-    font-size: 20px; /* Cỡ chữ cho tiêu đề */
+    font-size: 13px !important; /* Cỡ chữ cho tiêu đề */
     margin: 10px 20px;
     padding-top:10px ;
     /* Khoảng cách trên và dưới cho tiêu đề */
@@ -534,7 +534,7 @@ strong {
     padding: 20px;
     border: 1px solid #ddd;
     background-color: #fff;
-    width: 600px;
+    width: 86%;
     margin: 20px 45px;
 }
 
@@ -614,14 +614,36 @@ strong {
 }
 /* Container chính */
 #Q&A {
-    margin-left: 45px;  /* Khoảng cách bên trái */
-    margin-top: 10px; /* Khoảng cách trên */
+
+    margin-left: 4%;
     background-color: white; /* Nền màu trắng */
     padding: 20px;
     border: 1px solid #ddd;
     border-radius: 5px;
     font-family: Arial, sans-serif;
-}
+}.form-control {
+     display: block;
+     width: 92%;
+     height: 34px;
+     padding: 6px 12px;
+     font-size: 14px;
+     line-height: 1.42857143;
+     color: #555;
+     background-color: #fff;
+     background-image: none;
+     border: 1px solid #ccc;
+     border-radius: 4px;
+     -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+     box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+     -webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
+     -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+     transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+ }
+textarea {
+      color: inherit;
+      font: inherit;
+      margin: 0;
+  }
 
 /* Tiêu đề */
 #Q&A h3 {
@@ -631,6 +653,7 @@ strong {
 
 /* Câu hỏi và câu trả lời */
 .question, .answer {
+    width: 92%;
     border: 1px solid #ccc; /* Viền cho câu hỏi và câu trả lời */
     padding: 10px; /* Khoảng cách bên trong cho câu hỏi và câu trả lời */
     border-radius: 3px; /* Bo góc */

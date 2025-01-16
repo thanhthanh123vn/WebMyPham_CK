@@ -107,19 +107,19 @@
                             <p><a href="#">https://TTT.vn/Clinic</a></p>
                             <div class="social-icons">
                                 <a href="https://www.facebook.com/" target="_blank"><img
-                                        src="../image/fb.svg"
+                                        src="https://chiaki.vn/frontend/images/icon-social/facebook.png"
                                         alt="Facebook"></a>
-                                <a><img src="../image/instagram.svg"
-                                        alt="Instagram"></a>
-                                <a><img src="../image/icon_tiktok.svg"
-                                        alt="TikTok"></a>
+                                <a><img src="https://chiaki.vn/frontend/images/icon-social/twitter.png"
+                                        alt="Twitter."></a>
+                                <a><img src="https://chiaki.vn/frontend/images/icon-social/youtube.png"
+                                        alt="Youtube"></a>
 
                             </div>
                             <div class="payment-methods">
                                 <h3>Thanh Toán</h3>
 
-                                <img src="https://hasaki.vn/v3/images/icons/visa.svg" alt="Visa">
-                                <img src="https://hasaki.vn/v3/images/icons/atm.svg" alt="ATM">
+                                <img src="https://chiaki.vn/frontend/images/payment-method/visa.svg" alt="Visa">
+                                <img src="https://chiaki.vn/frontend/images/payment-method/mastercard.svg" alt="ATM">
                             </div>
 
                         </div>
@@ -130,11 +130,11 @@
                                 <button onclick="signUp()">Đăng ký</button>
                             </div>
                             <div class="promo-download">
-                                <img src="../image/qrcode.png" alt="QR code">
+                                <img src="${pageContext.request.contextPath}/images/qrcode.png" alt="QR code">
                                 <div class="app-links">
-                                    <img src="https://hasaki.vn/v3/images/icons/dl_apple.svg"
+                                    <img src="https://chiaki.vn/frontend/images/logo-appstore.png"
                                          alt="App Store">
-                                    <img src="https://hasaki.vn/v3/images/icons/dl_google.svg"
+                                    <img src="https://chiaki.vn/frontend/images/logo-googleplay.png"
                                          alt="Google Play">
                                 </div>
                             </div>

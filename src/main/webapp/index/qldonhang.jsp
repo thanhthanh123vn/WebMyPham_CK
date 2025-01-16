@@ -137,9 +137,9 @@
                             điểm</a>
                         <a href="${pageContext.request.contextPath}/index/inforUser.jsp" class="item_menu_profile ">Thông tin tài
                             khoản</a>
-                        <a href="qldonhang.html" class="item_menu_profile active">Đơn hàng
+                        <a href="http://localhost:8080/WebMyPham__/index/qldonhang.jsp" class="item_menu_profile active">Đơn hàng
                             của tôi</a>
-                        <a href="myBooking.html" class="item_menu_profile ">Booking của tôi</a>
+                        <a href="http://localhost:8080/WebMyPham__/index/qldonhang.jsp" class="item_menu_profile ">Booking của tôi</a>
                         <a href="#" class="item_menu_profile ">Sổ địa chỉ
                             nhận hàng</a>
                         <a href="http://localhost:8080/WebMyPham__/index/Wishlist.jsp"  class="item_menu_profile ">Danh sách yêu thích</a>

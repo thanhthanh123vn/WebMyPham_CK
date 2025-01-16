@@ -14,7 +14,7 @@ function createProductHTML(product, isPayProduct = false) {
 
                             </div>
                             <div class="promotion">Tặng ngay phần quà khi mua tại cửa hàng còn quà</div>
-                            <div class="promotion quantityProduct">Số lượng: ${isPayProduct ? (product.quantity || "N/A") : product.count}</div>
+                       <div class="promotion quantityProduct">Số lượng: ${isPayProduct ? (product.quantity || "N/A") : product.count}</div>
                         </div>
                     </div>
                 </div>

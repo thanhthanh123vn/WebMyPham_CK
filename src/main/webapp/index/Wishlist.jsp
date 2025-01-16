@@ -127,15 +127,15 @@
                         </div>
                     </div>
                     <div class="menu_profile">
-                        <a href="qliUser.html" class="item_menu_profile ">Quản lý tài
+                        <a href="http://localhost:8080/WebMyPham__/index/inforUser.jsp" class="item_menu_profile ">Quản lý tài
                             khoản</a>
                         <a href="accumulationOfP.html" class="item_menu_profile ">TTT tích
                             điểm</a>
                         <a href="${pageContext.request.contextPath}/index/inforUser.jsp" class="item_menu_profile ">Thông tin tài
                             khoản</a>
-                        <a href="qldonhang.html" class="item_menu_profile active">Đơn hàng
+                        <a href="http://localhost:8080/WebMyPham__/ManagerProduct" class="item_menu_profile active">Đơn hàng
                             của tôi</a>
-                        <a href="myBooking.html" class="item_menu_profile ">Booking của tôi</a>
+                        <a href="http://localhost:8080/WebMyPham__/ManagerProduct" class="item_menu_profile ">Booking của tôi</a>
                         <a href="#" class="item_menu_profile ">Sổ địa chỉ
                             nhận hàng</a>
                         <a href="spyt.html" class="item_menu_profile ">Danh sách yêu thích</a>
@@ -203,7 +203,11 @@
     System.out.println(payProduct.size() + " Danh sách yêu thích");
 
     // Chuyển đối tượng payProduct thành JSON
-    String payProductJson = new com.google.gson.Gson().toJson(payProduct);
+
+
+
+
+    String payProductJson = (payProduct != null) ? new GsonUtil().getGson().toJson(payProduct) : "null";
 %>
 
 

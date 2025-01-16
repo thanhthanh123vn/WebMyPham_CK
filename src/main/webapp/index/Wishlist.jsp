@@ -1,23 +1,12 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: nguye
-  Date: 1/16/2025
-  Time: 12:52 AM
-  To change this template use File | Settings | File Templates.
---%>
+
 <%@ page import="object.Product" %>
 <%@ page import="gson.GsonUtil" %>
 <%@ page import="object.cart.Cart" %>
 <%@ page import="java.util.List" %>
 <%@ page import="object.cart.ProductCart" %>
 <%@ page import="object.User" %>
-<%@ page import="java.util.ArrayList" %><%--
-  Created by IntelliJ IDEA.
-  User: nguye
-  Date: 1/8/2025
-  Time: 9:03 PM
-  To change this template use File | Settings | File Templates.
---%>
+<%@ page import="java.util.ArrayList" %>
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -209,32 +198,30 @@
     User user = (User) session.getAttribute("user");
     String username = (user != null) ? user.getFullName() : "";
 
-    // Lấy dữ liệu giỏ hàng từ session
+    // Lấy dữ liệu yêu thích từ session
+    List<Product> payProduct = (List<Product>) session.getAttribute("Wishlistproduct");
+    System.out.println(payProduct.size() + " Danh sách yêu thích");
 
-    Product payProduct = (Product) session.getAttribute("Wishlistproduct");
-
-    // Lấy sản phẩm thanh toán từ session
-
-
-
+    // Chuyển đối tượng payProduct thành JSON
+    String payProductJson = new com.google.gson.Gson().toJson(payProduct);
 %>
+
 
 <script>
     document.addEventListener("DOMContentLoaded", function () {
         const productContainer = document.getElementById("productContainer");
 
-        // Dữ liệu giỏ hàng và sản phẩm thanh toán
+        // Dữ liệu giỏ hàng và sản phẩm thanh toán từ Servlet
+        const payProductData = <%= payProductJson %>;
 
-        const payProductData = <%= payProduct != null ? new com.google.gson.Gson().toJson(payProduct) : "null" %>;
-
-
-
-     if (payProductData) {
-            productContainer.innerHTML += createProductHTML(payProductData, true);
-        }
-        // Nếu không có sản phẩm nào
-        else {
-            productContainer.innerHTML = "<p>Không có sản phẩm nào trong giỏ hàng hoặc thanh toán.</p>";
+        // Kiểm tra nếu có sản phẩm yêu thích
+        if (payProductData && payProductData.length > 0) {
+            // Kiểm tra nếu danh sách có nhiều sản phẩm
+            payProductData.forEach(product => {
+                productContainer.innerHTML += createProductHTML(product);
+            });
+        } else {
+            productContainer.innerHTML = "<p>Không có sản phẩm trong danh sách yêu thích.</p>";
         }
     });
 
@@ -242,6 +229,10 @@
 </script>
 <script src="${pageContext.request.contextPath}/js/loadQldh.js"></script>
 <script src="${pageContext.request.contextPath}/js/updateUserMain.js"></script>
+<script src="${pageContext.request.contextPath}/js/main.js"></script>
+<script src="${pageContext.request.contextPath}/js/searchProduct.js"></script>
+
+
 
 
 <script>

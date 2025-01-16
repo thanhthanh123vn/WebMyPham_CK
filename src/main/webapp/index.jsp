@@ -47,49 +47,49 @@
             </div>
             <div class="icons">
                 <div class="menu-item">
-                    <a href="">
+                    <a href="${pageContext.request.contextPath}/index/saleEndMonth.jsp">
                         <img src="https://media.hcdn.vn/hsk/icon/black-friday_2024.png" alt="Black Friday"/>
                         <p>Sale Cuối Tháng</p>
                     </a>
                 </div>
                 <div class="menu-item">
-                    <a href="http://localhost:8080/WebMyPham__/index/ship2H.jsp">
+                    <a href="${pageContext.request.contextPath}/index/ship2H.jsp">
                         <img src="https://media.hcdn.vn/hsk/icon/hsk-icon-nowfree-v2.png" alt="Giao 2H"/>
                         <p>Giao 2H</p>
                     </a>
                 </div>
                 <div class="menu-item">
-                    <a href="nuoc-hoa-chinh-hang.html">
+                    <a href="${pageContext.request.contextPath}/index/perFume.jsp">
                         <img src="https://media.hcdn.vn/hsk/icon/hsk-icon-perfume-v2.png" alt="Nước Hoa Chính Hãng"/>
                         <p>Nước Hoa Chính Hãng</p>
                     </a>
                 </div>
                 <div class="menu-item">
-                    <a href="clinic-spa.html">
+                    <a href="${pageContext.request.contextPath}/index/clinic&spa.jsp">
                         <img src="https://media.hcdn.vn/hsk/icon/hasaki-clinic.png" alt="Clinic & S.P.A"/>
                         <p>Clinic & S.P.A</p>
                     </a>
                 </div>
                 <div class="menu-item">
-                    <a href="clinic-deals.html">
+                    <a href="${pageContext.request.contextPath}/index/clinicDeals.jsp">
                         <img src="https://media.hcdn.vn/hsk/icon/hsk-icon-clinic-deals-v2.png" alt="Clinic Deals"/>
                         <p>Clinic Deals</p>
                     </a>
                 </div>
                 <div class="menu-item">
-                    <a href="mua-la-co-qua.html">
+                    <a href="${pageContext.request.contextPath}">
                         <img src="https://media.hcdn.vn/hsk/icon/hsk-icon-mua-la-co-qua.png" alt="Mua Là Có Quà"/>
                         <p>Mua Là Có Quà</p>
                     </a>
                 </div>
                 <div class="menu-item">
-                    <a href="dat-hen.html">
+                    <a href="${pageContext.request.contextPath}">
                         <img src="https://media.hcdn.vn/hsk/icon/hasaki-dat-hen.png" alt="Đặt hẹn"/>
                         <p>Đặt hẹn</p>
                     </a>
                 </div>
                 <div class="menu-item">
-                    <a href="cam-nang.html">
+                    <a href="${pageContext.request.contextPath}">
                         <img src="https://media.hcdn.vn/hsk/icon/hasaki-cam-nang.png" alt="Cẩm nang"/>
                         <p>Cẩm nang</p>
                     </a>
@@ -355,7 +355,7 @@
                 if (response.ok) {
                     console.log("Đăng xuất thành công");
                     // Chuyển hướng người dùng về trang đăng nhập hoặc trang chủ
-                    window.location.href = "index.jsp";
+                    window.location.href = "products";
                 } else {
                     console.error("Lỗi khi đăng xuất");
                 }

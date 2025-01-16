@@ -163,3 +163,61 @@ $(document).ready(function () {
         },
     });
 });
+// Thêm một hàng mới vào bảng
+function addUserRow() {
+    const tableBody = document.getElementById("userTable").querySelector("tbody");
+    const newRow = tableBody.insertRow();
+
+    newRow.innerHTML = `
+        <td><input type="text" name="id" placeholder="Nhập Tên"></td>
+        <td><input type="text" name="name" placeholder="Nhập Mã danh mục"></td>
+        <td><input type="email" name="email" placeholder="Nhập giá"></td>
+        <td><input type="text" name="phone" placeholder="Nhập Tồn kho:"></td>
+         <td><input type="text" name="phone" placeholder="Nhập Mô tả:"></td>
+        <td><input type="text" name="phone" placeholder="Nhập URL ảnh:"></td>
+        <td><button onclick="deleteUserRow(this)">Xóa</button></td>
+    `;
+}
+
+// Xóa một hàng
+function deleteUserRow(button) {
+    const row = button.parentElement.parentElement;
+    row.remove();
+}
+
+// Lưu tất cả người dùng
+function saveUsers() {
+    const tableBody = document.getElementById("userTable").querySelector("tbody");
+    const rows = tableBody.querySelectorAll("tr");
+
+    const users = [];
+    rows.forEach((row) => {
+        const id = row.querySelector('input[name="id"]').value.trim();
+        const name = row.querySelector('input[name="name"]').value.trim();
+        const email = row.querySelector('input[name="email"]').value.trim();
+        const phone = row.querySelector('input[name="phone"]').value.trim();
+
+        if (id && name && email && phone) {
+            users.push({ id, name, email, phone });
+        }
+    });
+
+    if (users.length === 0) {
+        alert("Không có dữ liệu hợp lệ để lưu!");
+        return;
+    }
+
+    console.log("Danh sách người dùng được lưu:", users);
+
+    //Gửi danh sách người dùng đến server (nếu cần)
+    fetch('/save-users', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(users),
+    }).then(response => response.json())
+      .then(data => alert("Lưu thành công!"))
+      .catch(err => alert("Lỗi khi lưu người dùng: " + err));
+
+    alert("Lưu thành công!");
+    tableBody.innerHTML = ""; // Xóa bảng sau khi lưu
+}

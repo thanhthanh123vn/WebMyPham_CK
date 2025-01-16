@@ -1,8 +1,7 @@
-package ServletAdmin;
+package ServletAdmin.ManagerUser;
 
 import com.google.gson.Gson;
 import dao.UserInfDao;
-import dao.Utils;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -11,20 +10,10 @@ import jakarta.servlet.http.HttpServletResponse;
 import object.UserInf;
 
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 
-
-
-
-    @WebServlet("/listUserInf")
+@WebServlet("/listUserInf")
     public class UserAdminListServlet extends HttpServlet {
         private static final long serialVersionUID = 1L;
 

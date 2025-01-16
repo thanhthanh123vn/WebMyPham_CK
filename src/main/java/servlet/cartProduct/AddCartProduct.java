@@ -38,6 +38,7 @@ public class AddCartProduct extends HttpServlet {
         }
 
         Product product = gson.fromJson(reader, Product.class);
+        System.out.println(product.getQuantity()+"Số lượng sản phâm trong cart");
         if (product != null) {
             cart.put(product);
             session.setAttribute("cart", cart);

@@ -63,7 +63,7 @@
                 <h3>Hóa đơn của bạn</h3>
                 <p>Tạm tính: <span >${sessionScope.cart.totalCart}</span></p>
                 <p>Giảm giá: <span>-0 ₫</span></p>
-                <p><strong>Tổng cộng: <span class="totalPrice">${sessionScope.cart.totalCart}</span></strong></p>
+                <p><strong>Tổng cộng: <span class="totalPrice">${sessionScope.cart.totalCart}đ</span></strong></p>
                 <button id="hang-2" class="checkout-btn order-product" >Tiến hành đặt hàng</button>
             </div>
         </div>

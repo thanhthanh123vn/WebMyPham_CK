@@ -1,4 +1,4 @@
-package ServletAdmin;
+package ServletAdmin.ManagerProduct;
 
 import dao.ProductsDao;
 import jakarta.servlet.ServletException;

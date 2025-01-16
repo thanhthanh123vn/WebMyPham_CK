@@ -1,4 +1,4 @@
-package ServletAdmin;
+package ServletAdmin.ManagerUser;
 
 import com.google.gson.Gson;
 import dao.UserInfDao;

@@ -1,4 +1,4 @@
-package ServletAdmin;
+package ServletAdmin.ManagerOrder;
 
 import dao.OrderDao;
 import jakarta.servlet.ServletException;
@@ -9,7 +9,6 @@ import jakarta.servlet.http.HttpServletResponse;
 import object.OrderDetail;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.List;
 
 

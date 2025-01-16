@@ -1,8 +1,7 @@
-package ServletAdmin;
+package ServletAdmin.ManagerProduct;
 
 import com.google.gson.Gson;
 import dao.ProductsDao;
-import dao.UserInfDao;
 import gson.GsonUtil;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -10,7 +9,6 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import object.Product;
-import object.UserInf;
 
 import java.io.BufferedReader;
 import java.io.IOException;

@@ -1,4 +1,4 @@
-package ServletAdmin;
+package ServletAdmin.ManagerProduct;
 
 import com.google.gson.Gson;
 import dao.ProductsDao;

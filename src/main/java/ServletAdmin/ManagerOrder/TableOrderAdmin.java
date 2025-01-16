@@ -1,4 +1,4 @@
-package ServletAdmin;
+package ServletAdmin.ManagerOrder;
 
 import dao.OrderDao;
 import jakarta.servlet.ServletException;

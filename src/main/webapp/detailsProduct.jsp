@@ -262,7 +262,7 @@
 
     }
     function payProductDetail(productId) {
-        window.location.href = `index/payAddress.jsp`;
+        window.location.href = "http://localhost:8080/WebMyPham__/payProduct?productId="+productId;
 
     }
 
@@ -311,6 +311,7 @@
 
 <% Product product = (Product) request.getAttribute("products");
     String productJson = new GsonUtil().getGson().toJson(product);%>
+
 <script>
     const  productCart =  <%=productJson%>;
 
@@ -338,11 +339,17 @@
         var detail = info.querySelector('.product-title')?.textContent.trim() || '';
         var price = info.querySelector('.price')?.textContent.trim() || '';
 
+
         var product = <%=productJson%>
             console.log(product);
 
+        const quantityInput = document.querySelector('input[name="quantity"]');
+        var quantity = quantityInput.value;
 
-        // Kiểm tra xem phần tử có tồn tại hay không
+
+        product.quantity = quantity;
+        alert(product.quantity);
+
         if (cartCountElement) {
             // Lấy giá trị hiện tại và chuyển thành số nguyên
             let currentCount = parseInt(cartCountElement.textContent);

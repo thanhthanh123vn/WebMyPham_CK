@@ -1,4 +1,4 @@
-package ServletAdmin;
+package ServletAdmin.ManagerUser;
 
 import dao.UserInfDao;
 import jakarta.servlet.ServletException;
@@ -6,10 +6,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import object.User;
-import dao.InforUser;
 import object.UserInf;
-import services.UserUtils;
 
 import java.io.IOException;
 import java.util.List;

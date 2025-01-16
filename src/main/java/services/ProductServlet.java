@@ -33,13 +33,13 @@ public class ProductServlet extends HttpServlet {
             List<Product> products = productDetails.listProducts();
             List<Categories> categories = categoryDao.getAllCategories(startIndex);
             HttpSession session = request.getSession();
-            User user = (User) session.getAttribute("userLogin");
+//            User user = (User) session.getAttribute("userLogin");
 
 
 
             if (products != null && !products.isEmpty()) {
                 request.setAttribute("products", products);
-                session.setAttribute("user", user);
+//                session.setAttribute("user", user);
 
                 request.setAttribute("categories", categories);
                 request.setAttribute("startIndex", startIndex); // Truyền startIndex vào request

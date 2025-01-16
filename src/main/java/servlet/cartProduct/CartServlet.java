@@ -1,4 +1,4 @@
-package servlet;
+package servlet.cartProduct;
 
 
 
@@ -10,10 +10,8 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import object.Product;
 import object.cart.Cart;
-import object.cart.ProductCart;
 
 import java.io.IOException;
-import java.math.BigDecimal;
 
 @WebServlet("/cart")
 public class CartServlet extends HttpServlet {

@@ -201,6 +201,29 @@
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             border-radius: 8px;
         }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        table th, table td {
+            padding: 10px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+
+        input[type="text"], input[type="email"] {
+            width: 95%;
+            padding: 5px;
+            box-sizing: border-box;
+        }
+
+        button {
+            padding: 5px 10px;
+            margin: 5px;
+            cursor: pointer;
+        }
 
         #productModal h3 {
             margin-top: 0;
@@ -642,7 +665,8 @@
                 <div class="card shadow mb-4" style="display: flex; flex-direction: row; align-items: center;
                     text-align: center; justify-content: center; padding: 10px 20px;">
 
-                    <button  onclick="showAddProductModal()">Thêm</button>
+                    <button  onclick="showAddProductModal()" style="margin-right: 20px">Thêm</button>
+<%--                    <button onclick="showModal()">Thêm Nhiều sản phẩm</button>--%>
 
                 </div>
 
@@ -671,13 +695,35 @@
                             </tbody>
                         </table>
                     </section>
-                    </main> <!-- Modal thêm/sửa người dùng -->
+                    </main>
+                    <div style="display: none">
+                        <h3>Thêm nhiều người dùng</h3>
+                        <button onclick="addUserRow()">Thêm hàng</button>
+                        <button onclick="saveUsers()">Lưu tất cả</button>
+                        <table id="userTable" border="1">
+                            <thead>
+                            <tr>
+                                <th>>Tên sản phẩm:</th>
+                                <th>Mã danh mục:</th>
+                                <th>Giá:</th>
+                                <th>Tồn kho:</th>
+                                <th>Thao tác</th>
+                                <th>URL Ảnh:</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <!-- Hàng sẽ được thêm ở đây -->
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- Modal thêm/sửa người dùng -->
                     <div id="productModal"> <div id="ProductModalContent">
                         <span class="close" onclick="hideModal()">&times;</span>
 
                         <h3 id="modalTitle">Thêm sản phẩm</h3>
-                        <label>ID:</label>
-                        <input type="text" id="id">
+<%--                        <label>ID:</label>--%>
+<%--                        <input type="text" id="id">--%>
                         <label>Tên sản phẩm:</label>
                         <input type="text" id="productName">
                         <label>Mã danh mục:</label>
@@ -762,7 +808,8 @@
             </script>
         <!-- Page level custom scripts -->
         <script src="js/demo/datatables-demo.js"></script>
-            <script src="https://cdn.ckeditor.com/4.20.2/standard/ckeditor.js"></script>
+            <script src="https://cdn.ckeditor.com/ckeditor5/39.0.1/classic/ckeditor.js"></script>
+
             <script>
                 CKEDITOR.replace('description');
             </script>

@@ -28,7 +28,7 @@ public class LoginUser extends HttpServlet {
 
 		if (userCus != null) { // Nếu tài khoản tồn tại
 			HttpSession session = req.getSession();
-			session.setAttribute("userLogin", userCus); // Lưu thông tin người dùng vào session
+			session.setAttribute("user", userCus); // Lưu thông tin người dùng vào session
 
 			// Lưu cookie nếu muốn ghi nhớ thông tin đăng nhập
 			Cookie userCookie = new Cookie("userC", username);

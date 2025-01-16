@@ -71,7 +71,7 @@ public class Cart {
         cartProduct.setId(p.getId());
         cartProduct.setPrice(p.getPrice());
         cartProduct.setName(p.getName());
-        cartProduct.setCount(1);
+        cartProduct.setCount(p.getQuantity());
         cartProduct.setImage(p.getImage());
         cartProduct.setDetail(p.getDetail());
         return cartProduct;

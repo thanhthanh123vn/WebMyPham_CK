@@ -142,7 +142,7 @@
                         <a href="myBooking.html" class="item_menu_profile ">Booking của tôi</a>
                         <a href="#" class="item_menu_profile ">Sổ địa chỉ
                             nhận hàng</a>
-                        <a href="spyt.html" class="item_menu_profile ">Danh sách yêu thích</a>
+                        <a href="http://localhost:8080/WebMyPham__/index/Wishlist.jsp"  class="item_menu_profile ">Danh sách yêu thích</a>
                         <a href="redeemProduct.html" class="item_menu_profile ">Mua lại</a>
                         <a href="q&a.html" class="item_menu_profile ">Hỏi đáp</a>
                     </div>
@@ -198,24 +198,17 @@
 
 
 <%
-    // Lấy thông tin người dùng từ session
+    // Lấy thông tin từ session
     User user = (User) session.getAttribute("user");
     String username = (user != null) ? user.getFullName() : "";
 
-    // Lấy dữ liệu giỏ hàng từ session
     Cart cartData = (Cart) session.getAttribute("cartQL");
     List<ProductCart> productCarts = (cartData != null) ? cartData.getList() : new ArrayList<>();
     Product payProduct = (Product) session.getAttribute("productQL");
 
-    // Lấy sản phẩm thanh toán từ session
-
-
-    if(cartData !=null){
-        session.removeAttribute("cart");
-    }
-    if(payProduct !=null){
-        session.removeAttribute("payProduct");
-    }
+    // Convert dữ liệu sang JSON sử dụng Gson
+    String cartJson = (cartData != null) ? new GsonUtil().getGson().toJson(productCarts) : "null";
+    String payProductJson = (payProduct != null) ? new GsonUtil().getGson().toJson(payProduct) : "null";
 %>
 
 <script>
@@ -223,10 +216,8 @@
         const productContainer = document.getElementById("productContainer");
 
         // Dữ liệu giỏ hàng và sản phẩm thanh toán
-        const cartData = <%= new com.google.gson.Gson().toJson(productCarts) %>;
-        const payProductData = <%= payProduct != null ? new com.google.gson.Gson().toJson(payProduct) : "null" %>;
-
-
+        const cartData = <%= cartJson %>;
+        const payProductData = <%= payProductJson %>;
 
         // Hiển thị sản phẩm từ giỏ hàng
         if (cartData && cartData.length > 0) {
@@ -235,19 +226,26 @@
             });
         }
         // Hiển thị sản phẩm thanh toán
-        else if (payProductData) {
+        else if (payProductData !== "null") {
+
             productContainer.innerHTML += createProductHTML(payProductData, true);
         }
+
         // Nếu không có sản phẩm nào
         else {
             productContainer.innerHTML = "<p>Không có sản phẩm nào trong giỏ hàng hoặc thanh toán.</p>";
         }
     });
 
+</script>
+
+
 
 </script>
 <script src="${pageContext.request.contextPath}/js/loadQldh.js"></script>
         <script src="${pageContext.request.contextPath}/js/updateUserMain.js"></script>
+<script src="${pageContext.request.contextPath}/js/main.js"></script>
+<script src="${pageContext.request.contextPath}js/searchProduct.js"></script>
 
 
 <script>

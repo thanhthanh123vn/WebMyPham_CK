@@ -8,7 +8,8 @@ function createProductHTML(product, isPayProduct = false) {
                             <p class="detailProduct">${product.detail || "Không có mô tả"}</p>
                             <span class="priceProduct">${product.price ? product.price + "đ" : "N/A"}</span>
                             <div class="actions">
-                                <a onclick="wishlist('${product.id}')">Yêu thích</a> |
+                              <a   style="cursor: pointer;" onclick="wishlist('${product.id}' ,event)">Yêu thích</a> |
+
                               <a href="#" onclick="removeOrderProduct('${product.id}', event)">Hủy Đặt Hàng</a>
 
                             </div>
@@ -23,15 +24,15 @@ function removeOrderProduct(productId, event) {
     event.preventDefault(); // Ngừng hành động mặc định (reload trang)
     window.location.href = "http://localhost:8080/WebMyPham__/cancelOrder?id=" + productId;
 }
-function wishlist(productID) {
+function wishlist(productID,event) {
     fetch("http://localhost:8080/WebMyPham__/wishlist?id=" + productID, {
         method: "POST"
     })
         .then(response => {
             if (response.ok) {
-                console.log("Yêu cầu đã được xử lý thành công");
+               alert("Yêu cầu đã được xử lý thành công");
             } else {
-                console.log("Đã xảy ra lỗi khi gửi yêu cầu");
+                alert("Đã xảy ra lỗi khi gửi yêu cầu");
             }
         })
         .catch(error => {

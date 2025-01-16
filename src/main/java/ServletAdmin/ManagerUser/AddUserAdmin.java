@@ -1,4 +1,4 @@
-package ServletAdmin;
+package ServletAdmin.ManagerUser;
 
 import com.google.gson.Gson;
 import dao.UserInfDao;
@@ -12,18 +12,19 @@ import object.UserInf;
 
 import java.io.BufferedReader;
 import java.io.IOException;
-@WebServlet("/EditUser")
-public class EditUserAdmin extends HttpServlet {
+
+@WebServlet("/AddUser")
+public class AddUserAdmin extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         BufferedReader reader = request.getReader();
         Gson gson = GsonUtil.getGson();
         UserInf user = gson.fromJson(reader, UserInf.class);
-
+        System.out.println(user.toString());
 
         // Logic thêm người dùng vào cơ sở dữ liệu
         try {
             UserInfDao userDAO = new UserInfDao();
-            userDAO.updateUserAndAddress(user);
+            userDAO.insertUserAndAddress(user);
             response.setStatus(HttpServletResponse.SC_OK);
         } catch (Exception e) {
             e.printStackTrace();

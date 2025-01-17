@@ -5,6 +5,23 @@ async function displayUsers() {
     const userBody = document.getElementById("userBody");
     userBody.innerHTML = "";
 
+<<<<<<< HEAD
+    users.forEach((user, index) => {
+        const row = `<tr>
+            <td>${user.name}</td>
+            <td>${user.password}</td>
+            <td>${user.address}</td>
+            <td><img src="${user.image}" alt="${user.name}" width="50"></td>
+            <td>${user.email}</td>
+            <td>${user.phone}</td>
+            <td>
+                <button onclick="editUser(${index})">Sửa</button>
+                <button onclick="deleteUser(${index})">Xóa</button>
+            </td>
+        </tr>`;
+        userBody.innerHTML += row;
+    });
+=======
     try {
         const response = await fetch("http://localhost:8080/WebMyPham__/listUserInf");
         if (!response.ok) throw new Error("Không thể tải danh sách người dùng.");
@@ -46,6 +63,7 @@ async function displayUsers() {
         console.error("Lỗi:", error);
     }
 
+>>>>>>> Thanh
 }
 
 $(document).ready(function () {
@@ -79,14 +97,28 @@ function showAddModal() {
 function editUser(index) {
     const user = userInfs[index];
     document.getElementById("modalTitle").innerText = "Sửa Người Dùng";
+<<<<<<< HEAD
+    document.getElementById("userName").value = user.name;
+    document.getElementById("age").value = user.password;
+=======
     document.getElementById("userModal").dataset.index = index;
     document.getElementById("userName").value = user.userName;
     document.getElementById("role").value = user.role;
+>>>>>>> Thanh
     document.getElementById("address").value = user.address;
     document.getElementById("imageURL").value = user.imageURL;
     document.getElementById("email").value = user.email;
     document.getElementById("phone").value = user.phone;
     document.getElementById("userModal").style.display = "block";
+<<<<<<< HEAD
+
+    // Lưu lại index đang chỉnh sửa
+
+
+
+    document.getElementById("userModal").dataset.index = index;
+=======
+>>>>>>> Thanh
 }
 
 // Lưu người dùng (thêm hoặc sửa)

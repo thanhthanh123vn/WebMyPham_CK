@@ -20,6 +20,15 @@ public class ProductsDao {
         System.out.println("haha");
         conn = utils.getConnection();
     }
+<<<<<<< HEAD
+    public boolean deleteProDuct(Product product){
+        String sql = "delete from products where id=?";
+        try {
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setInt(1, product.getId());
+            int row = ps.executeUpdate();
+            if(row>0)return true;
+=======
     public List<String> getImageProductDetail(int id){
         List<String> result = new ArrayList<>();
         String sql = "select image from listimageproductdetail where productid =?";
@@ -55,15 +64,21 @@ public class ProductsDao {
             if (row > 0) {
                 return true;
             }
+>>>>>>> Thanh
 
         } catch (Exception e) {
             e.printStackTrace();
         }
         return false;
     }
+<<<<<<< HEAD
+public boolean insertProduct(Product product) {
+        String sql = "insert into product (id,name,Detail,price,quantity,image,category_id) " +
+=======
 
     public boolean insertProduct(Product product) {
         String sql = "insert into products (id,name,Detail,price,quantity,image,CategoryID) " +
+>>>>>>> Thanh
                 "values(?,?,?,?,?,?,?)";
         try {
             PreparedStatement ps = conn.prepareStatement(sql);
@@ -85,7 +100,34 @@ public class ProductsDao {
         }
         return false;
 }
+<<<<<<< HEAD
+public boolean updateProduct(Product product) {
+        String sql = "update product set  name=?,detail=?price=?," +
+                "quantity=?,image=?,category_id=? where name=?";
+        try {
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setString(1, product.getName());
+            ps.setString(2,product.getDetail());
+            ps.setDouble(3, product.getPrice());
+            ps.setInt(4, product.getQuantity());
+            ps.setString(5, product.getImage());
+            ps.setInt(6, product.getCategory_id());
+
+            int row = ps.executeUpdate();
+            if(row >0){
+                return true;
+            }
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
+}
+    public static List<Product> listProducts() {
+=======
     public  List<Product> listProducts() {
+>>>>>>> Thanh
         String sql = "SELECT * FROM products";
         List<Product> products = new ArrayList<>();
 

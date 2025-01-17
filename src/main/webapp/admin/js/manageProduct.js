@@ -14,6 +14,26 @@ async function displayProducts() {
         const productData = await response.json();
         products = productData; // Assign data to products
 
+<<<<<<< HEAD
+    products.forEach((product, index) => {
+        // <td>${product.id}</td>
+        // <td>${product.brand}</td>
+        // <td>${product.status}</td>
+        const row = `<tr>
+            <td>${product.name}</td>
+            <td>${product.brand}</td>
+            <td><img src="${product.image}" alt="${product.name}" width="50"></td>
+            <td>${product.price.toLocaleString()} đ</td>
+            <td>${product.description}</td>
+            <td>${product.category}</td>
+            <td>
+                <button onclick="editProduct(${index})">Sửa</button>
+                <button onclick="deleteProduct(${index},${product})">Xóa</button>
+            </td>
+        </tr>`;
+        productBody.innerHTML += row;
+    });
+=======
         const modifiedProduct = products.map((eachProduct, index) => ({
             id:eachProduct.id,
             name: eachProduct.name,
@@ -52,6 +72,7 @@ async function displayProducts() {
         console.error("Lỗi:", error);
         alert("Không thể tải danh sách sản phẩm.");
     }
+>>>>>>> Thanh
 }
 
 // Show Add Product Modal
@@ -74,7 +95,30 @@ function editProduct(index) {
     document.getElementById("stock").value = product.quantity;
     document.getElementById("productModal").style.display = "block";
 
+<<<<<<< HEAD
+    fetch('updateProduct',{
+        method:"GET",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(product)
+    }).then(response => {
+        if (response.ok) {
+            alert(" Update Product thành công!");
+        } else {
+            alert("Lỗi sửa Product.");
+        }
+    }).catch(error => {
+        console.error("Lỗi:", error);
+        alert("Đã xảy ra lỗi khi Update product.");
+    });
+
+
+
+    // Lưu lại index đang chỉnh sửa
+=======
     // Store the index for later use
+>>>>>>> Thanh
     document.getElementById("productModal").dataset.index = index;
 }
 
@@ -111,8 +155,30 @@ function saveProduct() {
     });
 }
 
+<<<<<<< HEAD
+// Xóa sản phẩm
+function deleteProduct(index,product) {
+
+    fetch("deleteProductAdmin", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(product)
+    }).then(response => {
+        if (response.ok) {
+            alert("Đã thêm sản phẩm thành công!");
+        } else {
+            alert("Lỗi khi thêm sản phẩm.");
+        }
+    }).catch(error => {
+        console.error("Lỗi:", error);
+        alert("Đã xảy ra lỗi khi thêm sản phẩm.");
+    });
+=======
 // Delete Product
 function deleteProduct(index) {
+>>>>>>> Thanh
     if (confirm("Bạn có chắc chắn muốn xóa sản phẩm này?")) {
         const product = products[index];
         fetch("http://localhost:8080/WebMyPham__/removeProduct", {
@@ -130,8 +196,15 @@ function deleteProduct(index) {
             alert("Đã xảy ra lỗi khi xóa sản phẩm.");
         });
     }
+
 }
 
+<<<<<<< HEAD
+
+// Ẩn modal
+function hideModal() {
+    document.getElementById("productModal").style.display = "none";
+=======
 // Reset Modal Fields
 function resetModalFields() {
     document.getElementById("id").value = "";
@@ -141,6 +214,7 @@ function resetModalFields() {
     document.getElementById("description").value = "";
     document.getElementById("category").value = "";
     document.getElementById("stock").value = "";
+>>>>>>> Thanh
     delete document.getElementById("productModal").dataset.index;
 }
 

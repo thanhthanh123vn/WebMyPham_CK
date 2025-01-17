@@ -4,6 +4,9 @@
 <%@ page import="object.UserInf" %>
 <%@ page import="object.User"%>
 <%@ page import="object.Product" %>
+<<<<<<< HEAD
+<%@ page import="com.google.gson.Gson" %>
+=======
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
@@ -14,6 +17,7 @@
 
 
     }%>
+>>>>>>> Thanh
 <!DOCTYPE html>
 <html lang="en">
 
@@ -777,6 +781,17 @@
                 </div>
             </div>
         </div>
+<<<<<<< HEAD
+    </div>
+<% List<Product> products = (List<Product>) request.getAttribute("listProduct");
+   String productJson = new Gson().toJson(products);%>
+
+<script src="js/manageProduct.js"></script>
+        <script >
+            const products =  JSON.parse('<%= productJson %>');
+        </script>
+=======
+>>>>>>> Thanh
 
 
 

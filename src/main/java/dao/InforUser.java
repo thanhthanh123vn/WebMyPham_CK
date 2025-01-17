@@ -20,7 +20,31 @@ public class InforUser {
 		utils = new Utils();
 		conn = utils.getConnection();
 	}
+<<<<<<< HEAD
+	public boolean UpdateUser(User user){
+		String sql = "update user set username=?,email =? ,password=? where username=?";
+		try {
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setString(1,user.getFullName());
+			ps.setString(2,user.getEmail());
+			ps.setString(3,user.getPassword());
 
+			int row = ps.executeUpdate();
+			if(row>0){
+				return true;
+			}
+
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return false;
+
+
+	}
+=======
+
+>>>>>>> Thanh
 	public boolean checkUser(String username, String password) {
         String sql = "SELECT * FROM user WHERE username = ? AND password = ?";
         try (PreparedStatement statement = conn.prepareStatement(sql)) {

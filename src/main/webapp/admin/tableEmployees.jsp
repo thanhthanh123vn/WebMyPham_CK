@@ -754,6 +754,11 @@ if (user != null) {
           String usersInfJson = new Gson().toJson(users);
 
 %>
+<<<<<<< HEAD
+        <script src="js/manageUser.js"></script>
+        <script>
+            const users = JSON.parse('<%= usersJson %>');
+=======
 
 
         <script src="js/manageUser.js">
@@ -761,6 +766,7 @@ if (user != null) {
 
             const users = <%= usersInfJson %>;
 
+>>>>>>> Thanh
             console.log(users); // Kiểm tra dữ liệu trong console
         </script>
 
